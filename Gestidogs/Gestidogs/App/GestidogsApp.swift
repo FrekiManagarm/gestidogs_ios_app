@@ -11,7 +11,7 @@ import SwiftUI
 struct GestidogsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }

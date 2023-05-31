@@ -8,8 +8,43 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @State private var tabBarIndex: Int = 0
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            NavBar(userImage: "dogIcon2", tabBarIndex: $tabBarIndex)
+            TabView(selection: $tabBarIndex) {
+                DashboardView()
+                    .tabItem {
+                        Image(systemName: "house.fill")
+                        Text("Accueil")
+                    }
+                    .tag(0)
+                
+                AgendaView()
+                    .tabItem {
+                        Image(systemName: "calendar")
+                        Text("Agenda")
+                    }
+                    .tag(1)
+                
+                HolidaysView()
+                    .tabItem {
+                        Image(systemName: "sun.max")
+                        Text("Congés")
+                    }
+                    .tag(2)
+                
+                ProfileView()
+                    .tabItem {
+                        Image(systemName: "person.fill")
+                        Text("Profile")
+                    }
+                    .tag(3)
+            }
+            .accentColor(Color(.blue))
+        }
     }
 }
 

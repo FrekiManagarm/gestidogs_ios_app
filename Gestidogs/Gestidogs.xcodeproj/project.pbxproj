@@ -7,6 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157BFD2A27744800B4C2FE /* DashboardWidget.swift */; };
+		5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157BFF2A27745500B4C2FE /* DashboardView.swift */; };
+		5F157C022A27746F00B4C2FE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C012A27746F00B4C2FE /* DashboardViewModel.swift */; };
+		5F157C082A27771900B4C2FE /* HolidaysWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C072A27771900B4C2FE /* HolidaysWidget.swift */; };
+		5F157C0A2A27772800B4C2FE /* HolidaysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C092A27772800B4C2FE /* HolidaysViewModel.swift */; };
+		5F157C0C2A27773A00B4C2FE /* HolidaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C0B2A27773A00B4C2FE /* HolidaysView.swift */; };
+		5F157C112A2777A800B4C2FE /* ProfileWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C102A2777A800B4C2FE /* ProfileWidget.swift */; };
+		5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C122A2777B800B4C2FE /* ProfileViewModel.swift */; };
+		5F157C152A2777CB00B4C2FE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C142A2777CB00B4C2FE /* ProfileView.swift */; };
+		5F157C172A27780300B4C2FE /* HolidaysResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C162A27780300B4C2FE /* HolidaysResponseModel.swift */; };
+		5F157C202A277BDC00B4C2FE /* ActivityTypeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C1F2A277BDC00B4C2FE /* ActivityTypeResponseModel.swift */; };
+		5F157C222A277BF300B4C2FE /* ActivityTypeRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C212A277BF300B4C2FE /* ActivityTypeRequestModel.swift */; };
+		5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C232A277C2100B4C2FE /* EstablishmentResponseModel.swift */; };
+		5F157C262A277C3000B4C2FE /* EstablishmentRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C252A277C3000B4C2FE /* EstablishmentRequestModel.swift */; };
+		5F157C282A277C4500B4C2FE /* UserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C272A277C4500B4C2FE /* UserResponseModel.swift */; };
+		5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C292A277C5700B4C2FE /* UserRequestModel.swift */; };
+		5F157C2C2A277C6A00B4C2FE /* ReservationResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C2B2A277C6A00B4C2FE /* ReservationResponseModel.swift */; };
+		5F157C2E2A277C8700B4C2FE /* ReservationRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C2D2A277C8700B4C2FE /* ReservationRequestModel.swift */; };
+		5F157C302A277C9600B4C2FE /* SessionResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C2F2A277C9600B4C2FE /* SessionResponseModel.swift */; };
+		5F157C322A277CA700B4C2FE /* SessionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C312A277CA700B4C2FE /* SessionRequestModel.swift */; };
+		5F157C342A277CCB00B4C2FE /* DogsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C332A277CCB00B4C2FE /* DogsResponseModel.swift */; };
+		5F157C362A277CDA00B4C2FE /* DogsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C352A277CDA00B4C2FE /* DogsRequestModel.swift */; };
+		5F157C382A277CF100B4C2FE /* HolidaysRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C372A277CF100B4C2FE /* HolidaysRequestModel.swift */; };
+		5F157C3A2A278FA700B4C2FE /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C392A278FA700B4C2FE /* ApiManager.swift */; };
+		5F157C3C2A278FCE00B4C2FE /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C3B2A278FCE00B4C2FE /* UserManager.swift */; };
+		5F157C3E2A278FDB00B4C2FE /* EstablishmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C3D2A278FDB00B4C2FE /* EstablishmentManager.swift */; };
+		5F157C402A2790FA00B4C2FE /* HolidaysManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C3F2A2790FA00B4C2FE /* HolidaysManagerView.swift */; };
+		5F157C422A27910C00B4C2FE /* HolidaysEducatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C412A27910C00B4C2FE /* HolidaysEducatorView.swift */; };
+		5F157C452A2791E800B4C2FE /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C442A2791E800B4C2FE /* NavBar.swift */; };
 		5F8BFD172A262CE70007E367 /* GestidogsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8BFD162A262CE70007E367 /* GestidogsApp.swift */; };
 		5F8BFD1B2A262CE90007E367 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F8BFD1A2A262CE90007E367 /* Assets.xcassets */; };
 		5F8BFD1E2A262CE90007E367 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F8BFD1D2A262CE90007E367 /* Preview Assets.xcassets */; };
@@ -17,9 +46,39 @@
 		5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8BFD3F2A262E640007E367 /* AgendaWidget.swift */; };
 		5F8BFD422A262ED30007E367 /* AgendaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8BFD412A262ED30007E367 /* AgendaView.swift */; };
 		5F8BFD442A262F380007E367 /* AgendaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8BFD432A262F380007E367 /* AgendaViewModel.swift */; };
+		73BA4BF43F202F1C07B963C5 /* Pods_Gestidogs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E2F9E6D142D9063B9313C1 /* Pods_Gestidogs.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F157BFD2A27744800B4C2FE /* DashboardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardWidget.swift; sourceTree = "<group>"; };
+		5F157BFF2A27745500B4C2FE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		5F157C012A27746F00B4C2FE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		5F157C072A27771900B4C2FE /* HolidaysWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysWidget.swift; sourceTree = "<group>"; };
+		5F157C092A27772800B4C2FE /* HolidaysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysViewModel.swift; sourceTree = "<group>"; };
+		5F157C0B2A27773A00B4C2FE /* HolidaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysView.swift; sourceTree = "<group>"; };
+		5F157C102A2777A800B4C2FE /* ProfileWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWidget.swift; sourceTree = "<group>"; };
+		5F157C122A2777B800B4C2FE /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		5F157C142A2777CB00B4C2FE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5F157C162A27780300B4C2FE /* HolidaysResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysResponseModel.swift; sourceTree = "<group>"; };
+		5F157C1F2A277BDC00B4C2FE /* ActivityTypeResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeResponseModel.swift; sourceTree = "<group>"; };
+		5F157C212A277BF300B4C2FE /* ActivityTypeRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeRequestModel.swift; sourceTree = "<group>"; };
+		5F157C232A277C2100B4C2FE /* EstablishmentResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentResponseModel.swift; sourceTree = "<group>"; };
+		5F157C252A277C3000B4C2FE /* EstablishmentRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentRequestModel.swift; sourceTree = "<group>"; };
+		5F157C272A277C4500B4C2FE /* UserResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseModel.swift; sourceTree = "<group>"; };
+		5F157C292A277C5700B4C2FE /* UserRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestModel.swift; sourceTree = "<group>"; };
+		5F157C2B2A277C6A00B4C2FE /* ReservationResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationResponseModel.swift; sourceTree = "<group>"; };
+		5F157C2D2A277C8700B4C2FE /* ReservationRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRequestModel.swift; sourceTree = "<group>"; };
+		5F157C2F2A277C9600B4C2FE /* SessionResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponseModel.swift; sourceTree = "<group>"; };
+		5F157C312A277CA700B4C2FE /* SessionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRequestModel.swift; sourceTree = "<group>"; };
+		5F157C332A277CCB00B4C2FE /* DogsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsResponseModel.swift; sourceTree = "<group>"; };
+		5F157C352A277CDA00B4C2FE /* DogsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsRequestModel.swift; sourceTree = "<group>"; };
+		5F157C372A277CF100B4C2FE /* HolidaysRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysRequestModel.swift; sourceTree = "<group>"; };
+		5F157C392A278FA700B4C2FE /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		5F157C3B2A278FCE00B4C2FE /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		5F157C3D2A278FDB00B4C2FE /* EstablishmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentManager.swift; sourceTree = "<group>"; };
+		5F157C3F2A2790FA00B4C2FE /* HolidaysManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysManagerView.swift; sourceTree = "<group>"; };
+		5F157C412A27910C00B4C2FE /* HolidaysEducatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysEducatorView.swift; sourceTree = "<group>"; };
+		5F157C442A2791E800B4C2FE /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		5F8BFD132A262CE70007E367 /* Gestidogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gestidogs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F8BFD162A262CE70007E367 /* GestidogsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestidogsApp.swift; sourceTree = "<group>"; };
 		5F8BFD1A2A262CE90007E367 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -31,6 +90,9 @@
 		5F8BFD3F2A262E640007E367 /* AgendaWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaWidget.swift; sourceTree = "<group>"; };
 		5F8BFD412A262ED30007E367 /* AgendaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaView.swift; sourceTree = "<group>"; };
 		5F8BFD432A262F380007E367 /* AgendaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewModel.swift; sourceTree = "<group>"; };
+		8075C63E9ACED383FD33BCA8 /* Pods-Gestidogs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gestidogs.release.xcconfig"; path = "Target Support Files/Pods-Gestidogs/Pods-Gestidogs.release.xcconfig"; sourceTree = "<group>"; };
+		8CB4E1EF329778ED04D016DA /* Pods-Gestidogs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gestidogs.debug.xcconfig"; path = "Target Support Files/Pods-Gestidogs/Pods-Gestidogs.debug.xcconfig"; sourceTree = "<group>"; };
+		D4E2F9E6D142D9063B9313C1 /* Pods_Gestidogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gestidogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,17 +100,185 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73BA4BF43F202F1C07B963C5 /* Pods_Gestidogs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F157BF92A2773F300B4C2FE /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				5F157BFC2A27741E00B4C2FE /* Widgets */,
+				5F157BFB2A27741300B4C2FE /* Views */,
+				5F157BFA2A27740500B4C2FE /* ViewModel */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		5F157BFA2A27740500B4C2FE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C012A27746F00B4C2FE /* DashboardViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5F157BFB2A27741300B4C2FE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F157BFF2A27745500B4C2FE /* DashboardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5F157BFC2A27741E00B4C2FE /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				5F157BFD2A27744800B4C2FE /* DashboardWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		5F157C032A27766C00B4C2FE /* Holidays */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C062A27770500B4C2FE /* Widgets */,
+				5F157C052A2776F500B4C2FE /* ViewModel */,
+				5F157C042A2776ED00B4C2FE /* Views */,
+			);
+			path = Holidays;
+			sourceTree = "<group>";
+		};
+		5F157C042A2776ED00B4C2FE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C0B2A27773A00B4C2FE /* HolidaysView.swift */,
+				5F157C3F2A2790FA00B4C2FE /* HolidaysManagerView.swift */,
+				5F157C412A27910C00B4C2FE /* HolidaysEducatorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5F157C052A2776F500B4C2FE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C092A27772800B4C2FE /* HolidaysViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5F157C062A27770500B4C2FE /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C072A27771900B4C2FE /* HolidaysWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		5F157C0D2A27776D00B4C2FE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C142A2777CB00B4C2FE /* ProfileView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5F157C0E2A27777300B4C2FE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C122A2777B800B4C2FE /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5F157C0F2A27777A00B4C2FE /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C102A2777A800B4C2FE /* ProfileWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		5F157C182A27780C00B4C2FE /* Holidays */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C162A27780300B4C2FE /* HolidaysResponseModel.swift */,
+				5F157C372A277CF100B4C2FE /* HolidaysRequestModel.swift */,
+			);
+			path = Holidays;
+			sourceTree = "<group>";
+		};
+		5F157C192A27781A00B4C2FE /* Dogs */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C332A277CCB00B4C2FE /* DogsResponseModel.swift */,
+				5F157C352A277CDA00B4C2FE /* DogsRequestModel.swift */,
+			);
+			path = Dogs;
+			sourceTree = "<group>";
+		};
+		5F157C1A2A27782100B4C2FE /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C2F2A277C9600B4C2FE /* SessionResponseModel.swift */,
+				5F157C312A277CA700B4C2FE /* SessionRequestModel.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		5F157C1B2A27782700B4C2FE /* Reservation */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C2B2A277C6A00B4C2FE /* ReservationResponseModel.swift */,
+				5F157C2D2A277C8700B4C2FE /* ReservationRequestModel.swift */,
+			);
+			path = Reservation;
+			sourceTree = "<group>";
+		};
+		5F157C1C2A27790600B4C2FE /* User */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C272A277C4500B4C2FE /* UserResponseModel.swift */,
+				5F157C292A277C5700B4C2FE /* UserRequestModel.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		5F157C1D2A277A4E00B4C2FE /* Establishment */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C232A277C2100B4C2FE /* EstablishmentResponseModel.swift */,
+				5F157C252A277C3000B4C2FE /* EstablishmentRequestModel.swift */,
+			);
+			path = Establishment;
+			sourceTree = "<group>";
+		};
+		5F157C1E2A277A6500B4C2FE /* ActivityType */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C1F2A277BDC00B4C2FE /* ActivityTypeResponseModel.swift */,
+				5F157C212A277BF300B4C2FE /* ActivityTypeRequestModel.swift */,
+			);
+			path = ActivityType;
+			sourceTree = "<group>";
+		};
+		5F157C432A2791D000B4C2FE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5F157C442A2791E800B4C2FE /* NavBar.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		5F8BFD0A2A262CE70007E367 = {
 			isa = PBXGroup;
 			children = (
 				5F8BFD152A262CE70007E367 /* Gestidogs */,
 				5F8BFD142A262CE70007E367 /* Products */,
+				8BFAA633F538E2A9F0C9C45D /* Pods */,
+				F5154A8D8E0D7B5207BD7DD2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +293,7 @@
 		5F8BFD152A262CE70007E367 /* Gestidogs */ = {
 			isa = PBXGroup;
 			children = (
+				5F157C432A2791D000B4C2FE /* UI */,
 				5F8BFD292A262D5D0007E367 /* State */,
 				5F8BFD282A262D580007E367 /* Models */,
 				5F8BFD272A262D4B0007E367 /* Managers */,
@@ -94,6 +325,8 @@
 		5F8BFD252A262D330007E367 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5F157C032A27766C00B4C2FE /* Holidays */,
+				5F157BF92A2773F300B4C2FE /* Dashboard */,
 				5F8BFD2D2A262DBB0007E367 /* Profile */,
 				5F8BFD2C2A262DAE0007E367 /* Agenda */,
 				5F8BFD2B2A262D7E0007E367 /* OnBoarding */,
@@ -112,6 +345,9 @@
 		5F8BFD272A262D4B0007E367 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				5F157C392A278FA700B4C2FE /* ApiManager.swift */,
+				5F157C3B2A278FCE00B4C2FE /* UserManager.swift */,
+				5F157C3D2A278FDB00B4C2FE /* EstablishmentManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -119,6 +355,13 @@
 		5F8BFD282A262D580007E367 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5F157C1E2A277A6500B4C2FE /* ActivityType */,
+				5F157C1D2A277A4E00B4C2FE /* Establishment */,
+				5F157C1C2A27790600B4C2FE /* User */,
+				5F157C1B2A27782700B4C2FE /* Reservation */,
+				5F157C1A2A27782100B4C2FE /* Session */,
+				5F157C192A27781A00B4C2FE /* Dogs */,
+				5F157C182A27780C00B4C2FE /* Holidays */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -164,6 +407,9 @@
 		5F8BFD2D2A262DBB0007E367 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				5F157C0F2A27777A00B4C2FE /* Widgets */,
+				5F157C0E2A27777300B4C2FE /* ViewModel */,
+				5F157C0D2A27776D00B4C2FE /* Views */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -237,6 +483,24 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		8BFAA633F538E2A9F0C9C45D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8CB4E1EF329778ED04D016DA /* Pods-Gestidogs.debug.xcconfig */,
+				8075C63E9ACED383FD33BCA8 /* Pods-Gestidogs.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F5154A8D8E0D7B5207BD7DD2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4E2F9E6D142D9063B9313C1 /* Pods_Gestidogs.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -244,9 +508,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5F8BFD212A262CE90007E367 /* Build configuration list for PBXNativeTarget "Gestidogs" */;
 			buildPhases = (
+				AC1B7C3C4DB9D809FF08A16A /* [CP] Check Pods Manifest.lock */,
 				5F8BFD0F2A262CE70007E367 /* Sources */,
 				5F8BFD102A262CE70007E367 /* Frameworks */,
 				5F8BFD112A262CE70007E367 /* Resources */,
+				DE915BC52992D1E0AC0F4572 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,19 +568,90 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AC1B7C3C4DB9D809FF08A16A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gestidogs-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE915BC52992D1E0AC0F4572 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gestidogs/Pods-Gestidogs-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gestidogs/Pods-Gestidogs-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gestidogs/Pods-Gestidogs-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5F8BFD0F2A262CE70007E367 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F157C3A2A278FA700B4C2FE /* ApiManager.swift in Sources */,
+				5F157C2E2A277C8700B4C2FE /* ReservationRequestModel.swift in Sources */,
+				5F157C082A27771900B4C2FE /* HolidaysWidget.swift in Sources */,
 				5F8BFD172A262CE70007E367 /* GestidogsApp.swift in Sources */,
+				5F157C402A2790FA00B4C2FE /* HolidaysManagerView.swift in Sources */,
 				5F8BFD362A262E0C0007E367 /* HomeView.swift in Sources */,
+				5F157C112A2777A800B4C2FE /* ProfileWidget.swift in Sources */,
 				5F8BFD342A262DFE0007E367 /* HomeViewModel.swift in Sources */,
+				5F157C422A27910C00B4C2FE /* HolidaysEducatorView.swift in Sources */,
+				5F157C362A277CDA00B4C2FE /* DogsRequestModel.swift in Sources */,
 				5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */,
+				5F157C3C2A278FCE00B4C2FE /* UserManager.swift in Sources */,
+				5F157C0C2A27773A00B4C2FE /* HolidaysView.swift in Sources */,
+				5F157C022A27746F00B4C2FE /* DashboardViewModel.swift in Sources */,
+				5F157C452A2791E800B4C2FE /* NavBar.swift in Sources */,
 				5F8BFD442A262F380007E367 /* AgendaViewModel.swift in Sources */,
+				5F157C152A2777CB00B4C2FE /* ProfileView.swift in Sources */,
 				5F8BFD422A262ED30007E367 /* AgendaView.swift in Sources */,
+				5F157C342A277CCB00B4C2FE /* DogsResponseModel.swift in Sources */,
+				5F157C0A2A27772800B4C2FE /* HolidaysViewModel.swift in Sources */,
+				5F157C302A277C9600B4C2FE /* SessionResponseModel.swift in Sources */,
 				5F8BFD2F2A262DCE0007E367 /* AppState.swift in Sources */,
+				5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */,
+				5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */,
+				5F157C222A277BF300B4C2FE /* ActivityTypeRequestModel.swift in Sources */,
+				5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */,
+				5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */,
+				5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */,
+				5F157C3E2A278FDB00B4C2FE /* EstablishmentManager.swift in Sources */,
 				5F8BFD382A262E1B0007E367 /* HomeWidget.swift in Sources */,
+				5F157C282A277C4500B4C2FE /* UserResponseModel.swift in Sources */,
+				5F157C262A277C3000B4C2FE /* EstablishmentRequestModel.swift in Sources */,
+				5F157C2C2A277C6A00B4C2FE /* ReservationResponseModel.swift in Sources */,
+				5F157C202A277BDC00B4C2FE /* ActivityTypeResponseModel.swift in Sources */,
+				5F157C322A277CA700B4C2FE /* SessionRequestModel.swift in Sources */,
+				5F157C172A27780300B4C2FE /* HolidaysResponseModel.swift in Sources */,
+				5F157C382A277CF100B4C2FE /* HolidaysRequestModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +774,7 @@
 		};
 		5F8BFD222A262CE90007E367 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8CB4E1EF329778ED04D016DA /* Pods-Gestidogs.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -466,6 +804,7 @@
 		};
 		5F8BFD232A262CE90007E367 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8075C63E9ACED383FD33BCA8 /* Pods-Gestidogs.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

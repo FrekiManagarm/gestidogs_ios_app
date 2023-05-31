@@ -1,0 +1,6 @@
+framework module Pods_Gestidogs {
+  umbrella header "Pods-Gestidogs-umbrella.h"
+
+  export *
+  module * { export * }
+}
