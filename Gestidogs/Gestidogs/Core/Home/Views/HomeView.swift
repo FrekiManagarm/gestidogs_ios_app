@@ -12,8 +12,6 @@ struct HomeView: View {
     @State private var tabBarIndex: Int = 0
     
     var body: some View {
-        VStack {
-            NavBar(userImage: "dogIcon2", tabBarIndex: $tabBarIndex)
             TabView(selection: $tabBarIndex) {
                 DashboardView()
                     .tabItem {
@@ -44,7 +42,6 @@ struct HomeView: View {
                     .tag(3)
             }
             .accentColor(Color(.blue))
-        }
     }
 }
 

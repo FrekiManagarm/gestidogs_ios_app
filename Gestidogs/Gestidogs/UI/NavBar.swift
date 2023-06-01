@@ -21,8 +21,8 @@ struct NavBar: View {
                 Image(userImage)
                     .resizable()
                     .frame(width: 50, height: 50)
-                    .padding(.trailing, 10)
             }
+            .padding(.trailing, 10)
         }
     }
 }

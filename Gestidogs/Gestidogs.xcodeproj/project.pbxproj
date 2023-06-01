@@ -36,6 +36,13 @@
 		5F157C402A2790FA00B4C2FE /* HolidaysManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C3F2A2790FA00B4C2FE /* HolidaysManagerView.swift */; };
 		5F157C422A27910C00B4C2FE /* HolidaysEducatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C412A27910C00B4C2FE /* HolidaysEducatorView.swift */; };
 		5F157C452A2791E800B4C2FE /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C442A2791E800B4C2FE /* NavBar.swift */; };
+		5F32C5AC2A2896180034AB6F /* AgendaUIViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5AB2A2896180034AB6F /* AgendaUIViewRepresentable.swift */; };
+		5F32C5AE2A28AA340034AB6F /* TeamCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5AD2A28AA340034AB6F /* TeamCenterWidget.swift */; };
+		5F32C5B02A28AA460034AB6F /* DogCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5AF2A28AA460034AB6F /* DogCenterWidget.swift */; };
+		5F32C5B42A28CC100034AB6F /* DogsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5B32A28CC100034AB6F /* DogsListViewModel.swift */; };
+		5F32C5B72A28CC8A0034AB6F /* DogsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5B62A28CC8A0034AB6F /* DogsListView.swift */; };
+		5F32C5BA2A28CCA30034AB6F /* DogsListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5B92A28CCA30034AB6F /* DogsListWidget.swift */; };
+		5F32C5BC2A28E36D0034AB6F /* DogCellWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5BB2A28E36D0034AB6F /* DogCellWidget.swift */; };
 		5F8BFD172A262CE70007E367 /* GestidogsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8BFD162A262CE70007E367 /* GestidogsApp.swift */; };
 		5F8BFD1B2A262CE90007E367 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F8BFD1A2A262CE90007E367 /* Assets.xcassets */; };
 		5F8BFD1E2A262CE90007E367 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F8BFD1D2A262CE90007E367 /* Preview Assets.xcassets */; };
@@ -79,6 +86,13 @@
 		5F157C3F2A2790FA00B4C2FE /* HolidaysManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysManagerView.swift; sourceTree = "<group>"; };
 		5F157C412A27910C00B4C2FE /* HolidaysEducatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysEducatorView.swift; sourceTree = "<group>"; };
 		5F157C442A2791E800B4C2FE /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
+		5F32C5AB2A2896180034AB6F /* AgendaUIViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaUIViewRepresentable.swift; sourceTree = "<group>"; };
+		5F32C5AD2A28AA340034AB6F /* TeamCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCenterWidget.swift; sourceTree = "<group>"; };
+		5F32C5AF2A28AA460034AB6F /* DogCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCenterWidget.swift; sourceTree = "<group>"; };
+		5F32C5B32A28CC100034AB6F /* DogsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListViewModel.swift; sourceTree = "<group>"; };
+		5F32C5B62A28CC8A0034AB6F /* DogsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListView.swift; sourceTree = "<group>"; };
+		5F32C5B92A28CCA30034AB6F /* DogsListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListWidget.swift; sourceTree = "<group>"; };
+		5F32C5BB2A28E36D0034AB6F /* DogCellWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCellWidget.swift; sourceTree = "<group>"; };
 		5F8BFD132A262CE70007E367 /* Gestidogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gestidogs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F8BFD162A262CE70007E367 /* GestidogsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestidogsApp.swift; sourceTree = "<group>"; };
 		5F8BFD1A2A262CE90007E367 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,7 +150,10 @@
 		5F157BFC2A27741E00B4C2FE /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				5F32C5AD2A28AA340034AB6F /* TeamCenterWidget.swift */,
+				5F32C5AF2A28AA460034AB6F /* DogCenterWidget.swift */,
 				5F157BFD2A27744800B4C2FE /* DashboardWidget.swift */,
+				5F32C5BB2A28E36D0034AB6F /* DogCellWidget.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -272,6 +289,40 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		5F32C5B12A28CBDE0034AB6F /* DogsList */ = {
+			isa = PBXGroup;
+			children = (
+				5F32C5B82A28CC8F0034AB6F /* Widgets */,
+				5F32C5B52A28CC7A0034AB6F /* Views */,
+				5F32C5B22A28CBF70034AB6F /* ViewModel */,
+			);
+			path = DogsList;
+			sourceTree = "<group>";
+		};
+		5F32C5B22A28CBF70034AB6F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5F32C5B32A28CC100034AB6F /* DogsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5F32C5B52A28CC7A0034AB6F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F32C5B62A28CC8A0034AB6F /* DogsListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5F32C5B82A28CC8F0034AB6F /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				5F32C5B92A28CCA30034AB6F /* DogsListWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		5F8BFD0A2A262CE70007E367 = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +376,7 @@
 		5F8BFD252A262D330007E367 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5F32C5B12A28CBDE0034AB6F /* DogsList */,
 				5F157C032A27766C00B4C2FE /* Holidays */,
 				5F157BF92A2773F300B4C2FE /* Dashboard */,
 				5F8BFD2D2A262DBB0007E367 /* Profile */,
@@ -471,6 +523,7 @@
 			isa = PBXGroup;
 			children = (
 				5F8BFD412A262ED30007E367 /* AgendaView.swift */,
+				5F32C5AB2A2896180034AB6F /* AgendaUIViewRepresentable.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -489,7 +542,6 @@
 				8CB4E1EF329778ED04D016DA /* Pods-Gestidogs.debug.xcconfig */,
 				8075C63E9ACED383FD33BCA8 /* Pods-Gestidogs.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -618,6 +670,7 @@
 				5F157C3A2A278FA700B4C2FE /* ApiManager.swift in Sources */,
 				5F157C2E2A277C8700B4C2FE /* ReservationRequestModel.swift in Sources */,
 				5F157C082A27771900B4C2FE /* HolidaysWidget.swift in Sources */,
+				5F32C5AC2A2896180034AB6F /* AgendaUIViewRepresentable.swift in Sources */,
 				5F8BFD172A262CE70007E367 /* GestidogsApp.swift in Sources */,
 				5F157C402A2790FA00B4C2FE /* HolidaysManagerView.swift in Sources */,
 				5F8BFD362A262E0C0007E367 /* HomeView.swift in Sources */,
@@ -626,6 +679,8 @@
 				5F157C422A27910C00B4C2FE /* HolidaysEducatorView.swift in Sources */,
 				5F157C362A277CDA00B4C2FE /* DogsRequestModel.swift in Sources */,
 				5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */,
+				5F32C5AE2A28AA340034AB6F /* TeamCenterWidget.swift in Sources */,
+				5F32C5B42A28CC100034AB6F /* DogsListViewModel.swift in Sources */,
 				5F157C3C2A278FCE00B4C2FE /* UserManager.swift in Sources */,
 				5F157C0C2A27773A00B4C2FE /* HolidaysView.swift in Sources */,
 				5F157C022A27746F00B4C2FE /* DashboardViewModel.swift in Sources */,
@@ -639,16 +694,20 @@
 				5F8BFD2F2A262DCE0007E367 /* AppState.swift in Sources */,
 				5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */,
 				5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */,
+				5F32C5BA2A28CCA30034AB6F /* DogsListWidget.swift in Sources */,
 				5F157C222A277BF300B4C2FE /* ActivityTypeRequestModel.swift in Sources */,
 				5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */,
 				5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */,
 				5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */,
+				5F32C5B72A28CC8A0034AB6F /* DogsListView.swift in Sources */,
 				5F157C3E2A278FDB00B4C2FE /* EstablishmentManager.swift in Sources */,
+				5F32C5B02A28AA460034AB6F /* DogCenterWidget.swift in Sources */,
 				5F8BFD382A262E1B0007E367 /* HomeWidget.swift in Sources */,
 				5F157C282A277C4500B4C2FE /* UserResponseModel.swift in Sources */,
 				5F157C262A277C3000B4C2FE /* EstablishmentRequestModel.swift in Sources */,
 				5F157C2C2A277C6A00B4C2FE /* ReservationResponseModel.swift in Sources */,
 				5F157C202A277BDC00B4C2FE /* ActivityTypeResponseModel.swift in Sources */,
+				5F32C5BC2A28E36D0034AB6F /* DogCellWidget.swift in Sources */,
 				5F157C322A277CA700B4C2FE /* SessionRequestModel.swift in Sources */,
 				5F157C172A27780300B4C2FE /* HolidaysResponseModel.swift in Sources */,
 				5F157C382A277CF100B4C2FE /* HolidaysRequestModel.swift in Sources */,

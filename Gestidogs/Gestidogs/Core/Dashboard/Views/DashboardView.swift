@@ -9,7 +9,20 @@ import SwiftUI
 
 struct DashboardView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack(alignment: .leading) {
+                Text("Bonjour, Mathieu")
+                    .foregroundColor(.primary)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding(.leading, 10)
+                    .padding(.top, 10)
+                ScrollView {
+                    DogCenterWidget()
+                    DogCenterWidget()
+                }
+            }
+        }
     }
 }
 
