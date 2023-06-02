@@ -53,6 +53,18 @@
 		5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8BFD3F2A262E640007E367 /* AgendaWidget.swift */; };
 		5F8BFD422A262ED30007E367 /* AgendaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8BFD412A262ED30007E367 /* AgendaView.swift */; };
 		5F8BFD442A262F380007E367 /* AgendaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8BFD432A262F380007E367 /* AgendaViewModel.swift */; };
+		5F8C93332A2A19A000F39770 /* ChooseOrCreateEstablishmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C93322A2A19A000F39770 /* ChooseOrCreateEstablishmentView.swift */; };
+		5F8C93352A2A19B500F39770 /* ChooseOrCreateEstablishmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C93342A2A19B500F39770 /* ChooseOrCreateEstablishmentViewModel.swift */; };
+		5F8C93372A2A19C800F39770 /* ChooseOrCreateEstablishmentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C93362A2A19C800F39770 /* ChooseOrCreateEstablishmentWidget.swift */; };
+		5F8C933E2A2A1A1300F39770 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C933D2A2A1A1300F39770 /* LoginView.swift */; };
+		5F8C93402A2A1A2100F39770 /* LoginWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C933F2A2A1A2100F39770 /* LoginWidget.swift */; };
+		5F8C93422A2A1A3200F39770 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C93412A2A1A3200F39770 /* LoginViewModel.swift */; };
+		5F8C93472A2A1A5400F39770 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C93462A2A1A5400F39770 /* RegisterView.swift */; };
+		5F8C93492A2A1A6200F39770 /* RegisterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C93482A2A1A6200F39770 /* RegisterWidget.swift */; };
+		5F8C934B2A2A1A7000F39770 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C934A2A2A1A7000F39770 /* RegisterViewModel.swift */; };
+		5F8C93512A2A1B2200F39770 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C93502A2A1B2200F39770 /* NotificationsViewModel.swift */; };
+		5F8C93532A2A1B2F00F39770 /* NotificationsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C93522A2A1B2F00F39770 /* NotificationsWidget.swift */; };
+		5F8C93552A2A1B4700F39770 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8C93542A2A1B4700F39770 /* NotificationsView.swift */; };
 		73BA4BF43F202F1C07B963C5 /* Pods_Gestidogs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E2F9E6D142D9063B9313C1 /* Pods_Gestidogs.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +116,18 @@
 		5F8BFD3F2A262E640007E367 /* AgendaWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaWidget.swift; sourceTree = "<group>"; };
 		5F8BFD412A262ED30007E367 /* AgendaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaView.swift; sourceTree = "<group>"; };
 		5F8BFD432A262F380007E367 /* AgendaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewModel.swift; sourceTree = "<group>"; };
+		5F8C93322A2A19A000F39770 /* ChooseOrCreateEstablishmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseOrCreateEstablishmentView.swift; sourceTree = "<group>"; };
+		5F8C93342A2A19B500F39770 /* ChooseOrCreateEstablishmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseOrCreateEstablishmentViewModel.swift; sourceTree = "<group>"; };
+		5F8C93362A2A19C800F39770 /* ChooseOrCreateEstablishmentWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseOrCreateEstablishmentWidget.swift; sourceTree = "<group>"; };
+		5F8C933D2A2A1A1300F39770 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5F8C933F2A2A1A2100F39770 /* LoginWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWidget.swift; sourceTree = "<group>"; };
+		5F8C93412A2A1A3200F39770 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		5F8C93462A2A1A5400F39770 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		5F8C93482A2A1A6200F39770 /* RegisterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterWidget.swift; sourceTree = "<group>"; };
+		5F8C934A2A2A1A7000F39770 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		5F8C93502A2A1B2200F39770 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		5F8C93522A2A1B2F00F39770 /* NotificationsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsWidget.swift; sourceTree = "<group>"; };
+		5F8C93542A2A1B4700F39770 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		8075C63E9ACED383FD33BCA8 /* Pods-Gestidogs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gestidogs.release.xcconfig"; path = "Target Support Files/Pods-Gestidogs/Pods-Gestidogs.release.xcconfig"; sourceTree = "<group>"; };
 		8CB4E1EF329778ED04D016DA /* Pods-Gestidogs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gestidogs.debug.xcconfig"; path = "Target Support Files/Pods-Gestidogs/Pods-Gestidogs.debug.xcconfig"; sourceTree = "<group>"; };
 		D4E2F9E6D142D9063B9313C1 /* Pods_Gestidogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gestidogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -376,6 +400,10 @@
 		5F8BFD252A262D330007E367 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5F8C934C2A2A1AEB00F39770 /* Notifications */,
+				5F8C93392A2A19E700F39770 /* Register */,
+				5F8C93382A2A19E100F39770 /* Login */,
+				5F8C932E2A2A196600F39770 /* ChooseOrCreateEstablishment */,
 				5F32C5B12A28CBDE0034AB6F /* DogsList */,
 				5F157C032A27766C00B4C2FE /* Holidays */,
 				5F157BF92A2773F300B4C2FE /* Dashboard */,
@@ -536,6 +564,142 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		5F8C932E2A2A196600F39770 /* ChooseOrCreateEstablishment */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93312A2A198800F39770 /* Widgets */,
+				5F8C93302A2A198100F39770 /* ViewModel */,
+				5F8C932F2A2A197A00F39770 /* Views */,
+			);
+			path = ChooseOrCreateEstablishment;
+			sourceTree = "<group>";
+		};
+		5F8C932F2A2A197A00F39770 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93322A2A19A000F39770 /* ChooseOrCreateEstablishmentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5F8C93302A2A198100F39770 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93342A2A19B500F39770 /* ChooseOrCreateEstablishmentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5F8C93312A2A198800F39770 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93362A2A19C800F39770 /* ChooseOrCreateEstablishmentWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		5F8C93382A2A19E100F39770 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C933C2A2A1A0200F39770 /* Widgets */,
+				5F8C933B2A2A19FC00F39770 /* ViewModel */,
+				5F8C933A2A2A19F700F39770 /* Views */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		5F8C93392A2A19E700F39770 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93452A2A1A4700F39770 /* Widgets */,
+				5F8C93442A2A1A3F00F39770 /* ViewModel */,
+				5F8C93432A2A1A3A00F39770 /* Views */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		5F8C933A2A2A19F700F39770 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C933D2A2A1A1300F39770 /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5F8C933B2A2A19FC00F39770 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93412A2A1A3200F39770 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5F8C933C2A2A1A0200F39770 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C933F2A2A1A2100F39770 /* LoginWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		5F8C93432A2A1A3A00F39770 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93462A2A1A5400F39770 /* RegisterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5F8C93442A2A1A3F00F39770 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C934A2A2A1A7000F39770 /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5F8C93452A2A1A4700F39770 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93482A2A1A6200F39770 /* RegisterWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		5F8C934C2A2A1AEB00F39770 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C934F2A2A1B0E00F39770 /* Widgets */,
+				5F8C934E2A2A1B0600F39770 /* ViewModel */,
+				5F8C934D2A2A1AFD00F39770 /* Views */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		5F8C934D2A2A1AFD00F39770 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93542A2A1B4700F39770 /* NotificationsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5F8C934E2A2A1B0600F39770 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93502A2A1B2200F39770 /* NotificationsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5F8C934F2A2A1B0E00F39770 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				5F8C93522A2A1B2F00F39770 /* NotificationsWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		8BFAA633F538E2A9F0C9C45D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,19 +831,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F8C93372A2A19C800F39770 /* ChooseOrCreateEstablishmentWidget.swift in Sources */,
 				5F157C3A2A278FA700B4C2FE /* ApiManager.swift in Sources */,
 				5F157C2E2A277C8700B4C2FE /* ReservationRequestModel.swift in Sources */,
 				5F157C082A27771900B4C2FE /* HolidaysWidget.swift in Sources */,
 				5F32C5AC2A2896180034AB6F /* AgendaUIViewRepresentable.swift in Sources */,
+				5F8C93512A2A1B2200F39770 /* NotificationsViewModel.swift in Sources */,
 				5F8BFD172A262CE70007E367 /* GestidogsApp.swift in Sources */,
 				5F157C402A2790FA00B4C2FE /* HolidaysManagerView.swift in Sources */,
 				5F8BFD362A262E0C0007E367 /* HomeView.swift in Sources */,
 				5F157C112A2777A800B4C2FE /* ProfileWidget.swift in Sources */,
+				5F8C934B2A2A1A7000F39770 /* RegisterViewModel.swift in Sources */,
 				5F8BFD342A262DFE0007E367 /* HomeViewModel.swift in Sources */,
 				5F157C422A27910C00B4C2FE /* HolidaysEducatorView.swift in Sources */,
 				5F157C362A277CDA00B4C2FE /* DogsRequestModel.swift in Sources */,
 				5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */,
 				5F32C5AE2A28AA340034AB6F /* TeamCenterWidget.swift in Sources */,
+				5F8C93402A2A1A2100F39770 /* LoginWidget.swift in Sources */,
 				5F32C5B42A28CC100034AB6F /* DogsListViewModel.swift in Sources */,
 				5F157C3C2A278FCE00B4C2FE /* UserManager.swift in Sources */,
 				5F157C0C2A27773A00B4C2FE /* HolidaysView.swift in Sources */,
@@ -696,14 +864,21 @@
 				5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */,
 				5F32C5BA2A28CCA30034AB6F /* DogsListWidget.swift in Sources */,
 				5F157C222A277BF300B4C2FE /* ActivityTypeRequestModel.swift in Sources */,
+				5F8C933E2A2A1A1300F39770 /* LoginView.swift in Sources */,
+				5F8C93532A2A1B2F00F39770 /* NotificationsWidget.swift in Sources */,
+				5F8C93332A2A19A000F39770 /* ChooseOrCreateEstablishmentView.swift in Sources */,
 				5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */,
 				5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */,
 				5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */,
+				5F8C93492A2A1A6200F39770 /* RegisterWidget.swift in Sources */,
 				5F32C5B72A28CC8A0034AB6F /* DogsListView.swift in Sources */,
 				5F157C3E2A278FDB00B4C2FE /* EstablishmentManager.swift in Sources */,
+				5F8C93422A2A1A3200F39770 /* LoginViewModel.swift in Sources */,
 				5F32C5B02A28AA460034AB6F /* DogCenterWidget.swift in Sources */,
 				5F8BFD382A262E1B0007E367 /* HomeWidget.swift in Sources */,
 				5F157C282A277C4500B4C2FE /* UserResponseModel.swift in Sources */,
+				5F8C93472A2A1A5400F39770 /* RegisterView.swift in Sources */,
+				5F8C93352A2A19B500F39770 /* ChooseOrCreateEstablishmentViewModel.swift in Sources */,
 				5F157C262A277C3000B4C2FE /* EstablishmentRequestModel.swift in Sources */,
 				5F157C2C2A277C6A00B4C2FE /* ReservationResponseModel.swift in Sources */,
 				5F157C202A277BDC00B4C2FE /* ActivityTypeResponseModel.swift in Sources */,
@@ -711,6 +886,7 @@
 				5F157C322A277CA700B4C2FE /* SessionRequestModel.swift in Sources */,
 				5F157C172A27780300B4C2FE /* HolidaysResponseModel.swift in Sources */,
 				5F157C382A277CF100B4C2FE /* HolidaysRequestModel.swift in Sources */,
+				5F8C93552A2A1B4700F39770 /* NotificationsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
