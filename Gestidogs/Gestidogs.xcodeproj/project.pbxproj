@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6812A2B65290054C16A /* OnboardingWidget.swift */; };
+		01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6832A2B65390054C16A /* OnboardingView.swift */; };
+		01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */; };
+		01E7D6892A2B657E0054C16A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6882A2B657E0054C16A /* Extension.swift */; };
 		5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157BFD2A27744800B4C2FE /* DashboardWidget.swift */; };
 		5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157BFF2A27745500B4C2FE /* DashboardView.swift */; };
 		5F157C022A27746F00B4C2FE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C012A27746F00B4C2FE /* DashboardViewModel.swift */; };
@@ -69,6 +73,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01E7D6812A2B65290054C16A /* OnboardingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWidget.swift; sourceTree = "<group>"; };
+		01E7D6832A2B65390054C16A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		01E7D6882A2B657E0054C16A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		5F157BFD2A27744800B4C2FE /* DashboardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardWidget.swift; sourceTree = "<group>"; };
 		5F157BFF2A27745500B4C2FE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		5F157C012A27746F00B4C2FE /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -145,6 +153,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01E7D67D2A2B64F90054C16A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				01E7D6802A2B65120054C16A /* Widgets */,
+				01E7D67F2A2B650C0054C16A /* Views */,
+				01E7D67E2A2B65050054C16A /* ViewModel */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		01E7D67E2A2B65050054C16A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01E7D67F2A2B650C0054C16A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01E7D6832A2B65390054C16A /* OnboardingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		01E7D6802A2B65120054C16A /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				01E7D6812A2B65290054C16A /* OnboardingWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		01E7D6872A2B656E0054C16A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				01E7D6882A2B657E0054C16A /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		5F157BF92A2773F300B4C2FE /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,11 +418,11 @@
 		5F8BFD152A262CE70007E367 /* Gestidogs */ = {
 			isa = PBXGroup;
 			children = (
+				01E7D6872A2B656E0054C16A /* Extension */,
 				5F157C432A2791D000B4C2FE /* UI */,
 				5F8BFD292A262D5D0007E367 /* State */,
 				5F8BFD282A262D580007E367 /* Models */,
 				5F8BFD272A262D4B0007E367 /* Managers */,
-				5F8BFD262A262D400007E367 /* Extensions */,
 				5F8BFD252A262D330007E367 /* Core */,
 				5F8BFD242A262D2C0007E367 /* App */,
 				5F8BFD1A2A262CE90007E367 /* Assets.xcassets */,
@@ -400,6 +450,7 @@
 		5F8BFD252A262D330007E367 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				01E7D67D2A2B64F90054C16A /* Onboarding */,
 				5F8C934C2A2A1AEB00F39770 /* Notifications */,
 				5F8C93392A2A19E700F39770 /* Register */,
 				5F8C93382A2A19E100F39770 /* Login */,
@@ -409,17 +460,9 @@
 				5F157BF92A2773F300B4C2FE /* Dashboard */,
 				5F8BFD2D2A262DBB0007E367 /* Profile */,
 				5F8BFD2C2A262DAE0007E367 /* Agenda */,
-				5F8BFD2B2A262D7E0007E367 /* OnBoarding */,
 				5F8BFD2A2A262D770007E367 /* Home */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		5F8BFD262A262D400007E367 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		5F8BFD272A262D4B0007E367 /* Managers */ = {
@@ -464,16 +507,6 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		5F8BFD2B2A262D7E0007E367 /* OnBoarding */ = {
-			isa = PBXGroup;
-			children = (
-				5F8BFD3B2A262E360007E367 /* ViewModel */,
-				5F8BFD3A2A262E2D0007E367 /* Views */,
-				5F8BFD392A262E260007E367 /* Widgets */,
-			);
-			path = OnBoarding;
-			sourceTree = "<group>";
-		};
 		5F8BFD2C2A262DAE0007E367 /* Agenda */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,27 +549,6 @@
 				5F8BFD372A262E1B0007E367 /* HomeWidget.swift */,
 			);
 			path = Widgets;
-			sourceTree = "<group>";
-		};
-		5F8BFD392A262E260007E367 /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
-		5F8BFD3A2A262E2D0007E367 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		5F8BFD3B2A262E360007E367 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5F8BFD3C2A262E410007E367 /* ViewModel */ = {
@@ -846,6 +858,7 @@
 				5F157C422A27910C00B4C2FE /* HolidaysEducatorView.swift in Sources */,
 				5F157C362A277CDA00B4C2FE /* DogsRequestModel.swift in Sources */,
 				5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */,
+				01E7D6892A2B657E0054C16A /* Extension.swift in Sources */,
 				5F32C5AE2A28AA340034AB6F /* TeamCenterWidget.swift in Sources */,
 				5F8C93402A2A1A2100F39770 /* LoginWidget.swift in Sources */,
 				5F32C5B42A28CC100034AB6F /* DogsListViewModel.swift in Sources */,
@@ -860,6 +873,7 @@
 				5F157C0A2A27772800B4C2FE /* HolidaysViewModel.swift in Sources */,
 				5F157C302A277C9600B4C2FE /* SessionResponseModel.swift in Sources */,
 				5F8BFD2F2A262DCE0007E367 /* AppState.swift in Sources */,
+				01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */,
 				5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */,
 				5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */,
 				5F32C5BA2A28CCA30034AB6F /* DogsListWidget.swift in Sources */,
@@ -872,11 +886,13 @@
 				5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */,
 				5F8C93492A2A1A6200F39770 /* RegisterWidget.swift in Sources */,
 				5F32C5B72A28CC8A0034AB6F /* DogsListView.swift in Sources */,
+				01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */,
 				5F157C3E2A278FDB00B4C2FE /* EstablishmentManager.swift in Sources */,
 				5F8C93422A2A1A3200F39770 /* LoginViewModel.swift in Sources */,
 				5F32C5B02A28AA460034AB6F /* DogCenterWidget.swift in Sources */,
 				5F8BFD382A262E1B0007E367 /* HomeWidget.swift in Sources */,
 				5F157C282A277C4500B4C2FE /* UserResponseModel.swift in Sources */,
+				01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */,
 				5F8C93472A2A1A5400F39770 /* RegisterView.swift in Sources */,
 				5F8C93352A2A19B500F39770 /* ChooseOrCreateEstablishmentViewModel.swift in Sources */,
 				5F157C262A277C3000B4C2FE /* EstablishmentRequestModel.swift in Sources */,

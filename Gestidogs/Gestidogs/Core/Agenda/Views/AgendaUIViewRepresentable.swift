@@ -27,13 +27,14 @@ struct AgendaUIViewRepresentable: UIViewRepresentable {
         return calendar
     }
     
-    func updateUIView(_ uiView: FSCalendar, context: Context) {}
+    func updateUIView(_ uiView: FSCalendar, context: Context) {
+        
+    }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
 
-    
     class Coordinator: NSObject, FSCalendarDelegate, FSCalendarDataSource {
         var parent: AgendaUIViewRepresentable
         
