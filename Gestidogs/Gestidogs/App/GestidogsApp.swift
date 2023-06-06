@@ -14,8 +14,9 @@ struct GestidogsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .environmentObject(appState)
+//            HomeView()
+//                .environmentObject(appState)
+            RegisterView()
         }
     }
 }

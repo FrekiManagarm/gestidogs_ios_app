@@ -8,5 +8,18 @@
 import Foundation
 
 class LoginViewModel: NSObject, ObservableObject {
+    @Published var emailTxt: String = ""
+    @Published var passwdTxt: String = ""
     
+    func login() {
+        
+    }
+    
+    func loginFacebook() {
+        
+    }
+    
+    func loginGoogle() {
+        
+    }
 }

@@ -8,8 +8,29 @@
 import SwiftUI
 
 struct LoginView: View {
+    
+    @StateObject var loginViewModel: LoginViewModel = LoginViewModel()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            EmailField(emailTxt: $loginViewModel.emailTxt)
+            PasswordField(passwdTxt: $loginViewModel.passwdTxt)
+            
+            LoginButton(loginFunc: loginViewModel.login)
+            
+            Divider()
+                .padding(.top, 20)
+                .padding(.horizontal)
+            
+            HStack(alignment: .center) {
+                Text("Ou")
+                    .font(.headline)
+                    .foregroundColor(.gray.opacity(0.7))
+            }
+            .padding(.top, 10)
+            
+            GoogleAndFacebookLoginButtons(googleLoginFunction: loginViewModel.loginGoogle, facebookLoginFunction: loginViewModel.loginFacebook)
+        }
     }
 }
 

@@ -47,6 +47,7 @@
 		5F32C5B72A28CC8A0034AB6F /* DogsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5B62A28CC8A0034AB6F /* DogsListView.swift */; };
 		5F32C5BA2A28CCA30034AB6F /* DogsListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5B92A28CCA30034AB6F /* DogsListWidget.swift */; };
 		5F32C5BC2A28E36D0034AB6F /* DogCellWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5BB2A28E36D0034AB6F /* DogCellWidget.swift */; };
+		5F743ADC2A2F63E50023D22D /* EmailPasswordFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F743ADB2A2F63E50023D22D /* EmailPasswordFields.swift */; };
 		5F825F2E2A2F2457001C6EB5 /* TeamMateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F825F2D2A2F2456001C6EB5 /* TeamMateWidget.swift */; };
 		5F825F312A2F257A001C6EB5 /* TeamMateDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F825F302A2F257A001C6EB5 /* TeamMateDetailsView.swift */; };
 		5F8BFD172A262CE70007E367 /* GestidogsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8BFD162A262CE70007E367 /* GestidogsApp.swift */; };
@@ -115,6 +116,7 @@
 		5F32C5B62A28CC8A0034AB6F /* DogsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListView.swift; sourceTree = "<group>"; };
 		5F32C5B92A28CCA30034AB6F /* DogsListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListWidget.swift; sourceTree = "<group>"; };
 		5F32C5BB2A28E36D0034AB6F /* DogCellWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCellWidget.swift; sourceTree = "<group>"; };
+		5F743ADB2A2F63E50023D22D /* EmailPasswordFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPasswordFields.swift; sourceTree = "<group>"; };
 		5F825F2D2A2F2456001C6EB5 /* TeamMateWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMateWidget.swift; sourceTree = "<group>"; };
 		5F825F302A2F257A001C6EB5 /* TeamMateDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMateDetailsView.swift; sourceTree = "<group>"; };
 		5F8BFD132A262CE70007E367 /* Gestidogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gestidogs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -664,6 +666,7 @@
 			isa = PBXGroup;
 			children = (
 				5F8C933F2A2A1A2100F39770 /* LoginWidget.swift */,
+				5F743ADB2A2F63E50023D22D /* EmailPasswordFields.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -884,6 +887,7 @@
 				5F157C452A2791E800B4C2FE /* NavBar.swift in Sources */,
 				5F8BFD442A262F380007E367 /* AgendaViewModel.swift in Sources */,
 				5F157C152A2777CB00B4C2FE /* ProfileView.swift in Sources */,
+				5F743ADC2A2F63E50023D22D /* EmailPasswordFields.swift in Sources */,
 				5F8BFD422A262ED30007E367 /* AgendaView.swift in Sources */,
 				5F157C342A277CCB00B4C2FE /* DogsResponseModel.swift in Sources */,
 				5F157C0A2A27772800B4C2FE /* HolidaysViewModel.swift in Sources */,

@@ -29,7 +29,7 @@ struct DogCell: View {
             .foregroundColor(.black)
         }
         .frame(width: 300, height: 200)
-        .background(Color(.gray))
+        .background(Color(.white))
         .cornerRadius(25)
         .padding(EdgeInsets(top: 0, leading: 10, bottom: 30, trailing: 10))
         .onTapGesture {

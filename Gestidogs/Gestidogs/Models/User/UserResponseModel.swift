@@ -7,6 +7,12 @@
 
 import Foundation
 
-class UserResponseModel: Codable, Identifiable {
+struct UserResponseModel {
+    let id: String
+    let avatarUrl: URL
+    let emailAddress: String
+    let firstName: String
+    let lastName: String
+    let role: String
     
 }

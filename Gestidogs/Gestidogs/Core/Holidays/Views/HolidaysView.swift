@@ -9,12 +9,22 @@ import SwiftUI
 
 struct HolidaysView: View {
     var body: some View {
-        VStack {
-            HStack {
-                
-            }
-            ScrollView(.horizontal) {
-                //MARK: Do widget that list the team mates
+        ZStack {
+            
+            RadialGradient(
+                gradient: Gradient(colors: [Color.blue, Color.white]),
+                center: .topLeading,
+                startRadius: 5,
+                endRadius: UIScreen.main.bounds.height)
+            .ignoresSafeArea()
+            
+            VStack {
+                HStack {
+                    
+                }
+                ScrollView(.horizontal) {
+                    //MARK: Do widget that list the team mates
+                }
             }
         }
     }

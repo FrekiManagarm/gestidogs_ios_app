@@ -14,33 +14,42 @@ struct AgendaView: View {
     @State var newSession: Bool = false
     
     var body: some View {
-        VStack {
-            AgendaUIViewRepresentable(selectedDate: $selectedDate)
-                .frame(height: 400)
-                .padding()
-            Divider()
-                .padding(.horizontal)
-            ScrollView(.vertical) {
-                if selectedDate != nil {
-                    ForEach(0..<5, id: \.self) { _ in
-                        ZStack {
-                            
+        ZStack {
+            RadialGradient(
+                gradient: Gradient(colors: [Color.blue, Color.white]),
+                center: .topLeading,
+                startRadius: 5,
+                endRadius: UIScreen.main.bounds.height)
+                .ignoresSafeArea()
+            
+            VStack {
+                AgendaUIViewRepresentable(selectedDate: $selectedDate)
+                    .frame(height: 400)
+                    .padding()
+                Divider()
+                    .padding(.horizontal)
+                ScrollView(.vertical) {
+                    if selectedDate != nil {
+                        ForEach(0..<5, id: \.self) { _ in
+                            ZStack {
+                                
+                            }
+                            .background(Color(.gray))
                         }
-                        .background(Color(.gray))
+                    } else {
+                        Text("Aucune date sélectionnée")
                     }
-                } else {
-                    Text("Aucune date sélectionnée")
                 }
+                Spacer()
             }
-            Spacer()
-        }
-        .toolbar {
-            Button {
-                newSession.toggle()
-            } label: {
-                Image(systemName: "plus")
-            }
+            .toolbar {
+                Button {
+                    newSession.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                }
 
+        }
         }
     }
 }
