@@ -38,13 +38,19 @@ class ActivityTypeRepository {
         }
     }
     
-//    public func createActivity() async throws -> ActivityResponseModel {
+//    public func createActivity(data request: ActivityRequestModel) async throws -> ActivityResponseModel {
 //        guard let url = URL(string: "\(MainRepository.apiUrlDev)\(MainRepository.activitiesUrl)") else {
 //            throw NetworkError.badUrl
 //        }
 //
 //        var request = URLRequest(url: url)
 //        request.httpMethod = "POST"
-////        request.httpBody = try JSONEncoder().encode(ActivityRequestModel.self)
+//        request.httpBody = try JSONSerialization.data(withJSONObject: request)
+//
+//        do {
+//            let task = URLSession.shared.dataTask(with: request)
+//        } catch {
+//            throw error
+//        }
 //    }
 }
