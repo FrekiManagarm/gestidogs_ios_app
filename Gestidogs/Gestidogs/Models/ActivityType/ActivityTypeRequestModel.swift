@@ -23,13 +23,4 @@ extension ActivityRequestModel: Codable {
         case duration = "duration"
         case price = "price"
     }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        establishment = try container.decode(String.self, forKey: .establishment)
-        title = try container.decode(String.self, forKey: .title)
-        description = try container.decode(String.self, forKey: .description)
-        duration = try container.decode(Int.self, forKey: .duration)
-        price = try container.decode(Int.self, forKey: .price)
-    }
 }

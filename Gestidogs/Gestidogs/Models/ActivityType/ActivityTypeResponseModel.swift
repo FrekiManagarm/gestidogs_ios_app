@@ -27,15 +27,4 @@ extension ActivityResponseModel: Codable, Identifiable {
         case price = "price"
         case v = "__v"
     }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        imageUrl = try container.decode(String.self, forKey: .imageUrl)
-        title = try container.decode(String.self, forKey: .title)
-        description = try container.decode(String.self, forKey: .description)
-        duration = try container.decode(Int.self, forKey: .duration)
-        price = try container.decode(Int.self, forKey: .price)
-        v = try container.decode(Int.self, forKey: .v)
-    }
 }

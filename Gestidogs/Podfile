@@ -6,6 +6,7 @@ target 'Gestidogs' do
   use_frameworks!
   pod 'lottie-ios'
   pod 'FSCalendar'
+  pod 'Alamofire'
 
   # Pods for Gestidogs
 
