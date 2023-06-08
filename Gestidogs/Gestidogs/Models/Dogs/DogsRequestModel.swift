@@ -21,12 +21,4 @@ extension DogsRequestModel: Codable {
         case birthDate = "birthDate"
         case breed = "breed"
     }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        ownerId = try container.decode(String.self, forKey: .ownerId)
-        name = try container.decode(String.self, forKey: .name)
-        birthDate = try container.decode(Date.self, forKey: .birthDate)
-        breed = try container.decode(String.self, forKey: .breed)
-    }
 }

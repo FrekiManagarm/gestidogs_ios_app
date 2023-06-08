@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+struct ObservationRequestModel {
+    let dog: String
+    let description: String
+}
+
+extension ObservationRequestModel: Codable {
+    enum CodingKeys: String, CodingKey {
+        case dog = "dog"
+        case description = "description"
+    }
+}

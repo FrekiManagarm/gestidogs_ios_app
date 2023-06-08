@@ -19,11 +19,4 @@ extension ReservationRequestModel: Codable {
         case dog = "dog"
         case isApproved = "isApproved"
     }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        session = try container.decode(String.self, forKey: .session)
-        dog = try container.decode(String.self, forKey: .dog)
-        isApproved = try container.decode(Bool.self, forKey: .isApproved)
-    }
 }

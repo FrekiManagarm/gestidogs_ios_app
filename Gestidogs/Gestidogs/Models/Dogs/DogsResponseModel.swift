@@ -33,18 +33,4 @@ extension DogsResponseModel: Codable, Identifiable {
         case height = "height"
         case weight = "weight"
     }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        owner = try container.decode(UserResponseModel.self, forKey: .owner)
-        establishment = try container.decode(EstablishmentResponseModel.self, forKey: .establishment)
-        name = try container.decode(String.self, forKey: .name)
-        birthDate = try container.decode(Date.self, forKey: .birthDate)
-        imageUrl = try container.decode(URL.self, forKey: .imageUrl)
-        breed = try container.decode(String.self, forKey: .breed)
-        nationalId = try container.decode(String.self, forKey: .nationalId)
-        height = try container.decode(Int.self, forKey: .height)
-        weight = try container.decode(Int.self, forKey: .weight)
-    }
 }

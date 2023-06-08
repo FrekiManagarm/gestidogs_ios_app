@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010E1E0E2A3207BA002E0DD1 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E0D2A3207BA002E0DD1 /* ColorConstants.swift */; };
+		010E1E102A3207C9002E0DD1 /* ImagesConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E0F2A3207C9002E0DD1 /* ImagesConstants.swift */; };
+		010E1E142A320994002E0DD1 /* TokensResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E132A320994002E0DD1 /* TokensResponseModel.swift */; };
+		010E1E162A321028002E0DD1 /* RegisterCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E152A321028002E0DD1 /* RegisterCredentials.swift */; };
+		010E1E182A326A3D002E0DD1 /* ObservationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E172A326A3C002E0DD1 /* ObservationsRepository.swift */; };
+		010E1E1A2A326A47002E0DD1 /* PaymentsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E192A326A47002E0DD1 /* PaymentsRepository.swift */; };
+		010E1E1D2A326F34002E0DD1 /* PaymentRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E1C2A326F34002E0DD1 /* PaymentRequestModel.swift */; };
+		010E1E1F2A326F40002E0DD1 /* PaymentResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E1E2A326F40002E0DD1 /* PaymentResponseModel.swift */; };
 		01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6812A2B65290054C16A /* OnboardingWidget.swift */; };
 		01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6832A2B65390054C16A /* OnboardingView.swift */; };
 		01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */; };
@@ -87,6 +95,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		010E1E0D2A3207BA002E0DD1 /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
+		010E1E0F2A3207C9002E0DD1 /* ImagesConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesConstants.swift; sourceTree = "<group>"; };
+		010E1E132A320994002E0DD1 /* TokensResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensResponseModel.swift; sourceTree = "<group>"; };
+		010E1E152A321028002E0DD1 /* RegisterCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCredentials.swift; sourceTree = "<group>"; };
+		010E1E172A326A3C002E0DD1 /* ObservationsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationsRepository.swift; sourceTree = "<group>"; };
+		010E1E192A326A47002E0DD1 /* PaymentsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRepository.swift; sourceTree = "<group>"; };
+		010E1E1C2A326F34002E0DD1 /* PaymentRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequestModel.swift; sourceTree = "<group>"; };
+		010E1E1E2A326F40002E0DD1 /* PaymentResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponseModel.swift; sourceTree = "<group>"; };
 		01E7D6812A2B65290054C16A /* OnboardingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWidget.swift; sourceTree = "<group>"; };
 		01E7D6832A2B65390054C16A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -181,6 +197,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010E1E0C2A3207A6002E0DD1 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				010E1E0D2A3207BA002E0DD1 /* ColorConstants.swift */,
+				010E1E0F2A3207C9002E0DD1 /* ImagesConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		010E1E112A32097C002E0DD1 /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				010E1E132A320994002E0DD1 /* TokensResponseModel.swift */,
+			);
+			path = Tokens;
+			sourceTree = "<group>";
+		};
+		010E1E1B2A326F24002E0DD1 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				010E1E1C2A326F34002E0DD1 /* PaymentRequestModel.swift */,
+				010E1E1E2A326F40002E0DD1 /* PaymentResponseModel.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
 		01E7D67D2A2B64F90054C16A /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +411,7 @@
 			children = (
 				5F157C272A277C4500B4C2FE /* UserResponseModel.swift */,
 				5F157C292A277C5700B4C2FE /* UserRequestModel.swift */,
+				010E1E152A321028002E0DD1 /* RegisterCredentials.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -464,6 +507,7 @@
 		5F8BFD152A262CE70007E367 /* Gestidogs */ = {
 			isa = PBXGroup;
 			children = (
+				010E1E0C2A3207A6002E0DD1 /* Constants */,
 				5F04A6982A30D176000E2AD9 /* Errors */,
 				5FC9224C2A30AA9E00E78516 /* Repositories */,
 				01E7D6872A2B656E0054C16A /* Extension */,
@@ -526,6 +570,8 @@
 		5F8BFD282A262D580007E367 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				010E1E1B2A326F24002E0DD1 /* Payment */,
+				010E1E112A32097C002E0DD1 /* Tokens */,
 				5FC9225C2A30ABF100E78516 /* Observation */,
 				5F157C1E2A277A6500B4C2FE /* ActivityType */,
 				5F157C1D2A277A4E00B4C2FE /* Establishment */,
@@ -772,6 +818,8 @@
 				5FC922562A30ABCA00E78516 /* ReservationRepository.swift */,
 				5FC922582A30ABDA00E78516 /* SessionRepository.swift */,
 				5FC9225A2A30ABE900E78516 /* HolidayRepository.swift */,
+				010E1E172A326A3C002E0DD1 /* ObservationsRepository.swift */,
+				010E1E192A326A47002E0DD1 /* PaymentsRepository.swift */,
 				5FC922612A30B86B00E78516 /* MainRepository.swift */,
 			);
 			path = Repositories;
@@ -937,6 +985,7 @@
 				5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */,
 				01E7D6892A2B657E0054C16A /* Extension.swift in Sources */,
 				5F32C5AE2A28AA340034AB6F /* TeamCenterWidget.swift in Sources */,
+				010E1E1A2A326A47002E0DD1 /* PaymentsRepository.swift in Sources */,
 				5F8C93402A2A1A2100F39770 /* LoginWidget.swift in Sources */,
 				5F32C5B42A28CC100034AB6F /* DogsListViewModel.swift in Sources */,
 				5F157C3C2A278FCE00B4C2FE /* UserManager.swift in Sources */,
@@ -951,6 +1000,7 @@
 				5F157C152A2777CB00B4C2FE /* ProfileView.swift in Sources */,
 				5F743ADC2A2F63E50023D22D /* EmailPasswordFields.swift in Sources */,
 				5F8BFD422A262ED30007E367 /* AgendaView.swift in Sources */,
+				010E1E1F2A326F40002E0DD1 /* PaymentResponseModel.swift in Sources */,
 				5F157C342A277CCB00B4C2FE /* DogsResponseModel.swift in Sources */,
 				5F157C0A2A27772800B4C2FE /* HolidaysViewModel.swift in Sources */,
 				5F157C302A277C9600B4C2FE /* SessionResponseModel.swift in Sources */,
@@ -963,6 +1013,7 @@
 				5FC9224F2A30AB7E00E78516 /* ActivityTypeRepository.swift in Sources */,
 				5F8C933E2A2A1A1300F39770 /* LoginView.swift in Sources */,
 				5F8C93532A2A1B2F00F39770 /* NotificationsWidget.swift in Sources */,
+				010E1E182A326A3D002E0DD1 /* ObservationsRepository.swift in Sources */,
 				5F8C93332A2A19A000F39770 /* ChooseOrCreateEstablishmentView.swift in Sources */,
 				5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */,
 				5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */,
@@ -980,17 +1031,22 @@
 				5F157C282A277C4500B4C2FE /* UserResponseModel.swift in Sources */,
 				5FC922572A30ABCA00E78516 /* ReservationRepository.swift in Sources */,
 				01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */,
+				010E1E0E2A3207BA002E0DD1 /* ColorConstants.swift in Sources */,
 				5F8C93472A2A1A5400F39770 /* RegisterView.swift in Sources */,
 				5FC9225B2A30ABE900E78516 /* HolidayRepository.swift in Sources */,
 				5F8C93352A2A19B500F39770 /* ChooseOrCreateEstablishmentViewModel.swift in Sources */,
 				5F157C262A277C3000B4C2FE /* EstablishmentRequestModel.swift in Sources */,
+				010E1E1D2A326F34002E0DD1 /* PaymentRequestModel.swift in Sources */,
 				5F157C2C2A277C6A00B4C2FE /* ReservationResponseModel.swift in Sources */,
+				010E1E162A321028002E0DD1 /* RegisterCredentials.swift in Sources */,
 				5F157C202A277BDC00B4C2FE /* ActivityTypeResponseModel.swift in Sources */,
 				5F32C5BC2A28E36D0034AB6F /* DogCellWidget.swift in Sources */,
+				010E1E102A3207C9002E0DD1 /* ImagesConstants.swift in Sources */,
 				5F157C322A277CA700B4C2FE /* SessionRequestModel.swift in Sources */,
 				5F157C172A27780300B4C2FE /* HolidaysResponseModel.swift in Sources */,
 				5F157C382A277CF100B4C2FE /* HolidaysRequestModel.swift in Sources */,
 				5F8C93552A2A1B4700F39770 /* NotificationsView.swift in Sources */,
+				010E1E142A320994002E0DD1 /* TokensResponseModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

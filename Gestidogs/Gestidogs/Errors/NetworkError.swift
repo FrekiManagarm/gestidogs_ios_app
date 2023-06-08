@@ -8,5 +8,5 @@
 import Foundation
 
 class NetworkError {
-    static let badUrl: NSError = NSError(domain: "Network", code: 1)
+    static let badUrl: NSError = NSError(domain: "Bad URL", code: 400)
 }

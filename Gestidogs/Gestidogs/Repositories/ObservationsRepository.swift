@@ -1,45 +1,45 @@
 //
-//  HolidayRepository.swift
+//  ObservationsRepository.swift
 //  Gestidogs
 //
-//  Created by Mathieu CHAMBAUD on 07/06/2023.
+//  Created by Mathieu Chambaud on 08/06/2023.
 //
 
 import Foundation
 
-class HolidayRepository {
-    private let baseUrl: String = "\(MainRepository.apiUrlDev)\(MainRepository.holidaysUrl)"
+class ObservationsRepository {
+    private var baseUrl: String = "\(MainRepository.apiUrlDev)\(MainRepository.observationsUrl)"
     
-    //MARK: GET ALL HOLIDAYS
-    public func getAllHolidays(employee employeeId: String?) async throws -> [HolidaysResponseModel] {
-        guard let url = URL(string: baseUrl + "?employeeId=\(employeeId ?? "")") else {
+    //MARK: GET ALL OBSERVATIONS
+    public func getAllObservations() async throws -> [ObservationResponseModel] {
+        guard let url = URL(string: baseUrl) else {
             throw NetworkError.badUrl
         }
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            return try JSONDecoder().decode([HolidaysResponseModel].self, from: data)
+            return try JSONDecoder().decode([ObservationResponseModel].self, from: data)
         } catch {
             throw error
         }
     }
     
-    //MARK: GET HOLIDAYS BY ID
-    public func getHolidaysById(holiday holidayId: String) async throws -> HolidaysResponseModel {
-        guard let url = URL(string: "\(baseUrl)/\(holidayId)") else {
+    //MARK: GET OBSERVATIONS BY ID
+    public func getObservationById(observation observationId: String) async throws -> ObservationResponseModel {
+        guard let url = URL(string: "\(baseUrl)/\(observationId)") else {
             throw NetworkError.badUrl
         }
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            return try JSONDecoder().decode(HolidaysResponseModel.self, from: data)
+            return try JSONDecoder().decode(ObservationResponseModel.self, from: data)
         } catch {
             throw error
         }
     }
     
-    //MARK: CREATE HOLIDAYS
-    public func createHolidays(requestBody body: HolidaysRequestModel) async throws -> HolidaysResponseModel {
+    //MARK: CREATE OBSERVATION
+    public func createObservation(requestBody body: ObservationRequestModel) async throws -> ObservationResponseModel {
         guard let url = URL(string: baseUrl) else {
             throw NetworkError.badUrl
         }
@@ -50,15 +50,15 @@ class HolidayRepository {
         
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-            return try JSONDecoder().decode(HolidaysResponseModel.self, from: data)
+            return try JSONDecoder().decode(ObservationResponseModel.self, from: data)
         } catch {
             throw error
         }
     }
     
-    //MARK: MODIFY HOLIDAYS
-    public func modifyHolidays(holiday holidayId: String, requestBody body: HolidaysRequestModel) async throws -> HolidaysResponseModel {
-        guard let url = URL(string: "\(baseUrl)/\(holidayId)") else {
+    //MARK: MODIFY OBSERVATION
+    public func modifyObservation(observation observationId: String, requestBody body: ObservationRequestModel) async throws -> ObservationResponseModel {
+        guard let url = URL(string: "\(baseUrl)/\(observationId)") else {
             throw NetworkError.badUrl
         }
         
@@ -68,15 +68,15 @@ class HolidayRepository {
         
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-            return try JSONDecoder().decode(HolidaysResponseModel.self, from: data)
+            return try JSONDecoder().decode(ObservationResponseModel.self, from: data)
         } catch {
             throw error
         }
     }
     
-    //MARK: DELETE HOLIDAYS BY ID
-    public func deleteHolidaysById(holiday holidayId: String) async throws {
-        guard let url = URL(string: "\(baseUrl)/\(holidayId)") else {
+    //MARK: DELETE OBSERVATION BY ID
+    public func deleteObservationById(observation observationId: String) async throws {
+        guard let url = URL(string: "\(baseUrl)/\(observationId)") else {
             throw NetworkError.badUrl
         }
         

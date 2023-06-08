@@ -33,18 +33,4 @@ extension SessionResponseModel: Identifiable, Codable {
         case endDate = "endDate"
         case v = "__v"
     }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        educator = try container.decode(UserResponseModel.self, forKey: .educator)
-        activity = try container.decode(ActivityResponseModel.self, forKey: .activity)
-        establishment = try container.decode(String.self, forKey: .establishment)
-        status = try container.decode(String.self, forKey: .status)
-        maximumCapacity = try container.decode(Int.self, forKey: .maximumCapacity)
-        report = try container.decode(String.self, forKey: .report)
-        beginDate = try container.decode(Date.self, forKey: .beginDate)
-        endDate = try container.decode(Date.self, forKey: .endDate)
-        v = try container.decode(Int.self, forKey: .v)
-    }
 }

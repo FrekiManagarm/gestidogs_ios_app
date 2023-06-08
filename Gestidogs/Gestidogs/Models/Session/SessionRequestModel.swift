@@ -27,15 +27,4 @@ extension SessionRequestModel: Codable {
         case report = "report"
         case beginDate = "beginDate"
     }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        educator = try container.decode(String.self, forKey: .educator)
-        activity = try container.decode(String.self, forKey: .activity)
-        establishment = try container.decode(String.self, forKey: .establishment)
-        status = try container.decode(String.self, forKey: .status)
-        maximumCapacity = try container.decode(Int.self, forKey: .maximumCapacity)
-        report = try container.decode(String.self, forKey: .report)
-        beginDate = try container.decode(Date.self, forKey: .beginDate)
-    }
 }
