@@ -8,28 +8,27 @@
 import SwiftUI
 
 struct NavBar: View {
-    
-    let userImage: String
-    @Binding var tabBarIndex: Int
-    
     var body: some View {
         HStack {
             Spacer()
-            Button {
-                tabBarIndex = 3
-            } label: {
-                Image(userImage)
-                    .resizable()
-                    .frame(width: 50, height: 50)
+            NavigationLink(destination: NotificationsView()) {
+                ZStack {
+                    Circle()
+                        .fill(Color("gray100"))
+                        .frame(width: 70, height: 70)
+                    
+                    Image(systemName: "bell")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                }
             }
-            .padding(.trailing, 10)
         }
     }
 }
 
 struct NavBar_Previews: PreviewProvider {
     static var previews: some View {
-        NavBar(userImage: "", tabBarIndex: .constant(0))
+        NavBar()
             .preferredColorScheme(.light)
             .previewLayout(.sizeThatFits)
     }

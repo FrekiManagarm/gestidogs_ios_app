@@ -11,12 +11,12 @@ import SwiftUI
 struct GestidogsApp: App {
     
     @StateObject var appState = AppState()
+    var apiManager = ApiManager()
     
     var body: some Scene {
         WindowGroup {
-//            HomeView()
-//                .environmentObject(appState)
-            RegisterView()
+            HomeView()
+                .environmentObject(appState)
         }
     }
 }

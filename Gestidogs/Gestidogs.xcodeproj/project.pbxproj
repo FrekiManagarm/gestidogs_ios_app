@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0109C9B02A333CC300544C9C /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9AF2A333CC300544C9C /* TeamCell.swift */; };
+		0109C9B22A333CF200544C9C /* TeamCenterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9B12A333CF200544C9C /* TeamCenterDetailsView.swift */; };
+		0109C9B42A333D5100544C9C /* ActivityTypeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9B32A333D5100544C9C /* ActivityTypeDetailsView.swift */; };
+		0109C9B82A333DEB00544C9C /* SessionCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9B72A333DEB00544C9C /* SessionCenterWidget.swift */; };
+		0109C9BA2A333DF600544C9C /* SessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9B92A333DF600544C9C /* SessionCell.swift */; };
+		0109C9BC2A333E0E00544C9C /* SessionCenterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9BB2A333E0E00544C9C /* SessionCenterDetails.swift */; };
+		0109C9BE2A3340D500544C9C /* DogCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9BD2A3340D500544C9C /* DogCenterWidget.swift */; };
+		0109C9C02A3340E000544C9C /* DogCenterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9BF2A3340E000544C9C /* DogCenterDetails.swift */; };
+		0109C9C22A3340EE00544C9C /* DogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9C12A3340EE00544C9C /* DogItem.swift */; };
 		010E1E0E2A3207BA002E0DD1 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E0D2A3207BA002E0DD1 /* ColorConstants.swift */; };
 		010E1E102A3207C9002E0DD1 /* ImagesConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E0F2A3207C9002E0DD1 /* ImagesConstants.swift */; };
 		010E1E142A320994002E0DD1 /* TokensResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E132A320994002E0DD1 /* TokensResponseModel.swift */; };
@@ -15,6 +24,10 @@
 		010E1E1A2A326A47002E0DD1 /* PaymentsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E192A326A47002E0DD1 /* PaymentsRepository.swift */; };
 		010E1E1D2A326F34002E0DD1 /* PaymentRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E1C2A326F34002E0DD1 /* PaymentRequestModel.swift */; };
 		010E1E1F2A326F40002E0DD1 /* PaymentResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E1E2A326F40002E0DD1 /* PaymentResponseModel.swift */; };
+		012BF7432A33552500A4C266 /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7422A33552500A4C266 /* ActivityListView.swift */; };
+		012BF7452A33553500A4C266 /* ActivityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7442A33553500A4C266 /* ActivityListViewModel.swift */; };
+		012BF7472A33554C00A4C266 /* ActivityListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7462A33554C00A4C266 /* ActivityListWidget.swift */; };
+		014E3FE62A348B55007C4E2F /* ProfileForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FE52A348B55007C4E2F /* ProfileForm.swift */; };
 		01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6812A2B65290054C16A /* OnboardingWidget.swift */; };
 		01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6832A2B65390054C16A /* OnboardingView.swift */; };
 		01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */; };
@@ -51,11 +64,11 @@
 		5F157C452A2791E800B4C2FE /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157C442A2791E800B4C2FE /* NavBar.swift */; };
 		5F32C5AC2A2896180034AB6F /* AgendaUIViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5AB2A2896180034AB6F /* AgendaUIViewRepresentable.swift */; };
 		5F32C5AE2A28AA340034AB6F /* TeamCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5AD2A28AA340034AB6F /* TeamCenterWidget.swift */; };
-		5F32C5B02A28AA460034AB6F /* DogCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5AF2A28AA460034AB6F /* DogCenterWidget.swift */; };
+		5F32C5B02A28AA460034AB6F /* ActivityTypeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5AF2A28AA460034AB6F /* ActivityTypeWidget.swift */; };
 		5F32C5B42A28CC100034AB6F /* DogsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5B32A28CC100034AB6F /* DogsListViewModel.swift */; };
 		5F32C5B72A28CC8A0034AB6F /* DogsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5B62A28CC8A0034AB6F /* DogsListView.swift */; };
 		5F32C5BA2A28CCA30034AB6F /* DogsListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5B92A28CCA30034AB6F /* DogsListWidget.swift */; };
-		5F32C5BC2A28E36D0034AB6F /* DogCellWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5BB2A28E36D0034AB6F /* DogCellWidget.swift */; };
+		5F32C5BC2A28E36D0034AB6F /* ActivityCellWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F32C5BB2A28E36D0034AB6F /* ActivityCellWidget.swift */; };
 		5F743ADC2A2F63E50023D22D /* EmailPasswordFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F743ADB2A2F63E50023D22D /* EmailPasswordFields.swift */; };
 		5F825F2E2A2F2457001C6EB5 /* TeamMateWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F825F2D2A2F2456001C6EB5 /* TeamMateWidget.swift */; };
 		5F825F312A2F257A001C6EB5 /* TeamMateDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F825F302A2F257A001C6EB5 /* TeamMateDetailsView.swift */; };
@@ -95,6 +108,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0109C9AF2A333CC300544C9C /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
+		0109C9B12A333CF200544C9C /* TeamCenterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCenterDetailsView.swift; sourceTree = "<group>"; };
+		0109C9B32A333D5100544C9C /* ActivityTypeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeDetailsView.swift; sourceTree = "<group>"; };
+		0109C9B72A333DEB00544C9C /* SessionCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCenterWidget.swift; sourceTree = "<group>"; };
+		0109C9B92A333DF600544C9C /* SessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCell.swift; sourceTree = "<group>"; };
+		0109C9BB2A333E0E00544C9C /* SessionCenterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCenterDetails.swift; sourceTree = "<group>"; };
+		0109C9BD2A3340D500544C9C /* DogCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCenterWidget.swift; sourceTree = "<group>"; };
+		0109C9BF2A3340E000544C9C /* DogCenterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCenterDetails.swift; sourceTree = "<group>"; };
+		0109C9C12A3340EE00544C9C /* DogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogItem.swift; sourceTree = "<group>"; };
 		010E1E0D2A3207BA002E0DD1 /* ColorConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		010E1E0F2A3207C9002E0DD1 /* ImagesConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesConstants.swift; sourceTree = "<group>"; };
 		010E1E132A320994002E0DD1 /* TokensResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensResponseModel.swift; sourceTree = "<group>"; };
@@ -103,6 +125,10 @@
 		010E1E192A326A47002E0DD1 /* PaymentsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRepository.swift; sourceTree = "<group>"; };
 		010E1E1C2A326F34002E0DD1 /* PaymentRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequestModel.swift; sourceTree = "<group>"; };
 		010E1E1E2A326F40002E0DD1 /* PaymentResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponseModel.swift; sourceTree = "<group>"; };
+		012BF7422A33552500A4C266 /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
+		012BF7442A33553500A4C266 /* ActivityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListViewModel.swift; sourceTree = "<group>"; };
+		012BF7462A33554C00A4C266 /* ActivityListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListWidget.swift; sourceTree = "<group>"; };
+		014E3FE52A348B55007C4E2F /* ProfileForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileForm.swift; sourceTree = "<group>"; };
 		01E7D6812A2B65290054C16A /* OnboardingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWidget.swift; sourceTree = "<group>"; };
 		01E7D6832A2B65390054C16A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -139,11 +165,11 @@
 		5F157C442A2791E800B4C2FE /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		5F32C5AB2A2896180034AB6F /* AgendaUIViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaUIViewRepresentable.swift; sourceTree = "<group>"; };
 		5F32C5AD2A28AA340034AB6F /* TeamCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCenterWidget.swift; sourceTree = "<group>"; };
-		5F32C5AF2A28AA460034AB6F /* DogCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCenterWidget.swift; sourceTree = "<group>"; };
+		5F32C5AF2A28AA460034AB6F /* ActivityTypeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeWidget.swift; sourceTree = "<group>"; };
 		5F32C5B32A28CC100034AB6F /* DogsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListViewModel.swift; sourceTree = "<group>"; };
 		5F32C5B62A28CC8A0034AB6F /* DogsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListView.swift; sourceTree = "<group>"; };
 		5F32C5B92A28CCA30034AB6F /* DogsListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListWidget.swift; sourceTree = "<group>"; };
-		5F32C5BB2A28E36D0034AB6F /* DogCellWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCellWidget.swift; sourceTree = "<group>"; };
+		5F32C5BB2A28E36D0034AB6F /* ActivityCellWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCellWidget.swift; sourceTree = "<group>"; };
 		5F743ADB2A2F63E50023D22D /* EmailPasswordFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailPasswordFields.swift; sourceTree = "<group>"; };
 		5F825F2D2A2F2456001C6EB5 /* TeamMateWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMateWidget.swift; sourceTree = "<group>"; };
 		5F825F302A2F257A001C6EB5 /* TeamMateDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMateDetailsView.swift; sourceTree = "<group>"; };
@@ -197,6 +223,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0109C9AD2A333C6B00544C9C /* ActivityType */ = {
+			isa = PBXGroup;
+			children = (
+				5F32C5AF2A28AA460034AB6F /* ActivityTypeWidget.swift */,
+				5F32C5BB2A28E36D0034AB6F /* ActivityCellWidget.swift */,
+				0109C9B32A333D5100544C9C /* ActivityTypeDetailsView.swift */,
+			);
+			path = ActivityType;
+			sourceTree = "<group>";
+		};
+		0109C9AE2A333C7E00544C9C /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				5F32C5AD2A28AA340034AB6F /* TeamCenterWidget.swift */,
+				0109C9AF2A333CC300544C9C /* TeamCell.swift */,
+				0109C9B12A333CF200544C9C /* TeamCenterDetailsView.swift */,
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
+		0109C9B52A333DBF00544C9C /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				0109C9B72A333DEB00544C9C /* SessionCenterWidget.swift */,
+				0109C9B92A333DF600544C9C /* SessionCell.swift */,
+				0109C9BB2A333E0E00544C9C /* SessionCenterDetails.swift */,
+			);
+			path = Sessions;
+			sourceTree = "<group>";
+		};
+		0109C9B62A333DD800544C9C /* Dogs */ = {
+			isa = PBXGroup;
+			children = (
+				0109C9BD2A3340D500544C9C /* DogCenterWidget.swift */,
+				0109C9BF2A3340E000544C9C /* DogCenterDetails.swift */,
+				0109C9C12A3340EE00544C9C /* DogItem.swift */,
+			);
+			path = Dogs;
+			sourceTree = "<group>";
+		};
 		010E1E0C2A3207A6002E0DD1 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +287,47 @@
 				010E1E1E2A326F40002E0DD1 /* PaymentResponseModel.swift */,
 			);
 			path = Payment;
+			sourceTree = "<group>";
+		};
+		012BF73D2A33543A00A4C266 /* ActivityList */ = {
+			isa = PBXGroup;
+			children = (
+				012BF7412A33551300A4C266 /* Widgets */,
+				012BF7402A33550C00A4C266 /* ViewModel */,
+				012BF73F2A33545100A4C266 /* Views */,
+			);
+			path = ActivityList;
+			sourceTree = "<group>";
+		};
+		012BF73E2A33544400A4C266 /* TeamList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TeamList;
+			sourceTree = "<group>";
+		};
+		012BF73F2A33545100A4C266 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				012BF7422A33552500A4C266 /* ActivityListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		012BF7402A33550C00A4C266 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				012BF7442A33553500A4C266 /* ActivityListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		012BF7412A33551300A4C266 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				012BF7462A33554C00A4C266 /* ActivityListWidget.swift */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		01E7D67D2A2B64F90054C16A /* Onboarding */ = {
@@ -302,10 +409,11 @@
 		5F157BFC2A27741E00B4C2FE /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				5F32C5AD2A28AA340034AB6F /* TeamCenterWidget.swift */,
-				5F32C5AF2A28AA460034AB6F /* DogCenterWidget.swift */,
+				0109C9B62A333DD800544C9C /* Dogs */,
+				0109C9B52A333DBF00544C9C /* Sessions */,
+				0109C9AE2A333C7E00544C9C /* Team */,
+				0109C9AD2A333C6B00544C9C /* ActivityType */,
 				5F157BFD2A27744800B4C2FE /* DashboardWidget.swift */,
-				5F32C5BB2A28E36D0034AB6F /* DogCellWidget.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -366,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				5F157C102A2777A800B4C2FE /* ProfileWidget.swift */,
+				014E3FE52A348B55007C4E2F /* ProfileForm.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -542,6 +651,8 @@
 		5F8BFD252A262D330007E367 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				012BF73E2A33544400A4C266 /* TeamList */,
+				012BF73D2A33543A00A4C266 /* ActivityList */,
 				01E7D67D2A2B64F90054C16A /* Onboarding */,
 				5F8C934C2A2A1AEB00F39770 /* Notifications */,
 				5F8C93392A2A19E700F39770 /* Register */,
@@ -968,6 +1079,7 @@
 				5F8C93372A2A19C800F39770 /* ChooseOrCreateEstablishmentWidget.swift in Sources */,
 				5F157C3A2A278FA700B4C2FE /* ApiManager.swift in Sources */,
 				5F157C2E2A277C8700B4C2FE /* ReservationRequestModel.swift in Sources */,
+				014E3FE62A348B55007C4E2F /* ProfileForm.swift in Sources */,
 				5F157C082A27771900B4C2FE /* HolidaysWidget.swift in Sources */,
 				5F32C5AC2A2896180034AB6F /* AgendaUIViewRepresentable.swift in Sources */,
 				5F8C93512A2A1B2200F39770 /* NotificationsViewModel.swift in Sources */,
@@ -980,6 +1092,8 @@
 				5F8C934B2A2A1A7000F39770 /* RegisterViewModel.swift in Sources */,
 				5F8BFD342A262DFE0007E367 /* HomeViewModel.swift in Sources */,
 				5F157C422A27910C00B4C2FE /* HolidaysEducatorView.swift in Sources */,
+				0109C9BE2A3340D500544C9C /* DogCenterWidget.swift in Sources */,
+				012BF7452A33553500A4C266 /* ActivityListViewModel.swift in Sources */,
 				5F157C362A277CDA00B4C2FE /* DogsRequestModel.swift in Sources */,
 				5F825F312A2F257A001C6EB5 /* TeamMateDetailsView.swift in Sources */,
 				5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */,
@@ -988,7 +1102,9 @@
 				010E1E1A2A326A47002E0DD1 /* PaymentsRepository.swift in Sources */,
 				5F8C93402A2A1A2100F39770 /* LoginWidget.swift in Sources */,
 				5F32C5B42A28CC100034AB6F /* DogsListViewModel.swift in Sources */,
+				0109C9B82A333DEB00544C9C /* SessionCenterWidget.swift in Sources */,
 				5F157C3C2A278FCE00B4C2FE /* UserManager.swift in Sources */,
+				0109C9C22A3340EE00544C9C /* DogItem.swift in Sources */,
 				5F157C0C2A27773A00B4C2FE /* HolidaysView.swift in Sources */,
 				5F157C022A27746F00B4C2FE /* DashboardViewModel.swift in Sources */,
 				5FC922622A30B86B00E78516 /* MainRepository.swift in Sources */,
@@ -1003,7 +1119,9 @@
 				010E1E1F2A326F40002E0DD1 /* PaymentResponseModel.swift in Sources */,
 				5F157C342A277CCB00B4C2FE /* DogsResponseModel.swift in Sources */,
 				5F157C0A2A27772800B4C2FE /* HolidaysViewModel.swift in Sources */,
+				0109C9C02A3340E000544C9C /* DogCenterDetails.swift in Sources */,
 				5F157C302A277C9600B4C2FE /* SessionResponseModel.swift in Sources */,
+				0109C9B02A333CC300544C9C /* TeamCell.swift in Sources */,
 				5F8BFD2F2A262DCE0007E367 /* AppState.swift in Sources */,
 				01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */,
 				5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */,
@@ -1015,21 +1133,24 @@
 				5F8C93532A2A1B2F00F39770 /* NotificationsWidget.swift in Sources */,
 				010E1E182A326A3D002E0DD1 /* ObservationsRepository.swift in Sources */,
 				5F8C93332A2A19A000F39770 /* ChooseOrCreateEstablishmentView.swift in Sources */,
+				0109C9B22A333CF200544C9C /* TeamCenterDetailsView.swift in Sources */,
 				5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */,
 				5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */,
 				5FC922532A30ABAB00E78516 /* UserRepository.swift in Sources */,
 				5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */,
 				5F8C93492A2A1A6200F39770 /* RegisterWidget.swift in Sources */,
+				012BF7432A33552500A4C266 /* ActivityListView.swift in Sources */,
 				5F32C5B72A28CC8A0034AB6F /* DogsListView.swift in Sources */,
 				5F04A69A2A30D186000E2AD9 /* NetworkError.swift in Sources */,
 				01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */,
 				5F157C3E2A278FDB00B4C2FE /* EstablishmentManager.swift in Sources */,
 				5F8C93422A2A1A3200F39770 /* LoginViewModel.swift in Sources */,
-				5F32C5B02A28AA460034AB6F /* DogCenterWidget.swift in Sources */,
+				5F32C5B02A28AA460034AB6F /* ActivityTypeWidget.swift in Sources */,
 				5F8BFD382A262E1B0007E367 /* HomeWidget.swift in Sources */,
 				5FC922512A30AB9B00E78516 /* EstablishmentRepository.swift in Sources */,
 				5F157C282A277C4500B4C2FE /* UserResponseModel.swift in Sources */,
 				5FC922572A30ABCA00E78516 /* ReservationRepository.swift in Sources */,
+				0109C9BA2A333DF600544C9C /* SessionCell.swift in Sources */,
 				01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */,
 				010E1E0E2A3207BA002E0DD1 /* ColorConstants.swift in Sources */,
 				5F8C93472A2A1A5400F39770 /* RegisterView.swift in Sources */,
@@ -1040,13 +1161,16 @@
 				5F157C2C2A277C6A00B4C2FE /* ReservationResponseModel.swift in Sources */,
 				010E1E162A321028002E0DD1 /* RegisterCredentials.swift in Sources */,
 				5F157C202A277BDC00B4C2FE /* ActivityTypeResponseModel.swift in Sources */,
-				5F32C5BC2A28E36D0034AB6F /* DogCellWidget.swift in Sources */,
+				5F32C5BC2A28E36D0034AB6F /* ActivityCellWidget.swift in Sources */,
 				010E1E102A3207C9002E0DD1 /* ImagesConstants.swift in Sources */,
+				012BF7472A33554C00A4C266 /* ActivityListWidget.swift in Sources */,
 				5F157C322A277CA700B4C2FE /* SessionRequestModel.swift in Sources */,
 				5F157C172A27780300B4C2FE /* HolidaysResponseModel.swift in Sources */,
 				5F157C382A277CF100B4C2FE /* HolidaysRequestModel.swift in Sources */,
 				5F8C93552A2A1B4700F39770 /* NotificationsView.swift in Sources */,
 				010E1E142A320994002E0DD1 /* TokensResponseModel.swift in Sources */,
+				0109C9BC2A333E0E00544C9C /* SessionCenterDetails.swift in Sources */,
+				0109C9B42A333D5100544C9C /* ActivityTypeDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1179,6 +1303,7 @@
 				DEVELOPMENT_TEAM = 7F9M4VSS6H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Gestidogs/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1189,7 +1314,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mathieu.Gestidogs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mathieu.GestiDogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1209,6 +1334,7 @@
 				DEVELOPMENT_TEAM = 7F9M4VSS6H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Gestidogs/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1219,7 +1345,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mathieu.Gestidogs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mathieu.GestiDogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

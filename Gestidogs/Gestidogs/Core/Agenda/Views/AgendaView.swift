@@ -16,18 +16,27 @@ struct AgendaView: View {
     var body: some View {
         ZStack {
             RadialGradient(
-                gradient: Gradient(colors: [Color.blue, Color.white]),
+                gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
                 center: .topLeading,
-                startRadius: 5,
+                startRadius: 1,
                 endRadius: UIScreen.main.bounds.height)
                 .ignoresSafeArea()
             
             VStack {
-                AgendaUIViewRepresentable(selectedDate: $selectedDate)
-                    .frame(height: 400)
-                    .padding()
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(.white)
+                        .padding()
+                        .shadow(radius: 5, x: 5, y: 5)
+                    
+                    AgendaUIViewRepresentable(selectedDate: $selectedDate)
+                        .frame(height: 400)
+                        .padding(20)
+                }
+                
                 Divider()
                     .padding(.horizontal)
+
                 ScrollView(.vertical) {
                     if selectedDate != nil {
                         ForEach(0..<5, id: \.self) { _ in

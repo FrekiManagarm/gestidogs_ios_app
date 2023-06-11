@@ -7,6 +7,7 @@
 
 import Foundation
 
-class ProfileViewModel: NSObject, ObservableObject {
-    
+class ProfileViewModel: ObservableObject {
+    @Published var user: UserResponseModel?
+    let token: String = ""
 }

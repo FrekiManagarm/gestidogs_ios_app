@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-struct DogCell: View {
+struct ActivityCell: View {
     
     @State var showDetailsView: Bool = false
     
     var body: some View {
         ZStack {
             HStack {
-                Image("onboarding_2_img")
+                Image("onboarding_3_img")
                     .resizable()
-                    .frame(width: 150, height: 180)
+                    .scaledToFill()
+                    .frame(width: 150, height: 150)
                     .cornerRadius(25)
                     .padding(10)
                 VStack {
@@ -28,17 +29,17 @@ struct DogCell: View {
             }
             .foregroundColor(.black)
         }
-        .frame(width: 300, height: 200)
-        .background(Color(.white))
+        .frame(width: 300, height: 170)
+        .background(Color("gray100"))
         .cornerRadius(25)
-        .padding(EdgeInsets(top: 0, leading: 10, bottom: 30, trailing: 10))
+        .padding(EdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10))
         .onTapGesture {
             withAnimation(.spring()) {
                 showDetailsView.toggle()
             }
         }
         .sheet(isPresented: $showDetailsView) {
-            DogCenterDetails()
+            ActivityCenterDetails()
         }
     }
 }

@@ -12,7 +12,7 @@ struct HolidaysView: View {
         ZStack {
             
             RadialGradient(
-                gradient: Gradient(colors: [Color.blue, Color.white]),
+                gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
                 center: .topLeading,
                 startRadius: 5,
                 endRadius: UIScreen.main.bounds.height)

@@ -13,7 +13,7 @@ struct DogsResponseModel {
     let establishment: EstablishmentResponseModel
     let name: String
     let birthDate: Date
-    let imageUrl: URL
+    let imageUrl: String
     let breed: String
     let nationalId: String
     let height: Int

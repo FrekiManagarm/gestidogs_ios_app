@@ -10,3 +10,8 @@ import Foundation
 class NetworkError {
     static let badUrl: NSError = NSError(domain: "Bad URL", code: 400)
 }
+
+enum CustomError: String, Error {
+    case authorize = "Unable to authenticate user. An error occured during authorization, please check your connection and try again."
+    case unavailableServer = "Server is unavailable"
+}

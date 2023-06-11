@@ -9,7 +9,7 @@ import Foundation
 
 struct UserResponseModel {
     let id: String
-    let avatarUrl: URL
+    let avatarUrl: String
     let emailAddress: String
     let firstName: String
     let lastName: String
@@ -30,18 +30,5 @@ extension UserResponseModel: Identifiable, Codable {
         case registeredAt = "registeredAt"
         case lastConnectionAt = "lastConnectionAt"
         case v = "__v"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(String.self, forKey: .id)
-        avatarUrl = try container.decode(URL.self, forKey: .avatarUrl)
-        emailAddress = try container.decode(String.self, forKey: .emailAddress)
-        firstName = try container.decode(String.self, forKey: .firstName)
-        lastName = try container.decode(String.self, forKey: .lastName)
-        role = try container.decode(String.self, forKey: .role)
-        registeredAt = try container.decode(Date.self, forKey: .registeredAt)
-        lastConnectionAt = try container.decode(Date.self, forKey: .lastConnectionAt)
-        v = try container.decode(Int.self, forKey: .v)
     }
 }

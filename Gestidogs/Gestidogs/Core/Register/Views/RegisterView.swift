@@ -9,7 +9,14 @@ import SwiftUI
 
 struct RegisterView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            RadialGradient(
+                gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+                center: .topLeading,
+                startRadius: 1,
+                endRadius: UIScreen.main.bounds.height)
+            .ignoresSafeArea()
+        }
     }
 }
 

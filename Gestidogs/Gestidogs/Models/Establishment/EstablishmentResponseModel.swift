@@ -7,6 +7,30 @@
 
 import Foundation
 
-class EstablishmentResponseModel: Codable, Identifiable {
-    
+struct EstablishmentResponseModel {
+    let owner: UserResponseModel
+    let name: String
+    let description: String
+    let address: String
+    let location: [Int]
+    let phoneNumber: String
+    let emailAddress: String
+    let employees: [UserResponseModel]
+    let schedules: [Date]
+    let v: Int
+}
+
+extension EstablishmentResponseModel: Codable {
+    enum CodingKeys: String, CodingKey {
+        case owner = "owner"
+        case name = "name"
+        case description = "description"
+        case address = "address"
+        case location = "location"
+        case phoneNumber = "phoneNumber"
+        case emailAddress = "emailAddress"
+        case employees = "employees"
+        case schedules = "schedules"
+        case v = "__v"
+    }
 }

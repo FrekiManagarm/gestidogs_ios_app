@@ -7,6 +7,26 @@
 
 import Foundation
 
-class EstablishmentRequestModel: Codable, Identifiable {
-    
+struct EstablishmentRequestModel {
+    let owner: String
+    let name: String
+    let description: String
+    let address: String
+    let location: [Int]
+    let phoneNumber: String
+    let emailAddress: String
+    let schedules: [Date]
+}
+
+extension EstablishmentRequestModel: Codable {
+    enum CodingKeys: String, CodingKey {
+        case owner = "owner"
+        case name = "name"
+        case description = "description"
+        case address = "address"
+        case location = "location"
+        case phoneNumber = "phoneNumber"
+        case emailAddress = "emailAddress"
+        case schedules = "schedules"
+    }
 }
