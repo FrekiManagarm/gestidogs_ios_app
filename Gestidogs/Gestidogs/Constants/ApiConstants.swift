@@ -1,23 +1,23 @@
 //
-//  MainRepository.swift
+//  ApiConstants.swift
 //  Gestidogs
 //
-//  Created by Mathieu CHAMBAUD on 07/06/2023.
+//  Created by Mathieu Chambaud on 13/06/2023.
 //
 
 import Foundation
 
-class MainRepository {
+class ApiConstants {
     static let apiUrlDev: String = "https://dev.api.gestidogs.ianlcz.io/v0"
     static let apiUrlProd: String = "https://api.gestidogs.ianlcz.io/v0"
     
     static let establishmentUrl: String = "/establishments"
-    static let sessionsUrl: String = "/sessions"
+    static let activitiesUrl: String = "/activities"
+    static let holidaysUrl: String = "/holidays"
     static let usersUrl: String = "/users"
     static let dogsUrl: String = "/dogs"
-    static let activitiesUrl: String = "/activities"
+    static let observationsUrl: String = "/observations"
+    static let paymentsUrl: String = "/payments"
     static let reservationsUrl: String = "/reservations"
-    static let holidaysUrl: String = "/holidays"
-    static let observationsUrl = "/observations"
-    static let paymentUrl = "/payments"
+    static let sessionsUrl: String = "/sessions"
 }

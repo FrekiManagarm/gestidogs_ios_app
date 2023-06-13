@@ -7,6 +7,26 @@
 
 import Foundation
 
-class DashboardViewModel: NSObject, ObservableObject {
+class DashboardViewModel: ObservableObject {
     
+    @Published var dogs: [DogsResponseModel] = []
+    @Published var activities: [ActivityResponseModel] = []
+    @Published var teamMates: [UserResponseModel] = []
+    lazy var establishmentManager = EstablishmentManager()
+    
+}
+
+extension DashboardViewModel {
+    
+    func getDogs() {
+        
+    }
+    
+    func getActivities() {
+        
+    }
+    
+    func getEstablishment() {
+        
+    }
 }

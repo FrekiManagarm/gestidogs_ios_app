@@ -10,6 +10,7 @@ import SwiftUI
 struct ActivityCenterWidget: View {
     
     @State var showDetails: Bool = false
+    let activities: [ActivityResponseModel]
     
     var body: some View {
         VStack {
@@ -55,7 +56,7 @@ struct ActivityCenterWidget: View {
 struct ActivityCenterWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ActivityCenterWidget()
+            ActivityCenterWidget(activities: [])
         }
     }
 }

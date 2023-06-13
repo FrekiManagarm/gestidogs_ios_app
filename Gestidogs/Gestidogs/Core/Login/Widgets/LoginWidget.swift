@@ -7,20 +7,72 @@
 
 import SwiftUI
 
-struct LoginButton: View {
+struct LoginContainer: View {
     
-    let loginFunc: () -> Void
+    @StateObject var loginViewModel: LoginViewModel = LoginViewModel()
     
     var body: some View {
-        Button {
-            loginFunc()
-        } label: {
-            Text("Me connecter")
-                .font(.headline)
+        ZStack {
+            RadialGradient(
+                gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+                center: .topLeading,
+                startRadius: 1,
+                endRadius: UIScreen.main.bounds.height)
+            .ignoresSafeArea()
+            
+            VStack {
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Bienvenue sur GestiDogs")
+                            .foregroundColor(.white)
+                            .font(.system(size: 40))
+                            .fontWeight(.bold)
+                            .padding(.bottom, 10)
+                        
+                        Text("Connectez vous,")
+                            .fontWeight(.medium)
+                            .font(.system(size: 20))
+                            .foregroundColor(.white)
+                    }
+                    .padding(.leading, 20)
+                    Spacer()
+                }
+                .padding(.bottom, 60)
+                
+                EmailField(emailTxt: $loginViewModel.emailTxt)
+                PasswordField(passwdTxt: $loginViewModel.passwdTxt)
+                
+                LoginButton()
+                
+                Divider()
+                    .padding(.top, 20)
+                    .padding(.horizontal)
+                
+                HStack(alignment: .center) {
+                    Text("Ou")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+                .padding(.top, 10)
+                
+                GoogleAndFacebookLoginButtons(googleLoginFunction: loginViewModel.loginGoogle, facebookLoginFunction: loginViewModel.loginFacebook)
+            }
         }
+    }
+}
+
+struct LoginButton: View {
+    
+    @StateObject var loginViewModel = LoginViewModel()
+    
+    var body: some View {
+        Button("Me Connecter", action: {
+            loginViewModel.login()
+        })
         .padding()
         .frame(width: UIScreen.main.bounds.width - 32)
-        .background(Color("indigoA200"))
+        .background(Color("blueGray80001"))
         .foregroundColor(.white)
         .cornerRadius(30)
         .shadow(radius: 10, y: 10)

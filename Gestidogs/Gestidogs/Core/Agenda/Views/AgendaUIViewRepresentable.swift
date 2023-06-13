@@ -19,7 +19,7 @@ struct AgendaUIViewRepresentable: UIViewRepresentable {
         calendar.dataSource = context.coordinator
         calendar.appearance.todayColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
         calendar.appearance.titleTodayColor = .blue
-        calendar.appearance.selectionColor = .orange
+        calendar.appearance.selectionColor = UIColor(named: "blueGray80001")
         calendar.appearance.eventDefaultColor = .red
         calendar.appearance.titleFont = .boldSystemFont(ofSize: 24)
         calendar.appearance.titleWeekendColor = .systemOrange

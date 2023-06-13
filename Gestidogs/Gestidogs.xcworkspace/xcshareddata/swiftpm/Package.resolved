@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "interceptor",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bfernandesbfs/Interceptor.git",
+      "state" : {
+        "revision" : "362b5a9db18ea4ca15f4cd51c3682ccff51fdeb7",
+        "version" : "0.0.1"
+      }
+    },
+    {
+      "identity" : "responder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bfernandesbfs/Responder.git",
+      "state" : {
+        "revision" : "33cdd9cdfcfefe7a9706e4d6dc9704d1030b7975",
+        "version" : "0.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}

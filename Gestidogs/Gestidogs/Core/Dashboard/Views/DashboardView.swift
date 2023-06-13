@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DashboardView: View {
+    
+    @StateObject var dashboardViewModel: DashboardViewModel = DashboardViewModel()
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -54,8 +57,8 @@ struct DashboardView: View {
                     
                     
                     ScrollView {
-                        DogCenterWidget()
-                        ActivityCenterWidget()
+                        DogCenterWidget(dogs: dashboardViewModel.dogs)
+                        ActivityCenterWidget(activities: dashboardViewModel.activities)
                         TeamCenterWidget()
                     }
                 }

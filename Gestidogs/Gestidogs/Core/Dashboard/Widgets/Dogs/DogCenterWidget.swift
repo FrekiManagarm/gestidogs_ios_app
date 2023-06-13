@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DogCenterWidget: View {
+    
+    let dogs: [DogsResponseModel]
+    
     var body: some View {
         VStack {
             HStack {
@@ -33,19 +36,13 @@ struct DogCenterWidget: View {
             .padding(-5)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 10) {
-                    ForEach(0..<10, id: \.self) { _ in
-                        DogItem(imageUrl: "https://i.imgur.com/teJ8P2I.jpg", name: "Terrence")
+                    ForEach(dogs) { dog in
+                        DogItem(imageUrl: dog.imageUrl, name: dog.name)
                     }
                 }
                 .padding(.leading, 10)
 //                .shadow(radius: 5, y: 5)
             }
         }
-    }
-}
-
-struct DogCenterWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        DogCenterWidget()
     }
 }

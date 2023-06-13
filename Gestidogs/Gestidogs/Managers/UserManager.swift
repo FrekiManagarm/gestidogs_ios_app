@@ -1,7 +1,7 @@
 //
 //  UserManager.swift
 //  Gestidogs
-//
+//Œ
 //  Created by Mathieu CHAMBAUD on 31/05/2023.
 //
 
@@ -44,6 +44,9 @@ class UserManager {
     
     func signOutUser() {
         UserDefaults.standard.set(false, forKey: UserKey.isSignedIn.rawValue)
+        UserDefaults.standard.set("", forKey: UserKey.accessToken.rawValue)
+        UserDefaults.standard.set("", forKey: UserKey.refreshToken.rawValue)
+        UserDefaults.standard.synchronize()
     }
     
     func isUserSignedIn() -> Bool {

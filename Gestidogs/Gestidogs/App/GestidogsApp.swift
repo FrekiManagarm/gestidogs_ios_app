@@ -15,8 +15,20 @@ struct GestidogsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .environmentObject(appState)
+            if appState.userIsLoggedIn {
+                HomeView()
+                    .environmentObject(appState)
+                    .onAppear {
+                        do {
+                            try appState.getUserConnected()
+                        } catch {
+                            print("Failed to get user connected !")
+                        }
+                    }
+            } else {
+                LoginView()
+                    .environmentObject(appState)
+            }
         }
     }
 }
