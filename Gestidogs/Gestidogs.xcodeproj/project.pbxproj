@@ -30,6 +30,15 @@
 		014E3FEC2A386EF2007C4E2F /* Interceptor in Frameworks */ = {isa = PBXBuildFile; productRef = 014E3FEB2A386EF2007C4E2F /* Interceptor */; };
 		014E3FEE2A38B94C007C4E2F /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FED2A38B94C007C4E2F /* ApiConstants.swift */; };
 		0154ACE52A39109900622587 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACE42A39109900622587 /* MainRepository.swift */; };
+		0154ACE72A39AB9F00622587 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACE62A39AB9F00622587 /* UserRepository.swift */; };
+		0154ACE92A39ABAC00622587 /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACE82A39ABAC00622587 /* SessionRepository.swift */; };
+		0154ACEB2A39ABCA00622587 /* EstablishmentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACEA2A39ABCA00622587 /* EstablishmentRepository.swift */; };
+		0154ACED2A39ABEC00622587 /* HolidaysRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACEC2A39ABEC00622587 /* HolidaysRepository.swift */; };
+		0154ACEF2A39ABFD00622587 /* PaymentsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACEE2A39ABFD00622587 /* PaymentsRepository.swift */; };
+		0154ACF12A39AC1800622587 /* ReservationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF02A39AC1800622587 /* ReservationsRepository.swift */; };
+		0154ACF32A39AC7B00622587 /* ObservationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF22A39AC7B00622587 /* ObservationsRepository.swift */; };
+		0154ACF52A39AC9200622587 /* DogsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF42A39AC9200622587 /* DogsRepository.swift */; };
+		0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */; };
 		01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6812A2B65290054C16A /* OnboardingWidget.swift */; };
 		01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6832A2B65390054C16A /* OnboardingView.swift */; };
 		01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */; };
@@ -124,6 +133,15 @@
 		014E3FE82A374377007C4E2F /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		014E3FED2A38B94C007C4E2F /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		0154ACE42A39109900622587 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
+		0154ACE62A39AB9F00622587 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		0154ACE82A39ABAC00622587 /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
+		0154ACEA2A39ABCA00622587 /* EstablishmentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentRepository.swift; sourceTree = "<group>"; };
+		0154ACEC2A39ABEC00622587 /* HolidaysRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysRepository.swift; sourceTree = "<group>"; };
+		0154ACEE2A39ABFD00622587 /* PaymentsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsRepository.swift; sourceTree = "<group>"; };
+		0154ACF02A39AC1800622587 /* ReservationsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsRepository.swift; sourceTree = "<group>"; };
+		0154ACF22A39AC7B00622587 /* ObservationsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationsRepository.swift; sourceTree = "<group>"; };
+		0154ACF42A39AC9200622587 /* DogsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsRepository.swift; sourceTree = "<group>"; };
+		0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesRepository.swift; sourceTree = "<group>"; };
 		01E7D6812A2B65290054C16A /* OnboardingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWidget.swift; sourceTree = "<group>"; };
 		01E7D6832A2B65390054C16A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -331,6 +349,15 @@
 			isa = PBXGroup;
 			children = (
 				0154ACE42A39109900622587 /* MainRepository.swift */,
+				0154ACE62A39AB9F00622587 /* UserRepository.swift */,
+				0154ACE82A39ABAC00622587 /* SessionRepository.swift */,
+				0154ACEA2A39ABCA00622587 /* EstablishmentRepository.swift */,
+				0154ACEC2A39ABEC00622587 /* HolidaysRepository.swift */,
+				0154ACEE2A39ABFD00622587 /* PaymentsRepository.swift */,
+				0154ACF02A39AC1800622587 /* ReservationsRepository.swift */,
+				0154ACF22A39AC7B00622587 /* ObservationsRepository.swift */,
+				0154ACF42A39AC9200622587 /* DogsRepository.swift */,
+				0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1084,6 +1111,7 @@
 				5F825F2E2A2F2457001C6EB5 /* TeamMateWidget.swift in Sources */,
 				5F8BFD362A262E0C0007E367 /* HomeView.swift in Sources */,
 				5F157C112A2777A800B4C2FE /* ProfileWidget.swift in Sources */,
+				0154ACEB2A39ABCA00622587 /* EstablishmentRepository.swift in Sources */,
 				5F8C934B2A2A1A7000F39770 /* RegisterViewModel.swift in Sources */,
 				5F8BFD342A262DFE0007E367 /* HomeViewModel.swift in Sources */,
 				014E3FEE2A38B94C007C4E2F /* ApiConstants.swift in Sources */,
@@ -1093,6 +1121,7 @@
 				5F157C362A277CDA00B4C2FE /* DogsRequestModel.swift in Sources */,
 				5F825F312A2F257A001C6EB5 /* TeamMateDetailsView.swift in Sources */,
 				5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */,
+				0154ACE72A39AB9F00622587 /* UserRepository.swift in Sources */,
 				01E7D6892A2B657E0054C16A /* Extension.swift in Sources */,
 				5F32C5AE2A28AA340034AB6F /* TeamCenterWidget.swift in Sources */,
 				5F8C93402A2A1A2100F39770 /* LoginWidget.swift in Sources */,
@@ -1109,9 +1138,11 @@
 				5F157C152A2777CB00B4C2FE /* ProfileView.swift in Sources */,
 				5F743ADC2A2F63E50023D22D /* EmailPasswordFields.swift in Sources */,
 				5F8BFD422A262ED30007E367 /* AgendaView.swift in Sources */,
+				0154ACED2A39ABEC00622587 /* HolidaysRepository.swift in Sources */,
 				010E1E1F2A326F40002E0DD1 /* PaymentResponseModel.swift in Sources */,
 				5F157C342A277CCB00B4C2FE /* DogsResponseModel.swift in Sources */,
 				5F157C0A2A27772800B4C2FE /* HolidaysViewModel.swift in Sources */,
+				0154ACF12A39AC1800622587 /* ReservationsRepository.swift in Sources */,
 				0109C9C02A3340E000544C9C /* DogCenterDetails.swift in Sources */,
 				5F157C302A277C9600B4C2FE /* SessionResponseModel.swift in Sources */,
 				0109C9B02A333CC300544C9C /* TeamCell.swift in Sources */,
@@ -1127,10 +1158,12 @@
 				0109C9B22A333CF200544C9C /* TeamCenterDetailsView.swift in Sources */,
 				5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */,
 				5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */,
+				0154ACF52A39AC9200622587 /* DogsRepository.swift in Sources */,
 				5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */,
 				5F8C93492A2A1A6200F39770 /* RegisterWidget.swift in Sources */,
 				012BF7432A33552500A4C266 /* ActivityListView.swift in Sources */,
 				5F32C5B72A28CC8A0034AB6F /* DogsListView.swift in Sources */,
+				0154ACF32A39AC7B00622587 /* ObservationsRepository.swift in Sources */,
 				5F04A69A2A30D186000E2AD9 /* NetworkError.swift in Sources */,
 				01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */,
 				5F157C3E2A278FDB00B4C2FE /* EstablishmentManager.swift in Sources */,
@@ -1146,7 +1179,9 @@
 				5F157C262A277C3000B4C2FE /* EstablishmentRequestModel.swift in Sources */,
 				010E1E1D2A326F34002E0DD1 /* PaymentRequestModel.swift in Sources */,
 				5F157C2C2A277C6A00B4C2FE /* ReservationResponseModel.swift in Sources */,
+				0154ACE92A39ABAC00622587 /* SessionRepository.swift in Sources */,
 				010E1E162A321028002E0DD1 /* RegisterCredentials.swift in Sources */,
+				0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */,
 				5F157C202A277BDC00B4C2FE /* ActivityTypeResponseModel.swift in Sources */,
 				014E3FE92A374377007C4E2F /* LoginModel.swift in Sources */,
 				5F32C5BC2A28E36D0034AB6F /* ActivityCellWidget.swift in Sources */,
@@ -1154,6 +1189,7 @@
 				012BF7472A33554C00A4C266 /* ActivityListWidget.swift in Sources */,
 				5F157C322A277CA700B4C2FE /* SessionRequestModel.swift in Sources */,
 				5F157C172A27780300B4C2FE /* HolidaysResponseModel.swift in Sources */,
+				0154ACEF2A39ABFD00622587 /* PaymentsRepository.swift in Sources */,
 				5F157C382A277CF100B4C2FE /* HolidaysRequestModel.swift in Sources */,
 				5F8C93552A2A1B4700F39770 /* NotificationsView.swift in Sources */,
 				010E1E142A320994002E0DD1 /* TokensResponseModel.swift in Sources */,

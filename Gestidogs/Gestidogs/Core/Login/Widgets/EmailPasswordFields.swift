@@ -15,15 +15,16 @@ struct EmailField: View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .fill(Color("gray100"))
-                .frame(width: UIScreen.main.bounds.width - 20, height: 60)
+                .frame(width: UIScreen.main.bounds.width - 30, height: 60)
             
             TextField(text: $emailTxt) {
                 Text("Email")
                     .foregroundColor(.black.opacity(0.3))
             }
+            .textInputAutocapitalization(.never)
             .keyboardType(.emailAddress)
             .textContentType(.emailAddress)
-            .padding(.leading, 10)
+            .padding(.leading, 20)
         }
         .padding(.bottom, 30)
         .padding(.horizontal)
@@ -38,14 +39,13 @@ struct PasswordField: View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .fill(Color("gray100"))
-                .frame(width: UIScreen.main.bounds.width - 20, height: 60)
+                .frame(width: UIScreen.main.bounds.width - 30, height: 60)
             
-            TextField(text: $passwdTxt) {
+            SecureField(text: $passwdTxt, label: {
                 Text("Mot de passe")
-            }
+            })
             .keyboardType(.default)
-            .textContentType(.password)
-            .padding(.leading, 10)
+            .padding(.leading, 20)
         }
         .padding(.bottom, 30)
         .padding(.horizontal)

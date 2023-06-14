@@ -26,7 +26,7 @@ class LoginViewModel: ObservableObject {
     func login() {
         print("pass in this function")
         isLoading = true
-        let request = AF.request("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", method: .post, parameters: ["emailAddress": $emailTxt, "password": $passwdTxt])
+        let request = AF.request("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", method: .post, parameters: try? JSONSerialization.data(withJSONObject: ["emailAddress": $emailTxt, "password": $passwdTxt]))
         request.responseDecodable(of: LoginModel.self) { (response) in
             if let data = response.value {
                 print("data of response \(data)")

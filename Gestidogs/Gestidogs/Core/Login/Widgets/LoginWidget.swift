@@ -67,11 +67,11 @@ struct LoginButton: View {
     @StateObject var loginViewModel = LoginViewModel()
     
     var body: some View {
-        Button("Me Connecter", action: {
+        Button("Me connecter", action: {
             loginViewModel.login()
         })
         .padding()
-        .frame(width: UIScreen.main.bounds.width - 32)
+        .frame(width: UIScreen.main.bounds.width / 1.75)
         .background(Color("blueGray80001"))
         .foregroundColor(.white)
         .cornerRadius(30)
