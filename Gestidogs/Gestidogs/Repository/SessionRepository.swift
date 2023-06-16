@@ -22,15 +22,20 @@ class SessionRepository {
             "establishmentId": establishmentId ?? ""
         ]
         
-        let request = AF.request(baseUrl, method: .get, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: [SessionResponseModel].self) { response in
-            if let data = response.value {
-                sessions = data
-            } else {
-                sessions = []
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.getRequest(baseUrl, parameters: parameters) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode([SessionResponseModel].self, from: data)
+//                        if let decode = decode {
+//                            sessions = decode
+//                        }
+//                    }
+//                case .failure(let error):
+//                    sessions = []
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return sessions
     }
@@ -39,15 +44,18 @@ class SessionRepository {
     public func getSessionsById(sessionId: String) -> SessionResponseModel? {
         var session: SessionResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(sessionId)", method: .get, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: SessionResponseModel.self) { response in
-            if let data = response.value {
-                session = data
-            } else {
-                session = nil
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.getRequest("\(baseUrl)/\(sessionId)") { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
+//                        session = decode
+//                    }
+//                case .failure(let error):
+//                    session = nil
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return session
     }
@@ -56,15 +64,20 @@ class SessionRepository {
     public func getSessionRemainingPlaces(sessionId: String) -> Int {
         var remainingPlaces : Int = 0
         
-        let request = AF.request("\(baseUrl)/\(sessionId)/remaining-places", method: .get, interceptor: ApiManager.shared.self)
-        request.response { response in
-            if let data = response.value as? Int {
-                remainingPlaces = data
-            } else {
-                remainingPlaces = 0
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.getRequest("\(baseUrl)/\(sessionId)/remaining-places") { result in
+//            switch result {
+//            case .success(let data):
+//                if let data = data {
+//                    let decode = try? JSONDecoder().decode(Int.self, from: data)
+//                    if let decode = decode {
+//                        remainingPlaces = decode
+//                    }
+//                }
+//            case .failure(let error):
+//                remainingPlaces = 0
+//                print("error on request : \(error)")
+//            }
+//        }
         
         return remainingPlaces
     }
@@ -73,15 +86,18 @@ class SessionRepository {
     public func createSession(body: SessionRequestModel) -> SessionResponseModel? {
         var session: SessionResponseModel?
         
-        let request = AF.request(baseUrl, method: .post, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: SessionResponseModel.self) { response in
-            if let data = response.value {
-                session = data
-            } else {
-                session = nil
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.postRequest(baseUrl, parameters: body) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
+//                        session = decode
+//                    }
+//                case .failure(let error):
+//                    session = nil
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return session
     }
@@ -89,38 +105,42 @@ class SessionRepository {
     //MARK: CREATE SESSION REPORT
     public func createSessionReport(report: String, sessionId: String) -> SessionResponseModel? {
         var session: SessionResponseModel?
-        let parameters: Parameters = [
+        let parameters = [
             "report": report
         ]
         
-        let request = AF.request("\(baseUrl)/\(sessionId)/report", method: .post, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: SessionResponseModel.self) { response in
-            if let data = response.value {
-                print("report successfully created for this session")
-                session = data
-            } else {
-                session = nil
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.postRequest("\(baseUrl)/\(sessionId)/report", parameters: parameters) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
+//                        session = decode
+//                    }
+//                case .failure(let error):
+//                    session = nil
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return session
     }
     
     //MARK: MODIFY SESSION
-    public func modifySession(sessionId: String) -> SessionResponseModel? {
+    public func modifySession(sessionId: String, body: SessionRequestModel) -> SessionResponseModel? {
         var session: SessionResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(sessionId)", method: .put, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: SessionResponseModel.self) { response in
-            if let data = response.value {
-                print("modified session success")
-                session = data
-            } else {
-                session = nil
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.putRequest("\(baseUrl)/\(sessionId)", parameters: body) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
+//                        session = decode
+//                    }
+//                case .failure(let error):
+//                    session = nil
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return session
     }
@@ -129,18 +149,18 @@ class SessionRepository {
     public func deleteSessionById(sessionId: String) -> Bool {
         var isDelete: Bool = false
         
-        let request = AF.request("\(baseUrl)/\(sessionId)", method: .delete, interceptor: ApiManager.shared.self)
-        request.response { response in
-            if let response = response.response {
-                if response.statusCode == 200 {
-                    print("session deleted")
-                    isDelete = true
-                } else {
-                    isDelete = false
-                    print("\(response.debugDescription)")
-                }
-            }
-        }
+//        ApiManager.shared.deleteRequest("\(baseUrl)/\(sessionId)") { result in
+//            switch result {
+//            case .success(let data):
+//                if let data = data {
+//                    print("\(data.debugDescription)")
+//                    isDelete = true
+//                }
+//            case .failure(let error):
+//                isDelete = false
+//                print("error on request : \(error)")
+//            }
+//        }
         
         return isDelete
     }
@@ -149,18 +169,18 @@ class SessionRepository {
     public func deleteSessionByEducatorId(educatorId: String) -> Bool {
         var isDelete: Bool = false
         
-        let request = AF.request("\(baseUrl)\(ApiConstants.sessionsUrl)/\(educatorId)", method: .delete, interceptor: ApiManager.shared.self)
-        request.response { response in
-            if let response = response.response {
-                if response.statusCode == 200 {
-                    isDelete = true
-                    print("session deleted")
-                }
-            } else {
-                isDelete = false
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.deleteRequest("\(baseUrl)/educators/\(educatorId)") { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        print("\(data.debugDescription)")
+//                        isDelete = true
+//                    }
+//                case .failure(let error):
+//                    isDelete = false
+//                    print("error on requets : \(error)")
+//            }
+//        }
         
         return isDelete
     }
@@ -169,20 +189,18 @@ class SessionRepository {
     public func deleteSessionsByActivityId(activityId: String) -> Bool {
         var isDelete = false
         
-        let request = AF.request("\(baseUrl)\(ApiConstants.activitiesUrl)/\(activityId)")
-        request.response { response in
-            if let response = response.response {
-                if response.statusCode == 200 {
-                    isDelete = true
-                    print("session deleted")
-                } else {
-                    print("\(response.debugDescription)")
-                }
-            } else {
-                isDelete = false
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.deleteRequest("\(baseUrl)/activities/\(activityId)") { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        print("\(data.debugDescription)")
+//                        isDelete = true
+//                    }
+//                case .failure(let error):
+//                    isDelete = false
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return isDelete
     }

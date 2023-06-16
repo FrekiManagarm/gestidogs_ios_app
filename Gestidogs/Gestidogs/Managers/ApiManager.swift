@@ -11,33 +11,49 @@ class ApiManager {
     static let shared: ApiManager = {
         return ApiManager()
     }()
-    typealias completionHandler = ((Result<String, CustomError>) -> Void)
-    var request: Alamofire.Request?
+    typealias completionHandler = ((Data?, URLResponse?, Error?) -> Void)
+    private var session = Session()
     let retryLimit = 3
     let urlToRefresh = "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh"
     
-    func authorize(parameters: [String: Any]?, completion: @escaping completionHandler) {
-        request?.cancel()
-        request = AF.request(urlToRefresh, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
-            if let data = response.value {
-                completion(.success(data))
-            } else {
-                completion(.failure(.unavailableServer))
+    func request(_ urlString: String, httpMethod: String? = "GET", body: Data? = nil, completion: @escaping completionHandler) {
+        
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        guard let accessToken = UserManager.shared.getAccessToken() else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        if let body = body {
+            request.httpBody = body
+        }
+        print("request \(request)")
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            print("response \(response)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 401 {
+                    print("unauthorized request")
+                } else {
+                    completion(data, response, error)
+                }
             }
         }
+        dataTask.resume()
+        
+        
     }
     
-    func apiRequest(_ url: String, method: HTTPMethod = .get, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.queryString, headers: HTTPHeaders? = nil, interceptor: RequestInterceptor? = nil, returnType: Decodable? = nil, completion: @escaping completionHandler) {
-        AF.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers, interceptor: interceptor ?? self).responseString { (response) in
-            if let data = response.value {
-                completion(.success(data))
-            } else {
-                completion(.failure(.unavailableServer))
-            }
-        }
-        
+    func retry() {
         
     }
+
 }
 
 extension ApiManager: RequestInterceptor {
@@ -55,6 +71,7 @@ extension ApiManager: RequestInterceptor {
     }
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+        print("let's retry")
         guard request.retryCount < retryLimit else {
             completion(.doNotRetry)
             return

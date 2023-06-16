@@ -8,6 +8,7 @@
 import Foundation
 
 struct EstablishmentResponseModel {
+    let id: String
     let owner: UserResponseModel
     let name: String
     let description: String
@@ -20,8 +21,9 @@ struct EstablishmentResponseModel {
     let v: Int
 }
 
-extension EstablishmentResponseModel: Codable {
+extension EstablishmentResponseModel: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
+        case id = "_id"
         case owner = "owner"
         case name = "name"
         case description = "description"

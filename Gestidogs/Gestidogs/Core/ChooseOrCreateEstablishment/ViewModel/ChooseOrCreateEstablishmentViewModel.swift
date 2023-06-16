@@ -7,6 +7,17 @@
 
 import Foundation
 
-class ChooseOrCreateEstablishmentViewModel: NSObject, ObservableObject {
+class ChooseOrCreateEstablishmentViewModel: ObservableObject {
+    @Published var establishmentsOfOwner: [EstablishmentResponseModel] = []
+    lazy var establishmentRepo = EstablishmentRepository()
+    lazy var userManager = UserManager()
     
+    func getEstablishments(ownerId: String) {
+        
+        let responseApi = establishmentRepo.getAllEstablishments(ownerId: ownerId)
+        
+        if responseApi.isEmpty {
+            
+        }
+    }
 }

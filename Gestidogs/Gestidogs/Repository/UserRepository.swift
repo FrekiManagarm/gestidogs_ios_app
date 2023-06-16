@@ -16,12 +16,18 @@ class UserRepository {
         var tokens: TokensResponseModel?
         
         let request = AF.request("\(baseUrl)/refresh", method: .get, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: TokensResponseModel.self) { response in
+        request.responseData { response in
             if let data = response.value {
-                tokens = data
+                let decode = try? JSONDecoder().decode(TokensResponseModel.self, from: data)
+                if let decode = decode {
+                    tokens = decode
+                    print("tokens reseted")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 tokens = nil
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -32,13 +38,13 @@ class UserRepository {
     public func userMe() -> UserResponseModel? {
         var user: UserResponseModel?
         
-        let request = AF.request("\(baseUrl)/me", method: .get, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: UserResponseModel.self) { response in
-            if let data = response.value {
-                user = data
-            } else {
-                user = nil
-                print("\(response.debugDescription)")
+        ApiManager.shared.request("\(baseUrl)/me") { data, response, _ in
+            print("result \(response.debugDescription)")
+            if let data = data {
+                let decode = try? JSONDecoder().decode(UserResponseModel.self, from: data)
+                if let decode = decode {
+                    print("\(decode)")
+                }
             }
         }
         
@@ -53,15 +59,20 @@ class UserRepository {
             "role": role ?? ""
         ]
         
-        let request = AF.request(baseUrl, method: .get, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: [UserResponseModel].self) { response in
-            if let data = response.value {
-                users = data
-            } else {
-                users = []
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.getRequest(baseUrl, parameters: parameters) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode([UserResponseModel].self, from: data)
+//                        if let decode = decode {
+//                            users = decode
+//                        }
+//                    }
+//                case .failure(let error):
+//                    users = []
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return users
     }
@@ -70,15 +81,18 @@ class UserRepository {
     public func userById(userId: String) -> UserResponseModel? {
         var user: UserResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(userId)", method: .get, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: UserResponseModel.self) { response in
-            if let data = response.value {
-                user = data
-            } else {
-                user = nil
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.getRequest("\(baseUrl)/\(userId)") { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode(UserResponseModel.self, from: data)
+//                        user = decode
+//                    }
+//                case .failure(let error):
+//                    user = nil
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return user
     }
@@ -87,32 +101,39 @@ class UserRepository {
     public func register(body: UserRequestModel) -> UserResponseModel? {
         var user: UserResponseModel?
         
-        let request = AF.request("\(baseUrl)/register", method: .post, parameters: body)
-        request.responseDecodable(of: UserResponseModel.self) { response in
-            if let data = response.value {
-                user = data
-            } else {
-                user = nil
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.postRequest("\(baseUrl)/register", parameters: body) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode(UserResponseModel.self, from: data)
+//                        user = decode
+//                    }
+//                case .failure(let error):
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return user
     }
     
     //MARK: LOGIN
-    public func login() -> LoginModel? {
+    public func login(body: LoginRequest) -> LoginModel? {
         var userAndCredentials: LoginModel?
+        print("request of body \(body)")
         
-        let request = AF.request("\(baseUrl)/login", method: .post)
-        request.responseDecodable(of: LoginModel.self) { response in
-            if let data = response.value {
-                userAndCredentials = data
-            } else {
-                userAndCredentials = nil
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.postRequest("\(baseUrl)/login", parameters: body) { result in
+//            switch result {
+//                case .success(let data):
+//                if let data = data {
+//                    let decode = try? JSONDecoder().decode(LoginModel.self, from: data)
+//                    userAndCredentials = decode
+//                }
+//                case .failure(let error):
+//                    userAndCredentials = nil
+//                    print("error on request : \(error)")
+//            }
+//        }
+//
         
         return userAndCredentials
     }
@@ -121,15 +142,18 @@ class UserRepository {
     public func logout() -> Bool {
         var isLoggedOut = false
         
-        let request = AF.request("\(baseUrl)/logout", method: .post, interceptor: ApiManager.shared.self)
-        request.response { response in
-            if let response = response.response {
-                isLoggedOut = true
-            } else {
-                isLoggedOut = false
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.deleteRequest("\(baseUrl)/logout") { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        print("\(data.debugDescription)")
+//                        isLoggedOut = true
+//                    }
+//                case .failure(let error):
+//                    isLoggedOut = false
+//                    print("error on request \(error)")
+//            }
+//        }
         
         return isLoggedOut
     }
@@ -138,15 +162,18 @@ class UserRepository {
     public func modifyUser(body: UserRequestModel, userId: String) -> UserResponseModel? {
         var user: UserResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(userId)", method: .put, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: UserResponseModel.self) { response in
-            if let data = response.value {
-                user = data
-            } else {
-                user = nil
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.putRequest("\(baseUrl)/\(userId)", parameters: body) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode(UserResponseModel.self, from: data)
+//                        user = decode
+//                    }
+//                case .failure(let error):
+//                    user = nil
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return user
     }

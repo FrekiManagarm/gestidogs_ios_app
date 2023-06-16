@@ -10,25 +10,34 @@ import SwiftUI
 @main
 struct GestidogsApp: App {
     
-    @StateObject var appState = AppState()
-    var apiManager = ApiManager()
+    @StateObject var appState: AppState = AppState()
     
     var body: some Scene {
         WindowGroup {
-            if appState.userIsLoggedIn {
-                HomeView()
-                    .environmentObject(appState)
-                    .onAppear {
-                        do {
-                            try appState.getUserConnected()
-                        } catch {
-                            print("Failed to get user connected !")
-                        }
+            DispatchView()
+                .environmentObject(appState)
+                .onAppear {
+                    withAnimation {
+                        appState.userDidLogin()
                     }
-            } else {
+                    appState.fetchUser()
+                }
+        }
+    }
+}
+
+struct DispatchView: View {
+    @EnvironmentObject var appState: AppState
+    var body: some View {
+        switch appState.loginState {
+            case .home:
+                HomeView()
+            case .login:
                 LoginView()
-                    .environmentObject(appState)
-            }
+            case .selectEstablishment:
+                ChooseOrCreateEstablishmentView()
+            case .onBoarding:
+                OnboardingView()
         }
     }
 }

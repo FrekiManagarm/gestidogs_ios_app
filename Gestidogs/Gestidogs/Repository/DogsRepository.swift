@@ -20,13 +20,18 @@ class DogsRepository {
         ]
         
         let request = AF.request(baseUrl, method: .get, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: [DogsResponseModel].self) { response in
+        request.responseData { response in
             if let data = response.value {
-                dogs = data
-                print("find all dogs")
+                let decode = try? JSONDecoder().decode([DogsResponseModel].self, from: data)
+                if let decode = decode {
+                    dogs = decode
+                    print("find all dogs")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 dogs = []
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -38,13 +43,18 @@ class DogsRepository {
         var dog: DogsResponseModel?
         
         let request = AF.request("\(baseUrl)/\(dogId)", method: .get, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: DogsResponseModel.self) { response in
+        request.responseData { response in
             if let data = response.value {
-                dog = data
-                print("dog found")
+                let decode = try? JSONDecoder().decode(DogsResponseModel.self, from: data)
+                if let decode = decode {
+                    dog = decode
+                    print("dog found")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 dog = nil
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -55,14 +65,19 @@ class DogsRepository {
     public func createDog(body: DogsRequestModel) -> DogsResponseModel? {
         var dog: DogsResponseModel?
         
-        let request = AF.request(baseUrl, method: .post, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: DogsResponseModel.self) { response in
+        let request = AF.request(baseUrl, method: .post, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
+        request.responseData { response in
             if let data = response.value {
-                dog = data
-                print("dog created")
+                let decode = try? JSONDecoder().decode(DogsResponseModel.self, from: data)
+                if let decode = decode {
+                    dog = decode
+                    print("dog created")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 dog = nil
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -73,14 +88,19 @@ class DogsRepository {
     public func modifyDog(body: DogsRequestModel, dogId: String) -> DogsResponseModel? {
         var dog: DogsResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(dogId)", method: .put, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: DogsResponseModel.self) { response in
+        let request = AF.request("\(baseUrl)/\(dogId)", method: .put, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
+        request.responseData { response in
             if let data = response.value {
-                dog = data
-                print("dog modified")
+                let decode = try? JSONDecoder().decode(DogsResponseModel.self, from: data)
+                if let decode = decode {
+                    dog = decode
+                    print("dog modified")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 dog = nil
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         

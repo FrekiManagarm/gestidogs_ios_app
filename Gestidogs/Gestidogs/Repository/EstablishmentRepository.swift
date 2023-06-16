@@ -12,19 +12,24 @@ class EstablishmentRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.establishmentUrl)"
     
     //MARK: GET ALL ESTABLISHMENTS
-    public func getAllEstablishments(ownerId: String) -> [EstablishmentResponseModel] {
+    public func getAllEstablishments(ownerId: String? = nil) -> [EstablishmentResponseModel] {
         
         var establishments: [EstablishmentResponseModel] = []
         
-        let request = AF.request(baseUrl, method: .get, parameters: ["ownerId": ownerId], interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: [EstablishmentResponseModel].self) { (response) in
-            if let data = response.value {
-                establishments = data
-            } else {
-                establishments = []
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.getRequest(baseUrl, parameters: ["ownerId": ownerId ?? ""]) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode([EstablishmentResponseModel].self, from: data)
+//                        if let decode = decode {
+//                            establishments = decode
+//                        }
+//                    }
+//                case .failure(let error):
+//                    establishments = []
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return establishments
     }
@@ -33,15 +38,18 @@ class EstablishmentRepository {
     public func getEstablishmentById(establishmentId: String) -> EstablishmentResponseModel? {
         var establishment: EstablishmentResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(establishmentId)", method: .get, encoding: JSONEncoding.default, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: EstablishmentResponseModel.self) { (response) in
-            if let data = response.value {
-                establishment = data
-            } else {
-                establishment = nil
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.getRequest("\(baseUrl)/\(establishmentId)") { result in
+//            switch result {
+//            case .success(let data):
+//                if let data = data {
+//                    let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
+//                    establishment = decode
+//                }
+//            case .failure(let error):
+//                establishment = nil
+//                print("error on request : \(error)")
+//            }
+//        }
         
         return establishment
     }
@@ -50,15 +58,18 @@ class EstablishmentRepository {
     public func createEstablishment(body: EstablishmentRequestModel) -> EstablishmentResponseModel? {
         var newEstablishment: EstablishmentResponseModel?
         
-        let request = AF.request(baseUrl, method: .post, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: EstablishmentResponseModel.self) { response in
-            if let data = response.value {
-                newEstablishment = data
-            } else {
-                newEstablishment = nil
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.postRequest(baseUrl, parameters: body) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
+//                        newEstablishment = decode
+//                    }
+//                case .failure(let error):
+//                    newEstablishment = nil
+//                    print("error on request: \(error)")
+//            }
+//        }
         
         return newEstablishment
     }
@@ -67,15 +78,20 @@ class EstablishmentRepository {
     public func createNewEmployee(establishmentId: String, body: UserResponseModel) -> [UserResponseModel] {
         var employees : [UserResponseModel] = []
         
-        let request = AF.request("\(baseUrl)/\(establishmentId)/newEmployee", method: .post, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: [UserResponseModel].self) { response in
-            if let data = response.value {
-                employees = data
-            } else {
-                employees = []
-                print("\(response.debugDescription)")
-            }
-        }
+//        ApiManager.shared.postRequest("\(baseUrl)/\(establishmentId)/newEmployee", parameters: body) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode([UserResponseModel].self, from: data)
+//                        if let decode = decode {
+//                            employees = decode
+//                        }
+//                    }
+//                case .failure(let error):
+//                    employees = []
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return employees
     }
@@ -84,14 +100,18 @@ class EstablishmentRepository {
     public func modifyEstablishment(establishmentId: String, body: EstablishmentRequestModel) -> EstablishmentResponseModel? {
         var establishment: EstablishmentResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(establishmentId)", method: .put, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: EstablishmentResponseModel.self) { response in
-            if let data = response.value {
-                establishment = data
-            } else {
-                establishment = nil
-            }
-        }
+//        ApiManager.shared.putRequest("\(baseUrl)/\(establishmentId)", parameters: body) { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
+//                        establishment = decode
+//                    }
+//                case .failure(let error):
+//                    establishment = nil
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return establishment
     }
@@ -101,16 +121,18 @@ class EstablishmentRepository {
         
         var isDelete = false
         
-        AF.request("\(baseUrl)/\(establishmentId)", method: .delete, interceptor: ApiManager.shared.self).response { response in
-            if let response = response.response {
-                if response.statusCode == 204 {
-                    isDelete = true
-                } else {
-                    isDelete = false
-                    print("\(response.debugDescription)")
-                }
-            }
-        }
+//        ApiManager.shared.deleteRequest("\(baseUrl)/\(establishmentId)") { result in
+//            switch result {
+//                case .success(let data):
+//                    if let data = data {
+//                        print("\(data.debugDescription)")
+//                        isDelete = true
+//                    }
+//                case .failure(let error):
+//                    isDelete = false
+//                    print("error on request : \(error)")
+//            }
+//        }
         
         return isDelete
     }

@@ -19,13 +19,18 @@ class HolidaysRepository {
         ]
         
         let request = AF.request(baseUrl, method: .get, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: [HolidaysResponseModel].self) { response in
+        request.responseData { response in
             if let data = response.value {
-                holidays = data
-                print("find holidays")
+                let decode = try? JSONDecoder().decode([HolidaysResponseModel].self, from: data)
+                if let decode = decode {
+                    holidays = decode
+                    print("find holidays")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 holidays = []
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -37,13 +42,18 @@ class HolidaysRepository {
         var holiday: HolidaysResponseModel?
         
         let request = AF.request("\(baseUrl)/\(holidayId)", method: .get, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: HolidaysResponseModel.self) { response in
+        request.responseData { response in
             if let data = response.value {
-                holiday = data
-                print("find holiday")
+                let decode = try? JSONDecoder().decode(HolidaysResponseModel.self, from: data)
+                if let decode = decode {
+                    holiday = decode
+                    print("find holiday")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 holiday = nil
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -54,14 +64,19 @@ class HolidaysRepository {
     public func takeVacation(body: HolidaysRequestModel) -> HolidaysResponseModel? {
         var holiday: HolidaysResponseModel?
         
-        let request = AF.request(baseUrl, method: .post, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: HolidaysResponseModel.self) { response in
+        let request = AF.request(baseUrl, method: .post, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
+        request.responseData { response in
             if let data = response.value {
-                holiday = data
-                print("vacation created")
+                let decode = try? JSONDecoder().decode(HolidaysResponseModel.self, from: data)
+                if let decode = decode {
+                    holiday = decode
+                    print("vacation created")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 holiday = nil
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -72,14 +87,19 @@ class HolidaysRepository {
     public func modifyVacation(body: HolidaysRequestModel, holidayId: String) -> HolidaysResponseModel? {
         var holiday: HolidaysResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(holidayId)", method: .put, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: HolidaysResponseModel.self) { response in
+        let request = AF.request("\(baseUrl)/\(holidayId)", method: .put, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
+        request.responseData { response in
             if let data = response.value {
-                holiday = data
-                print("holiday modified")
+                let decode = try? JSONDecoder().decode(HolidaysResponseModel.self, from: data)
+                if let decode = decode {
+                    holiday = decode
+                    print("holiday modified")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 holiday = nil
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -94,8 +114,12 @@ class HolidaysRepository {
         let request = AF.request("\(baseUrl)/\(holidayId)", method: .delete, interceptor: ApiManager.shared.self)
         request.response { response in
             if let response = response.response {
-                print("holiday deleted")
-                isDelete = true
+                if response.statusCode == 200 {
+                    print("holiday deleted")
+                    isDelete = true
+                } else {
+                    print("\(response.debugDescription)")
+                }
             } else {
                 isDelete = false
                 print("\(response.debugDescription)")

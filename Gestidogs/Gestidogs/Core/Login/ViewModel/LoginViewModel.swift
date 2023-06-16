@@ -21,35 +21,23 @@ class LoginViewModel: ObservableObject {
     }
     @Published var isLoading: Bool = false
     lazy var userManager = UserManager.shared
+    lazy var userRepo = UserRepository()
     
     
-    func login() {
-        print("pass in this function")
-        isLoading = true
-        let request = AF.request("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", method: .post, parameters: try? JSONSerialization.data(withJSONObject: ["emailAddress": $emailTxt, "password": $passwdTxt]))
-        request.responseDecodable(of: LoginModel.self) { (response) in
-            if let data = response.value {
-                print("data of response \(data)")
-                self.userManager.signIn(accessToken: data.tokens.accessToken, refreshToken: data.tokens.refreshToken)
-                self.isLoading = false
-            } else {
-                print("\(response.debugDescription)")
-            }
-        }
-        
-//        ApiManager.shared.apiRequest("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", method: .post, parameters: ["emailAddress": $emailTxt, "password": $passwdTxt]) { (result) in
-//            print("\(result)")
-//            switch result {
-//                case .success(let data):
-//                print("\(data)")
+//    func login(loginState: LoginState) {
+//        print("pass in this function")
+//        isLoading = true
+//        let request = userRepo.login(body: LoginRequest(email: emailTxt, password: passwdTxt))
 //
-//                case .failure(let error):
-//                    self.isLoading = false
-//                print(error.localizedDescription)
-//            }
-//
+//        if let request = request {
+//            userManager.signIn(accessToken: request.tokens.accessToken, refreshToken: request.tokens.refreshToken)
+//            isLoading = false
+//            loginState = .isLoggedIn
+//        } else {
+//            isLoading = false
+//            print("\(request.debugDescription)")
 //        }
-    }
+//    }
     
     func loginFacebook() {
         

@@ -14,8 +14,8 @@ struct UserResponseModel {
     let firstName: String
     let lastName: String
     let role: String
-    let registeredAt: Date
-    let lastConnectionAt: Date
+    let registeredAt: String
+    let lastConnectionAt: String
     let v: Int
 }
 
@@ -24,8 +24,8 @@ extension UserResponseModel: Identifiable, Codable {
         case id = "_id"
         case avatarUrl = "avatarUrl"
         case emailAddress = "emailAddress"
-        case firstName = "firstName"
-        case lastName = "lastName"
+        case firstName = "firstname"
+        case lastName = "lastname"
         case role = "role"
         case registeredAt = "registeredAt"
         case lastConnectionAt = "lastConnectionAt"

@@ -19,13 +19,18 @@ class ActivitiesRepository {
         ]
         
         let request = AF.request(baseUrl, method: .get, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: [ActivityResponseModel].self) { response in
+        request.responseData { response in
             if let data = response.value {
-                activities = data
-                print("activities found")
+                let decode = try? JSONDecoder().decode([ActivityResponseModel].self, from: data)
+                if let decode = decode {
+                    activities = decode
+                    print("activities found")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 activities = []
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -37,13 +42,16 @@ class ActivitiesRepository {
         var activity: ActivityResponseModel?
         
         let request = AF.request("\(baseUrl)/\(activityId)", method: .get, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: ActivityResponseModel.self) { response in
+        request.responseData { response in
             if let data = response.value {
-                activity = data
-                print("activity found")
+                let decode = try? JSONDecoder().decode(ActivityResponseModel.self, from: data)
+                if let decode = decode {
+                    activity = decode
+                    print("activity found")
+                }
             } else {
                 activity = nil
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -54,14 +62,19 @@ class ActivitiesRepository {
     public func createActivity(body: ActivityRequestModel) -> ActivityResponseModel? {
         var activity: ActivityResponseModel?
         
-        let request = AF.request(baseUrl, method: .post, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: ActivityResponseModel.self) { response in
+        let request = AF.request(baseUrl, method: .post, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
+        request.responseData { response in
             if let data = response.value {
-                activity = data
-                print("activity created")
+                let decode = try? JSONDecoder().decode(ActivityResponseModel.self, from: data)
+                if let decode = decode {
+                    activity = decode
+                    print("activity found")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 activity = nil
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
@@ -72,14 +85,19 @@ class ActivitiesRepository {
     public func modifyActivity(body: ActivityRequestModel, activityId: String) -> ActivityResponseModel? {
         var activity: ActivityResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(activityId)", method: .put, parameters: body, interceptor: ApiManager.shared.self)
-        request.responseDecodable(of: ActivityResponseModel.self) { response in
+        let request = AF.request("\(baseUrl)/\(activityId)", method: .put, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
+        request.responseData { response in
             if let data = response.value {
-                activity = data
-                print("activity modified")
+                let decode = try? JSONDecoder().decode(ActivityResponseModel.self, from: data)
+                if let decode = decode {
+                    activity = decode
+                    print("activity modified")
+                } else {
+                    print("error \(response.debugDescription)")
+                }
             } else {
                 activity = nil
-                print("\(response.debugDescription)")
+                print("error when executing request : \(response.debugDescription)")
             }
         }
         
