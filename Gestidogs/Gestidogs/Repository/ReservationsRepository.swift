@@ -14,23 +14,17 @@ class ReservationsRepository {
     //MARK: GET ALL RESERVATIONS
     public func getAllReservations(sessionId: String? = nil) -> [ReservationResponseModel] {
         var reservations: [ReservationResponseModel] = []
-        let parameters: Parameters = [
-            "sessionId": sessionId ?? ""
-        ]
         
-        let request = AF.request(baseUrl, method: .get, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        ApiManager.shared.request(baseUrl + "?sessionId=\(sessionId ?? "")", httpMethod: "GET") { data, _, error in
+            if let data = data {
                 let decode = try? JSONDecoder().decode([ReservationResponseModel].self, from: data)
                 if let decode = decode {
                     reservations = decode
-                    print("reservations found")
-                } else {
-                    print("error \(response.debugDescription)")
                 }
             } else {
-                reservations = []
-                print("error when executing request : \(response.debugDescription)")
+                if let error = error {
+                    print(error.localizedDescription)
+                }
             }
         }
         
@@ -41,19 +35,16 @@ class ReservationsRepository {
     public func getReservationById(reservationId: String) -> ReservationResponseModel? {
         var reservation: ReservationResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(reservationId)", method: .get, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "GET") { data, _, error in
+            if let data = data {
                 let decode = try? JSONDecoder().decode(ReservationResponseModel.self, from: data)
                 if let decode = decode {
                     reservation = decode
-                    print("reservations found")
-                } else {
-                    print("error \(response.debugDescription)")
                 }
             } else {
-                reservation = nil
-                print("\(response.debugDescription)")
+                if let error = error {
+                    print(error.localizedDescription)
+                }
             }
         }
         
@@ -64,19 +55,16 @@ class ReservationsRepository {
     public func createReservation(body: ReservationRequestModel) -> ReservationResponseModel? {
         var reservation: ReservationResponseModel?
         
-        let request = AF.request(baseUrl, method: .post, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, _, error in
+            if let data = data {
                 let decode = try? JSONDecoder().decode(ReservationResponseModel.self, from: data)
                 if let decode = decode {
                     reservation = decode
-                    print("reservations found")
-                } else {
-                    print("error \(response.debugDescription)")
                 }
             } else {
-                reservation = nil
-                print("error when executing request : \(response.debugDescription)")
+                if let error = error {
+                    print(error.localizedDescription)
+                }
             }
         }
         
@@ -87,17 +75,16 @@ class ReservationsRepository {
     public func modifyReservation(body: ReservationRequestModel, reservationId: String) -> ReservationResponseModel? {
         var reservation: ReservationResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(reservationId)", method: .put, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "PUT", body: body) { data, _, error in
+            if let data = data {
                 let decode = try? JSONDecoder().decode(ReservationResponseModel.self, from: data)
                 if let decode = decode {
                     reservation = decode
-                    print("reservations found")
                 }
             } else {
-                reservation = nil
-                print("error when executing request : \(response.debugDescription)")
+                if let error = error {
+                    print(error.localizedDescription)
+                }
             }
         }
         
@@ -108,18 +95,14 @@ class ReservationsRepository {
     public func deleteReservationById(reservationId: String) -> Bool {
         var isDelete: Bool = false
         
-        let request = AF.request("\(baseUrl)/\(reservationId)", method: .delete, interceptor: ApiManager.shared.self)
-        request.response { response in
-            if let response = response.response {
-                if response.statusCode == 200 {
-                    isDelete = true
-                    print("reservation deleted")
-                } else {
-                    print("\(response.debugDescription)")
-                }
+        ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "DELETE") { data, _, error in
+            if let data = data {
+                isDelete = true
             } else {
                 isDelete = false
-                print("\(response.debugDescription)")
+                if let error = error {
+                    print(error.localizedDescription)
+                }
             }
         }
         

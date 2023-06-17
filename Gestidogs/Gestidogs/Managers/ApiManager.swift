@@ -12,12 +12,10 @@ class ApiManager {
         return ApiManager()
     }()
     typealias completionHandler = ((Data?, URLResponse?, Error?) -> Void)
-    private var session = Session()
-    let retryLimit = 3
+    var retryLimit = 3
     let urlToRefresh = "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh"
     
-    func request(_ urlString: String, httpMethod: String? = "GET", body: Data? = nil, completion: @escaping completionHandler) {
-        
+    func request(_ urlString: String, httpMethod: String? = "GET", body: Encodable? = nil, completion: @escaping completionHandler) {
         guard let url = URL(string: urlString) else {
             return
         }
@@ -26,75 +24,87 @@ class ApiManager {
             return
         }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = httpMethod
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        if let body = body {
-            request.httpBody = body
-        }
-        print("request \(request)")
+        var apiRequest = URLRequest(url: url)
+        apiRequest.httpMethod = httpMethod
+        apiRequest.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        apiRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        apiRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
-            print("response \(response)")
-            if let response = response as? HTTPURLResponse {
-                if response.statusCode == 401 {
-                    print("unauthorized request")
-                } else {
-                    completion(data, response, error)
-                }
+        requestWithRetry(with: apiRequest) { data, response, error in
+            if let error = error {
+                completion(nil, response, error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                return
+            }
+            
+            if response.statusCode == 200, let data = data {
+                print("response done")
+                completion(data, response, error)
+            } else {
+                print("error encountered \(response.statusCode) \(response.debugDescription))")
             }
         }
-        dataTask.resume()
-        
-        
     }
     
-    func retry() {
-        
+    private func requestWithRetry(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                completionHandler(data, response, error)
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse else {
+                return
+            }
+            
+            if (200...299).contains(response.statusCode) {
+                completionHandler(data, response, error)
+            } else if self.retryLimit > 0 && (401...403).contains(response.statusCode) {
+                print("received status code \(response.statusCode). RETRYING RECURSIVE CALL")
+                self.refreshToken { isSuccess in
+                    isSuccess ? completionHandler(data, response, error) : self.requestWithRetry(with: request, completionHandler: completionHandler)
+                }
+                self.retryLimit -= 1
+            } else {
+                print("Received status code \(response.statusCode). EXIT WITH FAILURE")
+                completionHandler(data, response, error)
+            }
+        }
+        task.resume()
     }
-
 }
 
-extension ApiManager: RequestInterceptor {
-    
-    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        var request = urlRequest
-        guard let token = UserManager.shared.getAccessToken() else {
-            completion(.success(urlRequest))
-            return
-        }
-        
-        let bearerToken = "Bearer \(token)"
-        request.setValue(bearerToken, forHTTPHeaderField: "Authorization")
-        completion(.success(request))
-    }
-    
-    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
-        print("let's retry")
-        guard request.retryCount < retryLimit else {
-            completion(.doNotRetry)
-            return
-        }
-        
-        refreshToken { isSuccess in
-            isSuccess ? completion(.retry) : completion(.doNotRetry)
-        }
-    }
-    
+extension ApiManager {
+
     func refreshToken(completion: @escaping (_ isSuccess: Bool) -> Void) {
+        print("passed in refreshToken function")
         guard let refreshToken = UserManager.shared.getRefreshToken() else {
             return
         }
+        guard let url = URL(string: "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh") else {
+            return
+        }
         
-        let authorizationTokens = HTTPHeader(name: "Authorization", value: "Bearer \(refreshToken)")
-        AF.request(urlToRefresh, method: .get, headers: [authorizationTokens]).responseDecodable(of: TokensResponseModel.self) { response in
-            if let data = response.data, let tokens = (try? JSONDecoder().decode(TokensResponseModel.self, from: data)) {
-                UserManager.shared.signIn(accessToken: tokens.accessToken, refreshToken: tokens.refreshToken)
-                completion(true)
-            } else {
-                completion(false)
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { data, _, _ in
+            if let data = data {
+                let decode = try? JSONDecoder().decode(TokensResponseModel.self, from: data)
+                if let decode = decode {
+                    print("decode response : \(decode)")
+                    UserManager.shared.signIn(accessToken: decode.accessToken, refreshToken: decode.refreshToken)
+                    completion(true)
+                } else {
+                    print("something wen't wrong when reseting tokens in user default")
+                    completion(false)
+                }
             }
         }
+        task.resume()
     }
 }

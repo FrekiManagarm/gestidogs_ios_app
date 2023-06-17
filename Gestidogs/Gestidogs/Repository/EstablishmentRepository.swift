@@ -16,20 +16,18 @@ class EstablishmentRepository {
         
         var establishments: [EstablishmentResponseModel] = []
         
-//        ApiManager.shared.getRequest(baseUrl, parameters: ["ownerId": ownerId ?? ""]) { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        let decode = try? JSONDecoder().decode([EstablishmentResponseModel].self, from: data)
-//                        if let decode = decode {
-//                            establishments = decode
-//                        }
-//                    }
-//                case .failure(let error):
-//                    establishments = []
-//                    print("error on request : \(error)")
-//            }
-//        }
+        ApiManager.shared.request(baseUrl + "?ownerId=\(ownerId ?? "")", httpMethod: "GET") { data, _, error in
+            if let data = data {
+                let decode = try? JSONDecoder().decode([EstablishmentResponseModel].self, from: data)
+                if let decode = decode {
+                    establishments = decode
+                }
+            } else {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
         
         return establishments
     }
@@ -38,18 +36,18 @@ class EstablishmentRepository {
     public func getEstablishmentById(establishmentId: String) -> EstablishmentResponseModel? {
         var establishment: EstablishmentResponseModel?
         
-//        ApiManager.shared.getRequest("\(baseUrl)/\(establishmentId)") { result in
-//            switch result {
-//            case .success(let data):
-//                if let data = data {
-//                    let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
-//                    establishment = decode
-//                }
-//            case .failure(let error):
-//                establishment = nil
-//                print("error on request : \(error)")
-//            }
-//        }
+        ApiManager.shared.request("\(baseUrl)/\(establishmentId)", httpMethod: "GET") { data, _, error in
+            if let data = data {
+                let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
+                if let decode = decode {
+                    establishment = decode
+                }
+            } else {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
         
         return establishment
     }
@@ -58,40 +56,28 @@ class EstablishmentRepository {
     public func createEstablishment(body: EstablishmentRequestModel) -> EstablishmentResponseModel? {
         var newEstablishment: EstablishmentResponseModel?
         
-//        ApiManager.shared.postRequest(baseUrl, parameters: body) { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
-//                        newEstablishment = decode
-//                    }
-//                case .failure(let error):
-//                    newEstablishment = nil
-//                    print("error on request: \(error)")
-//            }
-//        }
+        ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, _, error in
+            if let data = data {
+                let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
+                if let decode = decode {
+                    newEstablishment = decode
+                }
+            }
+        }
         
         return newEstablishment
     }
     
     //MARK: CREATE NEW EMPLOYEE
-    public func createNewEmployee(establishmentId: String, body: UserResponseModel) -> [UserResponseModel] {
-        var employees : [UserResponseModel] = []
+    public func createNewEmployee(establishmentId: String, body: UserResponseModel) -> [UserResponseModel]? {
+        var employees : [UserResponseModel]?
         
-//        ApiManager.shared.postRequest("\(baseUrl)/\(establishmentId)/newEmployee", parameters: body) { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        let decode = try? JSONDecoder().decode([UserResponseModel].self, from: data)
-//                        if let decode = decode {
-//                            employees = decode
-//                        }
-//                    }
-//                case .failure(let error):
-//                    employees = []
-//                    print("error on request : \(error)")
-//            }
-//        }
+        ApiManager.shared.request("\(baseUrl)/\(establishmentId)/newEmployee", httpMethod: "POST", body: body) { data, _, error in
+            if let data = data {
+                let decode = try? JSONDecoder().decode([UserResponseModel].self, from: data)
+                employees = decode
+            }
+        }
         
         return employees
     }
@@ -100,18 +86,14 @@ class EstablishmentRepository {
     public func modifyEstablishment(establishmentId: String, body: EstablishmentRequestModel) -> EstablishmentResponseModel? {
         var establishment: EstablishmentResponseModel?
         
-//        ApiManager.shared.putRequest("\(baseUrl)/\(establishmentId)", parameters: body) { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
-//                        establishment = decode
-//                    }
-//                case .failure(let error):
-//                    establishment = nil
-//                    print("error on request : \(error)")
-//            }
-//        }
+        ApiManager.shared.request("\(baseUrl)/\(establishmentId)", httpMethod: "PUT", body: body) { data, _, error in
+            if let data = data {
+                let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
+                if let decode = decode {
+                    establishment = decode
+                }
+            }
+        }
         
         return establishment
     }
@@ -121,18 +103,16 @@ class EstablishmentRepository {
         
         var isDelete = false
         
-//        ApiManager.shared.deleteRequest("\(baseUrl)/\(establishmentId)") { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        print("\(data.debugDescription)")
-//                        isDelete = true
-//                    }
-//                case .failure(let error):
-//                    isDelete = false
-//                    print("error on request : \(error)")
-//            }
-//        }
+        ApiManager.shared.request("\(baseUrl)", httpMethod: "DELETE") { data, _, error in
+            if let data = data {
+                isDelete = true
+            } else {
+                isDelete = false
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
         
         return isDelete
     }
@@ -141,13 +121,13 @@ class EstablishmentRepository {
     public func deleteEstablishmentByOwnerId(ownerId: String) -> Bool {
         var isDelete = false
         
-        AF.request("\(baseUrl)/owner/\(ownerId)", method: .delete, interceptor: ApiManager.shared.self).response { response in
-            if let response = response.response {
-                if response.statusCode == 204 {
-                    isDelete = true
-                } else {
-                    isDelete = false
-                    print("\(response.debugDescription)")
+        ApiManager.shared.request("\(baseUrl)/owner/\(ownerId)") { data, _, error in
+            if let data = data {
+                isDelete = true
+            } else {
+                isDelete = false
+                if let error = error {
+                    print(error.localizedDescription)
                 }
             }
         }

@@ -14,24 +14,17 @@ class DogsRepository {
     //MARK: GET ALL DOGS
     public func getAllDogs(ownerId: String? = nil, establishmentId: String? = nil) -> [DogsResponseModel] {
         var dogs: [DogsResponseModel] = []
-        let parameters: Parameters = [
-            "ownerId": ownerId ?? "",
-            "establishmentId": establishmentId ?? ""
-        ]
         
-        let request = AF.request(baseUrl, method: .get, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        ApiManager.shared.request(baseUrl + "?ownerId=\(ownerId ?? "")" + "&establishmentId=\(establishmentId ?? "")", httpMethod: "GET") { data, _, error in
+            if let data = data {
                 let decode = try? JSONDecoder().decode([DogsResponseModel].self, from: data)
                 if let decode = decode {
                     dogs = decode
-                    print("find all dogs")
-                } else {
-                    print("error \(response.debugDescription)")
                 }
             } else {
-                dogs = []
-                print("error when executing request : \(response.debugDescription)")
+                if let error = error {
+                    print(error.localizedDescription)
+                }
             }
         }
         
@@ -42,19 +35,16 @@ class DogsRepository {
     public func getDogById(dogId: String) -> DogsResponseModel? {
         var dog: DogsResponseModel?
         
-        let request = AF.request("\(baseUrl)/\(dogId)", method: .get, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        ApiManager.shared.request("\(baseUrl)/\(dogId)", httpMethod: "GET") { data, _, error in
+            if let data = data {
                 let decode = try? JSONDecoder().decode(DogsResponseModel.self, from: data)
                 if let decode = decode {
                     dog = decode
-                    print("dog found")
-                } else {
-                    print("error \(response.debugDescription)")
                 }
             } else {
-                dog = nil
-                print("error when executing request : \(response.debugDescription)")
+                if let error = error {
+                    print(error.localizedDescription)
+                }
             }
         }
         
@@ -65,19 +55,12 @@ class DogsRepository {
     public func createDog(body: DogsRequestModel) -> DogsResponseModel? {
         var dog: DogsResponseModel?
         
-        let request = AF.request(baseUrl, method: .post, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, _, error in
+            if let data = data {
                 let decode = try? JSONDecoder().decode(DogsResponseModel.self, from: data)
                 if let decode = decode {
-                    dog = decode
-                    print("dog created")
-                } else {
-                    print("error \(response.debugDescription)")
+                    
                 }
-            } else {
-                dog = nil
-                print("error when executing request : \(response.debugDescription)")
             }
         }
         
