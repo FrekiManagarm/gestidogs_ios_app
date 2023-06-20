@@ -16,14 +16,14 @@ struct GestidogsApp: App {
         WindowGroup {
             DispatchView()
                 .environmentObject(appState)
-                .onAppear {
-                    withAnimation {
-                        appState.userDidLogin()
-                    }
-                    appState.fetchUser()
+                .task {
+                    await appState.fetchUser()
+                    appState.userDidLogin()
                 }
         }
     }
+    
+    
 }
 
 struct DispatchView: View {
@@ -38,6 +38,8 @@ struct DispatchView: View {
                 ChooseOrCreateEstablishmentView()
             case .onBoarding:
                 OnboardingView()
+            case .loadingView:
+                SplashView()
         }
     }
 }

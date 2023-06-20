@@ -46,6 +46,23 @@ struct AgendaUIViewRepresentable: UIViewRepresentable {
             parent.selectedDate = date
             calendar.setCurrentPage(date, animated: true)
         }
+        
+        func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+            let eventDates = [Date(), Date(),
+                                            Date.now.addingTimeInterval(400000),
+                                            Date.now.addingTimeInterval(100000),
+                                            Date.now.addingTimeInterval(-600000),
+                                            Date.now.addingTimeInterval(-1000000)]
+                        var eventCount = 0
+                        eventDates.forEach { eventDate in
+                            if eventDate.formatted(date: .complete,
+                                          time: .omitted) == date.formatted(
+                                            date: .complete, time: .omitted){
+                                eventCount += 1;
+                            }
+                        }
+                        return eventCount
+        }
     }
 }
 

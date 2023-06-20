@@ -10,6 +10,7 @@ import SwiftUI
 struct TeamCenterWidget: View {
     
     @State var showDetails: Bool = false
+    let teamMates: [UserResponseModel]
     
     var body: some View {
         VStack {
@@ -21,7 +22,7 @@ struct TeamCenterWidget: View {
                     .fontWeight(.semibold)
                     .font(.system(size: 30))
                 Spacer()
-                NavigationLink("Voir plus", destination: TeamCenterDetailsView())
+                NavigationLink("Voir plus", destination: TeamListView())
                     .foregroundColor(Color("blueGray80001"))
 //                    .foregroundColor(.white)
                     .font(.system(size: 15))
@@ -53,6 +54,6 @@ struct TeamCenterWidget: View {
 
 struct TeamCenterWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TeamCenterWidget()
+        TeamCenterWidget(teamMates: [])
     }
 }

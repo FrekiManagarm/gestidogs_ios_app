@@ -12,114 +12,120 @@ class UserRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)"
     
     //MARK: USER REFRESH
-    public func userRefresh() -> TokensResponseModel? {
-        var tokens: TokensResponseModel?
+    public func userRefresh(completion: @escaping (TokensResponseModel?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request("\(baseUrl)/refresh", httpMethod: "GET") { data, response, _ in
+        await ApiManager.shared.request("\(baseUrl)/refresh", httpMethod: "GET") { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(TokensResponseModel.self, from: data)
                 if let decode = decode {
-                    tokens = decode
+                    completion(decode, response)
                 }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
         
-        return tokens
     }
     
     //MARK: USER ME
-    public func userMe() -> UserResponseModel? {
-        var user: UserResponseModel?
+    public func userMe(completion: @escaping (UserResponseModel?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request("\(baseUrl)/me", httpMethod: "GET") { data, response, _ in
-            print("result \(response.debugDescription)")
+        await ApiManager.shared.request("\(baseUrl)/me", httpMethod: "GET") { data, response in
+//            print("result \(response?.description)")
             if let data = data {
                 let decode = try? JSONDecoder().decode(UserResponseModel.self, from: data)
                 if let decode = decode {
-                    user = decode
+//                    print("decode user me \(decode)")
+                    completion(decode, response)
                 }
+            } else {
+                print("bad request in repository => \(response.debugDescription)")
+                completion(nil, response)
             }
         }
-        
-        return user
     }
     
     //MARK: ALL USERS
-    public func allUsers(establishmentid: String? = nil, role: String? = nil) -> [UserResponseModel] {
-        var users: [UserResponseModel] = []
-        let parameters: Parameters = [
-            "establishmentId": establishmentid ?? "",
-            "role": role ?? ""
-        ]
+    public func allUsers(establishmentid: String? = nil, role: String? = nil, completion: @escaping ([UserResponseModel]?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request(baseUrl, httpMethod: "GET") { data, response, error in
+        await ApiManager.shared.request(baseUrl + "?establishmentId=\(establishmentid ?? "")" + "&role=\(role ?? "")", httpMethod: "GET") { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode([UserResponseModel].self, from: data)
                 if let decode = decode {
-                    users = decode
+                    completion(decode, response)
                 }
+            } else {
+                completion(nil, response)
+                print("bad request in repository \(response.debugDescription)")
             }
         }
         
-        return users
     }
     
     //MARK: USER BY ID
-    public func userById(userId: String) -> UserResponseModel? {
-        var user: UserResponseModel?
+    public func userById(userId: String, completion: @escaping (UserResponseModel?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request("\(baseUrl)/\(userId)", httpMethod: "GET") { data, response, _ in
+        await ApiManager.shared.request("\(baseUrl)/\(userId)", httpMethod: "GET") { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(UserResponseModel.self, from: data)
                 if let decode = decode {
-                    user = decode
+                    completion(decode, response)
                 }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
         
-        return user
     }
     
     //MARK: REGISTER
-    public func register(body: UserRequestModel) -> LoginModel? {
-        var user: LoginModel?
+    public func register(body: UserRequestModel, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response, _ in
+        await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(LoginModel.self, from: data)
                 if let decode = decode {
-                    user = decode
+                    completion(decode, response)
                 }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return user
+    
     }
     
     //MARK: LOGIN
-    public func login(body: LoginRequest) -> LoginModel? {
-        var userAndCredentials: LoginModel?
+    public func login(body: LoginRequest, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
         print("request of body \(body)")
         
-        ApiManager.shared.request("\(baseUrl)/login", httpMethod: "POST", body: body) { data, response, _ in
+        await ApiManager.shared.request("\(baseUrl)/login", httpMethod: "POST", body: body) { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(LoginModel.self, from: data)
                 if let decode = decode {
-                    userAndCredentials = decode
+                    completion(decode, response)
                 }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
         
-        return userAndCredentials
     }
     
     //MARK: LOGOUT
-    public func logout() -> Bool {
+    public func logout() async -> Bool {
         var isLoggedOut = false
         
-        ApiManager.shared.request("\(baseUrl)/logout", httpMethod: "POST") { data, response, _ in
-            if let data = data {
-                isLoggedOut = true
+        await ApiManager.shared.request("\(baseUrl)/logout", httpMethod: "POST") { _, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    isLoggedOut = true
+                } else {
+                    isLoggedOut = false
+                }
             } else {
                 isLoggedOut = false
             }
@@ -129,18 +135,19 @@ class UserRepository {
     }
     
     //MARK: MODIFY USER
-    public func modifyUser(body: UserRequestModel, userId: String) -> UserResponseModel? {
-        var user: UserResponseModel?
+    public func modifyUser(body: UserRequestModel, userId: String, completion: @escaping (UserResponseModel?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request("\(baseUrl)/\(userId)", httpMethod: "PUT", body: body) { data, response, _ in
+        await ApiManager.shared.request("\(baseUrl)/\(userId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(UserResponseModel.self, from: data)
                 if let decode = decode {
-                    user = decode
+                    completion(decode, response)
                 }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
         
-        return user
     }
 }

@@ -12,10 +12,10 @@ struct EstablishmentRequestModel {
     let name: String
     let description: String
     let address: String
-    let location: [Int]
+    let location: [Int]? = nil
     let phoneNumber: String
     let emailAddress: String
-    let schedules: [Date]
+    let schedules: [Date]? = nil
 }
 
 extension EstablishmentRequestModel: Codable {

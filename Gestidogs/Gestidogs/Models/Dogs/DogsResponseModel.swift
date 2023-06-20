@@ -12,7 +12,7 @@ struct DogsResponseModel {
     let owner: UserResponseModel
     let establishment: EstablishmentResponseModel
     let name: String
-    let birthDate: Date
+//    let birthDate: Date
     let imageUrl: String
     let breed: String
     let nationalId: String
@@ -26,7 +26,7 @@ extension DogsResponseModel: Codable, Identifiable {
         case owner = "owner"
         case establishment = "establishment"
         case name = "name"
-        case birthDate = "birthDate"
+//        case birthDate = "birthDate"
         case imageUrl = "imageUrl"
         case breed = "breed"
         case nationalId = "nationalId"

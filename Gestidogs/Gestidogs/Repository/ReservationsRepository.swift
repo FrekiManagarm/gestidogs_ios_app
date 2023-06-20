@@ -10,102 +10,85 @@ import Alamofire
 
 class ReservationsRepository {
     private var baseUrl = "\(ApiConstants.apiUrlDev)\(ApiConstants.reservationsUrl)"
-    
+
     //MARK: GET ALL RESERVATIONS
-    public func getAllReservations(sessionId: String? = nil) -> [ReservationResponseModel] {
-        var reservations: [ReservationResponseModel] = []
-        
-        ApiManager.shared.request(baseUrl + "?sessionId=\(sessionId ?? "")", httpMethod: "GET") { data, _, error in
+    public func getAllReservations(sessionId: String? = nil, completion: @escaping ([ReservationResponseModel]?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request(baseUrl + "?sessionId=\(sessionId ?? "")", httpMethod: "GET") { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode([ReservationResponseModel].self, from: data)
                 if let decode = decode {
-                    reservations = decode
+                    completion(decode, response)
                 }
             } else {
-                if let error = error {
-                    print(error.localizedDescription)
-                }
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return reservations
     }
-    
+
     //MARK: GET RESERVATIONS BY ID
-    public func getReservationById(reservationId: String) -> ReservationResponseModel? {
-        var reservation: ReservationResponseModel?
-        
-        ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "GET") { data, _, error in
+    public func getReservationById(reservationId: String, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "GET") { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(ReservationResponseModel.self, from: data)
                 if let decode = decode {
-                    reservation = decode
+                    completion(decode, response)
                 }
             } else {
-                if let error = error {
-                    print(error.localizedDescription)
-                }
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return reservation
     }
-    
+
     //MARK: CREATE RESERVATION
-    public func createReservation(body: ReservationRequestModel) -> ReservationResponseModel? {
-        var reservation: ReservationResponseModel?
-        
-        ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, _, error in
+    public func createReservation(body: ReservationRequestModel, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(ReservationResponseModel.self, from: data)
                 if let decode = decode {
-                    reservation = decode
+                    completion(decode, response)
                 }
             } else {
-                if let error = error {
-                    print(error.localizedDescription)
-                }
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return reservation
     }
-    
+
     //MARK: MODIFY RESERVATION
-    public func modifyReservation(body: ReservationRequestModel, reservationId: String) -> ReservationResponseModel? {
-        var reservation: ReservationResponseModel?
-        
-        ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "PUT", body: body) { data, _, error in
+    public func modifyReservation(body: ReservationRequestModel, reservationId: String, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(ReservationResponseModel.self, from: data)
                 if let decode = decode {
-                    reservation = decode
+                    completion(decode, response)
                 }
             } else {
-                if let error = error {
-                    print(error.localizedDescription)
-                }
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return reservation
     }
-    
+
     //MARK: DELETE RESERVATION BY ID
-    public func deleteReservationById(reservationId: String) -> Bool {
-        var isDelete: Bool = false
-        
-        ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "DELETE") { data, _, error in
-            if let data = data {
-                isDelete = true
-            } else {
-                isDelete = false
-                if let error = error {
-                    print(error.localizedDescription)
+    public func deleteReservationById(reservationId: String, completion: @escaping (Bool?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "DELETE") { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    completion(true, response)
+                } else {
+                    completion(false, response)
                 }
+            } else {
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return isDelete
     }
 }

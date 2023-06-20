@@ -9,16 +9,26 @@ import Foundation
 
 struct DogsRequestModel {
     let ownerId: String
+    let establishment: String
+    let nationalId: String
+    let imageUrl: String
+    let gender: String
     let name: String
-    let birthDate: Date
     let breed: String
+    let weight: Int
+    let height: Int
 }
 
 extension DogsRequestModel: Codable {
     enum CodingKeys: String, CodingKey {
         case ownerId = "ownerId"
+        case establishment = "establishment"
+        case nationalId = "nationalId"
+        case imageUrl = "imageUrl"
+        case gender = "gender"
         case name = "name"
-        case birthDate = "birthDate"
+        case weight = "weight"
+        case height = "height"
         case breed = "breed"
     }
 }

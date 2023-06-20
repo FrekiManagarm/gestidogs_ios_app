@@ -12,126 +12,125 @@ class EstablishmentRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.establishmentUrl)"
     
     //MARK: GET ALL ESTABLISHMENTS
-    public func getAllEstablishments(ownerId: String? = nil) -> [EstablishmentResponseModel] {
+    public func getAllEstablishments(ownerId: String? = nil, completion: @escaping ([EstablishmentResponseModel]?, URLResponse?) -> Void) async {
         
-        var establishments: [EstablishmentResponseModel] = []
-        
-        ApiManager.shared.request(baseUrl + "?ownerId=\(ownerId ?? "")", httpMethod: "GET") { data, _, error in
-            if let data = data {
-                let decode = try? JSONDecoder().decode([EstablishmentResponseModel].self, from: data)
-                if let decode = decode {
-                    establishments = decode
+        await ApiManager.shared.request(baseUrl + "?ownerId=\(ownerId ?? "")", httpMethod: "GET") { data, response in
+            if let data = data, let response = response as? HTTPURLResponse {
+                do {
+                    let decode = try JSONDecoder().decode([EstablishmentResponseModel].self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error \(error)")
                 }
             } else {
-                if let error = error {
-                    print(error.localizedDescription)
-                }
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
         
-        return establishments
     }
     
     //MARK: GET ESTABLISHMENT BY ID
-    public func getEstablishmentById(establishmentId: String) -> EstablishmentResponseModel? {
-        var establishment: EstablishmentResponseModel?
+    public func getEstablishmentById(establishmentId: String, completion: @escaping (EstablishmentResponseModel?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request("\(baseUrl)/\(establishmentId)", httpMethod: "GET") { data, _, error in
+        await ApiManager.shared.request("\(baseUrl)/\(establishmentId)", httpMethod: "GET") { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
-                if let decode = decode {
-                    establishment = decode
+                do {
+                    let decode = try JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
-                if let error = error {
-                    print(error.localizedDescription)
-                }
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
         
-        return establishment
     }
     
     //MARK: CREATE ESTABLISHMENT
-    public func createEstablishment(body: EstablishmentRequestModel) -> EstablishmentResponseModel? {
-        var newEstablishment: EstablishmentResponseModel?
+    public func createEstablishment(body: EstablishmentRequestModel, completion: @escaping (EstablishmentResponseModel?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, _, error in
+        await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
                 if let decode = decode {
-                    newEstablishment = decode
+                    completion(decode, response)
                 }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
         
-        return newEstablishment
     }
     
     //MARK: CREATE NEW EMPLOYEE
-    public func createNewEmployee(establishmentId: String, body: UserResponseModel) -> [UserResponseModel]? {
-        var employees : [UserResponseModel]?
+    public func createNewEmployee(establishmentId: String, body: UserResponseModel, completion: @escaping ([UserResponseModel]?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request("\(baseUrl)/\(establishmentId)/newEmployee", httpMethod: "POST", body: body) { data, _, error in
+        await ApiManager.shared.request("\(baseUrl)/\(establishmentId)/newEmployee", httpMethod: "POST", body: body) { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode([UserResponseModel].self, from: data)
-                employees = decode
+                if let decode = decode {
+                    completion(decode, response)
+                }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return employees
     }
     
     //MARK: MODIFY ESTABLISHMENT
-    public func modifyEstablishment(establishmentId: String, body: EstablishmentRequestModel) -> EstablishmentResponseModel? {
-        var establishment: EstablishmentResponseModel?
+    public func modifyEstablishment(establishmentId: String, body: EstablishmentRequestModel, completion: @escaping (EstablishmentResponseModel?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request("\(baseUrl)/\(establishmentId)", httpMethod: "PUT", body: body) { data, _, error in
+        await ApiManager.shared.request("\(baseUrl)/\(establishmentId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
                 if let decode = decode {
-                    establishment = decode
+                    completion(decode, response)
                 }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
         
-        return establishment
     }
     
     //MARK: DELETE AN ESTABLISHMENT BY ID
-    public func deleteEstablishmentById(establishmentId: String) -> Bool {
+    public func deleteEstablishmentById(establishmentId: String, completion: @escaping (Bool?, URLResponse?) -> Void) async {
         
-        var isDelete = false
-        
-        ApiManager.shared.request("\(baseUrl)", httpMethod: "DELETE") { data, _, error in
-            if let data = data {
-                isDelete = true
-            } else {
-                isDelete = false
-                if let error = error {
-                    print(error.localizedDescription)
+        await ApiManager.shared.request("\(baseUrl)", httpMethod: "DELETE") { _, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    completion(true, response)
+                } else {
+                    completion(false, response)
                 }
+            } else {
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return isDelete
     }
     
     //MARK: DELETE ESTABLISHMENT BY OWNER ID
-    public func deleteEstablishmentByOwnerId(ownerId: String) -> Bool {
-        var isDelete = false
+    public func deleteEstablishmentByOwnerId(ownerId: String, completion: @escaping (Bool?, URLResponse?) -> Void) async {
         
-        ApiManager.shared.request("\(baseUrl)/owner/\(ownerId)") { data, _, error in
-            if let data = data {
-                isDelete = true
-            } else {
-                isDelete = false
-                if let error = error {
-                    print(error.localizedDescription)
+        await ApiManager.shared.request("\(baseUrl)/owner/\(ownerId)", httpMethod: "DELETE") { _, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    completion(true, response)
+                } else {
+                    completion(false, response)
                 }
+            } else {
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
         
-        return isDelete
     }
 }

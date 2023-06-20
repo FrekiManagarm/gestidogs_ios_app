@@ -59,7 +59,12 @@ struct DashboardView: View {
                     ScrollView {
                         DogCenterWidget(dogs: dashboardViewModel.dogs)
                         ActivityCenterWidget(activities: dashboardViewModel.activities)
-                        TeamCenterWidget()
+                        TeamCenterWidget(teamMates: dashboardViewModel.teamMates)
+                    }
+                    .task {
+                        await dashboardViewModel.getDogsEstablishment()
+                        await dashboardViewModel.getActivities()
+                        await dashboardViewModel.getEstablishment()
                     }
                 }
             }

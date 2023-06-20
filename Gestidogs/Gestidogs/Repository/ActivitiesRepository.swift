@@ -12,117 +12,83 @@ class ActivitiesRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.activitiesUrl)"
     
     //MARK: GET ALL ACTIVITIES
-    public func getAllActivities(establishmentId: String? = nil) -> [ActivityResponseModel] {
-        var activities: [ActivityResponseModel] = []
-        let parameters: Parameters = [
-            "establishmentId": establishmentId ?? ""
-        ]
+    public func getAllActivities(establishmentId: String? = nil, completion: @escaping ([ActivityResponseModel]?, URLResponse?) -> Void) async {
         
-        let request = AF.request(baseUrl, method: .get, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        await ApiManager.shared.request(baseUrl + "?establishmentId=\(establishmentId ?? "")", httpMethod: "GET") { data, response in
+            if let data = data {
                 let decode = try? JSONDecoder().decode([ActivityResponseModel].self, from: data)
                 if let decode = decode {
-                    activities = decode
-                    print("activities found")
-                } else {
-                    print("error \(response.debugDescription)")
+                    completion(decode, response)
                 }
             } else {
-                activities = []
-                print("error when executing request : \(response.debugDescription)")
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return activities
     }
     
     //MARK: GET ACTIVITY BY ID
-    public func getActivityById(activityId: String) -> ActivityResponseModel? {
-        var activity: ActivityResponseModel?
+    public func getActivityById(activityId: String, completion: @escaping (ActivityResponseModel?, URLResponse?) -> Void) async {
         
-        let request = AF.request("\(baseUrl)/\(activityId)", method: .get, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        await ApiManager.shared.request("\(baseUrl)/\(activityId)", httpMethod: "GET") { data, response in
+            if let data = data {
                 let decode = try? JSONDecoder().decode(ActivityResponseModel.self, from: data)
                 if let decode = decode {
-                    activity = decode
-                    print("activity found")
+                    completion(decode, response)
                 }
             } else {
-                activity = nil
-                print("error when executing request : \(response.debugDescription)")
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return activity
     }
     
     //MARK: CREATE ACTIVITY
-    public func createActivity(body: ActivityRequestModel) -> ActivityResponseModel? {
-        var activity: ActivityResponseModel?
+    public func createActivity(body: ActivityRequestModel, completion: @escaping (ActivityResponseModel?, URLResponse?) -> Void) async {
         
-        let request = AF.request(baseUrl, method: .post, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
+            if let data = data {
                 let decode = try? JSONDecoder().decode(ActivityResponseModel.self, from: data)
                 if let decode = decode {
-                    activity = decode
-                    print("activity found")
-                } else {
-                    print("error \(response.debugDescription)")
+                    completion(decode, response)
                 }
             } else {
-                activity = nil
-                print("error when executing request : \(response.debugDescription)")
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return activity
     }
     
     //MARK: MODIFY ACTIVITY
-    public func modifyActivity(body: ActivityRequestModel, activityId: String) -> ActivityResponseModel? {
-        var activity: ActivityResponseModel?
+    public func modifyActivity(body: ActivityRequestModel, activityId: String, completion: @escaping (ActivityResponseModel?, URLResponse?) -> Void) async {
         
-        let request = AF.request("\(baseUrl)/\(activityId)", method: .put, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        await ApiManager.shared.request("\(baseUrl)/\(activityId)", httpMethod: "PUT", body: body) { data, response in
+            if let data = data {
                 let decode = try? JSONDecoder().decode(ActivityResponseModel.self, from: data)
                 if let decode = decode {
-                    activity = decode
-                    print("activity modified")
-                } else {
-                    print("error \(response.debugDescription)")
+                    completion(decode, response)
                 }
             } else {
-                activity = nil
-                print("error when executing request : \(response.debugDescription)")
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return activity
     }
     
     //MARK: DELETE ACTIVITY BY ID
-    public func deleteActivityById(activityId: String) -> Bool {
-        var isDelete: Bool = false
+    public func deleteActivityById(activityId: String, completion: @escaping (Bool?, URLResponse?) -> Void) async {
         
-        let request = AF.request("\(baseUrl)/\(activityId)", method: .delete, interceptor: ApiManager.shared.self)
-        request.response { response in
-            if let response = response.response {
+        await ApiManager.shared.request("\(baseUrl)/\(activityId)", httpMethod: "DELETE") { _, response in
+            if let response = response as? HTTPURLResponse {
                 if response.statusCode == 200 {
-                    isDelete = true
-                    print("activity deleted")
+                    completion(true, response)
                 } else {
-                    print("\(response.debugDescription)")
+                    completion(false, response)
                 }
             } else {
-                isDelete = false
-                print("\(response.debugDescription)")
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return isDelete
     }
 }

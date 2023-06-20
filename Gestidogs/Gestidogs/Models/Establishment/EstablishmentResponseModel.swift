@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct EstablishmentResponseModel {
+struct EstablishmentResponseModel { 
     let id: String
     let owner: UserResponseModel
     let name: String
     let description: String
     let address: String
-    let location: [Int]
+//    let location: [Int]
     let phoneNumber: String
     let emailAddress: String
     let employees: [UserResponseModel]
@@ -28,7 +28,7 @@ extension EstablishmentResponseModel: Codable, Identifiable {
         case name = "name"
         case description = "description"
         case address = "address"
-        case location = "location"
+//        case location = "location"
         case phoneNumber = "phoneNumber"
         case emailAddress = "emailAddress"
         case employees = "employees"

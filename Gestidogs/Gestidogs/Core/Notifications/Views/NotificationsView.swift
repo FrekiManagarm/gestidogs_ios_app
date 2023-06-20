@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct NotificationsView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+        }
+        .navigationTitle("Mes Notifications")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .foregroundColor(Color("blueGray80001"))
+                }
+
+            }
+        }
     }
 }
 

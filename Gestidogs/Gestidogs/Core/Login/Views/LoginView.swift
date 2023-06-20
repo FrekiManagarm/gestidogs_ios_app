@@ -53,8 +53,8 @@ struct LoginView: View {
                         ProgressView()
                     } else {
                         Button("Me connecter", action: {
-                            withAnimation(.easeInOut) {
-                                login()
+                            Task {
+                                await login()
                             }
                         })
                         .padding()
@@ -85,24 +85,39 @@ struct LoginView: View {
 }
 
 extension LoginView {
-    func login() {
+    func login() async {
         print("pass in this function")
         isLoading = true
-        let request = AF.request("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", method: .post, parameters: LoginRequest(email: loginViewModel.emailTxt, password: loginViewModel.passwdTxt), encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
+        await ApiManager.shared.request("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", httpMethod: "POST", body: LoginRequest(email: loginViewModel.emailTxt, password: loginViewModel.passwdTxt)) { data, response in
+            if let data = data {
                 let decode = try? JSONDecoder().decode(LoginModel.self, from: data)
                 if let decode = decode {
-                    print("decode of response \(decode)")
-                    userManager.signIn(accessToken: decode.tokens.accessToken, refreshToken: decode.tokens.refreshToken)
+                    UserDefaults.standard.set(decode.tokens.accessToken, forKey: "accessToken")
+                    UserDefaults.standard.set(decode.tokens.refreshToken, forKey: "refreshToken")
+                    UserDefaults.standard.set(true, forKey: "isSignedIn")
+                    UserDefaults.standard.synchronize()
                     isLoading = false
                     appState.loginState = .selectEstablishment
-                    print("\(appState.loginState)")
                 }
             } else {
-                print("\(response.debugDescription)")
+                print("error login \(response.debugDescription)")
             }
         }
+//        let request = AF.request("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", method: .post, parameters: LoginRequest(email: loginViewModel.emailTxt, password: loginViewModel.passwdTxt), encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
+//        request.responseData { response in
+//            if let data = response.value {
+//                let decode = try? JSONDecoder().decode(LoginModel.self, from: data)
+//                if let decode = decode {
+//                    print("decode of response \(decode)")
+//                    userManager.signIn(accessToken: decode.tokens.accessToken, refreshToken: decode.tokens.refreshToken)
+//                    isLoading = false
+//                    appState.loginState = .selectEstablishment
+//                    print("\(appState.loginState)")
+//                }
+//            } else {
+//                print("\(response.debugDescription)")
+//            }
+//        }
     }
 }
 

@@ -11,22 +11,24 @@ struct DogCenterWidget: View {
     
     let dogs: [DogsResponseModel]
     
+    init(dogs: [DogsResponseModel]) {
+        self.dogs = dogs
+        print("dogs \(self.dogs)")
+    }
+    
     var body: some View {
         VStack {
             HStack {
                 Text("Mes chiens")
                     .padding(.leading, 15)
                     .foregroundColor(Color.white)
-//                    .foregroundColor(Color("blueGray80001"))
                     .fontWeight(.semibold)
                     .font(.system(size: 30))
                 Spacer()
                 NavigationLink("Voir plus", destination: DogsListView())
                     .foregroundColor(Color("blueGray80001"))
-//                    .foregroundColor(.white)
                     .font(.system(size: 15))
                     .tint(Color("gray100"))
-//                    .tint(Color("blueGray80001"))
                     .buttonStyle(.borderedProminent)
                     .controlSize(.small)
                     .fontWeight(.medium)
@@ -41,7 +43,6 @@ struct DogCenterWidget: View {
                     }
                 }
                 .padding(.leading, 10)
-//                .shadow(radius: 5, y: 5)
             }
         }
     }

@@ -23,7 +23,7 @@ struct ActivityCenterWidget: View {
                     .font(.system(size: 30))
 
                 Spacer()
-                NavigationLink("Voir plus", destination: ActivityCenterDetails())
+                NavigationLink("Voir plus", destination: ActivityListView())
                     .foregroundColor(Color("blueGray80001"))
 //                    .foregroundColor(.white)
                     .font(.system(size: 15))

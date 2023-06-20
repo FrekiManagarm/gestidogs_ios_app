@@ -9,15 +9,47 @@ import Foundation
 
 class ChooseOrCreateEstablishmentViewModel: ObservableObject {
     @Published var establishmentsOfOwner: [EstablishmentResponseModel] = []
-    lazy var establishmentRepo = EstablishmentRepository()
-    lazy var userManager = UserManager()
     
-    func getEstablishments(ownerId: String) {
+    //MARK: Properties for NewEstablishmentForm
+    @Published var establishmentName : String = ""
+    @Published var description: String = ""
+    @Published var address: String = ""
+    @Published var phoneNumber: String = ""
+    @Published var emailAddress: String = ""
+    
+    lazy var establishmentRepo = EstablishmentRepository()
+    var userManager = UserManager.shared
+    
+    func getEstablishments() async {
         
-        let responseApi = establishmentRepo.getAllEstablishments(ownerId: ownerId)
-        
-        if responseApi.isEmpty {
-            
+        guard let ownerId = userManager.getUserConnectedId() else {
+            print("pas de ownerId")
+            return
         }
+        
+        await establishmentRepo.getAllEstablishments(ownerId: ownerId) { data, response in
+            if let data = data {
+                DispatchQueue.main.async {
+                    print("data establishments \(data)")
+                    self.establishmentsOfOwner = data
+                }
+            }
+        }
+    }
+    
+    func createNewEstablishment() async {
+        guard let ownerId = userManager.getUserConnectedId() else {
+            return
+        }
+        
+        await establishmentRepo.createEstablishment(body: EstablishmentRequestModel(owner: ownerId, name: establishmentName, description: description, address: address, phoneNumber: phoneNumber, emailAddress: emailAddress), completion: { data, response in
+            if let data = data {
+                DispatchQueue.main.async {
+                    print("establishment created \(data)")
+                }
+            } else {
+                print("response in vm \(response.debugDescription)")
+            }
+        })
     }
 }

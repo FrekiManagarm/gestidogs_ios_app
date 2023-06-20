@@ -1,23 +1,23 @@
 //
-//  DogsListView.swift
+//  TeamListView.swift
 //  Gestidogs
 //
-//  Created by Mathieu CHAMBAUD on 01/06/2023.
+//  Created by Mathieu Chambaud on 20/06/2023.
 //
 
 import SwiftUI
 
-struct DogsListView: View {
+struct TeamListView: View {
     
-    @Environment(\.dismiss) private var dismiss
-    @State var showDogsForm: Bool = false
+    @Environment(\.dismiss) var dismiss
+    @State var showTeamForm: Bool = false
     
     var body: some View {
         VStack {
-            //MARK: Some details of dogs
+            //MARK: Display team content
         }
+        .navigationTitle("Mon équipe")
         .navigationBarBackButtonHidden(true)
-        .navigationTitle("Mes Chiens")
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -28,23 +28,24 @@ struct DogsListView: View {
                         .foregroundColor(Color("blueGray80001"))
                 }
             }
-            ToolbarItem {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    showDogsForm.toggle()
+                    showTeamForm.toggle()
                 } label: {
                     Image(systemName: "plus")
                         .foregroundColor(Color("blueGray80001"))
                 }
+
             }
         }
-        .sheet(isPresented: $showDogsForm) {
-            NewDogForm()
+        .sheet(isPresented: $showTeamForm) {
+            
         }
     }
 }
 
-struct DogsListView_Previews: PreviewProvider {
+struct TeamListView_Previews: PreviewProvider {
     static var previews: some View {
-        DogsListView()
+        TeamListView()
     }
 }

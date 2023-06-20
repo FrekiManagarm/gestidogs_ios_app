@@ -11,7 +11,9 @@ struct ChooseOrCreateEstablishmentView: View {
     
     var userManager = UserManager()
     @StateObject var viewModel: ChooseOrCreateEstablishmentViewModel = ChooseOrCreateEstablishmentViewModel()
+    @StateObject var appState: AppState = AppState()
     @State var showEstablishmentForm: Bool = false
+    @State var establishmentId: String = ""
     
     
     var body: some View {
@@ -53,43 +55,71 @@ struct ChooseOrCreateEstablishmentView: View {
                         
                         ScrollView {
                             ForEach(viewModel.establishmentsOfOwner) { establishment in
-                                HStack {
+                                VStack {
                                     Text(establishment.name)
+                                        .font(.system(size: 20))
+                                        .foregroundColor(establishmentId == establishment.id ? .white : Color.black)
                                 }
-                                .background(.white)
-                                .padding()
+                                .padding(20)
+                                .padding(.horizontal, 20)
+                                .background(establishmentId == establishment.id ? Color("blueGray80001") : .white)
+                                .cornerRadius(25)
+                                .onTapGesture {
+                                    establishmentId = establishment.id
+                                }
                             }
                         }
                         .frame(height: 200)
-                        .onAppear {
-//                            viewModel.getEstablishments(ownerId: <#T##String#>)
+                        .task(priority: .userInitiated) {
+                            await viewModel.getEstablishments()
                         }
 
-                        Button {
-                            showEstablishmentForm.toggle()
-                        } label: {
-                            HStack {
-                                Image(systemName: "plus")
-                                    .frame(width: 20, height: 20)
-                                    .foregroundColor(Color("blueGray80001"))
-                                    .background(.white)
-                                    .cornerRadius(100)
-                                Text("Créer un nouvel établissement")
-                                    .foregroundColor(.white)
+                        if establishmentId == "" {
+                            Button {
+                                showEstablishmentForm.toggle()
+                            } label: {
+                                HStack {
+                                    Image(systemName: "plus")
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(Color("blueGray80001"))
+                                        .background(.white)
+                                        .cornerRadius(100)
+                                    Text("Créer un nouvel établissement")
+                                        .foregroundColor(.white)
+                                }
+                                .padding()
                             }
+                            .frame(height: 55)
+                            .background(Color("blueGray80001"))
+                            .cornerRadius(100)
                             .padding()
+                            .padding(.horizontal)
+                        } else {
+                            Button {
+                                UserDefaults.standard.set(establishmentId, forKey: "establishmentId")
+                                withAnimation(.spring()) {
+                                    appState.loginState = .home
+                                }
+                            } label: {
+                                HStack {
+                                    Text("Continuer")
+                                    Image(systemName: "arrow.right")
+                                }
+                                .padding()
+                            }
+                            .frame(width: UIScreen.main.bounds.width - 32, height: 55)
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                            .background(Color("greenA600"))
+                            .cornerRadius(15)
+                            .shadow(radius: 2, y: 5)
                         }
-                        .frame(height: 55)
-                        .background(Color("blueGray80001"))
-                        .cornerRadius(100)
-                        .padding()
-                        .padding(.horizontal)
                     }
                 }
             }
             .ignoresSafeArea()
             .sheet(isPresented: $showEstablishmentForm) {
-                
+                NewEstablishmentForm(showForm: $showEstablishmentForm)
             }
         }
     }

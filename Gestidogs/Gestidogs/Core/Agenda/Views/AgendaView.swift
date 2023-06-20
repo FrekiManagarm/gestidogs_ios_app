@@ -14,52 +14,44 @@ struct AgendaView: View {
     @State var newSession: Bool = false
     
     var body: some View {
-        ZStack {
-            RadialGradient(
-                gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
-                center: .topLeading,
-                startRadius: 1,
-                endRadius: UIScreen.main.bounds.height)
-                .ignoresSafeArea()
-            
-            VStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(.white)
-                        .padding()
-                        .shadow(radius: 5, x: 5, y: 5)
-                    
-                    AgendaUIViewRepresentable(selectedDate: $selectedDate)
-                        .frame(height: 400)
-                        .padding(20)
-                }
+            ZStack {
+                RadialGradient(
+                    gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+                    center: .topLeading,
+                    startRadius: 1,
+                    endRadius: UIScreen.main.bounds.height)
+                    .ignoresSafeArea()
                 
-                Divider()
-                    .padding(.horizontal)
-
-                ScrollView(.vertical) {
-                    if selectedDate != nil {
-                        ForEach(0..<5, id: \.self) { _ in
-                            ZStack {
-                                
-                            }
-                            .background(Color(.gray))
-                        }
-                    } else {
-                        Text("Aucune date sélectionnée")
+                VStack {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(.white)
+                            .padding()
+                            .shadow(radius: 5, x: 5, y: 5)
+                        
+                        AgendaUIViewRepresentable(selectedDate: $selectedDate)
+                            .frame(height: 400)
+                            .padding(20)
                     }
-                }
-                Spacer()
-            }
-            .toolbar {
-                Button {
-                    newSession.toggle()
-                } label: {
-                    Image(systemName: "plus")
-                }
+                    
+                    Divider()
+                        .padding(.horizontal)
 
-        }
-        }
+                    ScrollView(.vertical) {
+                        if selectedDate != nil {
+                            ForEach(0..<5, id: \.self) { _ in
+                                ZStack {
+                                    
+                                }
+                                .background(Color(.gray))
+                            }
+                        } else {
+                            Text("Aucune date sélectionnée")
+                        }
+                    }
+                    Spacer()
+                }
+            }        
     }
 }
 

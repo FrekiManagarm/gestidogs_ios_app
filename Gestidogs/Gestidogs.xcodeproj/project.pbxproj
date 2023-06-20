@@ -40,6 +40,14 @@
 		0154ACF52A39AC9200622587 /* DogsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF42A39AC9200622587 /* DogsRepository.swift */; };
 		0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */; };
 		0154ACF92A3A53AD00622587 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF82A3A53AD00622587 /* LoginRequest.swift */; };
+		01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72AA2A407DD3006433CE /* SplashView.swift */; };
+		01CC72AE2A408973006433CE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 01CC72AD2A408973006433CE /* Lottie */; };
+		01CC72B02A40A956006433CE /* splash_view_gestidogs.json in Resources */ = {isa = PBXBuildFile; fileRef = 01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */; };
+		01CC72B22A40D566006433CE /* NewEstablishmentForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72B12A40D566006433CE /* NewEstablishmentForm.swift */; };
+		01CC72B42A41AFD2006433CE /* NewDogForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72B32A41AFD2006433CE /* NewDogForm.swift */; };
+		01CC72B92A41B386006433CE /* TeamListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72B82A41B386006433CE /* TeamListView.swift */; };
+		01CC72BB2A41B39B006433CE /* TeamListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72BA2A41B39B006433CE /* TeamListViewModel.swift */; };
+		01CC72BD2A41B3A9006433CE /* TeamListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72BC2A41B3A9006433CE /* TeamListWidget.swift */; };
 		01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6812A2B65290054C16A /* OnboardingWidget.swift */; };
 		01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6832A2B65390054C16A /* OnboardingView.swift */; };
 		01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */; };
@@ -144,6 +152,13 @@
 		0154ACF42A39AC9200622587 /* DogsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsRepository.swift; sourceTree = "<group>"; };
 		0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesRepository.swift; sourceTree = "<group>"; };
 		0154ACF82A3A53AD00622587 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		01CC72AA2A407DD3006433CE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_view_gestidogs.json; sourceTree = "<group>"; };
+		01CC72B12A40D566006433CE /* NewEstablishmentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEstablishmentForm.swift; sourceTree = "<group>"; };
+		01CC72B32A41AFD2006433CE /* NewDogForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDogForm.swift; sourceTree = "<group>"; };
+		01CC72B82A41B386006433CE /* TeamListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListView.swift; sourceTree = "<group>"; };
+		01CC72BA2A41B39B006433CE /* TeamListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewModel.swift; sourceTree = "<group>"; };
+		01CC72BC2A41B3A9006433CE /* TeamListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListWidget.swift; sourceTree = "<group>"; };
 		01E7D6812A2B65290054C16A /* OnboardingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWidget.swift; sourceTree = "<group>"; };
 		01E7D6832A2B65390054C16A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -225,6 +240,7 @@
 			files = (
 				014E3FEC2A386EF2007C4E2F /* Interceptor in Frameworks */,
 				73BA4BF43F202F1C07B963C5 /* Pods_Gestidogs.framework in Frameworks */,
+				01CC72AE2A408973006433CE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +327,9 @@
 		012BF73E2A33544400A4C266 /* TeamList */ = {
 			isa = PBXGroup;
 			children = (
+				01CC72B72A41B372006433CE /* Widgets */,
+				01CC72B62A41B364006433CE /* ViewModel */,
+				01CC72B52A41B356006433CE /* Views */,
 			);
 			path = TeamList;
 			sourceTree = "<group>";
@@ -363,6 +382,30 @@
 				0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		01CC72B52A41B356006433CE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01CC72B82A41B386006433CE /* TeamListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		01CC72B62A41B364006433CE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01CC72BA2A41B39B006433CE /* TeamListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01CC72B72A41B372006433CE /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				01CC72BC2A41B3A9006433CE /* TeamListWidget.swift */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		01E7D67D2A2B64F90054C16A /* Onboarding */ = {
@@ -609,6 +652,7 @@
 			isa = PBXGroup;
 			children = (
 				5F32C5B62A28CC8A0034AB6F /* DogsListView.swift */,
+				01CC72B32A41AFD2006433CE /* NewDogForm.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -662,6 +706,7 @@
 				5F8BFD252A262D330007E367 /* Core */,
 				5F8BFD242A262D2C0007E367 /* App */,
 				5F8BFD1A2A262CE90007E367 /* Assets.xcassets */,
+				01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */,
 				5F8BFD1C2A262CE90007E367 /* Preview Content */,
 			);
 			path = Gestidogs;
@@ -699,6 +744,7 @@
 				5F8BFD2D2A262DBB0007E367 /* Profile */,
 				5F8BFD2C2A262DAE0007E367 /* Agenda */,
 				5F8BFD2A2A262D770007E367 /* Home */,
+				01CC72AA2A407DD3006433CE /* SplashView.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -831,6 +877,7 @@
 			isa = PBXGroup;
 			children = (
 				5F8C93322A2A19A000F39770 /* ChooseOrCreateEstablishmentView.swift */,
+				01CC72B12A40D566006433CE /* NewEstablishmentForm.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1001,6 +1048,7 @@
 			name = Gestidogs;
 			packageProductDependencies = (
 				014E3FEB2A386EF2007C4E2F /* Interceptor */,
+				01CC72AD2A408973006433CE /* Lottie */,
 			);
 			productName = Gestidogs;
 			productReference = 5F8BFD132A262CE70007E367 /* Gestidogs.app */;
@@ -1032,6 +1080,7 @@
 			mainGroup = 5F8BFD0A2A262CE70007E367;
 			packageReferences = (
 				014E3FEA2A386EF2007C4E2F /* XCRemoteSwiftPackageReference "Interceptor" */,
+				01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 5F8BFD142A262CE70007E367 /* Products */;
 			projectDirPath = "";
@@ -1048,6 +1097,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F8BFD1E2A262CE90007E367 /* Preview Assets.xcassets in Resources */,
+				01CC72B02A40A956006433CE /* splash_view_gestidogs.json in Resources */,
 				5F8BFD1B2A262CE90007E367 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1123,6 +1173,7 @@
 				012BF7452A33553500A4C266 /* ActivityListViewModel.swift in Sources */,
 				5F157C362A277CDA00B4C2FE /* DogsRequestModel.swift in Sources */,
 				5F825F312A2F257A001C6EB5 /* TeamMateDetailsView.swift in Sources */,
+				01CC72BD2A41B3A9006433CE /* TeamListWidget.swift in Sources */,
 				5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */,
 				0154ACE72A39AB9F00622587 /* UserRepository.swift in Sources */,
 				01E7D6892A2B657E0054C16A /* Extension.swift in Sources */,
@@ -1138,6 +1189,7 @@
 				5F157C452A2791E800B4C2FE /* NavBar.swift in Sources */,
 				5F8BFD442A262F380007E367 /* AgendaViewModel.swift in Sources */,
 				5FC9225E2A30AC0500E78516 /* ObservationRequestModel.swift in Sources */,
+				01CC72B42A41AFD2006433CE /* NewDogForm.swift in Sources */,
 				5FC922602A30AC1400E78516 /* ObservationResponseModel.swift in Sources */,
 				5F157C152A2777CB00B4C2FE /* ProfileView.swift in Sources */,
 				5F743ADC2A2F63E50023D22D /* EmailPasswordFields.swift in Sources */,
@@ -1151,6 +1203,7 @@
 				5F157C302A277C9600B4C2FE /* SessionResponseModel.swift in Sources */,
 				0109C9B02A333CC300544C9C /* TeamCell.swift in Sources */,
 				5F8BFD2F2A262DCE0007E367 /* AppState.swift in Sources */,
+				01CC72B22A40D566006433CE /* NewEstablishmentForm.swift in Sources */,
 				01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */,
 				5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */,
 				5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */,
@@ -1160,6 +1213,7 @@
 				5F8C93532A2A1B2F00F39770 /* NotificationsWidget.swift in Sources */,
 				5F8C93332A2A19A000F39770 /* ChooseOrCreateEstablishmentView.swift in Sources */,
 				0109C9B22A333CF200544C9C /* TeamCenterDetailsView.swift in Sources */,
+				01CC72B92A41B386006433CE /* TeamListView.swift in Sources */,
 				5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */,
 				5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */,
 				0154ACF52A39AC9200622587 /* DogsRepository.swift in Sources */,
@@ -1177,6 +1231,7 @@
 				5F157C282A277C4500B4C2FE /* UserResponseModel.swift in Sources */,
 				0109C9BA2A333DF600544C9C /* SessionCell.swift in Sources */,
 				01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */,
+				01CC72BB2A41B39B006433CE /* TeamListViewModel.swift in Sources */,
 				010E1E0E2A3207BA002E0DD1 /* ColorConstants.swift in Sources */,
 				5F8C93472A2A1A5400F39770 /* RegisterView.swift in Sources */,
 				5F8C93352A2A19B500F39770 /* ChooseOrCreateEstablishmentViewModel.swift in Sources */,
@@ -1190,6 +1245,7 @@
 				014E3FE92A374377007C4E2F /* LoginModel.swift in Sources */,
 				5F32C5BC2A28E36D0034AB6F /* ActivityCellWidget.swift in Sources */,
 				010E1E102A3207C9002E0DD1 /* ImagesConstants.swift in Sources */,
+				01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */,
 				012BF7472A33554C00A4C266 /* ActivityListWidget.swift in Sources */,
 				5F157C322A277CA700B4C2FE /* SessionRequestModel.swift in Sources */,
 				5F157C172A27780300B4C2FE /* HolidaysResponseModel.swift in Sources */,
@@ -1415,6 +1471,14 @@
 				minimumVersion = 0.0.1;
 			};
 		};
+		01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1422,6 +1486,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 014E3FEA2A386EF2007C4E2F /* XCRemoteSwiftPackageReference "Interceptor" */;
 			productName = Interceptor;
+		};
+		01CC72AD2A408973006433CE /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -13,11 +13,21 @@ class AppState: ObservableObject {
         case home
         case selectEstablishment
         case onBoarding
+        case loadingView
     }
     
-    @Published var loginState: LoginState = .onBoarding
-    @Published var user: UserResponseModel?
-    lazy var userRepo = UserRepository()
+    @Published var loginState: LoginState = .loadingView
+    @Published var userId: String = ""
+    var userManager = UserManager.shared
+    var userRepo = UserRepository()
+    
+    init() {
+        guard let userId = userManager.getUserConnectedId() else {
+            return
+        }
+        self.userId = userId
+        print("userid \(userId)")
+    }
     
     func userDidLogin() {
         if UserDefaults.standard.string(forKey: "accessToken") == nil {
@@ -29,10 +39,18 @@ class AppState: ObservableObject {
         }
     }
     
-    func fetchUser() {
-        let request = userRepo.userMe()
-        if let request = request {
-            print("request \(request)")
+    func fetchUser() async {
+        await userRepo.userMe { data, response in
+            if let data = data {
+                print("data of user me \(data)")
+                DispatchQueue.main.async {
+                    print("\(data.id)")
+                    UserDefaults.standard.set(data.id, forKey: "userConnectedId")
+                    print("userId set")
+                }
+            } else {
+                print("can't find user \(response.debugDescription)")
+            }
         }
     }
 }

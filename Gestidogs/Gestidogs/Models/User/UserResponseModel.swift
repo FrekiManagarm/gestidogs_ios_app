@@ -10,11 +10,13 @@ import Foundation
 struct UserResponseModel {
     let id: String
     let avatarUrl: String
+    let activities: [ActivityResponseModel]
     let emailAddress: String
     let firstName: String
     let lastName: String
     let role: String
     let registeredAt: String
+    let refreshToken: String
     let lastConnectionAt: String
     let v: Int
 }
@@ -22,6 +24,8 @@ struct UserResponseModel {
 extension UserResponseModel: Identifiable, Codable {
     enum CodingKeys: String, CodingKey {
         case id = "_id"
+        case activities = "activities"
+        case refreshToken = "refreshToken"
         case avatarUrl = "avatarUrl"
         case emailAddress = "emailAddress"
         case firstName = "firstname"

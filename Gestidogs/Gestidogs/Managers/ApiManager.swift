@@ -5,85 +5,80 @@
 //  Created by Mathieu CHAMBAUD on 31/05/2023.
 //
 
-import Alamofire
+import Foundation
 
 class ApiManager {
     static let shared: ApiManager = {
         return ApiManager()
     }()
-    typealias completionHandler = ((Data?, URLResponse?, Error?) -> Void)
-    var retryLimit = 3
+    typealias completionHandler = ((Data?, URLResponse?) -> Void)
+    var retryLimit = 5
     let urlToRefresh = "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh"
     
-    func request(_ urlString: String, httpMethod: String? = "GET", body: Encodable? = nil, completion: @escaping completionHandler) {
+    func request(_ urlString: String, httpMethod: String? = "GET", body: Encodable? = nil, completion: @escaping completionHandler) async {
         guard let url = URL(string: urlString) else {
             return
         }
         
-        guard let accessToken = UserManager.shared.getAccessToken() else {
+        guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else {
             return
         }
         
         var apiRequest = URLRequest(url: url)
         apiRequest.httpMethod = httpMethod
-        apiRequest.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        if let body = body {
+            apiRequest.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        }
         apiRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         apiRequest.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        requestWithRetry(with: apiRequest) { data, response, error in
-            if let error = error {
-                completion(nil, response, error)
-                return
-            }
-            
+        await requestWithRetry(with: apiRequest) { data, response in
             guard let response = response as? HTTPURLResponse else {
                 return
             }
             
             if response.statusCode == 200, let data = data {
                 print("response done")
-                completion(data, response, error)
+                completion(data, response)
             } else {
                 print("error encountered \(response.statusCode) \(response.debugDescription))")
             }
         }
     }
     
-    private func requestWithRetry(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if error != nil {
-                completionHandler(data, response, error)
-                return
-            }
+    private func requestWithRetry(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?) -> Void) async {
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let response = response as? HTTPURLResponse else {
                 return
             }
             
             if (200...299).contains(response.statusCode) {
-                completionHandler(data, response, error)
-            } else if self.retryLimit > 0 && (401...403).contains(response.statusCode) {
-                print("received status code \(response.statusCode). RETRYING RECURSIVE CALL")
-                self.refreshToken { isSuccess in
-                    isSuccess ? completionHandler(data, response, error) : self.requestWithRetry(with: request, completionHandler: completionHandler)
+                completionHandler(data, response)
+            } else if retryLimit > 0 && response.statusCode == 401 {
+                print("received status code \(response.statusCode). RETRYING RECURSIVE CALL !")
+                await self.refreshToken { isSuccess in
+                    isSuccess ? completionHandler(data, response) : await self.requestWithRetry(with: request, completionHandler: completionHandler)
                 }
                 self.retryLimit -= 1
-            } else {
-                print("Received status code \(response.statusCode). EXIT WITH FAILURE")
-                completionHandler(data, response, error)
             }
+        } catch {
+            print("something wen't wrong")
         }
-        task.resume()
     }
 }
 
 extension ApiManager {
 
-    func refreshToken(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        print("passed in refreshToken function")
-        guard let refreshToken = UserManager.shared.getRefreshToken() else {
+    func refreshToken(completion: @escaping (_ isSuccess: Bool) async -> Void) async {
+//        print("passed in refreshToken function")
+        guard let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") else {
             return
         }
+        
+//        print("refreshToken \(refreshToken)")
+        
         guard let url = URL(string: "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh") else {
             return
         }
@@ -92,19 +87,25 @@ extension ApiManager {
         urlRequest.httpMethod = "GET"
         urlRequest.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
         
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, _, _ in
-            if let data = data {
-                let decode = try? JSONDecoder().decode(TokensResponseModel.self, from: data)
-                if let decode = decode {
-                    print("decode response : \(decode)")
-                    UserManager.shared.signIn(accessToken: decode.accessToken, refreshToken: decode.refreshToken)
-                    completion(true)
+        do {
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    let decode = try JSONDecoder().decode(TokensResponseModel.self, from: data)
+//                    print("decode response in refresh token \(decode)")
+                    UserDefaults.standard.set(decode.accessToken, forKey: "accessToken")
+                    UserDefaults.standard.set(decode.refreshToken, forKey: "refreshToken")
+                    UserDefaults.standard.synchronize()
+                    await completion(true)
                 } else {
-                    print("something wen't wrong when reseting tokens in user default")
-                    completion(false)
+                    print("response error from refreshToken with statusCode \(response.statusCode) => \(response.debugDescription)")
+                    await completion(false)
                 }
+            } else {
+                print("we don't have the good response => \(response.debugDescription)")
             }
+        } catch {
+            print("something wen't wrong")
         }
-        task.resume()
     }
 }
