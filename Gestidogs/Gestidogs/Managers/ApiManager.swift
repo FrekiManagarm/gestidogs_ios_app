@@ -38,7 +38,7 @@ class ApiManager {
             }
             
             if response.statusCode == 200, let data = data {
-                print("response done")
+                print("response done : \(response.debugDescription)")
                 completion(data, response)
             } else {
                 print("error encountered \(response.statusCode) \(response.debugDescription))")

@@ -11,11 +11,6 @@ struct DogCenterWidget: View {
     
     let dogs: [DogsResponseModel]
     
-    init(dogs: [DogsResponseModel]) {
-        self.dogs = dogs
-        print("dogs \(self.dogs)")
-    }
-    
     var body: some View {
         VStack {
             HStack {

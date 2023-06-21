@@ -6,25 +6,43 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ActivityCell: View {
     
     @State var showDetailsView: Bool = false
+    let activity: ActivityResponseModel
     
     var body: some View {
         ZStack {
             HStack {
-                Image("onboarding_3_img")
+                KFImage(URL(string: activity.imageUrl))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 150, height: 150)
                     .cornerRadius(25)
                     .padding(10)
+                
                 VStack {
-                    Text("Dressage")
-                        .font(.body)
+                    Text(activity.title)
+                        .font(.system(size: 20))
+                        .padding(.top, 20)
+                        .fontWeight(.bold)
+                    Spacer()
+                    HStack {
+                        Image(systemName: "clock")
+                        Text("\(activity.duration) min")
+                            .font(.system(size: 15))
+                            .fontWeight(.medium)
+                    }
+                    .font(.subheadline)
+                    Spacer()
+                    Text("\(activity.price) €")
+                        .font(.system(size: 15))
+                        .padding(.bottom, 20)
+                        .fontWeight(.medium)
                 }
-                .padding(.leading)
+                .padding(.leading, 10)
                 Spacer()
             }
             .foregroundColor(.black)

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class SessionRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.sessionsUrl)"
@@ -16,9 +15,11 @@ class SessionRepository {
 
         await ApiManager.shared.request(baseUrl + "?date=\(date ?? Date())" + "&reserved=\(reserved ?? false)" + "&educatorId=\(educatorId ?? "")" + "&activity=\(activityId ?? "")" + "&establishmentId=\(establishmentId ?? "")", httpMethod: "GET") { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode([SessionResponseModel].self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode([SessionResponseModel].self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -30,12 +31,13 @@ class SessionRepository {
     //MARK: GET SESSION BY ID
     public func getSessionsById(sessionId: String, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
         
-
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "GET") { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -49,9 +51,11 @@ class SessionRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)/remaining-places", httpMethod: "GET") { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(Int.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(Int.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -65,9 +69,11 @@ class SessionRepository {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -84,9 +90,11 @@ class SessionRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)/report", httpMethod: "POST", body: parameters) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -100,9 +108,11 @@ class SessionRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -116,7 +126,7 @@ class SessionRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "DELETE") { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 204 {
                     completion(true, response)
                     print("session is deleted")
                 } else {
@@ -134,7 +144,7 @@ class SessionRepository {
 
         await ApiManager.shared.request("\(baseUrl)/educators/\(educatorId)", httpMethod: "DELETE") { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 204 {
                     print("session deleted")
                     completion(true, response)
                 } else {
@@ -152,7 +162,7 @@ class SessionRepository {
 
         await ApiManager.shared.request("\(baseUrl)\(ApiConstants.activitiesUrl)/\(activityId)", httpMethod: "DELETE") { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 204 {
                     completion(true, response)
                     print("session deleted")
                 } else {

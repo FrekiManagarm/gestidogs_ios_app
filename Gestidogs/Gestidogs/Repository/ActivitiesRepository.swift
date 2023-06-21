@@ -16,9 +16,11 @@ class ActivitiesRepository {
         
         await ApiManager.shared.request(baseUrl + "?establishmentId=\(establishmentId ?? "")", httpMethod: "GET") { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode([ActivityResponseModel].self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode([ActivityResponseModel].self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -32,9 +34,11 @@ class ActivitiesRepository {
         
         await ApiManager.shared.request("\(baseUrl)/\(activityId)", httpMethod: "GET") { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(ActivityResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(ActivityResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -48,9 +52,11 @@ class ActivitiesRepository {
         
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(ActivityResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(ActivityResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -64,9 +70,11 @@ class ActivitiesRepository {
         
         await ApiManager.shared.request("\(baseUrl)/\(activityId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(ActivityResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(ActivityResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -80,7 +88,7 @@ class ActivitiesRepository {
         
         await ApiManager.shared.request("\(baseUrl)/\(activityId)", httpMethod: "DELETE") { _, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 204 {
                     completion(true, response)
                 } else {
                     completion(false, response)

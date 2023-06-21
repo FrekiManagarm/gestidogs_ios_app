@@ -34,9 +34,11 @@ class DogsRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(dogId)", httpMethod: "GET") { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(DogsResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(DogsResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -56,7 +58,6 @@ class DogsRepository {
                 } catch {
                     print("error : \(error)")
                 }
-                
             } else {
                 completion(nil, response)
                 print("bad request in repository => \(response.debugDescription)")
@@ -69,9 +70,11 @@ class DogsRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(dogId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(DogsResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(DogsResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -85,7 +88,7 @@ class DogsRepository {
 
         await ApiManager.shared.request(baseUrl + "?ownerId=\(ownerId ?? "")", httpMethod: "DELETE") { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 204 {
                     completion(true, response)
                 } else {
                     completion(false, response)
@@ -102,7 +105,7 @@ class DogsRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(dogId)", httpMethod: "DELETE") { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 204 {
                     completion(true, response)
                 } else {
                     completion(false, response)

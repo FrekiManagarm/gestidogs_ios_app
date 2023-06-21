@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class HolidaysRepository {
     private var baseUrl = "\(ApiConstants.apiUrlDev)\(ApiConstants.holidaysUrl)"
@@ -16,9 +15,11 @@ class HolidaysRepository {
 
         await ApiManager.shared.request(baseUrl + "?employeeId=\(employeeId ?? "")", httpMethod: "GET") { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode([HolidaysResponseModel].self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode([HolidaysResponseModel].self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -32,9 +33,11 @@ class HolidaysRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(holidayId)", httpMethod: "GET") { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(HolidaysResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(HolidaysResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -48,9 +51,11 @@ class HolidaysRepository {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(HolidaysResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(HolidaysResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -64,9 +69,11 @@ class HolidaysRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(holidayId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(HolidaysResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(HolidaysResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -81,7 +88,7 @@ class HolidaysRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(holidayId)", httpMethod: "DELETE") { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 204 {
                     completion(true, response)
                 } else {
                     completion(false, response)

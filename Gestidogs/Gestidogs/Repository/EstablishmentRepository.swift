@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class EstablishmentRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.establishmentUrl)"
@@ -54,9 +53,11 @@ class EstablishmentRepository {
         
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -71,9 +72,11 @@ class EstablishmentRepository {
         
         await ApiManager.shared.request("\(baseUrl)/\(establishmentId)/newEmployee", httpMethod: "POST", body: body) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode([UserResponseModel].self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode([UserResponseModel].self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -87,9 +90,11 @@ class EstablishmentRepository {
         
         await ApiManager.shared.request("\(baseUrl)/\(establishmentId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {
-                let decode = try? JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
-                if let decode = decode {
+                do {
+                    let decode = try JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
                     completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -104,7 +109,7 @@ class EstablishmentRepository {
         
         await ApiManager.shared.request("\(baseUrl)", httpMethod: "DELETE") { _, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 204 {
                     completion(true, response)
                 } else {
                     completion(false, response)
@@ -121,7 +126,7 @@ class EstablishmentRepository {
         
         await ApiManager.shared.request("\(baseUrl)/owner/\(ownerId)", httpMethod: "DELETE") { _, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 204 {
                     completion(true, response)
                 } else {
                     completion(false, response)

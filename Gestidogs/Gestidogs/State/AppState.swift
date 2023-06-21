@@ -21,14 +21,6 @@ class AppState: ObservableObject {
     var userManager = UserManager.shared
     var userRepo = UserRepository()
     
-    init() {
-        guard let userId = userManager.getUserConnectedId() else {
-            return
-        }
-        self.userId = userId
-        print("userid \(userId)")
-    }
-    
     func userDidLogin() {
         if UserDefaults.standard.string(forKey: "accessToken") == nil {
             loginState = .login

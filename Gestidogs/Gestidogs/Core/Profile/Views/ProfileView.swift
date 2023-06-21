@@ -73,22 +73,25 @@ struct ProfileView: View {
 //                .foregroundColor(Color("blueGray80001"))
                 
                 Spacer()
-                
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(.white)
-                        .frame(width: UIScreen.main.bounds.width - 32, height: 50)
                     
-                    Button("Déconnexion") {
-                        //TODO: action of deconnecting
+                Button {
+                    //MARK: Implement action of deconnecting
+                } label: {
+                    HStack {
+                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                        Text("Déconnexion")
                     }
                 }
+                .frame(width: UIScreen.main.bounds.width - 32, height: 55)
+                .background(Color("blueGray80001"))
+                .cornerRadius(25)
+                .foregroundColor(.white)
                 .padding(.bottom, 20)
                 
             }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
 }
 
 struct ProfileView_Previews: PreviewProvider {

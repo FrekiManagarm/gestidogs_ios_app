@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+class PaymentsRepository {
+    private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.paymentsUrl)"
+    
+    public func makePayment() async {
+        
+    }
+}

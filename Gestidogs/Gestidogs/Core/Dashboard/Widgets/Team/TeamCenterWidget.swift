@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TeamCenterWidget: View {
     
-    @State var showDetails: Bool = false
     let teamMates: [UserResponseModel]
     
     var body: some View {
@@ -37,23 +36,13 @@ struct TeamCenterWidget: View {
             .padding(-5)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
-                    ForEach(0..<10, id: \.self) { _ in
-                        TeamCell(avatarUrl: "https://i.imgur.com/mu73rN0.jpg")
+                    ForEach(teamMates) { mate in
+                        TeamCell(teamMate: mate)
                     }
                 }
                 .padding(.leading, 10)
 //                .shadow(radius: 5, y: 5)
             }
         }
-    }
-}
-
-
-
-
-
-struct TeamCenterWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        TeamCenterWidget(teamMates: [])
     }
 }

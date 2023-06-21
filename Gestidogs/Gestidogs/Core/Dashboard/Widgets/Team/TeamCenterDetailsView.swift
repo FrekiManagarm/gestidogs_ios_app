@@ -6,17 +6,25 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct TeamCenterDetailsView: View {
+    
+    let teamMate : UserResponseModel
+    
     var body: some View {
         VStack {
-            
+            Spacer()
+            KFImage(URL(string: teamMate.avatarUrl))
+                .resizable()
+                .frame(width: 200, height: 200)
+                .scaledToFill()
+                .cornerRadius(200)
+            Text(teamMate.firstName + " " + teamMate.lastName)
+                .foregroundColor(Color("blueGray80001"))
+                .font(.system(size: 25))
+                .fontWeight(.bold)
+            Spacer()
         }
-    }
-}
-
-struct TeamCenterDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        TeamCenterDetailsView()
     }
 }

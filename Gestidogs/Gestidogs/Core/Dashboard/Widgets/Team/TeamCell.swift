@@ -10,7 +10,7 @@ import Kingfisher
 
 struct TeamCell: View {
     
-    let avatarUrl: String
+    let teamMate: UserResponseModel
     @State var showDetailsView: Bool = false
     
     var body: some View {
@@ -20,7 +20,7 @@ struct TeamCell: View {
                 .fill(.white)
                 .frame(width: 105, height: 105)
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10))
-            KFImage(URL(string: avatarUrl))
+            KFImage(URL(string: teamMate.avatarUrl))
                 .resizable()
                 .frame(width: 100, height: 100)
                 .cornerRadius(100)
@@ -32,7 +32,7 @@ struct TeamCell: View {
                     }
                 }
                 .sheet(isPresented: $showDetailsView) {
-                    TeamCenterDetailsView()
+                    TeamCenterDetailsView(teamMate: teamMate)
                 }
         }
     }
