@@ -88,7 +88,7 @@ extension LoginView {
     func login() async {
         print("pass in this function")
         isLoading = true
-        await ApiManager.shared.request("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", httpMethod: "POST", body: LoginRequest(email: loginViewModel.emailTxt, password: loginViewModel.passwdTxt)) { data, response in
+        await ApiManager.shared.request("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", httpMethod: "POST", body: ["emailAddress": loginViewModel.emailTxt, "password": loginViewModel.passwdTxt]) { data, response in
             if let data = data {
                 let decode = try? JSONDecoder().decode(LoginModel.self, from: data)
                 if let decode = decode {
@@ -103,21 +103,6 @@ extension LoginView {
                 print("error login \(response.debugDescription)")
             }
         }
-//        let request = AF.request("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", method: .post, parameters: LoginRequest(email: loginViewModel.emailTxt, password: loginViewModel.passwdTxt), encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-//        request.responseData { response in
-//            if let data = response.value {
-//                let decode = try? JSONDecoder().decode(LoginModel.self, from: data)
-//                if let decode = decode {
-//                    print("decode of response \(decode)")
-//                    userManager.signIn(accessToken: decode.tokens.accessToken, refreshToken: decode.tokens.refreshToken)
-//                    isLoading = false
-//                    appState.loginState = .selectEstablishment
-//                    print("\(appState.loginState)")
-//                }
-//            } else {
-//                print("\(response.debugDescription)")
-//            }
-//        }
     }
 }
 

@@ -12,9 +12,8 @@ struct SessionRequestModel {
     let activity: String
     let establishment: String
     let status: String
-    let maximumCapacity: Int
-    let report: String
-    let beginDate: Date
+    let maximumCapacity: String
+    let beginDate: String
 }
 
 extension SessionRequestModel: Codable {
@@ -24,7 +23,6 @@ extension SessionRequestModel: Codable {
         case establishment = "establishment"
         case status = "status"
         case maximumCapacity = "maximumCapacity"
-        case report = "report"
         case beginDate = "beginDate"
     }
 }

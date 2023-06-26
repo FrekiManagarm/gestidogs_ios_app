@@ -12,15 +12,18 @@ struct AgendaView: View {
     @State var selectedDate: Date?
     @State var showDetailsView: Bool = false
     @State var newSession: Bool = false
+    @State var showNewSessionForm: Bool = false
+    @StateObject var agendaViewModel = AgendaViewModel()
     
     var body: some View {
+        NavigationStack {
             ZStack {
                 RadialGradient(
                     gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
                     center: .topLeading,
                     startRadius: 1,
                     endRadius: UIScreen.main.bounds.height)
-                    .ignoresSafeArea()
+                .ignoresSafeArea()
                 
                 VStack {
                     ZStack {
@@ -29,14 +32,14 @@ struct AgendaView: View {
                             .padding()
                             .shadow(radius: 5, x: 5, y: 5)
                         
-                        AgendaUIViewRepresentable(selectedDate: $selectedDate)
+                        AgendaUIViewRepresentable(selectedDate: $selectedDate,  sessions: $agendaViewModel.sessions)
                             .frame(height: 400)
                             .padding(20)
                     }
                     
                     Divider()
                         .padding(.horizontal)
-
+                    
                     ScrollView(.vertical) {
                         if selectedDate != nil {
                             ForEach(0..<5, id: \.self) { _ in
@@ -51,7 +54,24 @@ struct AgendaView: View {
                     }
                     Spacer()
                 }
-            }        
+            }
+            .task {
+                await agendaViewModel.getSessions(date: String(describing: selectedDate))
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showNewSessionForm.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(Color("whiteA700"))
+                    }
+                }
+            }
+            .sheet(isPresented: $showNewSessionForm) {
+                NewSessionForm(selectedDate: $selectedDate, showNewSessionForm: $showNewSessionForm)
+            }
+        }
     }
 }
 

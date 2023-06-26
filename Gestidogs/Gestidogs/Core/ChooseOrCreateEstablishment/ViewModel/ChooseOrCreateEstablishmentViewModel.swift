@@ -8,6 +8,7 @@
 import Foundation
 
 class ChooseOrCreateEstablishmentViewModel: ObservableObject {
+    
     @Published var establishmentsOfOwner: [EstablishmentResponseModel] = []
     
     //MARK: Properties for NewEstablishmentForm
@@ -17,9 +18,11 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
     @Published var phoneNumber: String = ""
     @Published var emailAddress: String = ""
     
+    //MARK: Modules
     lazy var establishmentRepo = EstablishmentRepository()
     var userManager = UserManager.shared
     
+    //MARK: Functions
     func getEstablishments() async {
         
         guard let ownerId = userManager.getUserConnectedId() else {
@@ -42,7 +45,16 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
             return
         }
         
-        await establishmentRepo.createEstablishment(body: EstablishmentRequestModel(owner: ownerId, name: establishmentName, description: description, address: address, phoneNumber: phoneNumber, emailAddress: emailAddress), completion: { data, response in
+        let body: [String: Any] = [
+            "owner": ownerId,
+            "name": establishmentName,
+            "description": description,
+            "address": address,
+            "phoneNumber": phoneNumber,
+            "emailAddress": emailAddress
+        ]
+        
+        await establishmentRepo.createEstablishment(body: body) { data, response in
             if let data = data {
                 DispatchQueue.main.async {
                     print("establishment created \(data)")
@@ -50,6 +62,6 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
             } else {
                 print("response in vm \(response.debugDescription)")
             }
-        })
+        }
     }
 }

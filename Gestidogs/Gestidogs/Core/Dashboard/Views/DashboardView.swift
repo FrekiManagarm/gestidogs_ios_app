@@ -12,7 +12,7 @@ struct DashboardView: View {
     @StateObject var dashboardViewModel: DashboardViewModel = DashboardViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 RadialGradient(
                     gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),

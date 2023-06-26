@@ -19,7 +19,7 @@ class DashboardViewModel: ObservableObject {
 }
 
 extension DashboardViewModel {
-    
+    //MARK: Get Functions
     func getDogsEstablishment() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
@@ -63,5 +63,55 @@ extension DashboardViewModel {
                 }
             }
         }
+    }
+}
+
+extension DashboardViewModel {
+    
+    //MARK: Create functions
+    func newDog() async {
+        
+        let body: [String: Any] = [
+            "ownerId": "",
+            "establishment": "",
+            "nationalId": "",
+            "name": "",
+            "imageUrl": "",
+            "gender": "",
+            "weight": 0,
+            "height": 0
+        ]
+        
+        await dogsRepo.createDog(body: body, completion: { data, response in
+            
+        })
+    }
+    
+    func newTeamMate() async {
+        let body: [String: Any] = [
+            "lastname": "",
+            "firstname": "",
+            "emailAddress": "",
+            "phoneNumber": "",
+            "password": ""
+        ]
+        
+        guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
+            return
+        }
+        
+        await establishmentRepo.createNewEmployee(establishmentId: establishmentId, body: body, completion: { data, response in
+            
+        })
+    }
+    
+    func newActivityType() async {
+        let body: [String: Any] = [
+            "": ""
+        ]
+        
+        await activitiesRepo.createActivity(body: body, completion: { data, response in
+            
+        })
     }
 }

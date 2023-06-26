@@ -13,6 +13,7 @@ struct AgendaUIViewRepresentable: UIViewRepresentable {
     typealias UIViewType = FSCalendar
     var calendar = FSCalendar()
     @Binding var selectedDate: Date?
+    @Binding var sessions : [SessionResponseModel]
     
     func makeUIView(context: Context) -> FSCalendar {
         calendar.delegate = context.coordinator
@@ -48,17 +49,19 @@ struct AgendaUIViewRepresentable: UIViewRepresentable {
         }
         
         func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-            let eventDates = [Date(), Date(),
-                                            Date.now.addingTimeInterval(400000),
-                                            Date.now.addingTimeInterval(100000),
-                                            Date.now.addingTimeInterval(-600000),
-                                            Date.now.addingTimeInterval(-1000000)]
+            
                         var eventCount = 0
-                        eventDates.forEach { eventDate in
-                            if eventDate.formatted(date: .complete,
-                                          time: .omitted) == date.formatted(
-                                            date: .complete, time: .omitted){
-                                eventCount += 1;
+                        parent.sessions.forEach { eventDate in
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.locale = Locale(identifier: "fr_FR")
+                            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                            let date = dateFormatter.date(from: eventDate.beginDate)
+                            if let date = date {
+                                if date.formatted(date: .complete,
+                                              time: .omitted) == date.formatted(
+                                                date: .complete, time: .omitted){
+                                    eventCount += 1;
+                                }
                             }
                         }
                         return eventCount

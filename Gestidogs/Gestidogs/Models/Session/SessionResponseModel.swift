@@ -11,12 +11,12 @@ struct SessionResponseModel {
     let id: String
     let educator: UserResponseModel
     let activity: ActivityResponseModel
-    let establishment: String
+    let establishment: String?
     let status: String
     let maximumCapacity: Int
-    let report: String
-    let beginDate: Date
-    let endDate: Date
+    let report: String?
+    let beginDate: String
+    let endDate: String
     let v: Int
 }
 

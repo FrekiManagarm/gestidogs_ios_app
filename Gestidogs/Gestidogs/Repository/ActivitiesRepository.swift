@@ -14,7 +14,7 @@ class ActivitiesRepository {
     //MARK: GET ALL ACTIVITIES
     public func getAllActivities(establishmentId: String? = nil, completion: @escaping ([ActivityResponseModel]?, URLResponse?) -> Void) async {
         
-        await ApiManager.shared.request(baseUrl + "?establishmentId=\(establishmentId ?? "")", httpMethod: "GET") { data, response in
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["establishmentId": establishmentId ?? ""]) { data, response in
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([ActivityResponseModel].self, from: data)
@@ -48,7 +48,7 @@ class ActivitiesRepository {
     }
     
     //MARK: CREATE ACTIVITY
-    public func createActivity(body: ActivityRequestModel, completion: @escaping (ActivityResponseModel?, URLResponse?) -> Void) async {
+    public func createActivity(body: [String: Any?]?, completion: @escaping (ActivityResponseModel?, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
@@ -66,7 +66,7 @@ class ActivitiesRepository {
     }
     
     //MARK: MODIFY ACTIVITY
-    public func modifyActivity(body: ActivityRequestModel, activityId: String, completion: @escaping (ActivityResponseModel?, URLResponse?) -> Void) async {
+    public func modifyActivity(body: [String: Any?]?, activityId: String, completion: @escaping (ActivityResponseModel?, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(activityId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {

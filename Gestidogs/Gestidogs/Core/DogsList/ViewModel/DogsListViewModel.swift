@@ -9,6 +9,7 @@ import Foundation
 
 class DogsListViewModel: ObservableObject {
     
+    //MARK: Modules
     lazy var dogsRepo = DogsRepository()
     
     //MARK: New Dogs Form Properties
@@ -20,13 +21,25 @@ class DogsListViewModel: ObservableObject {
     @Published var height: String = ""
     @Published var weight: String = ""
     
+    //MARK: Functions
     func createNewDog(ownerId: String) async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
         }
         
-        await dogsRepo.createDog(body: DogsRequestModel(ownerId: ownerId, establishment: establishmentId, nationalId: nationalId, imageUrl: imageUrl, gender: gender, name: dogsName, breed: breed, weight: Int(height) ?? 0, height: Int(weight) ?? 0)) { data, response in
+        let body: [String: Any] = [
+            "ownerId": ownerId,
+            "establishment": establishmentId,
+            "nationalId": nationalId,
+            "imageUrl": imageUrl,
+            "gender": gender,
+            "name": dogsName,
+            "breed": Int(height) ?? 0,
+            "weight": Int(weight) ?? 0,
+        ]
+            
+        await dogsRepo.createDog(body: body) { data, response in
             if let data = data, let response = response {
                 DispatchQueue.main.async {
                     print("dog created \(data) with \(response.debugDescription)")

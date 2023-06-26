@@ -30,5 +30,7 @@
 		<string>RalewaySemiBold.ttf</string>
 		<string>RalewaySemiBold.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array/>
 </dict>
 </plist>

@@ -15,19 +15,34 @@ class ApiManager {
     var retryLimit = 5
     let urlToRefresh = "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh"
     
-    func request(_ urlString: String, httpMethod: String? = "GET", body: Encodable? = nil, completion: @escaping completionHandler) async {
-        guard let url = URL(string: urlString) else {
-            return
+    func request(_ urlString: String, httpMethod: String? = "GET", body: [String: Any?]? = nil, parameters: [String: Any]? = nil, completion: @escaping completionHandler) async {
+        
+        
+        var components = URLComponents(string: urlString)!
+        if let parameters = parameters {
+            components.queryItems = parameters.map { (key, value) in
+                URLQueryItem(name: key, value: String(describing: value))
+            }
         }
         
         guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else {
             return
         }
         
+        guard let url = components.url else {
+            return
+        }
+        
         var apiRequest = URLRequest(url: url)
         apiRequest.httpMethod = httpMethod
         if let body = body {
-            apiRequest.httpBody = try? JSONSerialization.data(withJSONObject: body)
+            
+            do {
+                apiRequest.httpBody = try JSONSerialization.data(withJSONObject: body)
+            } catch {
+                print("error : \(error)")
+            }
+            
         }
         apiRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         apiRequest.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -48,11 +63,14 @@ class ApiManager {
     
     private func requestWithRetry(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?) -> Void) async {
         do {
+            
             let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let response = response as? HTTPURLResponse else {
                 return
             }
+            
+            print(response.debugDescription)
             
             if (200...299).contains(response.statusCode) {
                 completionHandler(data, response)
@@ -64,7 +82,7 @@ class ApiManager {
                 self.retryLimit -= 1
             }
         } catch {
-            print("something wen't wrong")
+            print("something wen't wrong \(error)")
         }
     }
 }

@@ -10,24 +10,17 @@ import Kingfisher
 
 struct DogItem: View {
     
-    let imageUrl: String?
-    let name: String
+    let dog: DogsResponseModel
     @State var showDetailsView: Bool = false
     
     var body: some View {
         HStack {
-            if let image = imageUrl {
-                KFImage(URL(string: image))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 70, height: 70)
-                    .cornerRadius(100)
-            } else {
-                Image(systemName: "questionmark")
-                    .resizable()
-                    .frame(width: 70, height: 70)
-            }
-            Text(name)
+            KFImage(URL(string: dog.imageUrl))
+                .resizable()
+                .scaledToFill()
+                .frame(width: 70, height: 70)
+                .cornerRadius(100)
+            Text(dog.name)
                 .font(.system(size: 20))
                 .fontWeight(.light)
                 .padding(.trailing, 10)
@@ -44,13 +37,7 @@ struct DogItem: View {
             }
         }
         .sheet(isPresented: $showDetailsView) {
-            DogCenterDetails()
+            DogCenterDetails(dog: dog)
         }
-    }
-}
-
-struct DogItem_Previews: PreviewProvider {
-    static var previews: some View {
-        DogItem(imageUrl: "", name: "Terrence")
     }
 }

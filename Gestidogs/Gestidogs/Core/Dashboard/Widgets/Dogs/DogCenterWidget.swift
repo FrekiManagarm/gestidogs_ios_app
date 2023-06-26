@@ -34,7 +34,7 @@ struct DogCenterWidget: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 10) {
                     ForEach(dogs) { dog in
-                        DogItem(imageUrl: dog.imageUrl, name: dog.name)
+                        DogItem(dog: dog)
                     }
                 }
                 .padding(.leading, 10)

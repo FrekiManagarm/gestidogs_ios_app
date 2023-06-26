@@ -14,7 +14,7 @@ class DogsRepository {
     //MARK: GET ALL DOGS
     public func getAllDogs(ownerId: String? = nil, establishmentId: String? = nil, completion: @escaping ([DogsResponseModel]?, URLResponse?) -> Void) async {
 
-        await ApiManager.shared.request(baseUrl + "?ownerId=\(ownerId ?? "")" + "&establishmentId=\(establishmentId ?? "")", httpMethod: "GET") { data, response in
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["ownerid": ownerId ?? "", "establishmentId": establishmentId ?? ""]) { data, response in
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([DogsResponseModel].self, from: data)
@@ -48,7 +48,7 @@ class DogsRepository {
     }
 
     //MARK: CREATE DOG
-    public func createDog(body: DogsRequestModel, completion: @escaping (DogsResponseModel?, URLResponse?) -> Void) async {
+    public func createDog(body: [String: Any?]?, completion: @escaping (DogsResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
@@ -66,7 +66,7 @@ class DogsRepository {
     }
 
     //MARK: MODIFY DOG
-    public func modifyDog(body: DogsRequestModel, dogId: String, completion: @escaping (DogsResponseModel?, URLResponse?) -> Void) async {
+    public func modifyDog(body: [String: Any?]?, dogId: String, completion: @escaping (DogsResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request("\(baseUrl)/\(dogId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {

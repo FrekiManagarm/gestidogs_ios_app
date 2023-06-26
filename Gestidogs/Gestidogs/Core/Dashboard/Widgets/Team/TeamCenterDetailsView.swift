@@ -13,18 +13,51 @@ struct TeamCenterDetailsView: View {
     let teamMate : UserResponseModel
     
     var body: some View {
-        VStack {
-            Spacer()
-            KFImage(URL(string: teamMate.avatarUrl))
-                .resizable()
-                .frame(width: 200, height: 200)
-                .scaledToFill()
-                .cornerRadius(200)
+        ScrollView {
+            VStack {
+                imageSection
+                
+                VStack(alignment: .leading, spacing: 16) {
+                    titleAndDetailsSection
+                    Divider()
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+            }
+        }
+        .ignoresSafeArea()
+    }
+}
+
+extension TeamCenterDetailsView {
+    private var imageSection: some View {
+        KFImage(URL(string: teamMate.avatarUrl))
+            .resizable()
+            .scaledToFill()
+            .frame(width: UIScreen.main.bounds.width, height: 300)
+            .clipped()
+            .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 10)
+    }
+    
+    private var titleAndDetailsSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
             Text(teamMate.firstName + " " + teamMate.lastName)
-                .foregroundColor(Color("blueGray80001"))
-                .font(.system(size: 25))
-                .fontWeight(.bold)
-            Spacer()
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+            
+            Text(teamMate.emailAddress)
+                .font(.title3)
+                .foregroundColor(.secondary)
+            
+            Text(teamMate.role)
+                .font(.title3)
+                .foregroundColor(.secondary)
+        }
+    }
+    
+    private var descriptionSection: some View {
+        VStack {
+            
         }
     }
 }

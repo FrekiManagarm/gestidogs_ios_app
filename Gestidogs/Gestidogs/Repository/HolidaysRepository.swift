@@ -13,7 +13,7 @@ class HolidaysRepository {
     //MARK: GET EMPLOYEE HOLIDAYS
     public func getHolidays(employeeId: String? = nil, completion: @escaping ([HolidaysResponseModel]?, URLResponse?) -> Void) async {
 
-        await ApiManager.shared.request(baseUrl + "?employeeId=\(employeeId ?? "")", httpMethod: "GET") { data, response in
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["employeeId": employeeId ?? ""]) { data, response in
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([HolidaysResponseModel].self, from: data)
@@ -47,7 +47,7 @@ class HolidaysRepository {
     }
 
     //MARK: TAKE VACATION
-    public func takeVacation(body: HolidaysRequestModel, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
+    public func takeVacation(body: [String: Any?]?, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
@@ -65,7 +65,7 @@ class HolidaysRepository {
     }
 
     //MARK: MODIFY VACATION
-    public func modifyVacation(body: HolidaysRequestModel, holidayId: String, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
+    public func modifyVacation(body: [String: Any?]?, holidayId: String, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request("\(baseUrl)/\(holidayId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {

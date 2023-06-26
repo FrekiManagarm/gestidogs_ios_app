@@ -9,9 +9,9 @@ import Foundation
 
 struct ActivityResponseModel {
     let id: String
-    let imageUrl: String
+    let imageUrl: String?
     let title: String
-    let description: String
+    let description: String?
     let duration: Int
     let price: Int
     let v: Int

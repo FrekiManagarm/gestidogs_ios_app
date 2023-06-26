@@ -16,12 +16,16 @@ struct ActivityCell: View {
     var body: some View {
         ZStack {
             HStack {
-                KFImage(URL(string: activity.imageUrl))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 150, height: 150)
-                    .cornerRadius(25)
-                    .padding(10)
+                if let imageUrl = activity.imageUrl {
+                    KFImage(URL(string: imageUrl))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 150, height: 150)
+                        .cornerRadius(25)
+                        .padding(10)
+                } else {
+                    Image(systemName: "xmark")
+                }
                 
                 VStack {
                     Text(activity.title)
@@ -57,7 +61,7 @@ struct ActivityCell: View {
             }
         }
         .sheet(isPresented: $showDetailsView) {
-            ActivityCenterDetails()
+            ActivityCenterDetails(activity: activity)
         }
     }
 }

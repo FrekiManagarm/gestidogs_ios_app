@@ -11,12 +11,19 @@ class SessionRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.sessionsUrl)"
 
     //MARK: GET ALL SESSIONS
-    public func getAllSessions(date: Date? = nil, reserved: Bool? = nil, educatorId: String? = nil, activityId: String? = nil, establishmentId: String? = nil, completion: @escaping ([SessionResponseModel]?, URLResponse?) -> Void) async {
+    public func getAllSessions(date: String? = nil, reserved: Bool? = nil, educatorId: String? = nil, activityId: String? = nil, establishmentId: String? = nil, completion: @escaping ([SessionResponseModel]?, URLResponse?) -> Void) async {
 
-        await ApiManager.shared.request(baseUrl + "?date=\(date ?? Date())" + "&reserved=\(reserved ?? false)" + "&educatorId=\(educatorId ?? "")" + "&activity=\(activityId ?? "")" + "&establishmentId=\(establishmentId ?? "")", httpMethod: "GET") { data, response in
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: [
+            "date": date ?? "",
+            "reserved": reserved ?? false,
+            "activityId": activityId ?? "",
+            "establishmentId": establishmentId ?? ""
+        ])
+        { data, response in
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([SessionResponseModel].self, from: data)
+                    print("decode \(decode)")
                     completion(decode, response)
                 } catch {
                     print("error : \(error)")
@@ -47,7 +54,7 @@ class SessionRepository {
     }
 
     //MARK: GET SESSION REMAINING PLACES
-    public func getSessionRemainingPlaces(sessionId: String, completion: @escaping (Int?, URLResponse?) -> Void) async {
+    public func getSessionRemainingPlaces(sessionId: String, completion: @escaping (Int?, URLResponse?) -> ()) async {
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)/remaining-places", httpMethod: "GET") { data, response in
             if let data = data {
@@ -65,10 +72,11 @@ class SessionRepository {
     }
 
     //MARK: CREATE SESSION
-    public func createSession(body: SessionRequestModel, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
+    public func createSession(body: [String: Any?]?, completion: @escaping (SessionResponseModel?, URLResponse?) -> ()) async {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
+                print("data response \(data)")
                 do {
                     let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
                     completion(decode, response)
@@ -104,7 +112,7 @@ class SessionRepository {
     }
 
     //MARK: MODIFY SESSION
-    public func modifySession(sessionId: String, body: SessionRequestModel, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
+    public func modifySession(sessionId: String, body: [String: Any?]?, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {

@@ -14,7 +14,7 @@ class ReservationsRepository {
     //MARK: GET ALL RESERVATIONS
     public func getAllReservations(sessionId: String? = nil, completion: @escaping ([ReservationResponseModel]?, URLResponse?) -> Void) async {
 
-        await ApiManager.shared.request(baseUrl + "?sessionId=\(sessionId ?? "")", httpMethod: "GET") { data, response in
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["sessionId": sessionId ?? ""]) { data, response in
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([ReservationResponseModel].self, from: data)
@@ -48,7 +48,7 @@ class ReservationsRepository {
     }
 
     //MARK: CREATE RESERVATION
-    public func createReservation(body: ReservationRequestModel, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
+    public func createReservation(body: [String: Any?]?, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
@@ -66,7 +66,7 @@ class ReservationsRepository {
     }
 
     //MARK: MODIFY RESERVATION
-    public func modifyReservation(body: ReservationRequestModel, reservationId: String, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
+    public func modifyReservation(body: [String: Any?]?, reservationId: String, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {

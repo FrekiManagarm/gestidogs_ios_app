@@ -120,6 +120,7 @@ struct ChooseOrCreateEstablishmentView: View {
             .ignoresSafeArea()
             .sheet(isPresented: $showEstablishmentForm) {
                 NewEstablishmentForm(showForm: $showEstablishmentForm)
+                    .presentationDetents([.medium])
             }
         }
     }

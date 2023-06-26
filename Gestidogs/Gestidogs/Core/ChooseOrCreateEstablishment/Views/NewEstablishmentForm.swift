@@ -14,7 +14,6 @@ struct NewEstablishmentForm: View {
     
     var body: some View {
         VStack {
-            
             HStack {
                 Button {
                     showForm.toggle()
@@ -28,6 +27,12 @@ struct NewEstablishmentForm: View {
             Spacer()
             
             Text("Vous souhaitez ajouter un nouvel établissement ?")
+                .font(.system(size: 25))
+                .fontWeight(.bold)
+                .foregroundColor(Color("blueGray80001"))
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top, 20)
             
 //            Spacer()
             
