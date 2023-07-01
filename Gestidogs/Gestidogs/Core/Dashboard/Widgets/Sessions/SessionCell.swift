@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct SessionCell: View {
+    
+    let session: SessionResponseModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct SessionCell_Previews: PreviewProvider {
-    static var previews: some View {
-        SessionCell()
+        ZStack {
+            HStack {
+                
+            }
+        }
+        .frame(width: 200, height: 170)
+        .background(Color("gray100"))
+        .cornerRadius(25)
+        
     }
 }

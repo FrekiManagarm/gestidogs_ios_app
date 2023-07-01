@@ -34,10 +34,10 @@ class AppState: ObservableObject {
     func fetchUser() async {
         await userRepo.userMe { data, response in
             if let data = data {
-                print("data of user me \(data)")
-                DispatchQueue.main.async {
+                Task {
                     print("\(data.id)")
                     UserDefaults.standard.set(data.id, forKey: "userConnectedId")
+                    UserDefaults.standard.synchronize()
                     print("userId set")
                 }
             } else {

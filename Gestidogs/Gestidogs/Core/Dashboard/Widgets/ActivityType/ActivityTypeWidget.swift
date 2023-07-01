@@ -13,33 +13,44 @@ struct ActivityCenterWidget: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text("Mes activités")
-                    .padding(.leading, 15)
-                    .foregroundColor(Color.white)
-                    .fontWeight(.semibold)
-                    .font(.system(size: 30))
+            titleAndViewMoreSection
+            
+            scrollViewItems
+        }
+    }
+}
 
-                Spacer()
-                NavigationLink("Voir plus", destination: ActivityListView())
-                    .foregroundColor(Color("blueGray80001"))
-                    .font(.system(size: 15))
-                    .tint(Color("gray100"))
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.small)
-                    .fontWeight(.medium)
-                    .frame(width: 100, height: 55)
-                    .padding(.trailing, 10)
-            }
-            .padding(-5)
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach(activities) { activity in
-                        ActivityCell(activity: activity)
-                    }
+extension ActivityCenterWidget {
+    @ViewBuilder var titleAndViewMoreSection: some View {
+        HStack {
+            Text("Mes activités")
+                .padding(.leading, 20)
+                .foregroundColor(Color.white)
+                .fontWeight(.semibold)
+                .font(.system(size: 30))
+
+            Spacer()
+            NavigationLink("Voir plus", destination: ActivityListView())
+                .foregroundColor(Color("blueGray80001"))
+                .font(.system(size: 15))
+                .tint(Color("gray100"))
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+                .fontWeight(.medium)
+                .frame(width: 100, height: 55)
+                .padding(.trailing, 10)
+        }
+        .padding(-5)
+    }
+    
+    @ViewBuilder var scrollViewItems: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack {
+                ForEach(activities) { activity in
+                    ActivityCell(activity: activity)
                 }
-                .padding(.leading, 10)
             }
+            .padding(.leading, 10)
         }
     }
 }

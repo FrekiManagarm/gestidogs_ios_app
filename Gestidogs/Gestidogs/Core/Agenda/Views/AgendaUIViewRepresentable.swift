@@ -10,12 +10,14 @@ import FSCalendar
 import UIKit
 
 struct AgendaUIViewRepresentable: UIViewRepresentable {
-    typealias UIViewType = FSCalendar
+    
     var calendar = FSCalendar()
     @Binding var selectedDate: Date?
-    @Binding var sessions : [SessionResponseModel]
+    let sessions: [SessionResponseModel]
+    @StateObject var agendaVM = AgendaViewModel()
+    @Binding var sessionsPerDate: DailySessions?
     
-    func makeUIView(context: Context) -> FSCalendar {
+    func makeUIView(context: Context) -> some FSCalendar {
         calendar.delegate = context.coordinator
         calendar.dataSource = context.coordinator
         calendar.appearance.todayColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
@@ -28,43 +30,49 @@ struct AgendaUIViewRepresentable: UIViewRepresentable {
         return calendar
     }
     
-    func updateUIView(_ uiView: FSCalendar, context: Context) {
+    func updateUIView(_ uiView: UIViewType, context: Context) {
         
     }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
-
+    
+    public func reloadData() {
+        calendar.reloadData()
+    }
+    
     class Coordinator: NSObject, FSCalendarDelegate, FSCalendarDataSource {
         var parent: AgendaUIViewRepresentable
+        
         
         init(parent: AgendaUIViewRepresentable) {
             self.parent = parent
         }
         
-        func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-            parent.selectedDate = date
+        @MainActor func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+            let newDate = date.addHours(hours: 2)
+            parent.selectedDate = newDate
+            Task {
+                await parent.agendaVM.getSessionsPerDate(date: date.toString()) { data, response in
+                    self.parent.sessionsPerDate = data
+                }
+            }
             calendar.setCurrentPage(date, animated: true)
         }
         
         func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-            
-                        var eventCount = 0
-                        parent.sessions.forEach { eventDate in
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.locale = Locale(identifier: "fr_FR")
-                            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-                            let date = dateFormatter.date(from: eventDate.beginDate)
-                            if let date = date {
-                                if date.formatted(date: .complete,
-                                              time: .omitted) == date.formatted(
-                                                date: .complete, time: .omitted){
-                                    eventCount += 1;
-                                }
-                            }
-                        }
-                        return eventCount
+            var eventCount = 0
+            parent.sessions.forEach { session in
+                let sessionDate = session.beginDate.toDate()
+                
+                if let sessionDate {
+                    if sessionDate.formatted(date: .complete, time: .omitted) == date.formatted(date: .complete, time: .omitted) {
+                        eventCount += 1
+                    }
+                }
+            }
+            return eventCount
         }
     }
 }

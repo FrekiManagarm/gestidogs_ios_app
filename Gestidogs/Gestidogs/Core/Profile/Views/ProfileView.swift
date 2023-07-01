@@ -11,82 +11,20 @@ import Kingfisher
 struct ProfileView: View {
     
     @State var showModifForm: Bool = false
+    @StateObject var profileVM = ProfileViewModel()
     
     var body: some View {
         ZStack {
-            RadialGradient(
-                gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
-                center: .topLeading,
-                startRadius: 5,
-                endRadius: UIScreen.main.bounds.height)
-            .ignoresSafeArea()
+            radialGradient
             
             VStack {
-                HStack {
-                    Spacer()
-                    Text("Profil")
-                        .font(.system(size: 30))
-                        .foregroundColor(.white)
-//                        .foregroundColor(Color("blueGray80001"))
-                        .fontWeight(.bold)
-                        .padding(.leading, 60)
-                    
-                    Spacer()
-                    
-                    Button {
-                        showModifForm.toggle()
-                    } label: {
-                        Image(systemName: "gearshape")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 20, height: 20)
-                    }
-                    .frame(width: 50, height: 50)
-                    .background(Color("gray100"))
-                    .cornerRadius(100)
-                    .padding(.trailing, 20)
-                }
-                .sheet(isPresented: $showModifForm) {
-                    ProfileForm()
-                }
+                topBarSection
                 
-                HStack {
-                    KFImage(URL(string: "https://i.imgur.com/aUWvqAC.jpg"))
-                        .resizable()
-                        .scaledToFill()
-                        .position(x: 100, y: 140)
-                        .frame(width: 200, height: 200)
-                        .cornerRadius(300)
-                        .background(
-                            Circle()
-                                .fill(.white)
-                                .frame(width: 205, height: 205)
-                        )
-                }
-                VStack {
-                    Text("Mathieu Chambaud")
-                        .font(.system(size: 30))
-                        .fontWeight(.heavy)
-                    Text("mathieu.chambaud@ynov.com")
-                }
-                .foregroundColor(.white)
-//                .foregroundColor(Color("blueGray80001"))
+                imageAndName
                 
                 Spacer()
                     
-                Button {
-                    //MARK: Implement action of deconnecting
-                } label: {
-                    HStack {
-                        Image(systemName: "rectangle.portrait.and.arrow.right")
-                        Text("Déconnexion")
-                    }
-                }
-                .frame(width: UIScreen.main.bounds.width - 32, height: 55)
-                .background(Color("blueGray80001"))
-                .cornerRadius(25)
-                .foregroundColor(.white)
-                .padding(.bottom, 20)
+                logOutButton
                 
             }
         }
@@ -94,8 +32,82 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
+extension ProfileView {
+    @ViewBuilder var radialGradient: some View {
+        RadialGradient(
+            gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+            center: .topLeading,
+            startRadius: 5,
+            endRadius: UIScreen.main.bounds.height)
+        .ignoresSafeArea()
+    }
+    
+    @ViewBuilder var topBarSection: some View {
+        HStack {
+            Spacer()
+            Text("Profil")
+                .font(.system(size: 30))
+                .foregroundColor(.white)
+//                        .foregroundColor(Color("blueGray80001"))
+                .fontWeight(.bold)
+                .padding(.leading, 60)
+            
+            Spacer()
+            
+            Button {
+                showModifForm.toggle()
+            } label: {
+                Image(systemName: "gearshape")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 20, height: 20)
+            }
+            .frame(width: 50, height: 50)
+            .background(Color("gray100"))
+            .cornerRadius(100)
+            .padding(.trailing, 20)
+        }
+        .sheet(isPresented: $showModifForm) {
+            ProfileForm()
+        }
+    }
+    
+    @ViewBuilder var imageAndName: some View {
+        HStack {
+            KFImage(URL(string: "https://i.imgur.com/aUWvqAC.jpg"))
+                .resizable()
+                .scaledToFill()
+                .position(x: 100, y: 140)
+                .frame(width: 200, height: 200)
+                .cornerRadius(300)
+                .background(
+                    Circle()
+                        .fill(.white)
+                        .frame(width: 205, height: 205)
+                )
+        }
+        VStack {
+            Text("Mathieu Chambaud")
+                .font(.system(size: 30))
+                .fontWeight(.heavy)
+            Text("mathieu.chambaud@ynov.com")
+        }
+        .foregroundColor(.white)
+    }
+    
+    @ViewBuilder var logOutButton: some View {
+        Button {
+            //MARK: Implement action of deconnecting
+        } label: {
+            HStack {
+                Image(systemName: "rectangle.portrait.and.arrow.right")
+                Text("Déconnexion")
+            }
+        }
+        .frame(width: UIScreen.main.bounds.width - 32, height: 55)
+        .background(Color("blueGray80001"))
+        .cornerRadius(25)
+        .foregroundColor(.white)
+        .padding(.bottom, 20)
     }
 }

@@ -10,12 +10,20 @@ import Foundation
 class DashboardViewModel: ObservableObject {
     
     @Published var dogs: [DogsResponseModel] = []
+    @Published var loadingDogs: Bool = true
     @Published var activities: [ActivityResponseModel] = []
+    @Published var loadingActivities: Bool = true
     @Published var teamMates: [UserResponseModel] = []
+    @Published var loadingTeam: Bool = true
+    @Published var userConnected: UserResponseModel?
+    @Published var loadingUser: Bool = true
+    @Published var todaySessions: DailySessions?
+    
     lazy var establishmentManager = EstablishmentManager()
     lazy var dogsRepo = DogsRepository()
     lazy var activitiesRepo = ActivitiesRepository()
     lazy var establishmentRepo = EstablishmentRepository()
+    lazy var sessionsRepo = SessionRepository()
 }
 
 extension DashboardViewModel {
@@ -30,6 +38,7 @@ extension DashboardViewModel {
             if let data = data {
                 DispatchQueue.main.async {
                     self.dogs = data
+                    self.loadingDogs = false
                 }
             }
         }
@@ -45,6 +54,7 @@ extension DashboardViewModel {
             if let data = data {
                 DispatchQueue.main.async {
                     self.activities = data
+                    self.loadingActivities = false
                 }
             }
         }
@@ -60,9 +70,26 @@ extension DashboardViewModel {
             if let data = data {
                 DispatchQueue.main.async {
                     self.teamMates = data.employees
+                    self.loadingTeam = false
                 }
             }
         }
+    }
+    
+    func getDailySessions() async {
+        await sessionsRepo.getDailySessions(date: Date.now.toString(), completion: { data, response in
+            if let response = response as? HTTPURLResponse, let data {
+                if response.statusCode == 200 {
+                    Task {
+                        self.todaySessions = data
+                    }
+                } else {
+                    print("error: \(response.debugDescription)")
+                }
+            } else {
+                print("no response from api")
+            }
+        })
     }
 }
 

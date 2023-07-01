@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class ReservationsRepository {
     private var baseUrl = "\(ApiConstants.apiUrlDev)\(ApiConstants.reservationsUrl)"

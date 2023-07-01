@@ -9,7 +9,7 @@ import Foundation
 
 struct EstablishmentResponseModel { 
     let id: String
-    let owner: UserResponseModel
+    let owner: UserResponseModel?
     let name: String
     let description: String
     let address: String

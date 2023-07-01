@@ -7,11 +7,13 @@
 
 import SwiftUI
 import Kingfisher
+import EasySkeleton
 
 struct DogItem: View {
     
     let dog: DogsResponseModel
     @State var showDetailsView: Bool = false
+    @StateObject var dashboardVM = DashboardViewModel()
     
     var body: some View {
         HStack {
@@ -21,6 +23,7 @@ struct DogItem: View {
                 .frame(width: 70, height: 70)
                 .cornerRadius(100)
             Text(dog.name)
+                .foregroundColor(Color("black900"))
                 .font(.system(size: 20))
                 .fontWeight(.light)
                 .padding(.trailing, 10)
@@ -39,5 +42,6 @@ struct DogItem: View {
         .sheet(isPresented: $showDetailsView) {
             DogCenterDetails(dog: dog)
         }
+        .setSkeleton($dashboardVM.loadingDogs)
     }
 }

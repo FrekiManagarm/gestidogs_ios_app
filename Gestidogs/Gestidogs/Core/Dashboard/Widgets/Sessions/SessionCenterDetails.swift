@@ -15,6 +15,6 @@ struct SessionCenterDetails: View {
 
 struct DogsCenterDetails_Previews: PreviewProvider {
     static var previews: some View {
-        SessionCenterWidget()
+        SessionCenterDetails()
     }
 }

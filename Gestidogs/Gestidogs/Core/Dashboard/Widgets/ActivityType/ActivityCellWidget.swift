@@ -12,6 +12,7 @@ struct ActivityCell: View {
     
     @State var showDetailsView: Bool = false
     let activity: ActivityResponseModel
+    @StateObject var dashboardVM = DashboardViewModel()
     
     var body: some View {
         ZStack {

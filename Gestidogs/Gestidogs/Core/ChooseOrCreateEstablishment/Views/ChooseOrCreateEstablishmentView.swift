@@ -97,8 +97,9 @@ struct ChooseOrCreateEstablishmentView: View {
                         } else {
                             Button {
                                 UserDefaults.standard.set(establishmentId, forKey: "establishmentId")
+                                UserDefaults.standard.synchronize()
                                 withAnimation(.spring()) {
-                                    appState.loginState = .home
+                                    self.appState.loginState = .home
                                 }
                             } label: {
                                 HStack {

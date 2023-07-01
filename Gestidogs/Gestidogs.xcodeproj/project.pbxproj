@@ -40,6 +40,11 @@
 		0154ACF52A39AC9200622587 /* DogsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF42A39AC9200622587 /* DogsRepository.swift */; };
 		0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */; };
 		0154ACF92A3A53AD00622587 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF82A3A53AD00622587 /* LoginRequest.swift */; };
+		01AE58732A4B1BDC00EE3106 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58722A4B1BDC00EE3106 /* String.swift */; };
+		01AE58772A4D7F2E00EE3106 /* SessionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */; };
+		01AE58792A4DC1C400EE3106 /* SessionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58782A4DC1C400EE3106 /* SessionCard.swift */; };
+		01AE587C2A4DC6FD00EE3106 /* EasySkeleton in Frameworks */ = {isa = PBXBuildFile; productRef = 01AE587B2A4DC6FD00EE3106 /* EasySkeleton */; };
+		01AE587E2A4E0D9100EE3106 /* DailySessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE587D2A4E0D9100EE3106 /* DailySessions.swift */; };
 		01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72AA2A407DD3006433CE /* SplashView.swift */; };
 		01CC72AE2A408973006433CE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 01CC72AD2A408973006433CE /* Lottie */; };
 		01CC72B02A40A956006433CE /* splash_view_gestidogs.json in Resources */ = {isa = PBXBuildFile; fileRef = 01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */; };
@@ -154,6 +159,10 @@
 		0154ACF42A39AC9200622587 /* DogsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsRepository.swift; sourceTree = "<group>"; };
 		0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesRepository.swift; sourceTree = "<group>"; };
 		0154ACF82A3A53AD00622587 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		01AE58722A4B1BDC00EE3106 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetails.swift; sourceTree = "<group>"; };
+		01AE58782A4DC1C400EE3106 /* SessionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCard.swift; sourceTree = "<group>"; };
+		01AE587D2A4E0D9100EE3106 /* DailySessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySessions.swift; sourceTree = "<group>"; };
 		01CC72AA2A407DD3006433CE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_view_gestidogs.json; sourceTree = "<group>"; };
 		01CC72B12A40D566006433CE /* NewEstablishmentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEstablishmentForm.swift; sourceTree = "<group>"; };
@@ -245,6 +254,7 @@
 				014E3FEC2A386EF2007C4E2F /* Interceptor in Frameworks */,
 				73BA4BF43F202F1C07B963C5 /* Pods_Gestidogs.framework in Frameworks */,
 				01CC72AE2A408973006433CE /* Lottie in Frameworks */,
+				01AE587C2A4DC6FD00EE3106 /* EasySkeleton in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +461,7 @@
 			children = (
 				01E7D6882A2B657E0054C16A /* Extension.swift */,
 				5F3A32512A471C5E00619AF6 /* Date.swift */,
+				01AE58722A4B1BDC00EE3106 /* String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -585,6 +596,7 @@
 			children = (
 				5F157C2F2A277C9600B4C2FE /* SessionResponseModel.swift */,
 				5F157C312A277CA700B4C2FE /* SessionRequestModel.swift */,
+				01AE587D2A4E0D9100EE3106 /* DailySessions.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -857,6 +869,7 @@
 				5F8BFD412A262ED30007E367 /* AgendaView.swift */,
 				5F32C5AB2A2896180034AB6F /* AgendaUIViewRepresentable.swift */,
 				5F3A324F2A4488B900619AF6 /* NewSessionForm.swift */,
+				01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -865,6 +878,7 @@
 			isa = PBXGroup;
 			children = (
 				5F8BFD3F2A262E640007E367 /* AgendaWidget.swift */,
+				01AE58782A4DC1C400EE3106 /* SessionCard.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -1055,6 +1069,7 @@
 			packageProductDependencies = (
 				014E3FEB2A386EF2007C4E2F /* Interceptor */,
 				01CC72AD2A408973006433CE /* Lottie */,
+				01AE587B2A4DC6FD00EE3106 /* EasySkeleton */,
 			);
 			productName = Gestidogs;
 			productReference = 5F8BFD132A262CE70007E367 /* Gestidogs.app */;
@@ -1087,6 +1102,7 @@
 			packageReferences = (
 				014E3FEA2A386EF2007C4E2F /* XCRemoteSwiftPackageReference "Interceptor" */,
 				01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				01AE587A2A4DC6FD00EE3106 /* XCRemoteSwiftPackageReference "EasySkeleton" */,
 			);
 			productRefGroup = 5F8BFD142A262CE70007E367 /* Products */;
 			projectDirPath = "";
@@ -1191,6 +1207,7 @@
 				0109C9C22A3340EE00544C9C /* DogItem.swift in Sources */,
 				5F157C0C2A27773A00B4C2FE /* HolidaysView.swift in Sources */,
 				5F157C022A27746F00B4C2FE /* DashboardViewModel.swift in Sources */,
+				01AE587E2A4E0D9100EE3106 /* DailySessions.swift in Sources */,
 				0154ACF92A3A53AD00622587 /* LoginRequest.swift in Sources */,
 				5F157C452A2791E800B4C2FE /* NavBar.swift in Sources */,
 				5F8BFD442A262F380007E367 /* AgendaViewModel.swift in Sources */,
@@ -1203,6 +1220,7 @@
 				0154ACED2A39ABEC00622587 /* HolidaysRepository.swift in Sources */,
 				010E1E1F2A326F40002E0DD1 /* PaymentResponseModel.swift in Sources */,
 				5F157C342A277CCB00B4C2FE /* DogsResponseModel.swift in Sources */,
+				01AE58732A4B1BDC00EE3106 /* String.swift in Sources */,
 				5F157C0A2A27772800B4C2FE /* HolidaysViewModel.swift in Sources */,
 				0154ACF12A39AC1800622587 /* ReservationsRepository.swift in Sources */,
 				0109C9C02A3340E000544C9C /* DogCenterDetails.swift in Sources */,
@@ -1210,6 +1228,7 @@
 				0109C9B02A333CC300544C9C /* TeamCell.swift in Sources */,
 				5F8BFD2F2A262DCE0007E367 /* AppState.swift in Sources */,
 				01CC72B22A40D566006433CE /* NewEstablishmentForm.swift in Sources */,
+				01AE58792A4DC1C400EE3106 /* SessionCard.swift in Sources */,
 				01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */,
 				5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */,
 				5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */,
@@ -1245,6 +1264,7 @@
 				5F157C262A277C3000B4C2FE /* EstablishmentRequestModel.swift in Sources */,
 				010E1E1D2A326F34002E0DD1 /* PaymentRequestModel.swift in Sources */,
 				5F157C2C2A277C6A00B4C2FE /* ReservationResponseModel.swift in Sources */,
+				01AE58772A4D7F2E00EE3106 /* SessionDetails.swift in Sources */,
 				0154ACE92A39ABAC00622587 /* SessionRepository.swift in Sources */,
 				5F3A32502A4488B900619AF6 /* NewSessionForm.swift in Sources */,
 				010E1E162A321028002E0DD1 /* RegisterCredentials.swift in Sources */,
@@ -1479,6 +1499,14 @@
 				minimumVersion = 0.0.1;
 			};
 		};
+		01AE587A2A4DC6FD00EE3106 /* XCRemoteSwiftPackageReference "EasySkeleton" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SpectralDragon/EasySkeleton.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -1494,6 +1522,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 014E3FEA2A386EF2007C4E2F /* XCRemoteSwiftPackageReference "Interceptor" */;
 			productName = Interceptor;
+		};
+		01AE587B2A4DC6FD00EE3106 /* EasySkeleton */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01AE587A2A4DC6FD00EE3106 /* XCRemoteSwiftPackageReference "EasySkeleton" */;
+			productName = EasySkeleton;
 		};
 		01CC72AD2A408973006433CE /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

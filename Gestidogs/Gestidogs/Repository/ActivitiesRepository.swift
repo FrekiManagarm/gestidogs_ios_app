@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class ActivitiesRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.activitiesUrl)"

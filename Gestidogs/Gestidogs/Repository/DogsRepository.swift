@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class DogsRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.dogsUrl)"

@@ -5,7 +5,6 @@
 //  Created by Mathieu CHAMBAUD on 02/06/2023.
 //
 
-import Alamofire
 import SwiftUI
 
 struct LoginView: View {

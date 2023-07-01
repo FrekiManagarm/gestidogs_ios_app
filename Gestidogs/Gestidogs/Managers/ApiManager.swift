@@ -44,15 +44,16 @@ class ApiManager {
             }
             
         }
-        apiRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        apiRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+        apiRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        apiRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        apiRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         await requestWithRetry(with: apiRequest) { data, response in
             guard let response = response as? HTTPURLResponse else {
                 return
             }
             
-            if response.statusCode == 200, let data = data {
+            if (200...299).contains(response.statusCode), let data = data {
                 print("response done : \(response.debugDescription)")
                 completion(data, response)
             } else {
@@ -62,6 +63,7 @@ class ApiManager {
     }
     
     private func requestWithRetry(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?) -> Void) async {
+        
         do {
             
             let (data, response) = try await URLSession.shared.data(for: request)
@@ -69,8 +71,6 @@ class ApiManager {
             guard let response = response as? HTTPURLResponse else {
                 return
             }
-            
-            print(response.debugDescription)
             
             if (200...299).contains(response.statusCode) {
                 completionHandler(data, response)

@@ -11,7 +11,7 @@ struct SessionResponseModel {
     let id: String
     let educator: UserResponseModel
     let activity: ActivityResponseModel
-    let establishment: String?
+    let establishment: EstablishmentForSession
     let status: String
     let maximumCapacity: Int
     let report: String?
@@ -31,6 +31,36 @@ extension SessionResponseModel: Identifiable, Codable {
         case report = "report"
         case beginDate = "beginDate"
         case endDate = "endDate"
+        case v = "__v"
+    }
+}
+
+struct EstablishmentForSession {
+    let id: String
+    let owner: String
+    let name: String
+    let description: String
+    let address: String
+//    let location: [Int]
+    let phoneNumber: String
+    let emailAddress: String
+    let employees: [String]
+    let schedules: [Date]
+    let v: Int
+}
+
+extension EstablishmentForSession: Identifiable, Codable {
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case owner = "owner"
+        case name = "name"
+        case description = "description"
+        case address = "address"
+//        case location = "location"
+        case phoneNumber = "phoneNumber"
+        case emailAddress = "emailAddress"
+        case employees = "employees"
+        case schedules = "schedules"
         case v = "__v"
     }
 }

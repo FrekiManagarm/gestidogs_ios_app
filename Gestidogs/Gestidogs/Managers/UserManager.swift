@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 class UserManager {
     enum UserKey: String {

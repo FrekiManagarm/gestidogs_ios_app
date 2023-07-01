@@ -34,6 +34,33 @@ class SessionRepository {
             }
         }
     }
+    
+    //MARK: GET DAILY SESSIONS
+    public func getDailySessions(date: String?, completion: @escaping (DailySessions?, URLResponse?) -> ()) async {
+        guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
+            return
+        }
+        
+        await ApiManager.shared.request("\(baseUrl)/daily", httpMethod: "GET", parameters: [
+            "date": date ?? "",
+            "establishmentId": establishmentId
+        ]) { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    do {
+                        let decode = try JSONDecoder().decode(DailySessions.self, from: data)
+                        completion(decode, response)
+                    } catch {
+                        print("error: \(error)")
+                    }
+                } else {
+                    completion(nil, response)
+                }
+            } else {
+                print("no return from api")
+            }
+        }
+    }
 
     //MARK: GET SESSION BY ID
     public func getSessionsById(sessionId: String, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
@@ -72,20 +99,23 @@ class SessionRepository {
     }
 
     //MARK: CREATE SESSION
-    public func createSession(body: [String: Any?]?, completion: @escaping (SessionResponseModel?, URLResponse?) -> ()) async {
+    public func createSession(body: [String: Any?]?, completion: @escaping (Bool?, SessionResponseModel?, URLResponse?) -> ()) async {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
-            if let data = data {
-                print("data response \(data)")
-                do {
-                    let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse, let data {
+                if response.statusCode == 201 {
+                    do {
+                        let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
+                        completion(true, decode, response)
+                    } catch {
+                        print("error: \(error)")
+                    }
+                } else {
+                    completion(false, nil, response)
+                    print("bad response in repository : \(response.debugDescription)")
                 }
             } else {
-                completion(nil, response)
-                print("bad response in repository : \(response.debugDescription)")
+                completion(nil, nil, response)
             }
         }
     }
