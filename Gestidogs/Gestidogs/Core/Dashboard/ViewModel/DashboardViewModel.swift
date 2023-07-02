@@ -9,11 +9,11 @@ import Foundation
 
 class DashboardViewModel: ObservableObject {
     
-    @Published var dogs: [DogsResponseModel] = []
+    @Published var dogs: [DogsResponseModel]?
     @Published var loadingDogs: Bool = true
-    @Published var activities: [ActivityResponseModel] = []
+    @Published var activities: [ActivityResponseModel]?
     @Published var loadingActivities: Bool = true
-    @Published var teamMates: [UserResponseModel] = []
+    @Published var teamMates: [UserResponseModel]?
     @Published var loadingTeam: Bool = true
     @Published var userConnected: UserResponseModel?
     @Published var loadingUser: Bool = true
@@ -76,17 +76,17 @@ extension DashboardViewModel {
         }
     }
     
-    func getDailySessions() async {
-        await sessionsRepo.getDailySessions(date: Date.now.toString(), completion: { data, response in
+    func getDailySessions(completion: @escaping (Bool?, DailySessions?, URLResponse?) -> ()) async {
+        await sessionsRepo.getDailySessions(date: Date.now.stringifyInShortDate(), completion: { data, response in
             if let response = response as? HTTPURLResponse, let data {
                 if response.statusCode == 200 {
-                    Task {
-                        self.todaySessions = data
-                    }
+                    completion(true, data, response)
                 } else {
+                    completion(false, nil, response)
                     print("error: \(response.debugDescription)")
                 }
             } else {
+                completion(false, nil, response)
                 print("no response from api")
             }
         })

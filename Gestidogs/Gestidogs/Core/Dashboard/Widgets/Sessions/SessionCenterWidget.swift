@@ -9,22 +9,22 @@ import SwiftUI
 
 struct SessionCenterWidget: View {
     
-    let sessions: DailySessions
+    let sessions: DailySessions?
     
     var body: some View {
         VStack {
-            HStack {
-                Text("Mes rendez-vous du jour")
-                    .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                    .font(.system(size: 30))
-                Spacer()
-            }
-            .padding(.horizontal, 20)
-            .padding(-5)
+            titleSection
             
+            scrollViewItems
+        }
+    }
+}
+
+extension SessionCenterWidget {
+    @ViewBuilder var scrollViewItems: some View {
+        if let sessions {
             if sessions.today.isEmpty {
-                Text("Vous n'avez pas de sessions prévues aujourd'hui !")
+                Text("Aucune session pour aujourd'hui !")
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
                     .fontWeight(.semibold)
@@ -39,7 +39,21 @@ struct SessionCenterWidget: View {
                     .padding(.leading, 10)
                 }
             }
-            
+        } else {
+            ProgressView()
+                .padding(.vertical, 20)
         }
+    }
+    
+    @ViewBuilder var titleSection: some View {
+        HStack {
+            Text("Mes rendez-vous du jour")
+                .foregroundColor(.white)
+                .fontWeight(.semibold)
+                .font(.system(size: 30))
+            Spacer()
+        }
+        .padding(.horizontal, 20)
+        .padding(-5)
     }
 }

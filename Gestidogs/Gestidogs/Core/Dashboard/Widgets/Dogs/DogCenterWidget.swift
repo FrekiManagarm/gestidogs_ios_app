@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DogCenterWidget: View {
     
-    let dogs: [DogsResponseModel]
+    let dogs: [DogsResponseModel]?
     
     var body: some View {
         VStack {
@@ -43,13 +43,26 @@ extension DogCenterWidget {
     }
     
     @ViewBuilder var scrollViewItems: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 10) {
-                ForEach(dogs) { dog in
-                    DogItem(dog: dog)
+        if let dogs {
+            if dogs.isEmpty {
+                Text("Vous n'avez pas encore de chiens...")
+                    .font(.system(size: 15))
+                    .fontWeight(.semibold)
+                    .foregroundColor(.secondary)
+                    .padding(.vertical, 20)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: 10) {
+                        ForEach(dogs) { dog in
+                            DogItem(dog: dog)
+                        }
+                    }
+                    .padding(.leading, 10)
                 }
             }
-            .padding(.leading, 10)
+        } else {
+            ProgressView()
+                .padding(.vertical, 20)
         }
     }
 }

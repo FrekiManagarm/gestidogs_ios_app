@@ -33,4 +33,16 @@ extension String {
         
         return stringDate
     }
+    
+    func justHourAndMinutes() -> String {
+        guard let newDate = self.toDate()?.removeHours(hours: 2) else {
+            return ""
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let stringDate = dateFormatter.string(from: newDate)
+        
+        return stringDate
+    }
 }

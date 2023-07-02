@@ -1,20 +1,61 @@
 PODS:
   - FSCalendar (2.8.4)
   - Kingfisher (7.7.0)
+  - Stripe (23.6.0):
+    - StripeApplePay (= 23.6.0)
+    - StripeCore (= 23.6.0)
+    - StripePayments (= 23.6.0)
+    - StripePaymentsUI (= 23.6.0)
+    - StripeUICore (= 23.6.0)
+  - StripeApplePay (23.6.0):
+    - StripeCore (= 23.6.0)
+  - StripeCore (23.6.0)
+  - StripePayments (23.6.0):
+    - StripeCore (= 23.6.0)
+    - StripePayments/Stripe3DS2 (= 23.6.0)
+  - StripePayments/Stripe3DS2 (23.6.0):
+    - StripeCore (= 23.6.0)
+  - StripePaymentSheet (23.6.0):
+    - StripeApplePay (= 23.6.0)
+    - StripeCore (= 23.6.0)
+    - StripePayments (= 23.6.0)
+    - StripePaymentsUI (= 23.6.0)
+  - StripePaymentsUI (23.6.0):
+    - StripeCore (= 23.6.0)
+    - StripePayments (= 23.6.0)
+    - StripeUICore (= 23.6.0)
+  - StripeUICore (23.6.0):
+    - StripeCore (= 23.6.0)
 
 DEPENDENCIES:
   - FSCalendar
   - Kingfisher
+  - Stripe
+  - StripePaymentSheet
 
 SPEC REPOS:
   trunk:
     - FSCalendar
     - Kingfisher
+    - Stripe
+    - StripeApplePay
+    - StripeCore
+    - StripePayments
+    - StripePaymentSheet
+    - StripePaymentsUI
+    - StripeUICore
 
 SPEC CHECKSUMS:
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
+  Stripe: 097f76ce332ff7dcb8a29ec2a8379bb4f34aa14d
+  StripeApplePay: 484761d4760ddb8af8c1510b8735cd9aee94515f
+  StripeCore: 0e83ad26d508e5a8e9eb04d6ddd3cbb08a3f7816
+  StripePayments: cdd5222052d541f4daf1d84515f0b9cd18720534
+  StripePaymentSheet: 835aabcac7946d6b6b341055d021428b96894b70
+  StripePaymentsUI: 835b9422f86ceb2ca02b4146db9d3f7bf1acb0d9
+  StripeUICore: 81bac0f54df659ab7c5dd4f5a57719a5fecdcdc9
 
-PODFILE CHECKSUM: 0104e1a549a96640877170380e8db2b0ca7f3050
+PODFILE CHECKSUM: 30cef32fc83b7e1c921bf58b87ed0f414f1011e3
 
 COCOAPODS: 1.11.3

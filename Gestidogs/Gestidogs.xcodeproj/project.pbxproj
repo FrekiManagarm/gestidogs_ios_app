@@ -22,6 +22,7 @@
 		010E1E162A321028002E0DD1 /* RegisterCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E152A321028002E0DD1 /* RegisterCredentials.swift */; };
 		010E1E1D2A326F34002E0DD1 /* PaymentRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E1C2A326F34002E0DD1 /* PaymentRequestModel.swift */; };
 		010E1E1F2A326F40002E0DD1 /* PaymentResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E1E1E2A326F40002E0DD1 /* PaymentResponseModel.swift */; };
+		0116F3862A51C181003C427B /* SessionCreateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116F3852A51C181003C427B /* SessionCreateModel.swift */; };
 		012BF7432A33552500A4C266 /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7422A33552500A4C266 /* ActivityListView.swift */; };
 		012BF7452A33553500A4C266 /* ActivityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7442A33553500A4C266 /* ActivityListViewModel.swift */; };
 		012BF7472A33554C00A4C266 /* ActivityListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7462A33554C00A4C266 /* ActivityListWidget.swift */; };
@@ -142,6 +143,7 @@
 		010E1E152A321028002E0DD1 /* RegisterCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCredentials.swift; sourceTree = "<group>"; };
 		010E1E1C2A326F34002E0DD1 /* PaymentRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequestModel.swift; sourceTree = "<group>"; };
 		010E1E1E2A326F40002E0DD1 /* PaymentResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponseModel.swift; sourceTree = "<group>"; };
+		0116F3852A51C181003C427B /* SessionCreateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCreateModel.swift; sourceTree = "<group>"; };
 		012BF7422A33552500A4C266 /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
 		012BF7442A33553500A4C266 /* ActivityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListViewModel.swift; sourceTree = "<group>"; };
 		012BF7462A33554C00A4C266 /* ActivityListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListWidget.swift; sourceTree = "<group>"; };
@@ -597,6 +599,7 @@
 				5F157C2F2A277C9600B4C2FE /* SessionResponseModel.swift */,
 				5F157C312A277CA700B4C2FE /* SessionRequestModel.swift */,
 				01AE587D2A4E0D9100EE3106 /* DailySessions.swift */,
+				0116F3852A51C181003C427B /* SessionCreateModel.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -1231,6 +1234,7 @@
 				01AE58792A4DC1C400EE3106 /* SessionCard.swift in Sources */,
 				01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */,
 				5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */,
+				0116F3862A51C181003C427B /* SessionCreateModel.swift in Sources */,
 				5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */,
 				5F32C5BA2A28CCA30034AB6F /* DogsListWidget.swift in Sources */,
 				5F157C222A277BF300B4C2FE /* ActivityTypeRequestModel.swift in Sources */,

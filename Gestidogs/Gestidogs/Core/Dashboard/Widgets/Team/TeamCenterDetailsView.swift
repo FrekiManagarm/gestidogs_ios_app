@@ -30,7 +30,7 @@ struct TeamCenterDetailsView: View {
 }
 
 extension TeamCenterDetailsView {
-    private var imageSection: some View {
+    @ViewBuilder var imageSection: some View {
         KFImage(URL(string: teamMate.avatarUrl))
             .resizable()
             .scaledToFill()
@@ -39,7 +39,7 @@ extension TeamCenterDetailsView {
             .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 10)
     }
     
-    private var titleAndDetailsSection: some View {
+    @ViewBuilder var titleAndDetailsSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(teamMate.firstName + " " + teamMate.lastName)
                 .font(.largeTitle)
@@ -55,7 +55,7 @@ extension TeamCenterDetailsView {
         }
     }
     
-    private var descriptionSection: some View {
+    @ViewBuilder var descriptionSection: some View {
         VStack {
             
         }

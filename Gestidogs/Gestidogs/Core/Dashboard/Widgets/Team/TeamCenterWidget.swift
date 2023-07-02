@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TeamCenterWidget: View {
     
-    let teamMates: [UserResponseModel]
+    let teamMates: [UserResponseModel]?
     
     var body: some View {
         VStack {
@@ -23,13 +23,26 @@ struct TeamCenterWidget: View {
 extension TeamCenterWidget {
     
     @ViewBuilder var scrollItemsSection: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack {
-                ForEach(teamMates) { mate in
-                    TeamCell(teamMate: mate)
+        if let teamMates {
+            if teamMates.isEmpty {
+                Text("Vous n'avez pas encore d'équipe...")
+                    .foregroundColor(.secondary)
+                    .font(.system(size: 15))
+                    .fontWeight(.semibold)
+                    .padding(.vertical, 20)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(teamMates) { mate in
+                            TeamCell(teamMate: mate)
+                        }
+                    }
+                    .padding(.leading, 10)
                 }
             }
-            .padding(.leading, 10)
+        } else {
+            ProgressView()
+                .padding(.vertical, 20)
         }
     }
     

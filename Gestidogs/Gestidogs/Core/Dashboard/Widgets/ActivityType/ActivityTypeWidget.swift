@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActivityCenterWidget: View {
     
-    let activities: [ActivityResponseModel]
+    let activities: [ActivityResponseModel]?
     
     var body: some View {
         VStack {
@@ -44,13 +44,26 @@ extension ActivityCenterWidget {
     }
     
     @ViewBuilder var scrollViewItems: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack {
-                ForEach(activities) { activity in
-                    ActivityCell(activity: activity)
+        if let activities {
+            if activities.isEmpty {
+                Text("Vous n'avez pas encore d'activités...")
+                    .foregroundColor(.secondary)
+                    .font(.system(size: 15))
+                    .fontWeight(.semibold)
+                    .padding(.vertical, 20)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(activities) { activity in
+                            ActivityCell(activity: activity)
+                        }
+                    }
+                    .padding(.leading, 10)
                 }
             }
-            .padding(.leading, 10)
+        } else {
+            ProgressView()
+                .padding(.vertical, 20)
         }
     }
 }
@@ -58,7 +71,7 @@ extension ActivityCenterWidget {
 
 
 
-
+#if DEBUG
 struct ActivityCenterWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -66,3 +79,4 @@ struct ActivityCenterWidget_Previews: PreviewProvider {
         }
     }
 }
+#endif

@@ -13,8 +13,10 @@ struct SessionCenterDetails: View {
     }
 }
 
+#if DEBUG
 struct DogsCenterDetails_Previews: PreviewProvider {
     static var previews: some View {
         SessionCenterDetails()
     }
 }
+#endif

@@ -31,7 +31,7 @@ struct ActivityCenterDetails: View {
 }
 
 extension ActivityCenterDetails {
-    private var imageSection: some View {
+    @ViewBuilder var imageSection: some View {
         VStack {
             if let imageUrl = activity.imageUrl {
                 KFImage(URL(string: imageUrl))
@@ -46,7 +46,7 @@ extension ActivityCenterDetails {
         }
     }
     
-    private var titleAndDetailsSection: some View {
+    @ViewBuilder var titleAndDetailsSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(activity.title)
                 .font(.largeTitle)
@@ -62,7 +62,7 @@ extension ActivityCenterDetails {
         }
     }
     
-    private var descriptionSection: some View {
+    @ViewBuilder var descriptionSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             if let description = activity.description {
                 Text(description)

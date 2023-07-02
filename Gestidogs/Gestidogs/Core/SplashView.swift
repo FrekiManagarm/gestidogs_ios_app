@@ -23,11 +23,13 @@ struct SplashView: View {
     }
 }
 
-struct SplashView_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashView()
+#if DEBUG
+    struct SplashView_Previews: PreviewProvider {
+        static var previews: some View {
+            SplashView()
+        }
     }
-}
+#endif
 
 struct LottieView: UIViewRepresentable {
     let animationView = LottieAnimationView()

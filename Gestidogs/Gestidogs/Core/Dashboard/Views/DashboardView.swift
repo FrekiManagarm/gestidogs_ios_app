@@ -37,12 +37,21 @@ struct DashboardView: View {
                         await dashboardViewModel.getDogsEstablishment()
                         await dashboardViewModel.getActivities()
                         await dashboardViewModel.getEstablishment()
-                        await dashboardViewModel.getDailySessions()
+                        await dashboardViewModel.getDailySessions { isSuccess, data, response in
+                            if isSuccess == true {
+                                Task {
+                                    dashboardViewModel.todaySessions = data
+                                }
+                            } else {
+                                print("something wen't wrong on the view")
+                            }
+                        }
                     }
                     .onDisappear {
-                        dashboardViewModel.dogs = []
-                        dashboardViewModel.activities = []
-                        dashboardViewModel.teamMates = []
+                        dashboardViewModel.dogs = nil
+                        dashboardViewModel.activities = nil
+                        dashboardViewModel.teamMates = nil
+                        dashboardViewModel.todaySessions = nil
                     }
                 }
             }
@@ -105,12 +114,7 @@ extension DashboardView {
     }
     
     @ViewBuilder var sessionsSection: some View {
-        if let todaySessions = dashboardViewModel.todaySessions {
-            SessionCenterWidget(sessions: todaySessions)
-        } else {
-            ProgressView()
-                .progressViewStyle(.circular)
-        }
+        SessionCenterWidget(sessions: dashboardViewModel.todaySessions)
     }
 }
 

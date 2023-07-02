@@ -97,4 +97,12 @@ public extension Date {
         
         return ageComponents.year
     }
+    
+    func stringifyInShortDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateFormatted = dateFormatter.string(from: self)
+        
+        return dateFormatted
+    }
 }
