@@ -33,6 +33,7 @@ struct TeamCell: View {
                 }
                 .sheet(isPresented: $showDetailsView) {
                     TeamCenterDetailsView(teamMate: teamMate)
+                        .presentationDragIndicator(.visible)
                 }
         }
     }

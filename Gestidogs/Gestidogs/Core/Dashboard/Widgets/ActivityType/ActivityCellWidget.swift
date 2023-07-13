@@ -15,7 +15,7 @@ struct ActivityCell: View {
     @StateObject var dashboardVM = DashboardViewModel()
     
     var body: some View {
-        ZStack {
+        NavigationLink(destination: ActivityCenterDetails(activity: activity, showDetailsView: $showDetailsView)) {
             HStack {
                 if let imageUrl = activity.imageUrl {
                     KFImage(URL(string: imageUrl))
@@ -56,13 +56,13 @@ struct ActivityCell: View {
         .background(Color("gray100"))
         .cornerRadius(25)
         .padding(EdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10))
-        .onTapGesture {
-            withAnimation(.spring()) {
-                showDetailsView.toggle()
-            }
-        }
-        .sheet(isPresented: $showDetailsView) {
-            ActivityCenterDetails(activity: activity)
-        }
+//        .onTapGesture {
+//            withAnimation(.spring()) {
+//                showDetailsView.toggle()
+//            }
+//        }
+//        .sheet(isPresented: $showDetailsView) {
+//            ActivityCenterDetails(activity: activity, showDetailsView: $showDetailsView)
+//        }
     }
 }

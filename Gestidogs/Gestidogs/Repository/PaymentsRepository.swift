@@ -13,4 +13,10 @@ class PaymentsRepository {
     public func makePayment() async {
         
     }
+    
+    public func retreivePaymentMethods() async {
+        await ApiManager.shared.request(baseUrl, completion: { data, response in
+            
+        })
+    }
 }

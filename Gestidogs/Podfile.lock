@@ -26,12 +26,15 @@ PODS:
     - StripeUICore (= 23.6.0)
   - StripeUICore (23.6.0):
     - StripeCore (= 23.6.0)
+  - UIPilot (2.0.2)
 
 DEPENDENCIES:
   - FSCalendar
   - Kingfisher
   - Stripe
   - StripePaymentSheet
+  - StripePaymentsUI
+  - UIPilot
 
 SPEC REPOS:
   trunk:
@@ -44,6 +47,7 @@ SPEC REPOS:
     - StripePaymentSheet
     - StripePaymentsUI
     - StripeUICore
+    - UIPilot
 
 SPEC CHECKSUMS:
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
@@ -55,7 +59,8 @@ SPEC CHECKSUMS:
   StripePaymentSheet: 835aabcac7946d6b6b341055d021428b96894b70
   StripePaymentsUI: 835b9422f86ceb2ca02b4146db9d3f7bf1acb0d9
   StripeUICore: 81bac0f54df659ab7c5dd4f5a57719a5fecdcdc9
+  UIPilot: dec727d11749dcb34654df4f8c94b98b29903566
 
-PODFILE CHECKSUM: 30cef32fc83b7e1c921bf58b87ed0f414f1011e3
+PODFILE CHECKSUM: ea3b65af1f87baf927571187491ba70ea2e2a7b3
 
 COCOAPODS: 1.11.3

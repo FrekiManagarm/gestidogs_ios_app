@@ -10,23 +10,90 @@ import Foundation
 class ObservationRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.observationsUrl)"
     
-    public func getAllObservations() async {
+    //MARK: GET ALL OBSERVATIONS
+    public func getAllObservations(dogId: String? = nil, completion: @escaping ([ObservationResponseModel]?, URLResponse?) -> ()) async {
         
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["dogId": dogId ?? ""]) { data, response in
+            if let data {
+                do {
+                    let decode = try JSONDecoder().decode([ObservationResponseModel].self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error: \(error)")
+                }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
+            }
+        }
     }
     
-    public func getObservationById() async {
+    //MARK: GETOBSERVATION BY ID
+    public func getObservationById(observationId: String, completion: @escaping (ObservationResponseModel?, URLResponse?) -> ()) async {
         
+        await ApiManager.shared.request("\(baseUrl)/\(observationId)", httpMethod: "GET"){ data, response in
+            if let data {
+                do {
+                    let decode = try JSONDecoder().decode(ObservationResponseModel.self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error: \(error)")
+                }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
+            }
+        }
     }
     
-    public func createObservation() async {
-        
+    //MARK: CREATE OBSERVATION
+    public func createObservation(body: [String: Any?]?, completion: @escaping (ObservationResponseModel?, URLResponse?) -> ()) async {
+        await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body){ data, response in
+            if let data {
+                do {
+                    let decode = try JSONDecoder().decode(ObservationResponseModel.self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error: \(error)")
+                }
+            } else {
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
+            }
+        }
     }
     
-    public func modifyObservation() async {
+    //MARK: MODIFY OBSERVATION
+    public func modifyObservation(observationId: String, body: [String: Any?]?, completion: @escaping (ObservationResponseModel?, URLResponse?) -> ()) async {
         
+        await ApiManager.shared.request("\(baseUrl)/\(observationId)", httpMethod: "PUT", body: body) { data, response in
+            if let data {
+                do {
+                    let decode = try JSONDecoder().decode(ObservationResponseModel.self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error: \(error)")
+                }
+            } else {
+                completion(nil, response)
+                print("bad request from repository => \(response.debugDescription)")
+            }
+        }
     }
     
-    public func deleteObservation() async {
+    //MARK: DELETE OBSERVATION
+    public func deleteObservationById(observationId: String, completion: @escaping (Bool?, URLResponse?) -> ()) async {
         
+        await ApiManager.shared.request("\(baseUrl)/\(observationId)") { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 204 {
+                    completion(true, response)
+                } else {
+                    completion(false, response)
+                }
+            } else {
+                print("bad request in repository => \(response.debugDescription)")
+            }
+        }
     }
 }

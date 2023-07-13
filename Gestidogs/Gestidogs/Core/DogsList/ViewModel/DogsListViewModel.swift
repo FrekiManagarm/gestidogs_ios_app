@@ -8,6 +8,7 @@
 import Foundation
 
 class DogsListViewModel: ObservableObject {
+    @Published var dogs: [DogsResponseModel]?
     
     //MARK: Modules
     lazy var dogsRepo = DogsRepository()
@@ -22,7 +23,25 @@ class DogsListViewModel: ObservableObject {
     @Published var weight: String = ""
     
     //MARK: Functions
-    func createNewDog(ownerId: String) async {
+    @MainActor func getDogs() async {
+        guard let establishmentId = UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) else {
+            return
+        }
+        
+        await dogsRepo.getAllDogs(establishmentId: establishmentId, completion: { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.dogs = data
+                    }
+                } else {
+                    print("error: \(response.debugDescription)")
+                }
+            }
+        })
+    }
+    
+    @MainActor func createNewDog(ownerId: String) async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
@@ -40,9 +59,13 @@ class DogsListViewModel: ObservableObject {
         ]
             
         await dogsRepo.createDog(body: body) { data, response in
-            if let data = data, let response = response {
-                DispatchQueue.main.async {
-                    print("dog created \(data) with \(response.debugDescription)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    Task {
+                        await self.getDogs()
+                    }
+                } else {
+                    print("error: \(response.debugDescription)")
                 }
             }
         }

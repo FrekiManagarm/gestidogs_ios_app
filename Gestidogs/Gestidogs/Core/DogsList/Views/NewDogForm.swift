@@ -12,68 +12,197 @@ struct NewDogForm: View {
     @StateObject var viewModel: DogsListViewModel = DogsListViewModel()
     
     var body: some View {
-        VStack {
-            TextField("Nom", text: $viewModel.dogsName)
-                .padding(.leading)
-                .frame(width: UIScreen.main.bounds.width - 20, height: 55)
-                .background(Color.gray.brightness(0.3))
-                .textInputAutocapitalization(.never)
-                .cornerRadius(10)
-            TextField("ID National", text: $viewModel.nationalId)
-                .padding(.leading)
-                .frame(width: UIScreen.main.bounds.width - 20, height: 55)
-                .textInputAutocapitalization(.never)
-                .background(Color.gray.brightness(0.3))
-                .cornerRadius(10)
-            TextField("Image URL", text: $viewModel.imageUrl)
-                .padding(.leading)
-                .frame(width: UIScreen.main.bounds.width - 20, height: 55)
-                .textInputAutocapitalization(.never)
-                .background(Color.gray.brightness(0.3))
-                .cornerRadius(10)
-            TextField("Sexe", text: $viewModel.gender)
-                .padding(.leading)
-                .frame(width: UIScreen.main.bounds.width - 20, height: 55)
-                .textInputAutocapitalization(.never)
-                .background(Color.gray.brightness(0.3))
-                .cornerRadius(10)
-            TextField("Race", text: $viewModel.breed)
-                .padding(.leading)
-                .frame(width: UIScreen.main.bounds.width - 20, height: 55)
-                .textInputAutocapitalization(.never)
-                .background(Color.gray.brightness(0.3))
-                .cornerRadius(10)
-            TextField("Taille", text: $viewModel.height)
-                .padding(.leading)
-                .frame(width: UIScreen.main.bounds.width - 20, height: 55)
-                .textInputAutocapitalization(.never)
-                .background(Color.gray.brightness(0.3))
-                .cornerRadius(10)
-                .keyboardType(.numberPad)
-            TextField("Poids", text: $viewModel.weight)
-                .padding(.leading)
-                .frame(width: UIScreen.main.bounds.width - 20, height: 55)
-                .textInputAutocapitalization(.never)
-                .background(Color.gray.brightness(0.3))
-                .cornerRadius(10)
-                .keyboardType(.numberPad)
-            
-            Button {
-                Task {
-                    
+        ScrollView {
+            VStack {
+                titleSection
+                
+                nameFieldSection
+                
+                sexeAndNationalIdSection
+                
+                imageUrlSection
+                
+                raceSection
+                
+                heightAndWeightSection
+                
+                Button {
+                    Task {
+                        //MARK: Add function for adding new dog
+                    }
+                } label: {
+                    Text("Créer un nouveau chien")
+                        .foregroundColor(Color("whiteA700"))
+                        .fontWeight(.semibold)
+                        .font(.system(size: 20))
                 }
-            } label: {
-                HStack {
-                    
-                }
+                .padding(.horizontal, 50)
+                .frame(height: 55)
+                .background(Color("blueGray80001"))
+                .cornerRadius(25)
+                .padding(.top, 20)
             }
-
         }
+        .background(Color("gray100"))
     }
 }
 
+extension NewDogForm {
+    
+    @ViewBuilder var titleSection: some View {
+        Text("Vous souhaitez créer un nouveau chien ?")
+            .font(.system(size: 25))
+            .fontWeight(.semibold)
+            .foregroundColor(Color("blueGray80001"))
+            .multilineTextAlignment(.center)
+            .padding(.top, 20)
+    }
+    
+    @ViewBuilder var nameFieldSection: some View {
+        VStack(alignment: .leading) {
+            Text("Nom")
+                .foregroundColor(Color("blueGray80001"))
+                .font(.system(size: 15))
+                .fontWeight(.semibold)
+            ZStack {
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color("whiteA700"))
+                    .frame(height: 55)
+                TextField("Nom", text: $viewModel.dogsName)
+                    .padding(.leading, 10)
+                    .textInputAutocapitalization(.never)
+                    .cornerRadius(10)
+            }
+        }
+        .padding(.horizontal, 10)
+        .padding(.top, 10)
+    }
+    
+    @ViewBuilder var sexeAndNationalIdSection: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("ID National")
+                    .font(.system(size: 15))
+                    .foregroundColor(Color("blueGray80001"))
+                    .fontWeight(.semibold)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(Color("whiteA700"))
+                        .frame(height: 55)
+                    TextField("ID National", text: $viewModel.nationalId)
+                        .padding(.leading)
+                        .textInputAutocapitalization(.never)
+                        .cornerRadius(10)
+                }
+            }
+            .padding(.horizontal, 10)
+            
+            VStack(alignment: .leading) {
+                Text("Sexe")
+                    .foregroundColor(Color("blueGray80001"))
+                    .font(.system(size: 15))
+                    .fontWeight(.semibold)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(Color("whiteA700"))
+                        .frame(height: 55)
+                    TextField("Sexe", text: $viewModel.gender)
+                        .padding(.leading)
+                        .textInputAutocapitalization(.never)
+                        .cornerRadius(10)
+                }
+            }
+            .padding(.horizontal, 10)
+        }
+        .padding(.top, 10)
+    }
+    
+    @ViewBuilder var imageUrlSection: some View {
+        VStack(alignment: .leading) {
+            Text("Image URL")
+                .font(.system(size: 15))
+                .foregroundColor(Color("blueGray80001"))
+                .fontWeight(.semibold)
+            ZStack {
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color("whiteA700"))
+                    .frame(height: 55)
+                TextField("Image URL", text: $viewModel.imageUrl)
+                    .padding(.leading)
+                    .textInputAutocapitalization(.never)
+                    .cornerRadius(10)
+            }
+        }
+        .padding(.horizontal, 10)
+        .padding(.top, 10)
+    }
+    
+    @ViewBuilder var raceSection: some View {
+        VStack(alignment: .leading) {
+            Text("Race")
+                .foregroundColor(Color("blueGray80001"))
+                .font(.system(size: 15))
+                .fontWeight(.semibold)
+            ZStack {
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color("whiteA700"))
+                    .frame(height: 55)
+                TextField("Race", text: $viewModel.breed)
+                    .padding(.leading)
+                    .textInputAutocapitalization(.never)
+                    .cornerRadius(10)
+            }
+        }
+        .padding(.horizontal, 10)
+        .padding(.top, 10)
+    }
+    
+    @ViewBuilder var heightAndWeightSection: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Taille")
+                    .font(.system(size: 15))
+                    .foregroundColor(Color("blueGray80001"))
+                    .fontWeight(.semibold)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(Color("whiteA700"))
+                        .frame(height: 55)
+                    TextField("Taille", text: $viewModel.height)
+                        .padding(.leading)
+                        .textInputAutocapitalization(.never)
+                        .cornerRadius(10)
+                        .keyboardType(.numberPad)
+                }
+            }
+            .padding(.horizontal, 10)
+            
+            VStack(alignment: .leading) {
+                Text("Poids")
+                    .font(.system(size: 15))
+                    .foregroundColor(Color("blueGray80001"))
+                    .fontWeight(.semibold)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(Color("whiteA700"))
+                        .frame(height: 55)
+                    TextField("Poids", text: $viewModel.weight)
+                        .padding(.leading)
+                        .textInputAutocapitalization(.never)
+                        .cornerRadius(10)
+                        .keyboardType(.numberPad)
+                }
+            }
+            .padding(.horizontal, 10)
+        }
+        .padding(.top, 10)
+    }
+}
+
+#if DEBUG
 struct NewDogForm_Previews: PreviewProvider {
     static var previews: some View {
         NewDogForm()
     }
 }
+#endif

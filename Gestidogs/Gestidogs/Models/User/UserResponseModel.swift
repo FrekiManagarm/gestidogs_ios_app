@@ -10,7 +10,7 @@ import Foundation
 struct UserResponseModel {
     let id: String
     let avatarUrl: String
-    let activities: [ActivityResponseModel]
+    let activities: [String]?
     let emailAddress: String
     let firstName: String
     let lastName: String

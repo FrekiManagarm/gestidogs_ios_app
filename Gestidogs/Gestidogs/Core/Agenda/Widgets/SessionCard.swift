@@ -42,6 +42,7 @@ struct SessionCard: View {
             .padding(.trailing, 20)
             .sheet(isPresented: $showSessionDetails) {
                 SessionDetails(session: session)
+                    .presentationDragIndicator(.visible)
             }
         }
     }

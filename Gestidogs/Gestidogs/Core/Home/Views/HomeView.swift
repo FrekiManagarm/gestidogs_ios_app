@@ -10,6 +10,9 @@ import SwiftUI
 struct HomeView: View {
     
     @State private var tabBarIndex: Int = 0
+    @EnvironmentObject var appState: AppState
+    
+    //MARK: Lifecycle
     init() {
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithOpaqueBackground()
@@ -17,42 +20,25 @@ struct HomeView: View {
     }
     
     var body: some View {
-                TabView(selection: $tabBarIndex) {
-                    DashboardView()
-                        .tabItem {
-                            Image(systemName: "house.fill")
-                            Text("Accueil")
-                        }
-                        .tag(0)
-                    
-                    AgendaView()
-                        .tabItem {
-                            Image(systemName: "calendar")
-                            Text("Agenda")
-                        }
-                        .tag(1)
-                    
-                    HolidaysView()
-                        .tabItem {
-                            Image(systemName: "sun.max")
-                            Text("Congés")
-                        }
-                        .tag(2)
-                    
-                    ProfileView()
-                        .tabItem {
-                            Image(systemName: "person.fill")
-                            Text("Profil")
-                        }
-                        .tag(3)
-                }
-                .accentColor(Color("indigoA400"))
-                .padding(-5)
+        switch self.appState.userRole {
+            case .admin:
+                HomeView_Manager(tabBarIndex: $tabBarIndex)
+            case .client:
+                HomeView_Client(tabBarIndex: $tabBarIndex)
+            case .manager:
+                HomeView_Manager(tabBarIndex: $tabBarIndex)
+            case .educator:
+                HomeView_Manager(tabBarIndex: $tabBarIndex)
+            default:
+                SplashView()
+        }
     }
 }
 
+#if DEBUG
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
     }
 }
+#endif

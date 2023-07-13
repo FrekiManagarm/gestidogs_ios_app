@@ -27,23 +27,7 @@ struct LoginView: View {
                 
                 VStack {
                     
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Bienvenue sur GestiDogs")
-                                .foregroundColor(.white)
-                                .font(.system(size: 40))
-                                .fontWeight(.bold)
-                                .padding(.bottom, 10)
-                            
-                            Text("Connectez vous,")
-                                .fontWeight(.medium)
-                                .font(.system(size: 20))
-                                .foregroundColor(.white)
-                        }
-                        .padding(.leading, 20)
-                        Spacer()
-                    }
-                    .padding(.bottom, 60)
+                    titleSection
                     
                     EmailField(emailTxt: $loginViewModel.emailTxt)
                     PasswordField(passwdTxt: $loginViewModel.passwdTxt)
@@ -64,16 +48,7 @@ struct LoginView: View {
                         .shadow(radius: 10, y: 10)
                     }
                     
-                    Divider()
-                        .padding(.top, 20)
-                        .padding(.horizontal)
-                    
-                    HStack(alignment: .center) {
-                        Text("Ou")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                    }
-                    .padding(.top, 10)
+                    separatorSection
                     
                     GoogleAndFacebookLoginButtons(googleLoginFunction: loginViewModel.loginGoogle, facebookLoginFunction: loginViewModel.loginFacebook)
                 }
@@ -96,12 +71,63 @@ extension LoginView {
                     UserDefaults.standard.set(true, forKey: "isSignedIn")
                     UserDefaults.standard.synchronize()
                     isLoading = false
-                    appState.loginState = .selectEstablishment
+                    self.appState.loginState = .selectEstablishment
                 }
             } else {
                 print("error login \(response.debugDescription)")
             }
         }
+    }
+    
+    @ViewBuilder var titleSection: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Bienvenue sur GestiDogs")
+                    .foregroundColor(.white)
+                    .font(.system(size: 40))
+                    .fontWeight(.bold)
+                    .padding(.bottom, 10)
+                
+                Text("Connectez vous,")
+                    .fontWeight(.medium)
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
+            }
+            .padding(.leading, 20)
+            Spacer()
+        }
+        .padding(.bottom, 60)
+    }
+    
+    @ViewBuilder var buttonOrLoading: some View {
+        if isLoading {
+            ProgressView()
+        } else {
+            Button("Me connecter", action: {
+                Task {
+                    await login()
+                }
+            })
+            .padding()
+            .frame(width: UIScreen.main.bounds.width / 1.75)
+            .background(Color("blueGray80001"))
+            .foregroundColor(.white)
+            .cornerRadius(30)
+            .shadow(radius: 10, y: 10)
+        }
+    }
+    
+    @ViewBuilder var separatorSection: some View {
+        Divider()
+            .padding(.top, 20)
+            .padding(.horizontal)
+        
+        HStack(alignment: .center) {
+            Text("Ou")
+                .font(.headline)
+                .foregroundColor(.white)
+        }
+        .padding(.top, 10)
     }
 }
 

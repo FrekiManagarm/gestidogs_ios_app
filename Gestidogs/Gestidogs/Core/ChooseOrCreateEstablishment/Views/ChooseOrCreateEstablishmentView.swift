@@ -11,7 +11,7 @@ struct ChooseOrCreateEstablishmentView: View {
     
     var userManager = UserManager()
     @StateObject var viewModel: ChooseOrCreateEstablishmentViewModel = ChooseOrCreateEstablishmentViewModel()
-    @StateObject var appState: AppState = AppState()
+    @EnvironmentObject var appState: AppState
     @State var showEstablishmentForm: Bool = false
     @State var establishmentId: String = ""
     
@@ -122,6 +122,7 @@ struct ChooseOrCreateEstablishmentView: View {
             .sheet(isPresented: $showEstablishmentForm) {
                 NewEstablishmentForm(showForm: $showEstablishmentForm)
                     .presentationDetents([.medium])
+                    .presentationDragIndicator(.visible)
             }
         }
     }

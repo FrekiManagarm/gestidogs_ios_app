@@ -97,7 +97,7 @@ class AgendaViewModel : ObservableObject {
 
         await sessionsRepo.getDailySessions(date: date) { data, response in
             if let data, let response = response as? HTTPURLResponse {
-                print("response \(response.debugDescription)")
+//                print("response \(response.debugDescription)")
                 if response.statusCode == 200 {
                     completion(data, response)
                 }

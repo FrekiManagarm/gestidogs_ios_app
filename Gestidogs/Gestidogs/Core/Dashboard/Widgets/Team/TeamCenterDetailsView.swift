@@ -17,14 +17,12 @@ struct TeamCenterDetailsView: View {
             VStack {
                 imageSection
                 
-                VStack(alignment: .leading, spacing: 16) {
+                VStack {
                     titleAndDetailsSection
-                    Divider()
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
             }
         }
+        .background(Color("gray100"))
         .ignoresSafeArea()
     }
 }
@@ -34,24 +32,53 @@ extension TeamCenterDetailsView {
         KFImage(URL(string: teamMate.avatarUrl))
             .resizable()
             .scaledToFill()
-            .frame(width: UIScreen.main.bounds.width, height: 300)
             .clipped()
+            .frame(width: 200, height: 200)
+            .cornerRadius(200)
             .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 10)
+            .padding(.top, 20)
     }
     
     @ViewBuilder var titleAndDetailsSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(teamMate.firstName + " " + teamMate.lastName)
+        VStack {
+            Text("\(teamMate.firstName) \(teamMate.lastName)")
                 .font(.largeTitle)
                 .fontWeight(.semibold)
             
-            Text(teamMate.emailAddress)
-                .font(.title3)
-                .foregroundColor(.secondary)
-            
-            Text(teamMate.role)
-                .font(.title3)
-                .foregroundColor(.secondary)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("Email")
+                        .font(.system(size: 15))
+                        .foregroundColor(Color("blueGray80001"))
+                        .fontWeight(.semibold)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(Color("whiteA700"))
+                            .frame(width: 250, height: 55)
+                        Text(teamMate.emailAddress)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                }
+                
+                VStack(alignment: .leading) {
+                    Text("Role")
+                        .foregroundColor(Color("blueGray80001"))
+                        .font(.system(size: 15))
+                        .fontWeight(.semibold)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(Color("whiteA700"))
+                            .frame(height: 55)
+                        Text(teamMate.role)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+            .padding(.horizontal, 10)
+            .padding(.top, 10)
         }
     }
     

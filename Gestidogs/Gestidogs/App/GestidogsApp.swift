@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import StripeCore
 
 @main
 struct GestidogsApp: App {
+    
+    init() {
+        StripeAPI.defaultPublishableKey = CoreConstants.stripePublicKey
+    }
     
     @StateObject var appState: AppState = AppState()
     
@@ -22,8 +27,6 @@ struct GestidogsApp: App {
                 }
         }
     }
-    
-    
 }
 
 struct DispatchView: View {

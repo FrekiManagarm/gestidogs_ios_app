@@ -23,7 +23,7 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
     var userManager = UserManager.shared
     
     //MARK: Functions
-    func getEstablishments() async {
+    @MainActor func getEstablishments() async {
         
         guard let ownerId = userManager.getUserConnectedId() else {
             print("pas de ownerId")
@@ -32,7 +32,7 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
         
         await establishmentRepo.getAllEstablishments(ownerId: ownerId) { data, response in
             if let data = data {
-                DispatchQueue.main.async {
+                Task {
                     print("data establishments \(data)")
                     self.establishmentsOfOwner = data
                 }
@@ -40,7 +40,7 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
         }
     }
     
-    func createNewEstablishment() async {
+    @MainActor func createNewEstablishment() async {
         guard let ownerId = userManager.getUserConnectedId() else {
             return
         }
@@ -56,7 +56,7 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
         
         await establishmentRepo.createEstablishment(body: body) { data, response in
             if let data = data {
-                DispatchQueue.main.async {
+                Task {
                     print("establishment created \(data)")
                 }
             } else {

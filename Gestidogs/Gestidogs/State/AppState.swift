@@ -18,30 +18,46 @@ class AppState: ObservableObject {
     
     @Published var loginState: LoginState = .loadingView
     @Published var userId: String = ""
+    @Published var userRole: Role?
     var userManager = UserManager.shared
     var userRepo = UserRepository()
     
     func userDidLogin() {
-        if UserDefaults.standard.string(forKey: "accessToken") == nil {
+        if UserDefaults.standard.string(forKey: CoreConstants.storageAccessToken) == nil {
             loginState = .login
-        } else if UserDefaults.standard.string(forKey: "establishmentId") == nil {
+        } else if UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) == nil {
             loginState = .selectEstablishment
         } else {
             loginState = .home
         }
     }
     
-    func fetchUser() async {
+    @MainActor func fetchUser() async {
         await userRepo.userMe { data, response in
             if let data = data {
                 Task {
-                    print("\(data.id)")
-                    UserDefaults.standard.set(data.id, forKey: "userConnectedId")
+                    UserDefaults.standard.set(data.id, forKey: CoreConstants.storageUserConnectedId)
                     UserDefaults.standard.synchronize()
+                    #if DEBUG
                     print("userId set")
+                    #endif
+                    if UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) != nil {
+                        guard let role = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) else {
+                            return
+                        }
+                        print("role on fetch user \(role)")
+                        self.userRole = RoleManager.shared.switchOnRoleValue(roleType: role)
+                        self.userDidLogin()
+                    } else {
+                        let role = RoleManager.shared.switchOnRole(roleType: data.role)
+                        self.userRole = role
+                        self.userDidLogin()
+                    }
                 }
             } else {
+                #if DEBUG
                 print("can't find user \(response.debugDescription)")
+                #endif
             }
         }
     }

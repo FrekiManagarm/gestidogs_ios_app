@@ -23,7 +23,7 @@ class SessionRepository {
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([SessionResponseModel].self, from: data)
-                    print("decode \(decode)")
+//                    print("decode \(decode)")
                     completion(decode, response)
                 } catch {
                     print("error : \(error)")
@@ -37,7 +37,7 @@ class SessionRepository {
     
     //MARK: GET DAILY SESSIONS
     public func getDailySessions(date: String?, completion: @escaping (DailySessions?, URLResponse?) -> ()) async {
-        guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
+        guard let establishmentId = UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) else {
             return
         }
         

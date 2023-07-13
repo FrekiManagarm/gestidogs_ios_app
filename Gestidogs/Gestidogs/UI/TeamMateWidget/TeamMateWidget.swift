@@ -22,6 +22,7 @@ struct TeamMateWidget: View {
         }
         .sheet(isPresented: $showDetailsSheet) {
             TeamMateDetailsView()
+                .presentationDragIndicator(.visible)
         }
     }
 }

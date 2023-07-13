@@ -13,6 +13,7 @@ struct NewSessionForm: View {
     @StateObject var vm = AgendaViewModel()
     @Binding var selectedDate: Date?
     @Binding var showNewSessionForm: Bool
+    @Binding var sessionsPerDate: DailySessions?
     
     var body: some View {
         ScrollView {
@@ -32,9 +33,16 @@ struct NewSessionForm: View {
                 Button {
                     Task {
                         await vm.createSession(selectedDate: selectedDate) { isSuccess, data, response in
-                            if isSuccess == true, let data {
-                                self.showNewSessionForm = false
-                                self.vm.sessions?.append(data)
+                            if isSuccess == true, let selectedDate {
+                                Task {
+                                    self.showNewSessionForm = false
+                                    await vm.getSessions()
+                                    await vm.getSessionsPerDate(date: selectedDate.stringifyInShortDate(), completion: { dataApi, responseApi in
+                                        if let dataApi {
+                                            self.sessionsPerDate = dataApi
+                                        }
+                                    })
+                                }
                             }
                         }
                     }

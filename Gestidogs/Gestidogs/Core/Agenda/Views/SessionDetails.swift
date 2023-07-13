@@ -15,17 +15,7 @@ struct SessionDetails: View {
     var body: some View {
         ScrollView {
             VStack {
-                if let image = session.activity.imageUrl {
-                    KFImage(URL(string: image))
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 125, height: 125)
-                        .cornerRadius(100)
-                        .padding(.top, 20)
-                } else {
-                    Image(systemName: "xmark")
-                        .frame(width: 100, height: 100)
-                }
+                imageSection
                 
                 Text("\(session.activity.title) par \(session.educator.firstName) \(session.educator.lastName)")
                     .fontWeight(.bold)
@@ -48,6 +38,20 @@ struct SessionDetails: View {
 }
 
 extension SessionDetails {
+    
+    @ViewBuilder var imageSection: some View {
+        if let image = session.activity.imageUrl {
+            KFImage(URL(string: image))
+                .resizable()
+                .scaledToFill()
+                .frame(width: 125, height: 125)
+                .cornerRadius(100)
+                .padding(.top, 20)
+        } else {
+            Image(systemName: "xmark")
+                .frame(width: 100, height: 100)
+        }
+    }
     
     @ViewBuilder var dateAndDurationSection: some View {
         HStack {

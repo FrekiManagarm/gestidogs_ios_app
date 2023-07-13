@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct PaymentResponseModel {
+final class PaymentResponseModel {
     
 }

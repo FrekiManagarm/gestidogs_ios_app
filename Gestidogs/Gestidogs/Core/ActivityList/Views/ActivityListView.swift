@@ -12,10 +12,22 @@ struct ActivityListView: View {
     @Environment(\.dismiss) var dismiss
     @State var showActivityForm: Bool = false
     
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "whiteA700") as Any]
+    }
+    
     var body: some View {
-        VStack {
-            //MARK: Display
-        }
+        ZStack {
+            RadialGradient(
+                gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+                center: .topLeading,
+                startRadius: 1,
+                endRadius: UIScreen.main.bounds.height)
+            .ignoresSafeArea()
+            
+            VStack {
+                //MARK: Display
+            }
             .navigationTitle("Mes activités")
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.large)
@@ -25,7 +37,9 @@ struct ActivityListView: View {
                         dismiss()
                     } label: {
                         Image(systemName: "arrow.left")
-                            .foregroundColor(Color("blueGray80001"))
+                            .foregroundColor(Color("whiteA700"))
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -33,13 +47,18 @@ struct ActivityListView: View {
                         showActivityForm.toggle()
                     } label: {
                         Image(systemName: "plus")
-                            .foregroundColor(Color("blueGray80001"))
+                            .foregroundColor(Color("whiteA700"))
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
                     }
                 }
             }
             .sheet(isPresented: $showActivityForm) {
-                
+                NewActivityForm()
+                    .presentationDetents([.fraction(0.75)])
+                    .presentationDragIndicator(.visible)
             }
+        }
     }
 }
 

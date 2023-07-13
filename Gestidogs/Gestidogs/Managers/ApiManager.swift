@@ -25,7 +25,7 @@ class ApiManager {
             }
         }
         
-        guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else {
+        guard let accessToken = UserDefaults.standard.string(forKey: CoreConstants.storageAccessToken) else {
             return
         }
         
@@ -48,24 +48,45 @@ class ApiManager {
         apiRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         apiRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        await requestWithRetry(with: apiRequest) { data, response in
-            guard let response = response as? HTTPURLResponse else {
+        do {
+            let (data, response) = try await URLSession.shared.data(for: apiRequest)
+            
+            guard let responseApi = response as? HTTPURLResponse else {
                 return
             }
             
-            if (200...299).contains(response.statusCode), let data = data {
+            if (200...299).contains(responseApi.statusCode) {
                 print("response done : \(response.debugDescription)")
                 completion(data, response)
+            } else if self.retryLimit > 0 && responseApi.statusCode == 401 {
+                print("received statusCode \(responseApi.statusCode). RETRYING RECURSIVE CALL ! Retry number \(self.retryLimit)")
+                await self.refreshToken { isSuccess in
+                    isSuccess ? await self.request(urlString, httpMethod: httpMethod, body: body, parameters: parameters, completion: completion) : completion(data, response)
+                }
+                self.retryLimit -= 1
             } else {
-                print("error encountered \(response.statusCode) \(response.debugDescription))")
+                print("error with API => \(responseApi.statusCode) / \(responseApi.debugDescription)")
             }
+        } catch {
+            print("something wen't wrong \(error)")
         }
+//        await requestWithRetry(with: apiRequest) { data, response in
+//            guard let response = response as? HTTPURLResponse else {
+//                return
+//            }
+//
+//            if (200...299).contains(response.statusCode), let data = data {
+//                print("response done : \(response.debugDescription)")
+//                completion(data, response)
+//            } else {
+//                print("error encountered \(response.statusCode) \(response.debugDescription))")
+//            }
+//        }
     }
     
     private func requestWithRetry(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?) -> Void) async {
         
         do {
-            
             let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let response = response as? HTTPURLResponse else {
@@ -75,7 +96,7 @@ class ApiManager {
             if (200...299).contains(response.statusCode) {
                 completionHandler(data, response)
             } else if retryLimit > 0 && response.statusCode == 401 {
-                print("received status code \(response.statusCode). RETRYING RECURSIVE CALL !")
+                print("received status code \(response.statusCode). RETRYING RECURSIVE CALL ! Try number \(retryLimit)")
                 await self.refreshToken { isSuccess in
                     isSuccess ? completionHandler(data, response) : await self.requestWithRetry(with: request, completionHandler: completionHandler)
                 }
@@ -90,8 +111,8 @@ class ApiManager {
 extension ApiManager {
 
     func refreshToken(completion: @escaping (_ isSuccess: Bool) async -> Void) async {
-//        print("passed in refreshToken function")
-        guard let refreshToken = UserDefaults.standard.string(forKey: "refreshToken") else {
+        print("passed in refreshToken function")
+        guard let refreshToken = UserDefaults.standard.string(forKey: CoreConstants.storageRefreshToken) else {
             return
         }
         
@@ -106,13 +127,14 @@ extension ApiManager {
         urlRequest.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
         
         do {
+            
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 200 {
                     let decode = try JSONDecoder().decode(TokensResponseModel.self, from: data)
 //                    print("decode response in refresh token \(decode)")
-                    UserDefaults.standard.set(decode.accessToken, forKey: "accessToken")
-                    UserDefaults.standard.set(decode.refreshToken, forKey: "refreshToken")
+                    UserDefaults.standard.set(decode.accessToken, forKey: CoreConstants.storageAccessToken)
+                    UserDefaults.standard.set(decode.refreshToken, forKey: CoreConstants.storageRefreshToken)
                     UserDefaults.standard.synchronize()
                     await completion(true)
                 } else {

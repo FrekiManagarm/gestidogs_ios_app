@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct PaymentRequestModel {
+final class PaymentRequestModel {
     
 }

@@ -33,6 +33,7 @@ struct AgendaView: View {
                     Spacer()
                 }
             }
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -45,7 +46,8 @@ struct AgendaView: View {
                 }
             }
             .sheet(isPresented: $showNewSessionForm) {
-                NewSessionForm(selectedDate: $selectedDate, showNewSessionForm: $showNewSessionForm)
+                NewSessionForm(selectedDate: $selectedDate, showNewSessionForm: $showNewSessionForm, sessionsPerDate: $sessionsPerDate)
+                    .presentationDragIndicator(.visible)
             }
             .task {
                 await agendaViewModel.getSessions()

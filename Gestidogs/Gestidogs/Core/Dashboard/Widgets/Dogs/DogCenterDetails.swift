@@ -11,16 +11,27 @@ import Kingfisher
 struct DogCenterDetails: View {
     
     let dog: DogsResponseModel
+    @State var selectedItem: Int = 0
+    let views = ["Observations", "Rapports"]
     
     var body: some View {
         ScrollView {
             VStack {
                 imageSection
                 
-                VStack(alignment: .leading, spacing: 6) {
+                VStack {
                     titleAndDetailsSection
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
+                
+                VStack {
+                    Picker("Observations et rapports", selection: $selectedItem) {
+                        Text("Observations").tag(0)
+                        Text("Rapports").tag(1)
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 10)
+                }
             }
         }
         .background(Color("gray100"))

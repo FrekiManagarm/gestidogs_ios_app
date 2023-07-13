@@ -185,6 +185,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/StripePayments/StripePayments.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/StripePaymentsUI/StripePaymentsUI.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/StripeUICore/StripeUICore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UIPilot/UIPilot.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework"
@@ -196,6 +197,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/StripePayments/StripePayments.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/StripePaymentsUI/StripePaymentsUI.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/StripeUICore/StripeUICore.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/UIPilot/UIPilot.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

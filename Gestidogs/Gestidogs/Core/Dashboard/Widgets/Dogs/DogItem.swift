@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Kingfisher
-import EasySkeleton
 
 struct DogItem: View {
     
@@ -41,7 +40,7 @@ struct DogItem: View {
         }
         .sheet(isPresented: $showDetailsView) {
             DogCenterDetails(dog: dog)
+                .presentationDragIndicator(.visible)
         }
-        .setSkeleton($dashboardVM.loadingDogs)
     }
 }

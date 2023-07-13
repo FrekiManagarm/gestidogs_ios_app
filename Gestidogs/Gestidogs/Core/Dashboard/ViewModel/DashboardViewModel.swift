@@ -28,7 +28,7 @@ class DashboardViewModel: ObservableObject {
 
 extension DashboardViewModel {
     //MARK: Get Functions
-    func getDogsEstablishment() async {
+    @MainActor func getDogsEstablishment() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
@@ -36,7 +36,7 @@ extension DashboardViewModel {
         
         await dogsRepo.getAllDogs(establishmentId: establishmentId) { data, response in
             if let data = data {
-                DispatchQueue.main.async {
+                Task {
                     self.dogs = data
                     self.loadingDogs = false
                 }
@@ -44,7 +44,7 @@ extension DashboardViewModel {
         }
     }
     
-    func getActivities() async {
+    @MainActor func getActivities() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
@@ -52,7 +52,7 @@ extension DashboardViewModel {
         
         await activitiesRepo.getAllActivities(establishmentId: establishmentId) { data, response in
             if let data = data {
-                DispatchQueue.main.async {
+                Task {
                     self.activities = data
                     self.loadingActivities = false
                 }
@@ -60,7 +60,7 @@ extension DashboardViewModel {
         }
     }
     
-    func getEstablishment() async {
+    @MainActor func getEstablishment() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
@@ -68,7 +68,7 @@ extension DashboardViewModel {
         
         await establishmentRepo.getEstablishmentById(establishmentId: establishmentId) { data, response in
             if let data = data {
-                DispatchQueue.main.async {
+                Task {
                     self.teamMates = data.employees
                     self.loadingTeam = false
                 }

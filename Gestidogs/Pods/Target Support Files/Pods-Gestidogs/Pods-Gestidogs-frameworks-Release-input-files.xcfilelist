@@ -8,3 +8,4 @@ ${BUILT_PRODUCTS_DIR}/StripePaymentSheet/StripePaymentSheet.framework
 ${BUILT_PRODUCTS_DIR}/StripePayments/StripePayments.framework
 ${BUILT_PRODUCTS_DIR}/StripePaymentsUI/StripePaymentsUI.framework
 ${BUILT_PRODUCTS_DIR}/StripeUICore/StripeUICore.framework
+${BUILT_PRODUCTS_DIR}/UIPilot/UIPilot.framework

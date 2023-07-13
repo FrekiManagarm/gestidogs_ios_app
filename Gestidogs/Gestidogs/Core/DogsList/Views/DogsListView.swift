@@ -12,39 +12,65 @@ struct DogsListView: View {
     @Environment(\.dismiss) private var dismiss
     @State var showDogsForm: Bool = false
     
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "whiteA700") as Any]
+    }
+    
     var body: some View {
-        VStack {
-            //MARK: Some details of dogs
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationTitle("Mes Chiens")
-        .navigationBarTitleDisplayMode(.large)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "arrow.left")
-                        .foregroundColor(Color("blueGray80001"))
+        ZStack {
+            radialGradient
+            
+            VStack {
+                //MARK: Some details of dogs
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationTitle("Mes Chiens")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "arrow.left")
+                            .foregroundColor(Color("whiteA700"))
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
+                    }
+                }
+                ToolbarItem {
+                    Button {
+                        showDogsForm.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(Color("whiteA700"))
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
+                    }
                 }
             }
-            ToolbarItem {
-                Button {
-                    showDogsForm.toggle()
-                } label: {
-                    Image(systemName: "plus")
-                        .foregroundColor(Color("blueGray80001"))
-                }
+            .sheet(isPresented: $showDogsForm) {
+                NewDogForm()
+                    .presentationDragIndicator(.visible)
             }
-        }
-        .sheet(isPresented: $showDogsForm) {
-            NewDogForm()
         }
     }
 }
 
+extension DogsListView {
+    @ViewBuilder var radialGradient: some View {
+        RadialGradient(
+            gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+            center: .topLeading,
+            startRadius: 1,
+            endRadius: UIScreen.main.bounds.height)
+        .ignoresSafeArea()
+    }
+}
+
+#if DEBUG
 struct DogsListView_Previews: PreviewProvider {
     static var previews: some View {
         DogsListView()
     }
 }
+#endif

@@ -6,8 +6,10 @@ target 'Gestidogs' do
   use_frameworks!
   pod 'Kingfisher'
   pod 'FSCalendar'
+  pod 'StripePaymentsUI'
   pod 'StripePaymentSheet'
   pod 'Stripe'
+  pod 'UIPilot'
 
   # Pods for Gestidogs
 

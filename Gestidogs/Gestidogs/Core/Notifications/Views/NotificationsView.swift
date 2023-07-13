@@ -12,28 +12,47 @@ struct NotificationsView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack {
+        ZStack {
+            radialGradient
             
-        }
-        .navigationTitle("Mes Notifications")
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.large)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "arrow.left")
-                        .foregroundColor(Color("blueGray80001"))
+            VStack {
+                //MARK: put all notifications here
+            }
+            .navigationTitle("Mes Notifications")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "arrow.left")
+                            .foregroundColor(Color("whiteA700"))
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
+                    }
+                    
                 }
-
             }
         }
     }
 }
 
+extension NotificationsView {
+    @ViewBuilder var radialGradient: some View {
+        RadialGradient(
+            gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+            center: .topLeading,
+            startRadius: 1,
+            endRadius: UIScreen.main.bounds.height)
+        .ignoresSafeArea()
+    }
+}
+
+#if DEBUG
 struct NotificationsView_Previews: PreviewProvider {
     static var previews: some View {
         NotificationsView()
     }
 }
+#endif

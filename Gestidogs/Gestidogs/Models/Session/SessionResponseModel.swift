@@ -10,7 +10,7 @@ import Foundation
 struct SessionResponseModel {
     let id: String
     let educator: UserResponseModel
-    let activity: ActivityResponseModel
+    let activity: ActivityForSession
     let establishment: EstablishmentForSession
     let status: String
     let maximumCapacity: Int
@@ -61,6 +61,30 @@ extension EstablishmentForSession: Identifiable, Codable {
         case emailAddress = "emailAddress"
         case employees = "employees"
         case schedules = "schedules"
+        case v = "__v"
+    }
+}
+
+struct ActivityForSession {
+    let id: String
+    let imageUrl: String?
+    let title: String
+    let description: String?
+    let establishment: String?
+    let duration: Int
+    let price: Int
+    let v: Int
+}
+
+extension ActivityForSession: Identifiable, Codable {
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case imageUrl = "imageUrl"
+        case title = "title"
+        case description = "description"
+        case establishment = "establishment"
+        case duration = "duration"
+        case price = "price"
         case v = "__v"
     }
 }

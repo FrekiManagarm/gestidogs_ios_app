@@ -48,7 +48,6 @@ extension ProfileView {
             Text("Profil")
                 .font(.system(size: 30))
                 .foregroundColor(.white)
-//                        .foregroundColor(Color("blueGray80001"))
                 .fontWeight(.bold)
                 .padding(.leading, 60)
             
@@ -61,6 +60,7 @@ extension ProfileView {
                     .resizable()
                     .scaledToFill()
                     .frame(width: 20, height: 20)
+                    .foregroundColor(Color("blueGray80001"))
             }
             .frame(width: 50, height: 50)
             .background(Color("gray100"))
@@ -69,6 +69,7 @@ extension ProfileView {
         }
         .sheet(isPresented: $showModifForm) {
             ProfileForm()
+                .presentationDragIndicator(.visible)
         }
     }
     
@@ -90,7 +91,7 @@ extension ProfileView {
             Text("Mathieu Chambaud")
                 .font(.system(size: 30))
                 .fontWeight(.heavy)
-            Text("mathieu.chambaud@ynov.com")
+            Text(verbatim: "mathieu.chambaud@ynov.com")
         }
         .foregroundColor(.white)
     }
@@ -107,7 +108,8 @@ extension ProfileView {
         .frame(width: UIScreen.main.bounds.width - 32, height: 55)
         .background(Color("blueGray80001"))
         .cornerRadius(25)
-        .foregroundColor(.white)
+        .foregroundColor(Color("whiteA700"))
+        .fontWeight(.semibold)
         .padding(.bottom, 20)
     }
 }

@@ -20,6 +20,7 @@ struct AgendaUIViewRepresentable: UIViewRepresentable {
     func makeUIView(context: Context) -> some FSCalendar {
         calendar.delegate = context.coordinator
         calendar.dataSource = context.coordinator
+        calendar.locale = Locale(identifier: "fr")
         calendar.appearance.todayColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
         calendar.appearance.titleTodayColor = .blue
         calendar.appearance.selectionColor = UIColor(named: "blueGray80001")
@@ -36,10 +37,6 @@ struct AgendaUIViewRepresentable: UIViewRepresentable {
     
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
-    }
-    
-    public func reloadData() {
-        calendar.reloadData()
     }
     
     class Coordinator: NSObject, FSCalendarDelegate, FSCalendarDataSource {
