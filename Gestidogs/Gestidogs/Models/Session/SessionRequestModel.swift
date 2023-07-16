@@ -12,7 +12,7 @@ struct SessionRequestModel {
     let activity: String
     let establishment: String
     let status: String
-    let maximumCapacity: String
+    let maximumCapacity: Int
     let beginDate: String
 }
 

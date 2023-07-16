@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AddCardModel {
+struct AddCardModel {
     let number: String
     let expMonth: Int
     let expYear: Int
@@ -21,4 +21,11 @@ extension AddCardModel: Codable {
         case expYear = "expYear"
         case cvc = "cvc"
     }
+}
+
+struct AddCardState {
+    var number: String = ""
+    var expMonth: String = ""
+    var expYear: String = ""
+    var cvc: String = ""
 }

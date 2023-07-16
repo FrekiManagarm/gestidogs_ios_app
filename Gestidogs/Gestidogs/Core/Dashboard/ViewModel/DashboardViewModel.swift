@@ -98,16 +98,17 @@ extension DashboardViewModel {
     //MARK: Create functions
     func newDog() async {
         
-        let body: [String: Any] = [
-            "ownerId": "",
-            "establishment": "",
-            "nationalId": "",
-            "name": "",
-            "imageUrl": "",
-            "gender": "",
-            "weight": 0,
-            "height": 0
-        ]
+//        let body: [String: Any] = [
+//            "ownerId": "",
+//            "establishment": "",
+//            "nationalId": "",
+//            "name": "",
+//            "imageUrl": "",
+//            "gender": "",
+//            "weight": 0,
+//            "height": 0
+//        ]
+        let body = DogsRequestModel(ownerId: "", establishment: "", nationalId: "", imageUrl: "", gender: "", name: "", breed: "", weight: 0, height: 0)
         
         await dogsRepo.createDog(body: body, completion: { data, response in
             
@@ -115,13 +116,14 @@ extension DashboardViewModel {
     }
     
     func newTeamMate() async {
-        let body: [String: Any] = [
-            "lastname": "",
-            "firstname": "",
-            "emailAddress": "",
-            "phoneNumber": "",
-            "password": ""
-        ]
+//        let body: [String: Any] = [
+//            "lastname": "",
+//            "firstname": "",
+//            "emailAddress": "",
+//            "phoneNumber": "",
+//            "password": ""
+//        ]
+        let body = UserRequestModel(avatarUrl: "", firstname: "", lastname: "", phoneNumber: "", emailAddress: "", password: "")
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
@@ -133,9 +135,10 @@ extension DashboardViewModel {
     }
     
     func newActivityType() async {
-        let body: [String: Any] = [
-            "": ""
-        ]
+//        let body: [String: Any] = [
+//            "": ""
+//        ]
+        let body = ActivityRequestModel(establishment: "", title: "", description: "", duration: 0, price: 0)
         
         await activitiesRepo.createActivity(body: body, completion: { data, response in
             

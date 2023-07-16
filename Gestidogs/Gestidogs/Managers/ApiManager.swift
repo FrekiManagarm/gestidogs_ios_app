@@ -15,7 +15,7 @@ class ApiManager {
     var retryLimit = 5
     let urlToRefresh = "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh"
     
-    func request(_ urlString: String, httpMethod: String? = "GET", body: [String: Any?]? = nil, parameters: [String: Any]? = nil, completion: @escaping completionHandler) async {
+    func request(_ urlString: String, httpMethod: String? = "GET", body: Encodable? = nil, parameters: [String: Any]? = nil, completion: @escaping completionHandler) async {
         
         
         var components = URLComponents(string: urlString)!
@@ -38,7 +38,7 @@ class ApiManager {
         if let body = body {
             
             do {
-                apiRequest.httpBody = try JSONSerialization.data(withJSONObject: body)
+                apiRequest.httpBody = try JSONEncoder().encode(body)
             } catch {
                 print("error : \(error)")
             }
@@ -59,7 +59,9 @@ class ApiManager {
                 print("response done : \(response.debugDescription)")
                 completion(data, response)
             } else if self.retryLimit > 0 && responseApi.statusCode == 401 {
+                #if DEBUG
                 print("received statusCode \(responseApi.statusCode). RETRYING RECURSIVE CALL ! Retry number \(self.retryLimit)")
+                #endif
                 await self.refreshToken { isSuccess in
                     isSuccess ? await self.request(urlString, httpMethod: httpMethod, body: body, parameters: parameters, completion: completion) : completion(data, response)
                 }
@@ -84,34 +86,36 @@ class ApiManager {
 //        }
     }
     
-    private func requestWithRetry(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?) -> Void) async {
-        
-        do {
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
-            guard let response = response as? HTTPURLResponse else {
-                return
-            }
-            
-            if (200...299).contains(response.statusCode) {
-                completionHandler(data, response)
-            } else if retryLimit > 0 && response.statusCode == 401 {
-                print("received status code \(response.statusCode). RETRYING RECURSIVE CALL ! Try number \(retryLimit)")
-                await self.refreshToken { isSuccess in
-                    isSuccess ? completionHandler(data, response) : await self.requestWithRetry(with: request, completionHandler: completionHandler)
-                }
-                self.retryLimit -= 1
-            }
-        } catch {
-            print("something wen't wrong \(error)")
-        }
-    }
+//    private func requestWithRetry(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?) -> Void) async {
+//
+//        do {
+//            let (data, response) = try await URLSession.shared.data(for: request)
+//
+//            guard let response = response as? HTTPURLResponse else {
+//                return
+//            }
+//
+//            if (200...299).contains(response.statusCode) {
+//                completionHandler(data, response)
+//            } else if retryLimit > 0 && response.statusCode == 401 {
+//                print("received status code \(response.statusCode). RETRYING RECURSIVE CALL ! Try number \(retryLimit)")
+//                await self.refreshToken { isSuccess in
+//                    isSuccess ? completionHandler(data, response) : await self.requestWithRetry(with: request, completionHandler: completionHandler)
+//                }
+//                self.retryLimit -= 1
+//            }
+//        } catch {
+//            print("something wen't wrong \(error)")
+//        }
+//    }
 }
 
 extension ApiManager {
 
     func refreshToken(completion: @escaping (_ isSuccess: Bool) async -> Void) async {
+        #if DEBUG
         print("passed in refreshToken function")
+        #endif
         guard let refreshToken = UserDefaults.standard.string(forKey: CoreConstants.storageRefreshToken) else {
             return
         }

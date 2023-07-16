@@ -47,7 +47,7 @@ class ObservationRepository {
     }
     
     //MARK: CREATE OBSERVATION
-    public func createObservation(body: [String: Any?]?, completion: @escaping (ObservationResponseModel?, URLResponse?) -> ()) async {
+    public func createObservation(body: ObservationRequestModel?, completion: @escaping (ObservationResponseModel?, URLResponse?) -> ()) async {
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body){ data, response in
             if let data {
                 do {
@@ -64,7 +64,7 @@ class ObservationRepository {
     }
     
     //MARK: MODIFY OBSERVATION
-    public func modifyObservation(observationId: String, body: [String: Any?]?, completion: @escaping (ObservationResponseModel?, URLResponse?) -> ()) async {
+    public func modifyObservation(observationId: String, body: ObservationRequestModel?, completion: @escaping (ObservationResponseModel?, URLResponse?) -> ()) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(observationId)", httpMethod: "PUT", body: body) { data, response in
             if let data {

@@ -39,14 +39,15 @@ class AgendaViewModel : ObservableObject {
         if let date = selectedDate {
             let otherDate = date.addHours(hours: selectedHour).addMinutes(minutes: selectedMinutes)
             print("date :\(otherDate)")
-                let body : [String: Any] = [
-                    "educator": educator,
-                    "activity": activity,
-                    "establishment": establishmentId,
-                    "status": status,
-                    "maximumCapacity": maximumCapacity,
-                    "beginDate": otherDate.toString()
-                ]
+//                let body : [String: Any] = [
+//                    "educator": educator,
+//                    "activity": activity,
+//                    "establishment": establishmentId,
+//                    "status": status,
+//                    "maximumCapacity": maximumCapacity,
+//                    "beginDate": otherDate.toString()
+//                ]
+            let body = SessionRequestModel(educator: educator, activity: activity, establishment: establishmentId, status: status, maximumCapacity: Int(maximumCapacity), beginDate: otherDate.toString())
                 
                 print("body \(body)")
                 

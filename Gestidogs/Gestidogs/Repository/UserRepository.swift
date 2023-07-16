@@ -90,7 +90,7 @@ class UserRepository {
     }
     
     //MARK: REGISTER
-    public func register(body: [String: Any?]?, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
+    public func register(body: UserRequestModel?, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
@@ -109,7 +109,7 @@ class UserRepository {
     }
     
     //MARK: LOGIN
-    public func login(body: [String: Any?]?, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
+    public func login(body: LoginModel?, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
 //        print("request of body \(body)")
         
         await ApiManager.shared.request("\(baseUrl)/login", httpMethod: "POST", body: body) { data, response in
@@ -146,7 +146,7 @@ class UserRepository {
     }
     
     //MARK: MODIFY USER
-    public func modifyUser(body: [String: Any?]?, userId: String, completion: @escaping (UserResponseModel?, URLResponse?) -> Void) async {
+    public func modifyUser(body: UserRequestModel?, userId: String, completion: @escaping (UserResponseModel?, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(userId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {

@@ -6,21 +6,31 @@
 //
 
 import SwiftUI
+import Stripe
 
 struct PaymentWidget: View {
     
     @EnvironmentObject var reservationViewModel: ReservationViewModel
     
+    
     var body: some View {
-        VStack {
-            
+        switch reservationViewModel.paymentState {
+            case .newCard:
+                AddNewPaymentMethod()
+            case .registeredCards:
+                PaymentWithRegisteredCard()
         }
-        .transition(AnyTransition.slide.combined(with: .opacity)).animation(.easeInOut(duration: 1), value: reservationViewModel.step == .payment)
     }
 }
 
+extension PaymentWidget {
+    
+}
+
+#if DEBUG
 struct PaymentWidget_Previews: PreviewProvider {
     static var previews: some View {
         PaymentWidget()
     }
 }
+#endif

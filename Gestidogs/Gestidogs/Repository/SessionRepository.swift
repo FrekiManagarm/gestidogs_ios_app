@@ -99,7 +99,7 @@ class SessionRepository {
     }
 
     //MARK: CREATE SESSION
-    public func createSession(body: [String: Any?]?, completion: @escaping (Bool?, SessionResponseModel?, URLResponse?) -> ()) async {
+    public func createSession(body: SessionRequestModel?, completion: @escaping (Bool?, SessionResponseModel?, URLResponse?) -> ()) async {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let response = response as? HTTPURLResponse, let data {
@@ -142,7 +142,7 @@ class SessionRepository {
     }
 
     //MARK: MODIFY SESSION
-    public func modifySession(sessionId: String, body: [String: Any?]?, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
+    public func modifySession(sessionId: String, body: SessionRequestModel?, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {

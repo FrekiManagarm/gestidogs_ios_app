@@ -41,6 +41,8 @@
 		0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */; };
 		0154ACF92A3A53AD00622587 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF82A3A53AD00622587 /* LoginRequest.swift */; };
 		017498912A5EE148005C0844 /* PaymentUIViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017498902A5EE148005C0844 /* PaymentUIViewRepresentable.swift */; };
+		017498932A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017498922A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift */; };
+		017498952A60265A005C0844 /* NewHolidayForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017498942A60265A005C0844 /* NewHolidayForm.swift */; };
 		017B4B142A530B6D00786FCA /* RoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B132A530B6D00786FCA /* RoleManager.swift */; };
 		017B4B162A53108700786FCA /* CoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B152A53108700786FCA /* CoreConstants.swift */; };
 		017B4B182A532A3700786FCA /* NewActivityForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B172A532A3700786FCA /* NewActivityForm.swift */; };
@@ -62,6 +64,8 @@
 		017B4B432A594F0E00786FCA /* TakeReservationWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B422A594F0E00786FCA /* TakeReservationWidget.swift */; };
 		017B4B452A594F3D00786FCA /* ReservationResumeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B442A594F3D00786FCA /* ReservationResumeWidget.swift */; };
 		017B4B472A594F6700786FCA /* PaymentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B462A594F6700786FCA /* PaymentWidget.swift */; };
+		01A4D61D2A63173300BF72B8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 01A4D61C2A63173300BF72B8 /* FSCalendar */; };
+		01A4D6202A63178A00BF72B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 01A4D61F2A63178A00BF72B8 /* Kingfisher */; };
 		01AE58732A4B1BDC00EE3106 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58722A4B1BDC00EE3106 /* String.swift */; };
 		01AE58772A4D7F2E00EE3106 /* SessionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */; };
 		01AE58792A4DC1C400EE3106 /* SessionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58782A4DC1C400EE3106 /* SessionCard.swift */; };
@@ -74,6 +78,19 @@
 		01CC72B92A41B386006433CE /* TeamListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72B82A41B386006433CE /* TeamListView.swift */; };
 		01CC72BB2A41B39B006433CE /* TeamListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72BA2A41B39B006433CE /* TeamListViewModel.swift */; };
 		01CC72BD2A41B3A9006433CE /* TeamListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72BC2A41B3A9006433CE /* TeamListWidget.swift */; };
+		01DA510B2A6152F7004DD75E /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA510A2A6152F7004DD75E /* Stripe */; };
+		01DA510D2A6152F7004DD75E /* StripeApplePay in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA510C2A6152F7004DD75E /* StripeApplePay */; };
+		01DA510F2A6152F7004DD75E /* StripeCardScan in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA510E2A6152F7004DD75E /* StripeCardScan */; };
+		01DA51112A6152F7004DD75E /* StripeFinancialConnections in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA51102A6152F7004DD75E /* StripeFinancialConnections */; };
+		01DA51132A6152F7004DD75E /* StripeIdentity in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA51122A6152F7004DD75E /* StripeIdentity */; };
+		01DA51152A6152F7004DD75E /* StripePaymentSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA51142A6152F7004DD75E /* StripePaymentSheet */; };
+		01DA51172A6152F7004DD75E /* StripePayments in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA51162A6152F7004DD75E /* StripePayments */; };
+		01DA51192A6152F7004DD75E /* StripePaymentsUI in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA51182A6152F7004DD75E /* StripePaymentsUI */; };
+		01DAB6432A61875C0029E887 /* AddNewPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB6422A61875C0029E887 /* AddNewPaymentMethod.swift */; };
+		01DAB6452A61877B0029E887 /* PaymentWithRegisteredCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB6442A61877B0029E887 /* PaymentWithRegisteredCard.swift */; };
+		01DAB6472A6188DE0029E887 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB6462A6188DE0029E887 /* CheckoutView.swift */; };
+		01DAB6492A618B130029E887 /* CardResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB6482A618B130029E887 /* CardResponseModel.swift */; };
+		01DAB64B2A618D370029E887 /* ListPaymentMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB64A2A618D370029E887 /* ListPaymentMethods.swift */; };
 		01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6812A2B65290054C16A /* OnboardingWidget.swift */; };
 		01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6832A2B65390054C16A /* OnboardingView.swift */; };
 		01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */; };
@@ -180,6 +197,8 @@
 		0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesRepository.swift; sourceTree = "<group>"; };
 		0154ACF82A3A53AD00622587 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		017498902A5EE148005C0844 /* PaymentUIViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUIViewRepresentable.swift; sourceTree = "<group>"; };
+		017498922A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysAgendaViewRepresentable.swift; sourceTree = "<group>"; };
+		017498942A60265A005C0844 /* NewHolidayForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHolidayForm.swift; sourceTree = "<group>"; };
 		017B4B132A530B6D00786FCA /* RoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleManager.swift; sourceTree = "<group>"; };
 		017B4B152A53108700786FCA /* CoreConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreConstants.swift; sourceTree = "<group>"; };
 		017B4B172A532A3700786FCA /* NewActivityForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityForm.swift; sourceTree = "<group>"; };
@@ -201,6 +220,7 @@
 		017B4B422A594F0E00786FCA /* TakeReservationWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeReservationWidget.swift; sourceTree = "<group>"; };
 		017B4B442A594F3D00786FCA /* ReservationResumeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationResumeWidget.swift; sourceTree = "<group>"; };
 		017B4B462A594F6700786FCA /* PaymentWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidget.swift; sourceTree = "<group>"; };
+		01A4D61A2A630FAE00BF72B8 /* Gestidogs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gestidogs.entitlements; sourceTree = "<group>"; };
 		01AE58722A4B1BDC00EE3106 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetails.swift; sourceTree = "<group>"; };
 		01AE58782A4DC1C400EE3106 /* SessionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCard.swift; sourceTree = "<group>"; };
@@ -212,10 +232,16 @@
 		01CC72B82A41B386006433CE /* TeamListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListView.swift; sourceTree = "<group>"; };
 		01CC72BA2A41B39B006433CE /* TeamListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewModel.swift; sourceTree = "<group>"; };
 		01CC72BC2A41B3A9006433CE /* TeamListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListWidget.swift; sourceTree = "<group>"; };
+		01DAB6422A61875C0029E887 /* AddNewPaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPaymentMethod.swift; sourceTree = "<group>"; };
+		01DAB6442A61877B0029E887 /* PaymentWithRegisteredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWithRegisteredCard.swift; sourceTree = "<group>"; };
+		01DAB6462A6188DE0029E887 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		01DAB6482A618B130029E887 /* CardResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardResponseModel.swift; sourceTree = "<group>"; };
+		01DAB64A2A618D370029E887 /* ListPaymentMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPaymentMethods.swift; sourceTree = "<group>"; };
 		01E7D6812A2B65290054C16A /* OnboardingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWidget.swift; sourceTree = "<group>"; };
 		01E7D6832A2B65390054C16A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		01E7D6882A2B657E0054C16A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		2A35B06D443C5EC034A4774C /* Pods-Gestidogs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gestidogs.debug.xcconfig"; path = "Target Support Files/Pods-Gestidogs/Pods-Gestidogs.debug.xcconfig"; sourceTree = "<group>"; };
 		5F04A6992A30D186000E2AD9 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		5F157BFD2A27744800B4C2FE /* DashboardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardWidget.swift; sourceTree = "<group>"; };
 		5F157BFF2A27745500B4C2FE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -281,8 +307,7 @@
 		5F8C93542A2A1B4700F39770 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		5FC9225D2A30AC0500E78516 /* ObservationRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationRequestModel.swift; sourceTree = "<group>"; };
 		5FC9225F2A30AC1400E78516 /* ObservationResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationResponseModel.swift; sourceTree = "<group>"; };
-		8075C63E9ACED383FD33BCA8 /* Pods-Gestidogs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gestidogs.release.xcconfig"; path = "Target Support Files/Pods-Gestidogs/Pods-Gestidogs.release.xcconfig"; sourceTree = "<group>"; };
-		8CB4E1EF329778ED04D016DA /* Pods-Gestidogs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gestidogs.debug.xcconfig"; path = "Target Support Files/Pods-Gestidogs/Pods-Gestidogs.debug.xcconfig"; sourceTree = "<group>"; };
+		AD5125682D26BB222C437523 /* Pods-Gestidogs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gestidogs.release.xcconfig"; path = "Target Support Files/Pods-Gestidogs/Pods-Gestidogs.release.xcconfig"; sourceTree = "<group>"; };
 		D4E2F9E6D142D9063B9313C1 /* Pods_Gestidogs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gestidogs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -291,8 +316,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01A4D6202A63178A00BF72B8 /* Kingfisher in Frameworks */,
+				01DA51172A6152F7004DD75E /* StripePayments in Frameworks */,
+				01DA51152A6152F7004DD75E /* StripePaymentSheet in Frameworks */,
 				73BA4BF43F202F1C07B963C5 /* Pods_Gestidogs.framework in Frameworks */,
+				01DA51112A6152F7004DD75E /* StripeFinancialConnections in Frameworks */,
+				01DA510D2A6152F7004DD75E /* StripeApplePay in Frameworks */,
+				01DA51132A6152F7004DD75E /* StripeIdentity in Frameworks */,
 				01CC72AE2A408973006433CE /* Lottie in Frameworks */,
+				01DA510F2A6152F7004DD75E /* StripeCardScan in Frameworks */,
+				01DA51192A6152F7004DD75E /* StripePaymentsUI in Frameworks */,
+				01DA510B2A6152F7004DD75E /* Stripe in Frameworks */,
+				01A4D61D2A63173300BF72B8 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +399,8 @@
 				010E1E1C2A326F34002E0DD1 /* PaymentRequestModel.swift */,
 				010E1E1E2A326F40002E0DD1 /* PaymentResponseModel.swift */,
 				017B4B1D2A585ED900786FCA /* AddCardModel.swift */,
+				01DAB6482A618B130029E887 /* CardResponseModel.swift */,
+				01DAB64A2A618D370029E887 /* ListPaymentMethods.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -469,9 +506,11 @@
 		017B4B222A586B2500786FCA /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				01DAB6412A61873F0029E887 /* Payment */,
+				017B4B462A594F6700786FCA /* PaymentWidget.swift */,
 				017B4B422A594F0E00786FCA /* TakeReservationWidget.swift */,
 				017B4B442A594F3D00786FCA /* ReservationResumeWidget.swift */,
-				017B4B462A594F6700786FCA /* PaymentWidget.swift */,
+				01DAB6462A6188DE0029E887 /* CheckoutView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -538,6 +577,15 @@
 				01CC72BC2A41B3A9006433CE /* TeamListWidget.swift */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		01DAB6412A61873F0029E887 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				01DAB6422A61875C0029E887 /* AddNewPaymentMethod.swift */,
+				01DAB6442A61877B0029E887 /* PaymentWithRegisteredCard.swift */,
+			);
+			path = Payment;
 			sourceTree = "<group>";
 		};
 		01E7D67D2A2B64F90054C16A /* Onboarding */ = {
@@ -663,6 +711,8 @@
 			isa = PBXGroup;
 			children = (
 				5F157C072A27771900B4C2FE /* HolidaysWidget.swift */,
+				017498922A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift */,
+				017498942A60265A005C0844 /* NewHolidayForm.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -816,8 +866,8 @@
 			children = (
 				5F8BFD152A262CE70007E367 /* Gestidogs */,
 				5F8BFD142A262CE70007E367 /* Products */,
-				8BFAA633F538E2A9F0C9C45D /* Pods */,
 				F5154A8D8E0D7B5207BD7DD2 /* Frameworks */,
+				F2674E9D7FC453FFD1AD20E1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -832,6 +882,7 @@
 		5F8BFD152A262CE70007E367 /* Gestidogs */ = {
 			isa = PBXGroup;
 			children = (
+				01A4D61A2A630FAE00BF72B8 /* Gestidogs.entitlements */,
 				0154ACE32A39107D00622587 /* Repository */,
 				010E1E0C2A3207A6002E0DD1 /* Constants */,
 				5F04A6982A30D176000E2AD9 /* Errors */,
@@ -1154,12 +1205,13 @@
 			path = Observation;
 			sourceTree = "<group>";
 		};
-		8BFAA633F538E2A9F0C9C45D /* Pods */ = {
+		F2674E9D7FC453FFD1AD20E1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8CB4E1EF329778ED04D016DA /* Pods-Gestidogs.debug.xcconfig */,
-				8075C63E9ACED383FD33BCA8 /* Pods-Gestidogs.release.xcconfig */,
+				2A35B06D443C5EC034A4774C /* Pods-Gestidogs.debug.xcconfig */,
+				AD5125682D26BB222C437523 /* Pods-Gestidogs.release.xcconfig */,
 			);
+			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -1182,7 +1234,6 @@
 				5F8BFD0F2A262CE70007E367 /* Sources */,
 				5F8BFD102A262CE70007E367 /* Frameworks */,
 				5F8BFD112A262CE70007E367 /* Resources */,
-				DE915BC52992D1E0AC0F4572 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1191,6 +1242,16 @@
 			name = Gestidogs;
 			packageProductDependencies = (
 				01CC72AD2A408973006433CE /* Lottie */,
+				01DA510A2A6152F7004DD75E /* Stripe */,
+				01DA510C2A6152F7004DD75E /* StripeApplePay */,
+				01DA510E2A6152F7004DD75E /* StripeCardScan */,
+				01DA51102A6152F7004DD75E /* StripeFinancialConnections */,
+				01DA51122A6152F7004DD75E /* StripeIdentity */,
+				01DA51142A6152F7004DD75E /* StripePaymentSheet */,
+				01DA51162A6152F7004DD75E /* StripePayments */,
+				01DA51182A6152F7004DD75E /* StripePaymentsUI */,
+				01A4D61C2A63173300BF72B8 /* FSCalendar */,
+				01A4D61F2A63178A00BF72B8 /* Kingfisher */,
 			);
 			productName = Gestidogs;
 			productReference = 5F8BFD132A262CE70007E367 /* Gestidogs.app */;
@@ -1221,7 +1282,10 @@
 			);
 			mainGroup = 5F8BFD0A2A262CE70007E367;
 			packageReferences = (
-				01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios.git" */,
+				01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */,
+				01A4D61B2A63173300BF72B8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */,
+				01A4D61E2A63178A00BF72B8 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
 			);
 			productRefGroup = 5F8BFD142A262CE70007E367 /* Products */;
 			projectDirPath = "";
@@ -1268,23 +1332,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DE915BC52992D1E0AC0F4572 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Gestidogs/Pods-Gestidogs-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Gestidogs/Pods-Gestidogs-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gestidogs/Pods-Gestidogs-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1298,6 +1345,7 @@
 				5F157C2E2A277C8700B4C2FE /* ReservationRequestModel.swift in Sources */,
 				014E3FE62A348B55007C4E2F /* ProfileForm.swift in Sources */,
 				0154ACE52A39109900622587 /* MainRepository.swift in Sources */,
+				01DAB6432A61875C0029E887 /* AddNewPaymentMethod.swift in Sources */,
 				5F157C082A27771900B4C2FE /* HolidaysWidget.swift in Sources */,
 				5F32C5AC2A2896180034AB6F /* AgendaUIViewRepresentable.swift in Sources */,
 				5F8C93512A2A1B2200F39770 /* NotificationsViewModel.swift in Sources */,
@@ -1324,10 +1372,13 @@
 				5F32C5B42A28CC100034AB6F /* DogsListViewModel.swift in Sources */,
 				0109C9B82A333DEB00544C9C /* SessionCenterWidget.swift in Sources */,
 				5F157C3C2A278FCE00B4C2FE /* UserManager.swift in Sources */,
+				017498932A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift in Sources */,
+				01DAB6492A618B130029E887 /* CardResponseModel.swift in Sources */,
 				0109C9C22A3340EE00544C9C /* DogItem.swift in Sources */,
 				5F157C0C2A27773A00B4C2FE /* HolidaysView.swift in Sources */,
 				5F157C022A27746F00B4C2FE /* DashboardViewModel.swift in Sources */,
 				01AE587E2A4E0D9100EE3106 /* DailySessions.swift in Sources */,
+				01DAB6472A6188DE0029E887 /* CheckoutView.swift in Sources */,
 				0154ACF92A3A53AD00622587 /* LoginRequest.swift in Sources */,
 				5F157C452A2791E800B4C2FE /* NavBar.swift in Sources */,
 				5F8BFD442A262F380007E367 /* AgendaViewModel.swift in Sources */,
@@ -1408,10 +1459,12 @@
 				017B4B382A586FF600786FCA /* HolidaysView_Manager.swift in Sources */,
 				0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */,
 				017B4B1E2A585ED900786FCA /* AddCardModel.swift in Sources */,
+				017498952A60265A005C0844 /* NewHolidayForm.swift in Sources */,
 				017B4B432A594F0E00786FCA /* TakeReservationWidget.swift in Sources */,
 				5F157C202A277BDC00B4C2FE /* ActivityTypeResponseModel.swift in Sources */,
 				014E3FE92A374377007C4E2F /* LoginModel.swift in Sources */,
 				5F32C5BC2A28E36D0034AB6F /* ActivityCellWidget.swift in Sources */,
+				01DAB6452A61877B0029E887 /* PaymentWithRegisteredCard.swift in Sources */,
 				010E1E102A3207C9002E0DD1 /* ImagesConstants.swift in Sources */,
 				01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */,
 				012BF7472A33554C00A4C266 /* ActivityListWidget.swift in Sources */,
@@ -1421,6 +1474,7 @@
 				5F157C382A277CF100B4C2FE /* HolidaysRequestModel.swift in Sources */,
 				5F8C93552A2A1B4700F39770 /* NotificationsView.swift in Sources */,
 				010E1E142A320994002E0DD1 /* TokensResponseModel.swift in Sources */,
+				01DAB64B2A618D370029E887 /* ListPaymentMethods.swift in Sources */,
 				0109C9BC2A333E0E00544C9C /* SessionCenterDetails.swift in Sources */,
 				0109C9B42A333D5100544C9C /* ActivityTypeDetailsView.swift in Sources */,
 			);
@@ -1545,14 +1599,17 @@
 		};
 		5F8BFD222A262CE90007E367 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8CB4E1EF329778ED04D016DA /* Pods-Gestidogs.debug.xcconfig */;
+			baseConfigurationReference = 2A35B06D443C5EC034A4774C /* Pods-Gestidogs.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Gestidogs/Gestidogs.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gestidogs/Preview Content\"";
-				DEVELOPMENT_TEAM = 7F9M4VSS6H;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7F9M4VSS6H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gestidogs/Info.plist;
@@ -1569,6 +1626,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mathieu.GestiDogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Gestidogs iOS App";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1577,14 +1636,17 @@
 		};
 		5F8BFD232A262CE90007E367 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8075C63E9ACED383FD33BCA8 /* Pods-Gestidogs.release.xcconfig */;
+			baseConfigurationReference = AD5125682D26BB222C437523 /* Pods-Gestidogs.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Gestidogs/Gestidogs.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gestidogs/Preview Content\"";
-				DEVELOPMENT_TEAM = 7F9M4VSS6H;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7F9M4VSS6H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gestidogs/Info.plist;
@@ -1601,6 +1663,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mathieu.GestiDogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Gestidogs iOS App";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1631,7 +1695,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		01A4D61B2A63173300BF72B8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		01A4D61E2A63178A00BF72B8 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
@@ -1639,13 +1719,71 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stripe/stripe-ios-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 23.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		01A4D61C2A63173300BF72B8 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01A4D61B2A63173300BF72B8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */;
+			productName = FSCalendar;
+		};
+		01A4D61F2A63178A00BF72B8 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01A4D61E2A63178A00BF72B8 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
+			productName = Kingfisher;
+		};
 		01CC72AD2A408973006433CE /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios.git" */;
 			productName = Lottie;
+		};
+		01DA510A2A6152F7004DD75E /* Stripe */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = Stripe;
+		};
+		01DA510C2A6152F7004DD75E /* StripeApplePay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeApplePay;
+		};
+		01DA510E2A6152F7004DD75E /* StripeCardScan */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeCardScan;
+		};
+		01DA51102A6152F7004DD75E /* StripeFinancialConnections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeFinancialConnections;
+		};
+		01DA51122A6152F7004DD75E /* StripeIdentity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripeIdentity;
+		};
+		01DA51142A6152F7004DD75E /* StripePaymentSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripePaymentSheet;
+		};
+		01DA51162A6152F7004DD75E /* StripePayments */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripePayments;
+		};
+		01DA51182A6152F7004DD75E /* StripePaymentsUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */;
+			productName = StripePaymentsUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

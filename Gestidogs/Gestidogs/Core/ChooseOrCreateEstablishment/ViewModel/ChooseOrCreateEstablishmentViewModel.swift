@@ -45,14 +45,15 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
             return
         }
         
-        let body: [String: Any] = [
-            "owner": ownerId,
-            "name": establishmentName,
-            "description": description,
-            "address": address,
-            "phoneNumber": phoneNumber,
-            "emailAddress": emailAddress
-        ]
+//        let body: [String: Any] = [
+//            "owner": ownerId,
+//            "name": establishmentName,
+//            "description": description,
+//            "address": address,
+//            "phoneNumber": phoneNumber,
+//            "emailAddress": emailAddress
+//        ]
+        let body = EstablishmentRequestModel(owner: ownerId, name: establishmentName, description: description, address: address, phoneNumber: phoneNumber, emailAddress: emailAddress)
         
         await establishmentRepo.createEstablishment(body: body) { data, response in
             if let data = data {

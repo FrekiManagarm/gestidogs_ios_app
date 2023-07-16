@@ -51,7 +51,7 @@ class EstablishmentRepository {
     }
     
     //MARK: CREATE ESTABLISHMENT
-    public func createEstablishment(body: [String: Any?]?, completion: @escaping (EstablishmentResponseModel?, URLResponse?) -> Void) async {
+    public func createEstablishment(body: EstablishmentRequestModel?, completion: @escaping (EstablishmentResponseModel?, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
@@ -70,7 +70,7 @@ class EstablishmentRepository {
     }
     
     //MARK: CREATE NEW EMPLOYEE
-    public func createNewEmployee(establishmentId: String, body: [String: Any?]?, completion: @escaping ([UserResponseModel]?, URLResponse?) -> Void) async {
+    public func createNewEmployee(establishmentId: String, body: UserRequestModel?, completion: @escaping ([UserResponseModel]?, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(establishmentId)/newEmployee", httpMethod: "POST", body: body) { data, response in
             if let data = data {
@@ -88,7 +88,7 @@ class EstablishmentRepository {
     }
     
     //MARK: MODIFY ESTABLISHMENT
-    public func modifyEstablishment(establishmentId: String, body: [String: Any?]?, completion: @escaping (EstablishmentResponseModel?, URLResponse?) -> Void) async {
+    public func modifyEstablishment(establishmentId: String, body: EstablishmentRequestModel?, completion: @escaping (EstablishmentResponseModel?, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(establishmentId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {

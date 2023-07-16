@@ -23,13 +23,14 @@ class ActivityListViewModel: ObservableObject {
             return
         }
         
-        let body: [String: Any] = [
-            "establishmentId": establishmentId,
-            "title": activityTitle,
-            "price": price,
-            "duration": duration,
-            "description": description
-        ]
+//        let body: [String: Any] = [
+//            "establishmentId": establishmentId,
+//            "title": activityTitle,
+//            "price": price,
+//            "duration": duration,
+//            "description": description
+//        ]
+        let body = ActivityRequestModel(establishment: establishmentId, title: activityTitle, description: description, duration: Int(duration) ?? 0, price: Int(price) ?? 0)
         
         await activityRepo.createActivity(body: body, completion: { data, response in
             if let response = response as? HTTPURLResponse {

@@ -26,14 +26,15 @@ class TeamListViewModel: ObservableObject {
             return
         }
         
-        let body: [String: Any] = [
-            "firstname": firstname,
-            "lastname": lastname,
-            "avatarUrl": avatarUrl,
-            "emailAddress": emailAddress,
-            "phoneNumber": phoneNumber,
-            "password": password
-        ]
+//        let body: [String: Any] = [
+//            "firstname": firstname,
+//            "lastname": lastname,
+//            "avatarUrl": avatarUrl,
+//            "emailAddress": emailAddress,
+//            "phoneNumber": phoneNumber,
+//            "password": password
+//        ]
+        let body = UserRequestModel(avatarUrl: avatarUrl, firstname: firstname, lastname: lastname, phoneNumber: phoneNumber, emailAddress: emailAddress, password: password)
         
         await establishmentRepo.createNewEmployee(establishmentId: establishmentId, body: body, completion: { data, response in
             if let response = response as? HTTPURLResponse {

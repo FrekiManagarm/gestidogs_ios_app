@@ -10,34 +10,24 @@ import SwiftUI
 struct HolidaysView: View {
     
     @EnvironmentObject var appState: AppState
+    @State var showNewHolidayForm = false
     
     var body: some View {
-        ZStack {
-            radialGradient
-            
-            switch appState.userRole {
-                case .admin:
-                    HolidaysView_Manager()
-                case .educator:
-                    HolidaysView_Educator()
-                case .manager:
-                    HolidaysView_Manager()
-                default:
-                    NotFoundView()
-            }
+        switch appState.userRole {
+            case .admin:
+                HolidaysView_Manager()
+            case .educator:
+                HolidaysView_Educator()
+            case .manager:
+                HolidaysView_Manager()
+            default:
+                NotFoundView()
         }
     }
 }
 
 extension HolidaysView {
-    @ViewBuilder var radialGradient: some View {
-        RadialGradient(
-            gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
-            center: .topLeading,
-            startRadius: 5,
-            endRadius: UIScreen.main.bounds.height)
-        .ignoresSafeArea()
-    }
+    
     
 }
 

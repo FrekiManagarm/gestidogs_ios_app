@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EstablishmentResponseModel { 
+struct EstablishmentResponseModel {
     let id: String
     let owner: UserResponseModel?
     let name: String

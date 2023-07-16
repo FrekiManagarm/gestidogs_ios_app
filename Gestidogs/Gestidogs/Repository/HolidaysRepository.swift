@@ -47,7 +47,7 @@ class HolidaysRepository {
     }
 
     //MARK: TAKE VACATION
-    public func takeVacation(body: [String: Any?]?, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
+    public func takeVacation(body: HolidaysRequestModel?, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
@@ -65,7 +65,7 @@ class HolidaysRepository {
     }
 
     //MARK: MODIFY VACATION
-    public func modifyVacation(body: [String: Any?]?, holidayId: String, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
+    public func modifyVacation(body: HolidaysRequestModel?, holidayId: String, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request("\(baseUrl)/\(holidayId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {

@@ -33,7 +33,6 @@ struct AgendaView: View {
                     Spacer()
                 }
             }
-            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {

@@ -47,7 +47,7 @@ class ReservationsRepository {
     }
 
     //MARK: CREATE RESERVATION
-    public func createReservation(body: [String: Any?]?, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
+    public func createReservation(body: ReservationRequestModel?, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
             if let data = data {
@@ -65,7 +65,7 @@ class ReservationsRepository {
     }
 
     //MARK: MODIFY RESERVATION
-    public func modifyReservation(body: [String: Any?]?, reservationId: String, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
+    public func modifyReservation(body: ReservationRequestModel?, reservationId: String, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "PUT", body: body) { data, response in
             if let data = data {

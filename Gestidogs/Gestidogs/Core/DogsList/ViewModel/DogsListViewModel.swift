@@ -47,16 +47,17 @@ class DogsListViewModel: ObservableObject {
             return
         }
         
-        let body: [String: Any] = [
-            "ownerId": ownerId,
-            "establishment": establishmentId,
-            "nationalId": nationalId,
-            "imageUrl": imageUrl,
-            "gender": gender,
-            "name": dogsName,
-            "breed": Int(height) ?? 0,
-            "weight": Int(weight) ?? 0,
-        ]
+//        let body: [String: Any] = [
+//            "ownerId": ownerId,
+//            "establishment": establishmentId,
+//            "nationalId": nationalId,
+//            "imageUrl": imageUrl,
+//            "gender": gender,
+//            "name": dogsName,
+//            "breed": Int(height) ?? 0,
+//            "weight": Int(weight) ?? 0,
+//        ]
+        let body = DogsRequestModel(ownerId: ownerId, establishment: establishmentId, nationalId: nationalId, imageUrl: imageUrl, gender: gender, name: dogsName, breed: breed, weight: Int(weight) ?? 0, height: Int(height) ?? 0)
             
         await dogsRepo.createDog(body: body) { data, response in
             if let response = response as? HTTPURLResponse {

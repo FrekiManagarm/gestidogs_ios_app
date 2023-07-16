@@ -9,7 +9,26 @@ import SwiftUI
 
 struct HolidaysView_Educator: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ZStack {
+                radialGradient
+                
+                VStack {
+                    //MARK: Agenda for educator
+                }
+            }
+        }
+    }
+}
+
+extension HolidaysView_Educator {
+    @ViewBuilder var radialGradient: some View {
+        RadialGradient(
+            gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+            center: .topLeading,
+            startRadius: 5,
+            endRadius: UIScreen.main.bounds.height)
+        .ignoresSafeArea()
     }
 }
 
