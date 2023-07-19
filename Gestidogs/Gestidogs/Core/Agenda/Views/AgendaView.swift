@@ -41,6 +41,7 @@ struct AgendaView: View {
                         Image(systemName: "plus")
                             .font(.system(size: 20))
                             .foregroundColor(Color("whiteA700"))
+                            .fontWeight(.semibold)
                     }
                 }
             }

@@ -33,7 +33,7 @@ struct SplashView: View {
 
 struct LottieView: UIViewRepresentable {
     let animationView = LottieAnimationView()
-    var fileName = "splash_view_gestidogs"
+    var fileName = "gestidogs_loading"
     
     func makeUIView(context: Context) -> some UIView {
         let view = UIView()

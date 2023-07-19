@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NewActivityForm: View {
     
+    @StateObject var activityListViewModel = ActivityListViewModel()
     @State var activityName = ""
     @State var price = ""
     @State var duration = ""
@@ -33,7 +34,7 @@ struct NewActivityForm: View {
                         RoundedRectangle(cornerRadius: 25)
                             .fill(Color("whiteA700"))
                             .frame(height: 55)
-                        TextField("Nom", text: $activityName)
+                        TextField("Nom", text: $activityListViewModel.activityTitle)
                             .textInputAutocapitalization(.never)
                             .padding(.leading)
                     }
@@ -51,7 +52,7 @@ struct NewActivityForm: View {
                             RoundedRectangle(cornerRadius: 25)
                                 .fill(Color("whiteA700"))
                                 .frame(height: 55)
-                            TextField("Prix", text: $price)
+                            TextField("Prix", text: $activityListViewModel.price)
                                 .textInputAutocapitalization(.never)
                                 .padding(.leading)
                         }
@@ -66,7 +67,7 @@ struct NewActivityForm: View {
                             RoundedRectangle(cornerRadius: 25)
                                 .fill(Color("whiteA700"))
                                 .frame(height: 55)
-                            TextField("Durée", text: $duration)
+                            TextField("Durée", text: $activityListViewModel.duration)
                                 .padding(.leading)
                                 .textInputAutocapitalization(.never)
                         }
@@ -84,7 +85,7 @@ struct NewActivityForm: View {
                         RoundedRectangle(cornerRadius: 25)
                             .fill(Color("whiteA700"))
                             .frame(height: 100)
-                        TextEditor(text: $description)
+                        TextEditor(text: $activityListViewModel.description)
                             .cornerRadius(25)
                             .lineLimit(20)
                     }
@@ -93,7 +94,9 @@ struct NewActivityForm: View {
                 .padding(.top, 10)
                 
                 Button {
-                    
+                    Task {
+                        await activityListViewModel.newActivity()
+                    }
                 } label: {
                     Text("Créer une activité")
                         .foregroundColor(Color("whiteA700"))

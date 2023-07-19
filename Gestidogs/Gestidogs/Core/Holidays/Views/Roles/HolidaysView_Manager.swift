@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HolidaysView_Manager: View {
     
-    @State var selectedDate: DateComponents?
-    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @State var selectedDate: Date?
+    @State var showNewHolidaysForm = false
     
     var body: some View {
         NavigationStack {
@@ -18,15 +18,30 @@ struct HolidaysView_Manager: View {
                 radialGradient
                 
                 VStack {
-                    HolidaysAgendaViewRepresentable(interval: DateInterval(start: .distantPast, end: .distantFuture), selectedDate: $selectedDate)
-                        .frame(height: 425)
-//                        .padding(.top, 70)
-                        .padding(.horizontal, 20)
+                    agendaView
+                    
+                    ScrollView(showsIndicators: false) {
+                        //MARK: all holidays of employees
+                    }
                     Spacer()
-//                    ScrollView(.vertical, showsIndicators: false) {
-//                        //MARK: All holidays of employees
-//                    }
                 }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showNewHolidaysForm.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(Color("whiteA700"))
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
+                    }
+                }
+            }
+            .sheet(isPresented: $showNewHolidaysForm) {
+                NewHolidayForm(showNewHolidayForm: $showNewHolidaysForm)
+                    .presentationDetents([.fraction(0.40)])
+                    .presentationDragIndicator(.visible)
             }
         }
     }
@@ -41,10 +56,24 @@ extension HolidaysView_Manager {
             endRadius: UIScreen.main.bounds.height)
         .ignoresSafeArea()
     }
+    
+    @ViewBuilder var agendaView: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color("whiteA700"))
+                .padding()
+                .shadow(radius: 5, x: 5, y: 5)
+            HolidaysAgendaViewRepresentable(selectedDate: $selectedDate)
+                .frame(height: 350)
+                .padding(20)
+        }
+    }
 }
 
+#if DEBUG
 struct HolidaysView_Manager_Previews: PreviewProvider {
     static var previews: some View {
         HolidaysView_Manager()
     }
 }
+#endif

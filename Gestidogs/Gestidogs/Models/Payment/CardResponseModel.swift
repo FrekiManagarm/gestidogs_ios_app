@@ -15,7 +15,7 @@ struct CardResponseModel {
     let created: Int
     let customer: String?
     let livemode: Bool
-    let metadata: AnyObject
+//    let metadata: String
     let type: String
 }
 
@@ -58,7 +58,6 @@ struct Card {
     struct Networks {
         let available: [String]
         let preferred: String?
-        
     }
     
     struct ThreeD {
@@ -66,30 +65,74 @@ struct Card {
     }
 }
 
-extension CardResponseModel {
-    
+extension CardResponseModel: Identifiable, Codable {
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case object = "object"
+        case billingDetails = "billing_details"
+        case card = "card"
+        case created = "created"
+        case customer = "customer"
+        case livemode = "livemode"
+//        case metadata = "metadata"
+        case type = "type"
+    }
 }
 
-extension BillingDetails {
-    
+extension BillingDetails: Codable {
+    enum CodingKeys: String, CodingKey {
+        case address = "address"
+        case email = "email"
+        case name = "name"
+        case phone = "phone"
+    }
 }
 
-extension Address {
-    
+extension Address: Codable {
+    enum CodingKeys: String, CodingKey {
+        case city = "city"
+        case country = "country"
+        case line1 = "line1"
+        case line2 = "line2"
+        case postalCode = "postal_code"
+        case state = "state"
+    }
 }
 
-extension Card {
-    
+extension Card: Codable {
+    enum CodingKeys: String, CodingKey {
+        case brand = "brand"
+        case checks = "checks"
+        case country = "country"
+        case expMonth = "exp_month"
+        case expYear = "exp_year"
+        case fingerPrint = "finger_print"
+        case funding = "funding"
+        case generatedForm = "generated_form"
+        case last4 = "last4"
+        case networks = "networks"
+        case threeDSecureUsage = "three_d_secure_usage"
+        case wallet = "wallet"
+    }
 }
 
-extension Card.Checks {
-    
+extension Card.Checks: Codable {
+    enum CodingKeys: String, CodingKey {
+        case addressLine1Check = "address_line_1_check"
+        case addressPostalCodeCheck = "address_postal_code_check"
+        case cvcCheck = "cvc_check"
+    }
 }
 
-extension Card.Networks {
-    
+extension Card.Networks: Codable {
+    enum CodingKeys: String, CodingKey {
+        case available = "available"
+        case preferred = "preferred"
+    }
 }
 
-extension Card.ThreeD {
-    
+extension Card.ThreeD: Codable {
+    enum CodingKeys: String, CodingKey {
+        case supported = "supported"
+    }
 }

@@ -25,10 +25,10 @@
 		0116F3862A51C181003C427B /* SessionCreateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116F3852A51C181003C427B /* SessionCreateModel.swift */; };
 		012BF7432A33552500A4C266 /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7422A33552500A4C266 /* ActivityListView.swift */; };
 		012BF7452A33553500A4C266 /* ActivityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7442A33553500A4C266 /* ActivityListViewModel.swift */; };
-		012BF7472A33554C00A4C266 /* ActivityListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7462A33554C00A4C266 /* ActivityListWidget.swift */; };
 		014E3FE62A348B55007C4E2F /* ProfileForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FE52A348B55007C4E2F /* ProfileForm.swift */; };
 		014E3FE92A374377007C4E2F /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FE82A374377007C4E2F /* LoginModel.swift */; };
 		014E3FEE2A38B94C007C4E2F /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FED2A38B94C007C4E2F /* ApiConstants.swift */; };
+		015409182A658F32001EF378 /* PaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015409172A658F32001EF378 /* PaymentButton.swift */; };
 		0154ACE52A39109900622587 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACE42A39109900622587 /* MainRepository.swift */; };
 		0154ACE72A39AB9F00622587 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACE62A39AB9F00622587 /* UserRepository.swift */; };
 		0154ACE92A39ABAC00622587 /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACE82A39ABAC00622587 /* SessionRepository.swift */; };
@@ -40,9 +40,10 @@
 		0154ACF52A39AC9200622587 /* DogsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF42A39AC9200622587 /* DogsRepository.swift */; };
 		0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */; };
 		0154ACF92A3A53AD00622587 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF82A3A53AD00622587 /* LoginRequest.swift */; };
-		017498912A5EE148005C0844 /* PaymentUIViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017498902A5EE148005C0844 /* PaymentUIViewRepresentable.swift */; };
 		017498932A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017498922A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift */; };
 		017498952A60265A005C0844 /* NewHolidayForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017498942A60265A005C0844 /* NewHolidayForm.swift */; };
+		0179B0F22A66C0E80082628A /* AttachedPaymentMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179B0F12A66C0E80082628A /* AttachedPaymentMethodModel.swift */; };
+		0179B0F62A66DF6F0082628A /* gestidogs_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 0179B0F52A66DF6F0082628A /* gestidogs_loading.json */; };
 		017B4B142A530B6D00786FCA /* RoleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B132A530B6D00786FCA /* RoleManager.swift */; };
 		017B4B162A53108700786FCA /* CoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B152A53108700786FCA /* CoreConstants.swift */; };
 		017B4B182A532A3700786FCA /* NewActivityForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B172A532A3700786FCA /* NewActivityForm.swift */; };
@@ -54,8 +55,6 @@
 		017B4B2C2A586D0600786FCA /* HomeView_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B2B2A586D0600786FCA /* HomeView_Manager.swift */; };
 		017B4B2E2A586D3900786FCA /* DashboardView_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B2D2A586D3900786FCA /* DashboardView_Manager.swift */; };
 		017B4B302A586D4C00786FCA /* DashboardView_Educator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B2F2A586D4C00786FCA /* DashboardView_Educator.swift */; };
-		017B4B332A586E8000786FCA /* TeamListView_Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B322A586E8000786FCA /* TeamListView_Client.swift */; };
-		017B4B352A586EAF00786FCA /* TeamListView_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B342A586EAF00786FCA /* TeamListView_Manager.swift */; };
 		017B4B382A586FF600786FCA /* HolidaysView_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B372A586FF600786FCA /* HolidaysView_Manager.swift */; };
 		017B4B3A2A58701B00786FCA /* HolidaysView_Educator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B392A58701B00786FCA /* HolidaysView_Educator.swift */; };
 		017B4B3C2A5871EF00786FCA /* NotFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B3B2A5871EF00786FCA /* NotFoundView.swift */; };
@@ -70,6 +69,7 @@
 		01AE58772A4D7F2E00EE3106 /* SessionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */; };
 		01AE58792A4DC1C400EE3106 /* SessionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58782A4DC1C400EE3106 /* SessionCard.swift */; };
 		01AE587E2A4E0D9100EE3106 /* DailySessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE587D2A4E0D9100EE3106 /* DailySessions.swift */; };
+		01B39AA72A68197E0038D83F /* ActivityListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B39AA62A68197E0038D83F /* ActivityListWidget.swift */; };
 		01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72AA2A407DD3006433CE /* SplashView.swift */; };
 		01CC72AE2A408973006433CE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 01CC72AD2A408973006433CE /* Lottie */; };
 		01CC72B02A40A956006433CE /* splash_view_gestidogs.json in Resources */ = {isa = PBXBuildFile; fileRef = 01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */; };
@@ -181,10 +181,10 @@
 		0116F3852A51C181003C427B /* SessionCreateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCreateModel.swift; sourceTree = "<group>"; };
 		012BF7422A33552500A4C266 /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
 		012BF7442A33553500A4C266 /* ActivityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListViewModel.swift; sourceTree = "<group>"; };
-		012BF7462A33554C00A4C266 /* ActivityListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListWidget.swift; sourceTree = "<group>"; };
 		014E3FE52A348B55007C4E2F /* ProfileForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileForm.swift; sourceTree = "<group>"; };
 		014E3FE82A374377007C4E2F /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		014E3FED2A38B94C007C4E2F /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
+		015409172A658F32001EF378 /* PaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButton.swift; sourceTree = "<group>"; };
 		0154ACE42A39109900622587 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		0154ACE62A39AB9F00622587 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		0154ACE82A39ABAC00622587 /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
@@ -196,9 +196,10 @@
 		0154ACF42A39AC9200622587 /* DogsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsRepository.swift; sourceTree = "<group>"; };
 		0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesRepository.swift; sourceTree = "<group>"; };
 		0154ACF82A3A53AD00622587 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
-		017498902A5EE148005C0844 /* PaymentUIViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentUIViewRepresentable.swift; sourceTree = "<group>"; };
 		017498922A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysAgendaViewRepresentable.swift; sourceTree = "<group>"; };
 		017498942A60265A005C0844 /* NewHolidayForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHolidayForm.swift; sourceTree = "<group>"; };
+		0179B0F12A66C0E80082628A /* AttachedPaymentMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedPaymentMethodModel.swift; sourceTree = "<group>"; };
+		0179B0F52A66DF6F0082628A /* gestidogs_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gestidogs_loading.json; sourceTree = "<group>"; };
 		017B4B132A530B6D00786FCA /* RoleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleManager.swift; sourceTree = "<group>"; };
 		017B4B152A53108700786FCA /* CoreConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreConstants.swift; sourceTree = "<group>"; };
 		017B4B172A532A3700786FCA /* NewActivityForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityForm.swift; sourceTree = "<group>"; };
@@ -210,8 +211,6 @@
 		017B4B2B2A586D0600786FCA /* HomeView_Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView_Manager.swift; sourceTree = "<group>"; };
 		017B4B2D2A586D3900786FCA /* DashboardView_Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView_Manager.swift; sourceTree = "<group>"; };
 		017B4B2F2A586D4C00786FCA /* DashboardView_Educator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView_Educator.swift; sourceTree = "<group>"; };
-		017B4B322A586E8000786FCA /* TeamListView_Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListView_Client.swift; sourceTree = "<group>"; };
-		017B4B342A586EAF00786FCA /* TeamListView_Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListView_Manager.swift; sourceTree = "<group>"; };
 		017B4B372A586FF600786FCA /* HolidaysView_Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysView_Manager.swift; sourceTree = "<group>"; };
 		017B4B392A58701B00786FCA /* HolidaysView_Educator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysView_Educator.swift; sourceTree = "<group>"; };
 		017B4B3B2A5871EF00786FCA /* NotFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
@@ -225,6 +224,7 @@
 		01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetails.swift; sourceTree = "<group>"; };
 		01AE58782A4DC1C400EE3106 /* SessionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCard.swift; sourceTree = "<group>"; };
 		01AE587D2A4E0D9100EE3106 /* DailySessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySessions.swift; sourceTree = "<group>"; };
+		01B39AA62A68197E0038D83F /* ActivityListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListWidget.swift; sourceTree = "<group>"; };
 		01CC72AA2A407DD3006433CE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_view_gestidogs.json; sourceTree = "<group>"; };
 		01CC72B12A40D566006433CE /* NewEstablishmentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEstablishmentForm.swift; sourceTree = "<group>"; };
@@ -401,6 +401,7 @@
 				017B4B1D2A585ED900786FCA /* AddCardModel.swift */,
 				01DAB6482A618B130029E887 /* CardResponseModel.swift */,
 				01DAB64A2A618D370029E887 /* ListPaymentMethods.swift */,
+				0179B0F12A66C0E80082628A /* AttachedPaymentMethodModel.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -429,7 +430,6 @@
 			isa = PBXGroup;
 			children = (
 				012BF7422A33552500A4C266 /* ActivityListView.swift */,
-				017B4B172A532A3700786FCA /* NewActivityForm.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -445,7 +445,8 @@
 		012BF7412A33551300A4C266 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				012BF7462A33554C00A4C266 /* ActivityListWidget.swift */,
+				017B4B172A532A3700786FCA /* NewActivityForm.swift */,
+				01B39AA62A68197E0038D83F /* ActivityListWidget.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -490,7 +491,6 @@
 			isa = PBXGroup;
 			children = (
 				017B4B232A586B4000786FCA /* ReservationView.swift */,
-				017498902A5EE148005C0844 /* PaymentUIViewRepresentable.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -535,15 +535,6 @@
 			path = Roles;
 			sourceTree = "<group>";
 		};
-		017B4B312A586E6900786FCA /* Role */ = {
-			isa = PBXGroup;
-			children = (
-				017B4B322A586E8000786FCA /* TeamListView_Client.swift */,
-				017B4B342A586EAF00786FCA /* TeamListView_Manager.swift */,
-			);
-			path = Role;
-			sourceTree = "<group>";
-		};
 		017B4B362A586FD300786FCA /* Roles */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,7 +547,6 @@
 		01CC72B52A41B356006433CE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				017B4B312A586E6900786FCA /* Role */,
 				01CC72B82A41B386006433CE /* TeamListView.swift */,
 				017B4B192A532A5200786FCA /* NewTeamMateForm.swift */,
 			);
@@ -813,6 +803,7 @@
 			children = (
 				5F157C442A2791E800B4C2FE /* NavBar.swift */,
 				5F825F2F2A2F2561001C6EB5 /* TeamMateWidget */,
+				015409172A658F32001EF378 /* PaymentButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -895,6 +886,7 @@
 				5F8BFD242A262D2C0007E367 /* App */,
 				5F8BFD1A2A262CE90007E367 /* Assets.xcassets */,
 				01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */,
+				0179B0F52A66DF6F0082628A /* gestidogs_loading.json */,
 				5F8BFD1C2A262CE90007E367 /* Preview Content */,
 			);
 			path = Gestidogs;
@@ -1211,7 +1203,6 @@
 				2A35B06D443C5EC034A4774C /* Pods-Gestidogs.debug.xcconfig */,
 				AD5125682D26BB222C437523 /* Pods-Gestidogs.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -1282,10 +1273,10 @@
 			);
 			mainGroup = 5F8BFD0A2A262CE70007E367;
 			packageReferences = (
-				01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios.git" */,
+				01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				01DA51092A6152F7004DD75E /* XCRemoteSwiftPackageReference "stripe-ios-spm" */,
-				01A4D61B2A63173300BF72B8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */,
-				01A4D61E2A63178A00BF72B8 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
+				01A4D61B2A63173300BF72B8 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				01A4D61E2A63178A00BF72B8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 5F8BFD142A262CE70007E367 /* Products */;
 			projectDirPath = "";
@@ -1301,6 +1292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0179B0F62A66DF6F0082628A /* gestidogs_loading.json in Resources */,
 				5F8BFD1E2A262CE90007E367 /* Preview Assets.xcassets in Resources */,
 				01CC72B02A40A956006433CE /* splash_view_gestidogs.json in Resources */,
 				5F8BFD1B2A262CE90007E367 /* Assets.xcassets in Resources */,
@@ -1341,6 +1333,7 @@
 			files = (
 				5F8C93372A2A19C800F39770 /* ChooseOrCreateEstablishmentWidget.swift in Sources */,
 				5F157C3A2A278FA700B4C2FE /* ApiManager.swift in Sources */,
+				0179B0F22A66C0E80082628A /* AttachedPaymentMethodModel.swift in Sources */,
 				017B4B302A586D4C00786FCA /* DashboardView_Educator.swift in Sources */,
 				5F157C2E2A277C8700B4C2FE /* ReservationRequestModel.swift in Sources */,
 				014E3FE62A348B55007C4E2F /* ProfileForm.swift in Sources */,
@@ -1387,7 +1380,6 @@
 				017B4B262A586B5800786FCA /* ReservationViewModel.swift in Sources */,
 				017B4B3A2A58701B00786FCA /* HolidaysView_Educator.swift in Sources */,
 				01CC72B42A41AFD2006433CE /* NewDogForm.swift in Sources */,
-				017498912A5EE148005C0844 /* PaymentUIViewRepresentable.swift in Sources */,
 				5FC922602A30AC1400E78516 /* ObservationResponseModel.swift in Sources */,
 				017B4B452A594F3D00786FCA /* ReservationResumeWidget.swift in Sources */,
 				017B4B142A530B6D00786FCA /* RoleManager.swift in Sources */,
@@ -1412,6 +1404,7 @@
 				5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */,
 				0116F3862A51C181003C427B /* SessionCreateModel.swift in Sources */,
 				5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */,
+				015409182A658F32001EF378 /* PaymentButton.swift in Sources */,
 				5F32C5BA2A28CCA30034AB6F /* DogsListWidget.swift in Sources */,
 				5F157C222A277BF300B4C2FE /* ActivityTypeRequestModel.swift in Sources */,
 				5F8C933E2A2A1A1300F39770 /* LoginView.swift in Sources */,
@@ -1420,6 +1413,7 @@
 				0109C9B22A333CF200544C9C /* TeamCenterDetailsView.swift in Sources */,
 				01CC72B92A41B386006433CE /* TeamListView.swift in Sources */,
 				5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */,
+				01B39AA72A68197E0038D83F /* ActivityListWidget.swift in Sources */,
 				5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */,
 				0154ACF52A39AC9200622587 /* DogsRepository.swift in Sources */,
 				5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */,
@@ -1436,7 +1430,6 @@
 				5F32C5B02A28AA460034AB6F /* ActivityTypeWidget.swift in Sources */,
 				5F8BFD382A262E1B0007E367 /* HomeWidget.swift in Sources */,
 				017B4B162A53108700786FCA /* CoreConstants.swift in Sources */,
-				017B4B332A586E8000786FCA /* TeamListView_Client.swift in Sources */,
 				5F157C282A277C4500B4C2FE /* UserResponseModel.swift in Sources */,
 				0109C9BA2A333DF600544C9C /* SessionCell.swift in Sources */,
 				01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */,
@@ -1454,7 +1447,6 @@
 				0154ACE92A39ABAC00622587 /* SessionRepository.swift in Sources */,
 				5F3A32502A4488B900619AF6 /* NewSessionForm.swift in Sources */,
 				010E1E162A321028002E0DD1 /* RegisterCredentials.swift in Sources */,
-				017B4B352A586EAF00786FCA /* TeamListView_Manager.swift in Sources */,
 				017B4B242A586B4000786FCA /* ReservationView.swift in Sources */,
 				017B4B382A586FF600786FCA /* HolidaysView_Manager.swift in Sources */,
 				0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */,
@@ -1467,7 +1459,6 @@
 				01DAB6452A61877B0029E887 /* PaymentWithRegisteredCard.swift in Sources */,
 				010E1E102A3207C9002E0DD1 /* ImagesConstants.swift in Sources */,
 				01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */,
-				012BF7472A33554C00A4C266 /* ActivityListWidget.swift in Sources */,
 				5F157C322A277CA700B4C2FE /* SessionRequestModel.swift in Sources */,
 				5F157C172A27780300B4C2FE /* HolidaysResponseModel.swift in Sources */,
 				0154ACEF2A39ABFD00622587 /* PaymentsRepository.swift in Sources */,
@@ -1695,7 +1686,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		01A4D61B2A63173300BF72B8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */ = {
+		01A4D61B2A63173300BF72B8 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
 			requirement = {
@@ -1703,7 +1694,7 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		01A4D61E2A63178A00BF72B8 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
+		01A4D61E2A63178A00BF72B8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1711,7 +1702,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios.git" */ = {
+		01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
@@ -1732,17 +1723,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		01A4D61C2A63173300BF72B8 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 01A4D61B2A63173300BF72B8 /* XCRemoteSwiftPackageReference "FSCalendar.git" */;
+			package = 01A4D61B2A63173300BF72B8 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
 		};
 		01A4D61F2A63178A00BF72B8 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 01A4D61E2A63178A00BF72B8 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
+			package = 01A4D61E2A63178A00BF72B8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 		01CC72AD2A408973006433CE /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios.git" */;
+			package = 01CC72AC2A408973006433CE /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
 		01DA510A2A6152F7004DD75E /* Stripe */ = {

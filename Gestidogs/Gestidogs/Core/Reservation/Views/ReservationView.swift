@@ -23,6 +23,9 @@ struct ReservationView: View {
                 case .payment:
                     PaymentWidget()
                         .environmentObject(reservationViewModel)
+                case .checkout:
+                    CheckoutView()
+                        .environmentObject(reservationViewModel)
             }
         }
         .background(Color("gray100"))

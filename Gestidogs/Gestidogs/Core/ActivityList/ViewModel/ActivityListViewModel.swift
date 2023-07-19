@@ -54,7 +54,9 @@ extension ActivityListViewModel {
         
         await activityRepo.getAllActivities(establishmentId: establishmentId, completion: { data, _ in
             if let data {
-                self.activities = data
+                Task {
+                    self.activities = data
+                }
             }
         })
     }

@@ -10,7 +10,7 @@ import Foundation
 class PaymentsRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.paymentsUrl)"
     
-    public func makePayment() async {
+    public func makePaymentWithRegisteredCard(completion: @escaping () -> Void) async {
         
     }
     
@@ -18,5 +18,9 @@ class PaymentsRepository {
         await ApiManager.shared.request(baseUrl, completion: { data, response in
             
         })
+    }
+    
+    public func createPaymentMethod(stripeId: String, completion: @escaping () -> Void) async {
+        
     }
 }

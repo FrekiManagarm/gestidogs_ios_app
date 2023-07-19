@@ -11,6 +11,7 @@ struct ActivityListView: View {
     
     @Environment(\.dismiss) var dismiss
     @State var showActivityForm: Bool = false
+    @StateObject var activityListViewModel = ActivityListViewModel()
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "whiteA700") as Any]
@@ -25,8 +26,17 @@ struct ActivityListView: View {
                 endRadius: UIScreen.main.bounds.height)
             .ignoresSafeArea()
             
-            VStack {
-                //MARK: Display
+            
+            ScrollView {
+                VStack {
+                    if let activities = activityListViewModel.activities {
+                        ForEach(activities) { activity in
+                            ActivityListWidget(activity: activity)
+                        }
+                    } else {
+                        ProgressView()
+                    }
+                }
             }
             .navigationTitle("Mes activités")
             .navigationBarBackButtonHidden(true)
@@ -52,6 +62,9 @@ struct ActivityListView: View {
                             .fontWeight(.semibold)
                     }
                 }
+            }
+            .task {
+                await activityListViewModel.getActivitiesOfEstablishment()
             }
             .sheet(isPresented: $showActivityForm) {
                 NewActivityForm()
