@@ -36,7 +36,7 @@ extension ActivityListWidget {
             Image(systemName: "chevron.right")
                 .resizable()
                 .frame(width: 10, height: 17)
-                .foregroundColor(Color("black900").opacity(0.50))
+                .foregroundColor(Color("black900").opacity(0.5))
         }
         .padding(.horizontal, 10)
     }

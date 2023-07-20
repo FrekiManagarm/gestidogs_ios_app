@@ -14,27 +14,38 @@ struct TeamListWidget: View {
     @State var showDetailsView = false
     
     var body: some View {
-        HStack {
-            KFImage(URL(string: teamMate.avatarUrl))
-                .resizable()
-                .frame(width: 50, height: 50)
-                .cornerRadius(50)
-            VStack(alignment: .leading) {
-                Text("\(teamMate.firstName) \(teamMate.lastName)")
-                    .font(.system(size: 20))
-                    .foregroundColor(Color("blueGray80001"))
-                    .fontWeight(.semibold)
-                Text("Educateur Canin")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color("whiteA700"))
+                .frame(height: 70)
+                .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
+            HStack {
+                KFImage(URL(string: teamMate.avatarUrl))
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(50)
+                VStack(alignment: .leading) {
+                    Text("\(teamMate.firstName) \(teamMate.lastName)")
+                        .font(.system(size: 20))
+                        .foregroundColor(Color("blueGray80001"))
+                        .fontWeight(.semibold)
+                    Text("Educateur Canin")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .resizable()
+                    .frame(width: 10, height: 17)
+                    .foregroundColor(Color("black900").opacity(0.5))
             }
+            .padding(.horizontal, 10)
         }
+        .padding(.horizontal, 10)
         .onTapGesture {
             showDetailsView.toggle()
         }
-        .padding(.leading, 10)
-        .frame(width: UIScreen.main.bounds.width - 32, height: 70, alignment: .leading)
-        .background(Color("whiteA700"))
         .contextMenu(menuItems: {
             Button("Modifier") {
                 //MARK: Show modify sheet
@@ -46,7 +57,6 @@ struct TeamListWidget: View {
             }
             .foregroundColor(.red)
         })
-        .cornerRadius(25)
         .sheet(isPresented: $showDetailsView) {
             TeamCenterDetailsView(teamMate: teamMate)
                 .presentationDragIndicator(.visible)
