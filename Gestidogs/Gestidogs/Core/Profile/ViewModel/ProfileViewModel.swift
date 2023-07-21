@@ -26,4 +26,23 @@ class ProfileViewModel: ObservableObject {
             }
         }
     }
+    
+    func logOut(completion: @escaping (Bool, URLResponse?) -> Void) async {
+        await userRepo.logout { isSuccess, response in
+            if let isSuccess, let response = response as? HTTPURLResponse {
+                if isSuccess {
+                    UserDefaults.standard.removeObject(forKey: CoreConstants.storageAccessToken)
+                    UserDefaults.standard.removeObject(forKey: CoreConstants.storageEstablishmentId)
+                    UserDefaults.standard.removeObject(forKey: CoreConstants.storageRefreshToken)
+                    UserDefaults.standard.removeObject(forKey: CoreConstants.storageUserConnectedId)
+                    UserDefaults.standard.removeObject(forKey: CoreConstants.storageUserConnectedRole)
+                    UserDefaults.standard.synchronize()
+                    completion(true, response)
+                } else {
+                    completion(false, response)
+                    print("something wen't wrong \(response.debugDescription)")
+                }
+            }
+        }
+    }
 }

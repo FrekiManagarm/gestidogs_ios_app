@@ -22,21 +22,24 @@ class LoginViewModel: ObservableObject {
     lazy var userManager = UserManager.shared
     lazy var userRepo = UserRepository()
     
-    
-//    func login(loginState: LoginState) {
-//        print("pass in this function")
-//        isLoading = true
-//        let request = userRepo.login(body: LoginRequest(email: emailTxt, password: passwdTxt))
-//
-//        if let request = request {
-//            userManager.signIn(accessToken: request.tokens.accessToken, refreshToken: request.tokens.refreshToken)
-//            isLoading = false
-//            loginState = .isLoggedIn
-//        } else {
-//            isLoading = false
-//            print("\(request.debugDescription)")
-//        }
-//    }
+    @MainActor
+    func login(completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
+        print("pass in this function")
+        isLoading = true
+        await userRepo.login(body: LoginRequest(email: emailTxt, password: passwdTxt)) { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.isLoading = false
+                    }
+                    completion(data, response)
+                } else {
+                    completion(nil, response)
+                    print("something wen't wrong \(response.debugDescription)")
+                }
+            }
+        }
+    }
     
     func loginFacebook() {
         

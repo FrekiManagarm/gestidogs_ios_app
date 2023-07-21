@@ -25,10 +25,6 @@ class ApiManager {
             }
         }
         
-        guard let accessToken = UserDefaults.standard.string(forKey: CoreConstants.storageAccessToken) else {
-            return
-        }
-        
         guard let url = components.url else {
             return
         }
@@ -44,7 +40,9 @@ class ApiManager {
             }
             
         }
-        apiRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        if let accessToken = UserDefaults.standard.string(forKey: CoreConstants.storageAccessToken) {
+            apiRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        }
         apiRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         apiRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         

@@ -12,27 +12,29 @@ struct DogItem: View {
     
     let dog: DogsResponseModel
     @State var showDetailsView: Bool = false
-    @StateObject var dashboardVM = DashboardViewModel()
     
     var body: some View {
-        HStack {
-            KFImage(URL(string: dog.imageUrl))
-                .resizable()
-                .scaledToFill()
-                .frame(width: 70, height: 70)
-                .cornerRadius(100)
-            Text(dog.name)
-                .foregroundColor(Color("black900"))
-                .font(.system(size: 20))
-                .fontWeight(.light)
-                .padding(.trailing, 10)
-                .padding(.leading, 10)
-            
+        ZStack {
+            RoundedRectangle(cornerRadius: 50)
+                .fill(Color("gray100"))
+                .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
+            HStack {
+                KFImage(URL(string: dog.imageUrl))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 70, height: 70)
+                    .cornerRadius(100)
+                Text(dog.name)
+                    .foregroundColor(Color("black900"))
+                    .font(.system(size: 20))
+                    .fontWeight(.regular)
+                    .padding(.trailing, 10)
+                    .padding(.leading, 10)
+                
+            }
+            .padding(.vertical, 10)
+            .padding(.horizontal, 10)
         }
-        .padding(10)
-        .background(Color("gray100"))
-        .cornerRadius(50)
-        .padding(EdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10))
         .onTapGesture {
             withAnimation(.spring()) {
                 showDetailsView.toggle()

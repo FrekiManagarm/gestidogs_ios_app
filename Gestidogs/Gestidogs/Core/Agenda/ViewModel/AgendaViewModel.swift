@@ -11,8 +11,8 @@ import Foundation
 class AgendaViewModel : ObservableObject {
     @Published var sessions: [SessionResponseModel]?
     @Published var loadingSessions: Bool = false
-    @Published var activities: [ActivityResponseModel] = []
-    @Published var employees: [UserResponseModel] = []
+    @Published var activities: [ActivityResponseModel]?
+    @Published var employees: [UserResponseModel]?
     
     lazy var sessionsRepo = SessionRepository()
     lazy var activitiesRepo = ActivitiesRepository()

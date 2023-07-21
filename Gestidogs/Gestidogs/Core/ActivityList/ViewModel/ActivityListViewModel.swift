@@ -10,6 +10,7 @@ import Foundation
 class ActivityListViewModel: ObservableObject {
     //MARK: New activity properties
     @Published var activityTitle: String = ""
+    @Published var imageUrl: String = ""
     @Published var price: String = ""
     @Published var duration: String = ""
     @Published var description: String = ""
@@ -22,15 +23,8 @@ class ActivityListViewModel: ObservableObject {
         guard let establishmentId = UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) else {
             return
         }
-        
-//        let body: [String: Any] = [
-//            "establishmentId": establishmentId,
-//            "title": activityTitle,
-//            "price": price,
-//            "duration": duration,
-//            "description": description
-//        ]
-        let body = ActivityRequestModel(establishment: establishmentId, title: activityTitle, description: description, duration: Int(duration) ?? 0, price: Int(price) ?? 0)
+    
+        let body = ActivityRequestModel(establishment: establishmentId, title: activityTitle, description: description, imageUrl: imageUrl, color: "red", duration: Int(duration) ?? 0, price: Int(price) ?? 0)
         
         await activityRepo.createActivity(body: body, completion: { data, response in
             if let response = response as? HTTPURLResponse {

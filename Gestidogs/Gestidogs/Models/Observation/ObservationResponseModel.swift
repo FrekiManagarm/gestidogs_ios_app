@@ -8,13 +8,14 @@
 import Foundation
 
 struct ObservationResponseModel {
+    let id = UUID().uuidString
     let dog: DogsResponseModel
     let description: String
     let createdAt: Date
     let v: Int
 }
 
-extension ObservationResponseModel: Codable {
+extension ObservationResponseModel: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case dog = "dog"
         case description = "description"

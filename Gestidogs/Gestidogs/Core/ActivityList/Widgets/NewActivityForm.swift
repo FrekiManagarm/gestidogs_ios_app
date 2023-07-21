@@ -42,6 +42,23 @@ struct NewActivityForm: View {
                 .padding(.horizontal, 10)
                 .padding(.top, 5)
                 
+                VStack(alignment: .leading) {
+                    Text("Image")
+                        .foregroundColor(Color("blueGray80001"))
+                        .font(.system(size: 15))
+                        .fontWeight(.semibold)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(Color("whiteA700"))
+                            .frame(height: 55)
+                        TextField("Image", text: $activityListViewModel.imageUrl)
+                            .textInputAutocapitalization(.never)
+                            .padding(.leading)
+                    }
+                }
+                .padding(.horizontal, 10)
+                .padding(.top, 5)
+                
                 HStack {
                     VStack(alignment: .leading) {
                         Text("Prix")

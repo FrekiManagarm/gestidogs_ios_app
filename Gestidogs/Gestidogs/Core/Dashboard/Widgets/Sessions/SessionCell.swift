@@ -15,6 +15,10 @@ struct SessionCell: View {
     
     var body: some View {
         ZStack {
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color("gray100"))
+                .frame(width: 225, height: 170)
+                .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
             VStack {
                 topCardSection
                 Text(session.establishment.address)
@@ -24,13 +28,11 @@ struct SessionCell: View {
             }
         }
         .padding(5)
-        .frame(width: 225, height: 170)
-        .background(Color("gray100"))
-        .cornerRadius(25)
         .onTapGesture {
             showDetailsView.toggle()
         }
-        .padding(EdgeInsets(top: 5, leading: 10, bottom: 10, trailing: 10))
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
         .sheet(isPresented: $showDetailsView) {
             SessionDetails(session: session)
                 .presentationDragIndicator(.visible)

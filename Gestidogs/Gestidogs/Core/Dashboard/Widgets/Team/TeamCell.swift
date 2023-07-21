@@ -20,6 +20,7 @@ struct TeamCell: View {
                 .fill(.white)
                 .frame(width: 105, height: 105)
                 .padding(EdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10))
+                .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
             KFImage(URL(string: teamMate.avatarUrl))
                 .resizable()
                 .frame(width: 100, height: 100)

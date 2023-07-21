@@ -11,6 +11,7 @@ struct DogsListView: View {
     
     @Environment(\.dismiss) private var dismiss
     @State var showDogsForm: Bool = false
+    @StateObject var dogListViewModel = DogsListViewModel()
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "whiteA700") as Any]
@@ -20,8 +21,17 @@ struct DogsListView: View {
         ZStack {
             radialGradient
             
-            VStack {
-                //MARK: Some details of dogs
+            ScrollView {
+                VStack {
+                    if let dogs = dogListViewModel.dogs {
+                        ForEach(dogs) { dog in
+                            DogsListWidget(dog: dog)
+                        }
+                    }
+                }
+            }
+            .task {
+                await dogListViewModel.getDogs()
             }
             .navigationBarBackButtonHidden(true)
             .navigationTitle("Mes Chiens")

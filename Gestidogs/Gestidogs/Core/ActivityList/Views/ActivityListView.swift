@@ -68,7 +68,7 @@ struct ActivityListView: View {
             }
             .sheet(isPresented: $showActivityForm) {
                 NewActivityForm()
-                    .presentationDetents([.fraction(0.75)])
+                    .presentationDetents([.fraction(0.80)])
                     .presentationDragIndicator(.visible)
             }
         }

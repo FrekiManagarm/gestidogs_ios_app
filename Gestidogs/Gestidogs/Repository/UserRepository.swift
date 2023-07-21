@@ -109,11 +109,11 @@ class UserRepository {
     }
     
     //MARK: LOGIN
-    public func login(body: LoginModel?, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
-//        print("request of body \(body)")
+    public func login(body: LoginRequest?, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
+        print("request of body \(body)")
         
         await ApiManager.shared.request("\(baseUrl)/login", httpMethod: "POST", body: body) { data, response in
-            if let data = data {
+            if let data, let response = response as? HTTPURLResponse {
                 do {
                     let decode = try JSONDecoder().decode(LoginModel.self, from: data)
                     completion(decode, response)

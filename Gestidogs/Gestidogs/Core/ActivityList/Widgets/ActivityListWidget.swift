@@ -19,7 +19,7 @@ struct ActivityListWidget: View {
                 roundedRectangle
                 infosSection
             }
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 15)
         }
     }
 }

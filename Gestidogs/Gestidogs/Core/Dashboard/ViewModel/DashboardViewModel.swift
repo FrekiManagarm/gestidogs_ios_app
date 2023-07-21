@@ -18,17 +18,20 @@ class DashboardViewModel: ObservableObject {
     @Published var userConnected: UserResponseModel?
     @Published var loadingUser: Bool = true
     @Published var todaySessions: DailySessions?
+    @Published var dogObservations: [ObservationResponseModel]?
     
     lazy var establishmentManager = EstablishmentManager()
     lazy var dogsRepo = DogsRepository()
     lazy var activitiesRepo = ActivitiesRepository()
     lazy var establishmentRepo = EstablishmentRepository()
     lazy var sessionsRepo = SessionRepository()
+    lazy var observationsRepo = ObservationRepository()
 }
 
 extension DashboardViewModel {
     //MARK: Get Functions
-    @MainActor func getDogsEstablishment() async {
+    @MainActor
+    func getDogsEstablishment() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
@@ -44,7 +47,8 @@ extension DashboardViewModel {
         }
     }
     
-    @MainActor func getActivities() async {
+    @MainActor
+    func getActivities() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
@@ -60,7 +64,8 @@ extension DashboardViewModel {
         }
     }
     
-    @MainActor func getEstablishment() async {
+    @MainActor
+    func getEstablishment() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
@@ -91,57 +96,20 @@ extension DashboardViewModel {
             }
         })
     }
-}
-
-extension DashboardViewModel {
     
-    //MARK: Create functions
-    func newDog() async {
-        
-//        let body: [String: Any] = [
-//            "ownerId": "",
-//            "establishment": "",
-//            "nationalId": "",
-//            "name": "",
-//            "imageUrl": "",
-//            "gender": "",
-//            "weight": 0,
-//            "height": 0
-//        ]
-        let body = DogsRequestModel(ownerId: "", establishment: "", nationalId: "", imageUrl: "", gender: "", name: "", breed: "", weight: 0, height: 0)
-        
-        await dogsRepo.createDog(body: body, completion: { data, response in
-            
-        })
-    }
-    
-    func newTeamMate() async {
-//        let body: [String: Any] = [
-//            "lastname": "",
-//            "firstname": "",
-//            "emailAddress": "",
-//            "phoneNumber": "",
-//            "password": ""
-//        ]
-        let body = UserRequestModel(avatarUrl: "", firstname: "", lastname: "", phoneNumber: "", emailAddress: "", password: "")
-        
-        guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
-            return
+    @MainActor
+    func getObservationsOfDog(dogId: String) async {
+        await observationsRepo.getAllObservations(dogId: dogId) { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.dogObservations = data
+                    }
+                } else {
+                    self.dogObservations = nil
+                    print("something wen't wrong with the request \(response.debugDescription)")
+                }
+            }
         }
-        
-        await establishmentRepo.createNewEmployee(establishmentId: establishmentId, body: body, completion: { data, response in
-            
-        })
-    }
-    
-    func newActivityType() async {
-//        let body: [String: Any] = [
-//            "": ""
-//        ]
-        let body = ActivityRequestModel(establishment: "", title: "", description: "", duration: 0, price: 0)
-        
-        await activitiesRepo.createActivity(body: body, completion: { data, response in
-            
-        })
     }
 }

@@ -12,7 +12,7 @@ struct DogCenterDetails: View {
     
     let dog: DogsResponseModel
     @State var selectedItem: Int = 0
-    let views = ["Observations", "Rapports"]
+    @StateObject var dashboardViewModel = DashboardViewModel()
     
     var body: some View {
         ScrollView {
@@ -23,15 +23,7 @@ struct DogCenterDetails: View {
                     titleAndDetailsSection
                 }
                 
-                VStack {
-                    Picker("Observations et rapports", selection: $selectedItem) {
-                        Text("Observations").tag(0)
-                        Text("Rapports").tag(1)
-                    }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 10)
-                }
+                pickersSection
             }
         }
         .background(Color("gray100"))
@@ -40,6 +32,7 @@ struct DogCenterDetails: View {
 }
 
 extension DogCenterDetails {
+    
     @ViewBuilder var imageSection: some View {
         ZStack {
             Circle()
@@ -119,6 +112,61 @@ extension DogCenterDetails {
             }
             .padding(.horizontal, 10)
             .padding(.top, 10)
+        }
+    }
+    
+    @ViewBuilder var pickersSection: some View {
+        VStack {
+            if UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == Role.admin.rawValue || UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == Role.manager.rawValue {
+                Picker("Observations et rapports", selection: $selectedItem) {
+                    Text("Rapports").tag(0)
+                    Text("Observations").tag(1)
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal, 20)
+                .padding(.top, 10)
+            } else {
+                Picker("Rapports", selection: $selectedItem) {
+                    Text("Rapports").tag(0)
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal, 10)
+                .padding(.top, 10)
+            }
+            
+            if selectedItem == 1 {
+                ScrollView(.vertical, showsIndicators: false) {
+                    if let observations = dashboardViewModel.dogObservations {
+                        if observations.isEmpty {
+                            Text("Il n'y a aucune observation pour le moment...")
+                                .font(.system(size: 15))
+                                .foregroundColor(.secondary)
+                                .fontWeight(.semibold)
+                                .padding(.top, 10)
+                        } else {
+                            ForEach(observations) { observation in
+                                Text(observations.description)
+                                    .foregroundColor(Color("blueGray80001"))
+                                    .background(Color("whiteA700"))
+                                    .padding(.horizontal, 20)
+                            }
+                        }
+                    }
+                }
+                .frame(height: 200)
+            } else if selectedItem == 0 {
+                ScrollView(.vertical, showsIndicators: false) {
+                    Text("Il n'y a aucun rapport pour le moment...")
+                        .font(.system(size: 15))
+                        .foregroundColor(.secondary)
+                        .fontWeight(.semibold)
+                        .padding(.top, 10)
+                }
+                .frame(height: 200)
+            }
+        }
+        .task {
+            await dashboardViewModel.getObservationsOfDog(dogId: dog.id)
         }
     }
 }

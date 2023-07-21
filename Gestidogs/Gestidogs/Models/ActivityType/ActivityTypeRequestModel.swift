@@ -11,6 +11,8 @@ struct ActivityRequestModel {
     let establishment: String
     let title: String
     let description: String
+    let imageUrl: String
+    let color: String
     let duration: Int
     let price: Int
 }
@@ -20,6 +22,8 @@ extension ActivityRequestModel: Codable {
         case establishment = "establishment"
         case title = "title"
         case description = "description"
+        case imageUrl = "imageUrl"
+        case color = "color"
         case duration = "duration"
         case price = "price"
     }

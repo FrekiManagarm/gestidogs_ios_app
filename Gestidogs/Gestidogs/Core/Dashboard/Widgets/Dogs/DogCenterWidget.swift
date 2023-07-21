@@ -58,6 +58,7 @@ extension DogCenterWidget {
                         }
                     }
                     .padding(.leading, 10)
+                    .padding(.bottom, 10)
                 }
             }
         } else {

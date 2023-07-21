@@ -12,6 +12,7 @@ struct ProfileView: View {
     
     @State var showModifForm: Bool = false
     @StateObject var profileVM = ProfileViewModel()
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack {
@@ -98,7 +99,13 @@ extension ProfileView {
     
     @ViewBuilder var logOutButton: some View {
         Button {
-            //MARK: Implement action of deconnecting
+            Task {
+                await profileVM.logOut { isSuccess, response in
+                    if isSuccess {
+                        self.appState.loginState = .login
+                    }
+                }
+            }
         } label: {
             HStack {
                 Image(systemName: "rectangle.portrait.and.arrow.right")

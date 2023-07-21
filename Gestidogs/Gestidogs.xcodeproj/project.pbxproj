@@ -95,6 +95,7 @@
 		01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6832A2B65390054C16A /* OnboardingView.swift */; };
 		01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */; };
 		01E7D6892A2B657E0054C16A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6882A2B657E0054C16A /* Extension.swift */; };
+		01E9930B2A698A3C00B09FB0 /* GestidogsLauchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01E9930A2A698A3C00B09FB0 /* GestidogsLauchScreen.storyboard */; };
 		5F04A69A2A30D186000E2AD9 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F04A6992A30D186000E2AD9 /* NetworkError.swift */; };
 		5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157BFD2A27744800B4C2FE /* DashboardWidget.swift */; };
 		5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F157BFF2A27745500B4C2FE /* DashboardView.swift */; };
@@ -241,6 +242,7 @@
 		01E7D6832A2B65390054C16A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		01E7D6882A2B657E0054C16A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		01E9930A2A698A3C00B09FB0 /* GestidogsLauchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GestidogsLauchScreen.storyboard; sourceTree = "<group>"; };
 		2A35B06D443C5EC034A4774C /* Pods-Gestidogs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gestidogs.debug.xcconfig"; path = "Target Support Files/Pods-Gestidogs/Pods-Gestidogs.debug.xcconfig"; sourceTree = "<group>"; };
 		5F04A6992A30D186000E2AD9 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		5F157BFD2A27744800B4C2FE /* DashboardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardWidget.swift; sourceTree = "<group>"; };
@@ -888,6 +890,7 @@
 				01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */,
 				0179B0F52A66DF6F0082628A /* gestidogs_loading.json */,
 				5F8BFD1C2A262CE90007E367 /* Preview Content */,
+				01E9930A2A698A3C00B09FB0 /* GestidogsLauchScreen.storyboard */,
 			);
 			path = Gestidogs;
 			sourceTree = "<group>";
@@ -1292,6 +1295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E9930B2A698A3C00B09FB0 /* GestidogsLauchScreen.storyboard in Resources */,
 				0179B0F62A66DF6F0082628A /* gestidogs_loading.json in Resources */,
 				5F8BFD1E2A262CE90007E367 /* Preview Assets.xcassets in Resources */,
 				01CC72B02A40A956006433CE /* splash_view_gestidogs.json in Resources */,
@@ -1524,7 +1528,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1578,7 +1582,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1608,6 +1612,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = GestidogsLauchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1645,6 +1650,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = GestidogsLauchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
