@@ -78,11 +78,14 @@ extension LoginView {
                     await loginViewModel.login { data, response in
                         if let data, let response {
                             print(response.debugDescription)
-                            UserDefaults.standard.set(data.tokens.accessToken, forKey: "accessToken")
-                            UserDefaults.standard.set(data.tokens.refreshToken, forKey: "refreshToken")
+                            UserDefaults.standard.set(data.tokens.accessToken, forKey: CoreConstants.storageAccessToken)
+                            UserDefaults.standard.set(data.tokens.refreshToken, forKey: CoreConstants.storageRefreshToken)
+                            UserDefaults.standard.set(data.user.id, forKey: CoreConstants.storageUserConnectedId)
+                            let role = RoleManager.shared.switchOnRole(roleType: data.user.role)
                             UserDefaults.standard.set(true, forKey: "isSignedIn")
                             UserDefaults.standard.synchronize()
                             Task {
+                                self.appState.userRole = role
                                 self.loginViewModel.isLoading = false
                                 self.appState.loginState = .selectEstablishment
                             }

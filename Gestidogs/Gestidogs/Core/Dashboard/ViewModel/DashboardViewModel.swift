@@ -26,6 +26,7 @@ class DashboardViewModel: ObservableObject {
     lazy var establishmentRepo = EstablishmentRepository()
     lazy var sessionsRepo = SessionRepository()
     lazy var observationsRepo = ObservationRepository()
+    lazy var userRepo = UserRepository()
 }
 
 extension DashboardViewModel {
@@ -108,6 +109,21 @@ extension DashboardViewModel {
                 } else {
                     self.dogObservations = nil
                     print("something wen't wrong with the request \(response.debugDescription)")
+                }
+            }
+        }
+    }
+    
+    @MainActor
+    func getMe() async {
+        await userRepo.userMe { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.userConnected = data
+                    }
+                } else {
+                    print("something wen't wrong with the request => \(response.debugDescription)")
                 }
             }
         }

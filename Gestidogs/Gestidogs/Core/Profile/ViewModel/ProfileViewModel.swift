@@ -11,6 +11,7 @@ class ProfileViewModel: ObservableObject {
     @Published var user: UserResponseModel?
     lazy var userRepo = UserRepository()
     
+    @MainActor
     func getUser() async {
         await userRepo.userMe { data, response in
             if let data, let response = response as? HTTPURLResponse {

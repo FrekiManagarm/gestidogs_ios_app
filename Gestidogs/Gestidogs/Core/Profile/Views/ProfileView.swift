@@ -30,6 +30,9 @@ struct ProfileView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .task {
+            await profileVM.getUser()
+        }
     }
 }
 
@@ -76,23 +79,29 @@ extension ProfileView {
     
     @ViewBuilder var imageAndName: some View {
         HStack {
-            KFImage(URL(string: "https://i.imgur.com/aUWvqAC.jpg"))
-                .resizable()
-                .scaledToFill()
-                .position(x: 100, y: 140)
-                .frame(width: 200, height: 200)
-                .cornerRadius(300)
-                .background(
-                    Circle()
-                        .fill(.white)
-                        .frame(width: 205, height: 205)
-                )
+            if let profile = profileVM.user {
+                KFImage(URL(string: profile.avatarUrl))
+                    .resizable()
+                    .scaledToFill()
+//                    .position(x: 100, y: 140)
+                    .frame(width: 200, height: 200)
+                    .cornerRadius(300)
+                    .background(
+                        Circle()
+                            .fill(.white)
+                            .frame(width: 205, height: 205)
+                    )
+            } else {
+                ProgressView()
+            }
         }
         VStack {
-            Text("Mathieu Chambaud")
-                .font(.system(size: 30))
-                .fontWeight(.heavy)
-            Text(verbatim: "mathieu.chambaud@ynov.com")
+            if let profile = profileVM.user {
+                Text("\(profile.firstName) \(profile.lastName)")
+                    .font(.system(size: 30))
+                    .fontWeight(.heavy)
+                Text(verbatim: profile.emailAddress)
+            }
         }
         .foregroundColor(.white)
     }

@@ -69,6 +69,9 @@
 		01AE58772A4D7F2E00EE3106 /* SessionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */; };
 		01AE58792A4DC1C400EE3106 /* SessionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58782A4DC1C400EE3106 /* SessionCard.swift */; };
 		01AE587E2A4E0D9100EE3106 /* DailySessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE587D2A4E0D9100EE3106 /* DailySessions.swift */; };
+		01B044992A6E6A3A002851B7 /* ClientsCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044982A6E6A3A002851B7 /* ClientsCenterWidget.swift */; };
+		01B0449B2A6E6A4D002851B7 /* ClientsDetailsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0449A2A6E6A4D002851B7 /* ClientsDetailsWidget.swift */; };
+		01B0449D2A6E6A5C002851B7 /* ClientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0449C2A6E6A5C002851B7 /* ClientItem.swift */; };
 		01B39AA72A68197E0038D83F /* ActivityListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B39AA62A68197E0038D83F /* ActivityListWidget.swift */; };
 		01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72AA2A407DD3006433CE /* SplashView.swift */; };
 		01CC72AE2A408973006433CE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 01CC72AD2A408973006433CE /* Lottie */; };
@@ -225,6 +228,9 @@
 		01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetails.swift; sourceTree = "<group>"; };
 		01AE58782A4DC1C400EE3106 /* SessionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCard.swift; sourceTree = "<group>"; };
 		01AE587D2A4E0D9100EE3106 /* DailySessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySessions.swift; sourceTree = "<group>"; };
+		01B044982A6E6A3A002851B7 /* ClientsCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsCenterWidget.swift; sourceTree = "<group>"; };
+		01B0449A2A6E6A4D002851B7 /* ClientsDetailsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsDetailsWidget.swift; sourceTree = "<group>"; };
+		01B0449C2A6E6A5C002851B7 /* ClientItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientItem.swift; sourceTree = "<group>"; };
 		01B39AA62A68197E0038D83F /* ActivityListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListWidget.swift; sourceTree = "<group>"; };
 		01CC72AA2A407DD3006433CE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_view_gestidogs.json; sourceTree = "<group>"; };
@@ -546,6 +552,16 @@
 			path = Roles;
 			sourceTree = "<group>";
 		};
+		01B044972A6E6A21002851B7 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				01B044982A6E6A3A002851B7 /* ClientsCenterWidget.swift */,
+				01B0449A2A6E6A4D002851B7 /* ClientsDetailsWidget.swift */,
+				01B0449C2A6E6A5C002851B7 /* ClientItem.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
 		01CC72B52A41B356006433CE /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -663,6 +679,7 @@
 		5F157BFC2A27741E00B4C2FE /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				01B044972A6E6A21002851B7 /* Clients */,
 				0109C9B62A333DD800544C9C /* Dogs */,
 				0109C9B52A333DBF00544C9C /* Sessions */,
 				0109C9AE2A333C7E00544C9C /* Team */,
@@ -1356,6 +1373,7 @@
 				5F8BFD342A262DFE0007E367 /* HomeViewModel.swift in Sources */,
 				014E3FEE2A38B94C007C4E2F /* ApiConstants.swift in Sources */,
 				0109C9BE2A3340D500544C9C /* DogCenterWidget.swift in Sources */,
+				01B044992A6E6A3A002851B7 /* ClientsCenterWidget.swift in Sources */,
 				012BF7452A33553500A4C266 /* ActivityListViewModel.swift in Sources */,
 				017B4B2E2A586D3900786FCA /* DashboardView_Manager.swift in Sources */,
 				5F157C362A277CDA00B4C2FE /* DogsRequestModel.swift in Sources */,
@@ -1399,6 +1417,7 @@
 				0109C9C02A3340E000544C9C /* DogCenterDetails.swift in Sources */,
 				5F157C302A277C9600B4C2FE /* SessionResponseModel.swift in Sources */,
 				0109C9B02A333CC300544C9C /* TeamCell.swift in Sources */,
+				01B0449D2A6E6A5C002851B7 /* ClientItem.swift in Sources */,
 				017B4B282A586C9F00786FCA /* DashboardView_Client.swift in Sources */,
 				017B4B3F2A58756600786FCA /* HomeView_Client.swift in Sources */,
 				5F8BFD2F2A262DCE0007E367 /* AppState.swift in Sources */,
@@ -1460,6 +1479,7 @@
 				5F157C202A277BDC00B4C2FE /* ActivityTypeResponseModel.swift in Sources */,
 				014E3FE92A374377007C4E2F /* LoginModel.swift in Sources */,
 				5F32C5BC2A28E36D0034AB6F /* ActivityCellWidget.swift in Sources */,
+				01B0449B2A6E6A4D002851B7 /* ClientsDetailsWidget.swift in Sources */,
 				01DAB6452A61877B0029E887 /* PaymentWithRegisteredCard.swift in Sources */,
 				010E1E102A3207C9002E0DD1 /* ImagesConstants.swift in Sources */,
 				01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */,
@@ -1599,6 +1619,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Gestidogs/Gestidogs.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1637,6 +1658,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Gestidogs/Gestidogs.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;

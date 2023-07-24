@@ -25,7 +25,7 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
     //MARK: Functions
     @MainActor func getEstablishments() async {
         
-        guard let ownerId = userManager.getUserConnectedId() else {
+        guard let ownerId = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedId) else {
             print("pas de ownerId")
             return
         }

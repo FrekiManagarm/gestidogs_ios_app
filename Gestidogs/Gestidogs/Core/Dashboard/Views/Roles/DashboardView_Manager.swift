@@ -10,13 +10,14 @@ import SwiftUI
 struct DashboardView_Manager: View {
     
     @StateObject var dashboardViewModel = DashboardViewModel()
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         NavigationStack {
             ZStack {
                 radialGradient
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 5) {
                     HStack {
                         titleSection
                             
@@ -36,6 +37,7 @@ struct DashboardView_Manager: View {
                         await dashboardViewModel.getDogsEstablishment()
                         await dashboardViewModel.getActivities()
                         await dashboardViewModel.getEstablishment()
+                        await dashboardViewModel.getMe()
                         await dashboardViewModel.getDailySessions { isSuccess, data, response in
                             if isSuccess == true {
                                 Task {

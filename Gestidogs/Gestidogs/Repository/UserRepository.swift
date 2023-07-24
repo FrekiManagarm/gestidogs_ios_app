@@ -110,7 +110,7 @@ class UserRepository {
     
     //MARK: LOGIN
     public func login(body: LoginRequest?, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
-        print("request of body \(body)")
+//        print("request of body \(body)")
         
         await ApiManager.shared.request("\(baseUrl)/login", httpMethod: "POST", body: body) { data, response in
             if let data, let response = response as? HTTPURLResponse {
@@ -133,7 +133,7 @@ class UserRepository {
         
         await ApiManager.shared.request("\(baseUrl)/logout", httpMethod: "POST") { _, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 201 {
                     completion(true, response)
                 } else {
                     completion(false, response)

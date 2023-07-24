@@ -16,7 +16,7 @@ struct UserResponseModel {
     let lastName: String
     let role: String
     let registeredAt: String
-    let refreshToken: String
+    let refreshToken: String?
     let lastConnectionAt: String
     let v: Int
 }

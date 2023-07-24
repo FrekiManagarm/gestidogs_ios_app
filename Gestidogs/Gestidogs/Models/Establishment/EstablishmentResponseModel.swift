@@ -11,7 +11,7 @@ struct EstablishmentResponseModel {
     let id: String
     let owner: UserResponseModel?
     let name: String
-    let description: String
+    let description: String?
     let address: String
 //    let location: [Int]
     let phoneNumber: String
