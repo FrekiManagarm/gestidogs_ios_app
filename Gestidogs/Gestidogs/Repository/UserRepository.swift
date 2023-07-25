@@ -33,7 +33,6 @@ class UserRepository {
     public func userMe(completion: @escaping (UserResponseModel?, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/me", httpMethod: "GET") { data, response in
-//            print("result \(response?.description)")
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode(UserResponseModel.self, from: data)
@@ -110,7 +109,6 @@ class UserRepository {
     
     //MARK: LOGIN
     public func login(body: LoginRequest?, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
-//        print("request of body \(body)")
         
         await ApiManager.shared.request("\(baseUrl)/login", httpMethod: "POST", body: body) { data, response in
             if let data, let response = response as? HTTPURLResponse {

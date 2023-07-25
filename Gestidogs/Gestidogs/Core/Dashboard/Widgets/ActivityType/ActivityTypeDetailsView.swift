@@ -13,9 +13,11 @@ struct ActivityCenterDetails: View {
     let activity: ActivityResponseModel
     @State var showReservationFlow = false
     @Binding var showDetailsView: Bool
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack {
+        VStack(spacing: 5) {
+            backButton
             ScrollView {
                 VStack(spacing: 5) {
                     imageSection
@@ -30,7 +32,6 @@ struct ActivityCenterDetails: View {
                 }
             }
 //            .ignoresSafeArea()
-            
             
             Button {
                 self.showDetailsView = false
@@ -52,10 +53,35 @@ struct ActivityCenterDetails: View {
         }
         .background(Color("gray100"))
         .toolbar(.hidden, for: .tabBar)
+        .navigationBarBackButtonHidden()
     }
 }
 
 extension ActivityCenterDetails {
+    
+    @ViewBuilder var backButton: some View {
+        HStack {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "chevron.left")
+                    .resizable()
+                    .frame(width: 10, height: 17)
+            }
+            Spacer()
+            Button {
+                
+            } label: {
+                Image(systemName: "gear")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+            }
+
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
+    }
+    
     @ViewBuilder var imageSection: some View {
         VStack {
             if let imageUrl = activity.imageUrl {
@@ -66,7 +92,6 @@ extension ActivityCenterDetails {
                     .frame(width: UIScreen.main.bounds.width - 20, height: 300)
                     .cornerRadius(50)
                     .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 4)
-//                    .padding(.top, 5)
             } else {
                 Image(systemName: "xmark")
             }

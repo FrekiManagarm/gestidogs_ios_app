@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TeamCenterWidget: View {
-    
-    let teamMates: [UserResponseModel]?
+
+    @StateObject var dashboardViewModel = DashboardViewModel()
     
     var body: some View {
         VStack {
@@ -17,13 +17,19 @@ struct TeamCenterWidget: View {
             
             scrollItemsSection
         }
+        .task {
+            await dashboardViewModel.getEstablishment()
+        }
+//        .onDisappear {
+//            dashboardViewModel.teamMates = nil
+//        }
     }
 }
 
 extension TeamCenterWidget {
     
     @ViewBuilder var scrollItemsSection: some View {
-        if let teamMates {
+        if let teamMates = dashboardViewModel.teamMates {
             if teamMates.isEmpty {
                 Text("Vous n'avez pas encore d'équipe...")
                     .foregroundColor(.secondary)

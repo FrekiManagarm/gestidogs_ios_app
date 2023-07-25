@@ -52,10 +52,10 @@ struct AgendaView: View {
             .task {
                 await agendaViewModel.getSessions()
             }
-            .onDisappear {
-                agendaViewModel.sessions = nil
-                sessionsPerDate = nil
-            }
+//            .onDisappear {
+//                agendaViewModel.sessions = nil
+//                sessionsPerDate = nil
+//            }
             .alert("Vous n'avez pas sélectionné de date", isPresented: $showAlertSelectDate) {
                 Button("OK", role: .cancel) {}
             }

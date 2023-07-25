@@ -21,47 +21,39 @@ struct DogsListView: View {
         ZStack {
             radialGradient
             
-            ScrollView {
-                VStack {
-                    if let dogs = dogListViewModel.dogs {
-                        ForEach(dogs) { dog in
-                            DogsListWidget(dog: dog)
+            scrollViewItems
+                .task {
+                    await dogListViewModel.getDogs()
+                }
+                .navigationBarBackButtonHidden(true)
+                .navigationTitle("Mes Chiens")
+                .navigationBarTitleDisplayMode(.large)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "arrow.left")
+                                .foregroundColor(Color("whiteA700"))
+                                .font(.system(size: 20))
+                                .fontWeight(.semibold)
+                        }
+                    }
+                    ToolbarItem {
+                        Button {
+                            showDogsForm.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                                .foregroundColor(Color("whiteA700"))
+                                .font(.system(size: 20))
+                                .fontWeight(.semibold)
                         }
                     }
                 }
-            }
-            .task {
-                await dogListViewModel.getDogs()
-            }
-            .navigationBarBackButtonHidden(true)
-            .navigationTitle("Mes Chiens")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "arrow.left")
-                            .foregroundColor(Color("whiteA700"))
-                            .font(.system(size: 20))
-                            .fontWeight(.semibold)
-                    }
+                .sheet(isPresented: $showDogsForm) {
+                    NewDogForm()
+                        .presentationDragIndicator(.visible)
                 }
-                ToolbarItem {
-                    Button {
-                        showDogsForm.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(Color("whiteA700"))
-                            .font(.system(size: 20))
-                            .fontWeight(.semibold)
-                    }
-                }
-            }
-            .sheet(isPresented: $showDogsForm) {
-                NewDogForm()
-                    .presentationDragIndicator(.visible)
-            }
         }
     }
 }
@@ -74,6 +66,27 @@ extension DogsListView {
             startRadius: 1,
             endRadius: UIScreen.main.bounds.height)
         .ignoresSafeArea()
+    }
+    
+    @ViewBuilder var scrollViewItems: some View {
+        ScrollView {
+            VStack {
+                if let dogs = dogListViewModel.dogs {
+                    if dogs.isEmpty {
+                        Text("Vous n'avez pas encore de chiens")
+                            .foregroundColor(.secondary)
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
+                    } else {
+                        ForEach(dogs) { dog in
+                            DogsListWidget(dog: dog)
+                        }
+                    }
+                } else {
+                    ProgressView()
+                }
+            }
+        }
     }
 }
 

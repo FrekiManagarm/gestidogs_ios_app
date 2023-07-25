@@ -17,7 +17,7 @@ struct DashboardView_Manager: View {
             ZStack {
                 radialGradient
                 
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .leading, spacing: 10) {
                     HStack {
                         titleSection
                             
@@ -29,31 +29,20 @@ struct DashboardView_Manager: View {
                     
                     ScrollView {
                         sessionsSection
+                        clientsSection
                         dogsSection
                         activitiesSection
                         teamSection
                     }
                     .task {
-                        await dashboardViewModel.getDogsEstablishment()
-                        await dashboardViewModel.getActivities()
-                        await dashboardViewModel.getEstablishment()
+                        await dashboardViewModel.getClients()
                         await dashboardViewModel.getMe()
-                        await dashboardViewModel.getDailySessions { isSuccess, data, response in
-                            if isSuccess == true {
-                                Task {
-                                    dashboardViewModel.todaySessions = data
-                                }
-                            } else {
-                                print("something wen't wrong on the view")
-                            }
-                        }
                     }
-                    .onDisappear {
-                        dashboardViewModel.dogs = nil
-                        dashboardViewModel.activities = nil
-                        dashboardViewModel.teamMates = nil
-                        dashboardViewModel.todaySessions = nil
-                    }
+//                    .onDisappear {
+//                        dashboardViewModel.clients = nil
+//                        dashboardViewModel.userConnected = nil
+//                        dashboardViewModel.todaySessions = nil
+//                    }
                 }
             }
         }
@@ -72,28 +61,32 @@ extension DashboardView_Manager {
     
     @ViewBuilder var titleSection: some View {
         Text("Bonjour,")
-            .foregroundColor(Color.white)
+            .foregroundColor(Color("whiteA700"))
             .font(.system(size: 40))
             .fontWeight(.light)
             .padding(.leading, 10)
             .padding(.top, 10)
-        Text("Mathieu")
-            .foregroundColor(Color.white)
-            .font(.system(size: 40))
-            .fontWeight(.bold)
-            .padding(.top, 10)
+        if let user = dashboardViewModel.userConnected {
+            Text(user.firstName)
+                .foregroundColor(Color.white)
+                .font(.system(size: 40))
+                .fontWeight(.bold)
+                .padding(.top, 10)
+        } else {
+            ProgressView()
+        }
     }
     
     @ViewBuilder var dogsSection: some View {
-        DogCenterWidget(dogs: dashboardViewModel.dogs)
+        DogCenterWidget()
     }
     
     @ViewBuilder var activitiesSection: some View {
-        ActivityCenterWidget(activities: dashboardViewModel.activities)
+        ActivityCenterWidget()
     }
     
     @ViewBuilder var teamSection: some View {
-        TeamCenterWidget(teamMates: dashboardViewModel.teamMates)
+        TeamCenterWidget()
     }
     
     @ViewBuilder var notificationsLinkSection: some View {
@@ -114,7 +107,11 @@ extension DashboardView_Manager {
     }
     
     @ViewBuilder var sessionsSection: some View {
-        SessionCenterWidget(sessions: dashboardViewModel.todaySessions)
+        SessionCenterWidget()
+    }
+    
+    @ViewBuilder var clientsSection: some View {
+        ClientsCenterWidget()
     }
 }
 

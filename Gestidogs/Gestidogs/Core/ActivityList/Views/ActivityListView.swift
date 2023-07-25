@@ -30,8 +30,15 @@ struct ActivityListView: View {
             ScrollView {
                 VStack {
                     if let activities = activityListViewModel.activities {
-                        ForEach(activities) { activity in
-                            ActivityListWidget(activity: activity)
+                        if activities.isEmpty {
+                            Text("Vous n'avez pas encore d'activités ...")
+                                .foregroundColor(.secondary)
+                                .font(.system(size: 20))
+                                .fontWeight(.semibold)
+                        } else {
+                            ForEach(activities) { activity in
+                                ActivityListWidget(activity: activity)
+                            }
                         }
                     } else {
                         ProgressView()

@@ -41,8 +41,15 @@ extension TeamListView {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 if let teamMates = teamListVM.teamMates {
-                    ForEach(teamMates) { teamMate in
-                        TeamListWidget(teamMate: teamMate)
+                    if teamMates.isEmpty {
+                        Text("Vous n'avez pas encore d'équipe ...")
+                            .foregroundColor(.secondary)
+                            .fontWeight(.semibold)
+                            .font(.system(size: 20))
+                    } else {
+                        ForEach(teamMates) { teamMate in
+                            TeamListWidget(teamMate: teamMate)
+                        }
                     }
                 } else {
                     ProgressView()

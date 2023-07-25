@@ -38,7 +38,9 @@ class AgendaViewModel : ObservableObject {
         
         if let date = selectedDate {
             let otherDate = date.addHours(hours: selectedHour).addMinutes(minutes: selectedMinutes)
+            #if DEBUG
             print("date :\(otherDate)")
+            #endif
 //                let body : [String: Any] = [
 //                    "educator": educator,
 //                    "activity": activity,
@@ -49,7 +51,9 @@ class AgendaViewModel : ObservableObject {
 //                ]
             let body = SessionRequestModel(educator: educator, activity: activity, establishment: establishmentId, status: status, maximumCapacity: Int(maximumCapacity), beginDate: otherDate.toString())
                 
+            #if DEBUG
                 print("body \(body)")
+            #endif
                 
                 await sessionsRepo.createSession(body: body){ isSuccess, data, response in
                     if isSuccess == true {
@@ -98,7 +102,6 @@ class AgendaViewModel : ObservableObject {
 
         await sessionsRepo.getDailySessions(date: date) { data, response in
             if let data, let response = response as? HTTPURLResponse {
-//                print("response \(response.debugDescription)")
                 if response.statusCode == 200 {
                     completion(data, response)
                 }
@@ -109,12 +112,16 @@ class AgendaViewModel : ObservableObject {
     func getSessions() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
+            #if DEBUG
             print("pas d'establishment")
+            #endif
             return
         }
         
         await sessionsRepo.getAllSessions(establishmentId: establishmentId) { data, response in
+            #if DEBUG
             print("response \(response.debugDescription)")
+            #endif
             if let data, let response = response as? HTTPURLResponse {
                 if response.statusCode == 200 {
                     Task {

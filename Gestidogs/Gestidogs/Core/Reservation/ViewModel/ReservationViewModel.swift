@@ -13,7 +13,7 @@ class ReservationViewModel: NSObject, ObservableObject {
     //MARK: Reservation Flow Properties
     @Published var step: ReservationState = .takeReservation
     @Published var paymentState: PaymentState = .newCard
-    @Published var dog: Int = 0
+    @Published var dog: [Int] = []
     @Published var schedule: Int = 0
     @Published var paymentParams: AddCardState = AddCardState()
     @Published var userCards: [STPPaymentMethod] = []
@@ -22,16 +22,13 @@ class ReservationViewModel: NSObject, ObservableObject {
 }
 
 
-extension ReservationViewModel: STPApplePayContextDelegate {
-    func applePayContext(_ context: StripeApplePay.STPApplePayContext, didCreatePaymentMethod paymentMethod: StripePayments.STPPaymentMethod, paymentInformation: PKPayment, completion: @escaping StripeApplePay.STPIntentClientSecretCompletionBlock) {
+extension ReservationViewModel {
+    //function for ask reservation flow
+    
+    func registerNewCard() {
         
     }
     
-    func applePayContext(_ context: StripeApplePay.STPApplePayContext, didCompleteWith status: StripePayments.STPPaymentStatus, error: Error?) {
-        
-    }
-    
-    //function for payment
     func payWithApplePay() {
         
     }
@@ -41,6 +38,17 @@ extension ReservationViewModel: STPApplePayContextDelegate {
     }
     
     func payWithRegisteredCard(paymentMethodId: String) {
+        
+    }
+}
+
+extension ReservationViewModel: STPApplePayContextDelegate {
+    //MARK: methods of Apple Pay Stripe Delegate
+    func applePayContext(_ context: StripeApplePay.STPApplePayContext, didCreatePaymentMethod paymentMethod: StripePayments.STPPaymentMethod, paymentInformation: PKPayment, completion: @escaping StripeApplePay.STPIntentClientSecretCompletionBlock) {
+        
+    }
+    
+    func applePayContext(_ context: StripeApplePay.STPApplePayContext, didCompleteWith status: StripePayments.STPPaymentStatus, error: Error?) {
         
     }
 }

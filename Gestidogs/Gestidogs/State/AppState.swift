@@ -25,7 +25,7 @@ class AppState: ObservableObject {
     func userDidLogin() {
         if UserDefaults.standard.string(forKey: CoreConstants.storageAccessToken) == nil {
             loginState = .login
-        } else if UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) == nil {
+        } else if UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) == nil && (UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == Role.admin.rawValue || UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == Role.manager.rawValue) {
             loginState = .selectEstablishment
         } else {
             loginState = .home
@@ -45,7 +45,9 @@ class AppState: ObservableObject {
                         guard let role = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) else {
                             return
                         }
+                        #if DEBUG
                         print("role on fetch user \(role)")
+                        #endif
                         self.userRole = RoleManager.shared.switchOnRoleValue(roleType: role)
                         self.userDidLogin()
                     } else {

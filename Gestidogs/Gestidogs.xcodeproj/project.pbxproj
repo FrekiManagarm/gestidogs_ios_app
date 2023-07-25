@@ -12,7 +12,6 @@
 		0109C9B42A333D5100544C9C /* ActivityTypeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9B32A333D5100544C9C /* ActivityTypeDetailsView.swift */; };
 		0109C9B82A333DEB00544C9C /* SessionCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9B72A333DEB00544C9C /* SessionCenterWidget.swift */; };
 		0109C9BA2A333DF600544C9C /* SessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9B92A333DF600544C9C /* SessionCell.swift */; };
-		0109C9BC2A333E0E00544C9C /* SessionCenterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9BB2A333E0E00544C9C /* SessionCenterDetails.swift */; };
 		0109C9BE2A3340D500544C9C /* DogCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9BD2A3340D500544C9C /* DogCenterWidget.swift */; };
 		0109C9C02A3340E000544C9C /* DogCenterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9BF2A3340E000544C9C /* DogCenterDetails.swift */; };
 		0109C9C22A3340EE00544C9C /* DogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9C12A3340EE00544C9C /* DogItem.swift */; };
@@ -72,6 +71,14 @@
 		01B044992A6E6A3A002851B7 /* ClientsCenterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044982A6E6A3A002851B7 /* ClientsCenterWidget.swift */; };
 		01B0449B2A6E6A4D002851B7 /* ClientsDetailsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0449A2A6E6A4D002851B7 /* ClientsDetailsWidget.swift */; };
 		01B0449D2A6E6A5C002851B7 /* ClientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0449C2A6E6A5C002851B7 /* ClientItem.swift */; };
+		01B0449F2A6E7158002851B7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B0449E2A6E7158002851B7 /* View.swift */; };
+		01B044A32A6E7713002851B7 /* DogClientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044A22A6E7713002851B7 /* DogClientItem.swift */; };
+		01B044A82A6E7C25002851B7 /* DashboardClientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044A72A6E7C25002851B7 /* DashboardClientViewModel.swift */; };
+		01B044AE2A6ECBD7002851B7 /* ClientsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044AD2A6ECBD7002851B7 /* ClientsListView.swift */; };
+		01B044B02A6ECBF1002851B7 /* ClientsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044AF2A6ECBF1002851B7 /* ClientsListViewModel.swift */; };
+		01B044B22A6ECEBB002851B7 /* ClientListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044B12A6ECEBB002851B7 /* ClientListWidget.swift */; };
+		01B044B42A6FCB0B002851B7 /* DashboardEducatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044B32A6FCB0B002851B7 /* DashboardEducatorViewModel.swift */; };
+		01B044B62A6FCE7F002851B7 /* StripeApplePayResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044B52A6FCE7F002851B7 /* StripeApplePayResponseModel.swift */; };
 		01B39AA72A68197E0038D83F /* ActivityListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B39AA62A68197E0038D83F /* ActivityListWidget.swift */; };
 		01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72AA2A407DD3006433CE /* SplashView.swift */; };
 		01CC72AE2A408973006433CE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 01CC72AD2A408973006433CE /* Lottie */; };
@@ -172,7 +179,6 @@
 		0109C9B32A333D5100544C9C /* ActivityTypeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeDetailsView.swift; sourceTree = "<group>"; };
 		0109C9B72A333DEB00544C9C /* SessionCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCenterWidget.swift; sourceTree = "<group>"; };
 		0109C9B92A333DF600544C9C /* SessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCell.swift; sourceTree = "<group>"; };
-		0109C9BB2A333E0E00544C9C /* SessionCenterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCenterDetails.swift; sourceTree = "<group>"; };
 		0109C9BD2A3340D500544C9C /* DogCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCenterWidget.swift; sourceTree = "<group>"; };
 		0109C9BF2A3340E000544C9C /* DogCenterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCenterDetails.swift; sourceTree = "<group>"; };
 		0109C9C12A3340EE00544C9C /* DogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogItem.swift; sourceTree = "<group>"; };
@@ -231,6 +237,14 @@
 		01B044982A6E6A3A002851B7 /* ClientsCenterWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsCenterWidget.swift; sourceTree = "<group>"; };
 		01B0449A2A6E6A4D002851B7 /* ClientsDetailsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsDetailsWidget.swift; sourceTree = "<group>"; };
 		01B0449C2A6E6A5C002851B7 /* ClientItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientItem.swift; sourceTree = "<group>"; };
+		01B0449E2A6E7158002851B7 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		01B044A22A6E7713002851B7 /* DogClientItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogClientItem.swift; sourceTree = "<group>"; };
+		01B044A72A6E7C25002851B7 /* DashboardClientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardClientViewModel.swift; sourceTree = "<group>"; };
+		01B044AD2A6ECBD7002851B7 /* ClientsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsListView.swift; sourceTree = "<group>"; };
+		01B044AF2A6ECBF1002851B7 /* ClientsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsListViewModel.swift; sourceTree = "<group>"; };
+		01B044B12A6ECEBB002851B7 /* ClientListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListWidget.swift; sourceTree = "<group>"; };
+		01B044B32A6FCB0B002851B7 /* DashboardEducatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardEducatorViewModel.swift; sourceTree = "<group>"; };
+		01B044B52A6FCE7F002851B7 /* StripeApplePayResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApplePayResponseModel.swift; sourceTree = "<group>"; };
 		01B39AA62A68197E0038D83F /* ActivityListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListWidget.swift; sourceTree = "<group>"; };
 		01CC72AA2A407DD3006433CE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_view_gestidogs.json; sourceTree = "<group>"; };
@@ -365,9 +379,8 @@
 		0109C9B52A333DBF00544C9C /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
-				0109C9B72A333DEB00544C9C /* SessionCenterWidget.swift */,
 				0109C9B92A333DF600544C9C /* SessionCell.swift */,
-				0109C9BB2A333E0E00544C9C /* SessionCenterDetails.swift */,
+				0109C9B72A333DEB00544C9C /* SessionCenterWidget.swift */,
 			);
 			path = Sessions;
 			sourceTree = "<group>";
@@ -375,9 +388,8 @@
 		0109C9B62A333DD800544C9C /* Dogs */ = {
 			isa = PBXGroup;
 			children = (
-				0109C9BD2A3340D500544C9C /* DogCenterWidget.swift */,
-				0109C9BF2A3340E000544C9C /* DogCenterDetails.swift */,
-				0109C9C12A3340EE00544C9C /* DogItem.swift */,
+				01B044A12A6E76B3002851B7 /* Client */,
+				01B044A02A6E76A4002851B7 /* Manager_Educator */,
 			);
 			path = Dogs;
 			sourceTree = "<group>";
@@ -410,6 +422,7 @@
 				01DAB6482A618B130029E887 /* CardResponseModel.swift */,
 				01DAB64A2A618D370029E887 /* ListPaymentMethods.swift */,
 				0179B0F12A66C0E80082628A /* AttachedPaymentMethodModel.swift */,
+				01B044B52A6FCE7F002851B7 /* StripeApplePayResponseModel.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -562,6 +575,58 @@
 			path = Clients;
 			sourceTree = "<group>";
 		};
+		01B044A02A6E76A4002851B7 /* Manager_Educator */ = {
+			isa = PBXGroup;
+			children = (
+				0109C9BD2A3340D500544C9C /* DogCenterWidget.swift */,
+				0109C9BF2A3340E000544C9C /* DogCenterDetails.swift */,
+				0109C9C12A3340EE00544C9C /* DogItem.swift */,
+			);
+			path = Manager_Educator;
+			sourceTree = "<group>";
+		};
+		01B044A12A6E76B3002851B7 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				01B044A22A6E7713002851B7 /* DogClientItem.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		01B044A92A6ECB97002851B7 /* ClientsListView */ = {
+			isa = PBXGroup;
+			children = (
+				01B044AC2A6ECBBD002851B7 /* Widgets */,
+				01B044AB2A6ECBB4002851B7 /* ViewModel */,
+				01B044AA2A6ECBAE002851B7 /* Views */,
+			);
+			path = ClientsListView;
+			sourceTree = "<group>";
+		};
+		01B044AA2A6ECBAE002851B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01B044AD2A6ECBD7002851B7 /* ClientsListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		01B044AB2A6ECBB4002851B7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				01B044AF2A6ECBF1002851B7 /* ClientsListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		01B044AC2A6ECBBD002851B7 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				01B044B12A6ECEBB002851B7 /* ClientListWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		01CC72B52A41B356006433CE /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +701,7 @@
 				01E7D6882A2B657E0054C16A /* Extension.swift */,
 				5F3A32512A471C5E00619AF6 /* Date.swift */,
 				01AE58722A4B1BDC00EE3106 /* String.swift */,
+				01B0449E2A6E7158002851B7 /* View.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -663,6 +729,8 @@
 			isa = PBXGroup;
 			children = (
 				5F157C012A27746F00B4C2FE /* DashboardViewModel.swift */,
+				01B044A72A6E7C25002851B7 /* DashboardClientViewModel.swift */,
+				01B044B32A6FCB0B002851B7 /* DashboardEducatorViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -931,6 +999,7 @@
 		5F8BFD252A262D330007E367 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				01B044A92A6ECB97002851B7 /* ClientsListView */,
 				017B4B1F2A586AFF00786FCA /* Reservation */,
 				012BF73E2A33544400A4C266 /* TeamList */,
 				012BF73D2A33543A00A4C266 /* ActivityList */,
@@ -1392,6 +1461,7 @@
 				0109C9C22A3340EE00544C9C /* DogItem.swift in Sources */,
 				5F157C0C2A27773A00B4C2FE /* HolidaysView.swift in Sources */,
 				5F157C022A27746F00B4C2FE /* DashboardViewModel.swift in Sources */,
+				01B044B22A6ECEBB002851B7 /* ClientListWidget.swift in Sources */,
 				01AE587E2A4E0D9100EE3106 /* DailySessions.swift in Sources */,
 				01DAB6472A6188DE0029E887 /* CheckoutView.swift in Sources */,
 				0154ACF92A3A53AD00622587 /* LoginRequest.swift in Sources */,
@@ -1399,6 +1469,7 @@
 				5F8BFD442A262F380007E367 /* AgendaViewModel.swift in Sources */,
 				017B4B412A58757400786FCA /* HomeView_Educator.swift in Sources */,
 				5FC9225E2A30AC0500E78516 /* ObservationRequestModel.swift in Sources */,
+				01B044B02A6ECBF1002851B7 /* ClientsListViewModel.swift in Sources */,
 				017B4B262A586B5800786FCA /* ReservationViewModel.swift in Sources */,
 				017B4B3A2A58701B00786FCA /* HolidaysView_Educator.swift in Sources */,
 				01CC72B42A41AFD2006433CE /* NewDogForm.swift in Sources */,
@@ -1434,12 +1505,14 @@
 				5F8C93532A2A1B2F00F39770 /* NotificationsWidget.swift in Sources */,
 				5F8C93332A2A19A000F39770 /* ChooseOrCreateEstablishmentView.swift in Sources */,
 				0109C9B22A333CF200544C9C /* TeamCenterDetailsView.swift in Sources */,
+				01B044B42A6FCB0B002851B7 /* DashboardEducatorViewModel.swift in Sources */,
 				01CC72B92A41B386006433CE /* TeamListView.swift in Sources */,
 				5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */,
 				01B39AA72A68197E0038D83F /* ActivityListWidget.swift in Sources */,
 				5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */,
 				0154ACF52A39AC9200622587 /* DogsRepository.swift in Sources */,
 				5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */,
+				01B044A32A6E7713002851B7 /* DogClientItem.swift in Sources */,
 				5F8C93492A2A1A6200F39770 /* RegisterWidget.swift in Sources */,
 				017B4B472A594F6700786FCA /* PaymentWidget.swift in Sources */,
 				012BF7432A33552500A4C266 /* ActivityListView.swift in Sources */,
@@ -1462,6 +1535,7 @@
 				017B4B1A2A532A5200786FCA /* NewTeamMateForm.swift in Sources */,
 				5F8C93352A2A19B500F39770 /* ChooseOrCreateEstablishmentViewModel.swift in Sources */,
 				5F157C262A277C3000B4C2FE /* EstablishmentRequestModel.swift in Sources */,
+				01B0449F2A6E7158002851B7 /* View.swift in Sources */,
 				017B4B2C2A586D0600786FCA /* HomeView_Manager.swift in Sources */,
 				010E1E1D2A326F34002E0DD1 /* PaymentRequestModel.swift in Sources */,
 				017B4B182A532A3700786FCA /* NewActivityForm.swift in Sources */,
@@ -1470,9 +1544,11 @@
 				0154ACE92A39ABAC00622587 /* SessionRepository.swift in Sources */,
 				5F3A32502A4488B900619AF6 /* NewSessionForm.swift in Sources */,
 				010E1E162A321028002E0DD1 /* RegisterCredentials.swift in Sources */,
+				01B044A82A6E7C25002851B7 /* DashboardClientViewModel.swift in Sources */,
 				017B4B242A586B4000786FCA /* ReservationView.swift in Sources */,
 				017B4B382A586FF600786FCA /* HolidaysView_Manager.swift in Sources */,
 				0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */,
+				01B044AE2A6ECBD7002851B7 /* ClientsListView.swift in Sources */,
 				017B4B1E2A585ED900786FCA /* AddCardModel.swift in Sources */,
 				017498952A60265A005C0844 /* NewHolidayForm.swift in Sources */,
 				017B4B432A594F0E00786FCA /* TakeReservationWidget.swift in Sources */,
@@ -1490,7 +1566,7 @@
 				5F8C93552A2A1B4700F39770 /* NotificationsView.swift in Sources */,
 				010E1E142A320994002E0DD1 /* TokensResponseModel.swift in Sources */,
 				01DAB64B2A618D370029E887 /* ListPaymentMethods.swift in Sources */,
-				0109C9BC2A333E0E00544C9C /* SessionCenterDetails.swift in Sources */,
+				01B044B62A6FCE7F002851B7 /* StripeApplePayResponseModel.swift in Sources */,
 				0109C9B42A333D5100544C9C /* ActivityTypeDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

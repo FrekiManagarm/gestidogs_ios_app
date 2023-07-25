@@ -23,7 +23,6 @@ class SessionRepository {
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([SessionResponseModel].self, from: data)
-//                    print("decode \(decode)")
                     completion(decode, response)
                 } catch {
                     print("error : \(error)")
@@ -166,7 +165,9 @@ class SessionRepository {
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 204 {
                     completion(true, response)
+                    #if DEBUG
                     print("session is deleted")
+                    #endif
                 } else {
                     completion(false, response)
                 }
@@ -183,7 +184,9 @@ class SessionRepository {
         await ApiManager.shared.request("\(baseUrl)/educators/\(educatorId)", httpMethod: "DELETE") { data, response in
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 204 {
+                    #if DEBUG
                     print("session deleted")
+                    #endif
                     completion(true, response)
                 } else {
                     completion(false, response)
@@ -202,7 +205,9 @@ class SessionRepository {
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 204 {
                     completion(true, response)
+                    #if DEBUG
                     print("session deleted")
+                    #endif
                 } else {
                     completion(false, response)
                 }

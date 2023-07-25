@@ -9,16 +9,14 @@ import Foundation
 
 class DashboardViewModel: ObservableObject {
     
+    //MARK: Manager's Dashboard Properties
     @Published var dogs: [DogsResponseModel]?
-    @Published var loadingDogs: Bool = true
     @Published var activities: [ActivityResponseModel]?
-    @Published var loadingActivities: Bool = true
     @Published var teamMates: [UserResponseModel]?
-    @Published var loadingTeam: Bool = true
     @Published var userConnected: UserResponseModel?
-    @Published var loadingUser: Bool = true
     @Published var todaySessions: DailySessions?
     @Published var dogObservations: [ObservationResponseModel]?
+    @Published var clients: [UserResponseModel]?
     
     lazy var establishmentManager = EstablishmentManager()
     lazy var dogsRepo = DogsRepository()
@@ -39,10 +37,13 @@ extension DashboardViewModel {
         }
         
         await dogsRepo.getAllDogs(establishmentId: establishmentId) { data, response in
-            if let data = data {
-                Task {
-                    self.dogs = data
-                    self.loadingDogs = false
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.dogs = data
+                    }
+                } else {
+                    print("something wen't wrong with the request => \(response.debugDescription)")
                 }
             }
         }
@@ -56,10 +57,13 @@ extension DashboardViewModel {
         }
         
         await activitiesRepo.getAllActivities(establishmentId: establishmentId) { data, response in
-            if let data = data {
-                Task {
-                    self.activities = data
-                    self.loadingActivities = false
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.activities = data
+                    }
+                } else {
+                    print("something wen't wrong with the request => \(response.debugDescription)")
                 }
             }
         }
@@ -73,29 +77,31 @@ extension DashboardViewModel {
         }
         
         await establishmentRepo.getEstablishmentById(establishmentId: establishmentId) { data, response in
-            if let data = data {
-                Task {
-                    self.teamMates = data.employees
-                    self.loadingTeam = false
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.teamMates = data.employees
+                    }
+                } else {
+                    print("something wen't wrong with the request => \(response.debugDescription)")
                 }
             }
         }
     }
     
-    func getDailySessions(completion: @escaping (Bool?, DailySessions?, URLResponse?) -> ()) async {
-        await sessionsRepo.getDailySessions(date: Date.now.stringifyInShortDate(), completion: { data, response in
+    @MainActor
+    func getDailySessions() async {
+        await sessionsRepo.getDailySessions(date: Date.now.stringifyInShortDate()) { data, response in
             if let response = response as? HTTPURLResponse, let data {
                 if response.statusCode == 200 {
-                    completion(true, data, response)
+                    Task {
+                        self.todaySessions = data
+                    }
                 } else {
-                    completion(false, nil, response)
                     print("error: \(response.debugDescription)")
                 }
-            } else {
-                completion(false, nil, response)
-                print("no response from api")
             }
-        })
+        }
     }
     
     @MainActor
@@ -121,6 +127,25 @@ extension DashboardViewModel {
                 if response.statusCode == 200 {
                     Task {
                         self.userConnected = data
+                    }
+                } else {
+                    print("something wen't wrong with the request => \(response.debugDescription)")
+                }
+            }
+        }
+    }
+    
+    @MainActor
+    func getClients() async {
+        guard let establishmentId = UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) else {
+            return
+        }
+        
+        await userRepo.allUsers(establishmentid: establishmentId, role: "Client") { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.clients = data
                     }
                 } else {
                     print("something wen't wrong with the request => \(response.debugDescription)")

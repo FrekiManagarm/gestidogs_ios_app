@@ -77,7 +77,9 @@ extension LoginView {
                 Task {
                     await loginViewModel.login { data, response in
                         if let data, let response {
+                            #if DEBUG
                             print(response.debugDescription)
+                            #endif
                             UserDefaults.standard.set(data.tokens.accessToken, forKey: CoreConstants.storageAccessToken)
                             UserDefaults.standard.set(data.tokens.refreshToken, forKey: CoreConstants.storageRefreshToken)
                             UserDefaults.standard.set(data.user.id, forKey: CoreConstants.storageUserConnectedId)

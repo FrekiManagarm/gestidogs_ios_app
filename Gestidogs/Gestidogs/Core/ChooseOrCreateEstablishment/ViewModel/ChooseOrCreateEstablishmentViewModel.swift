@@ -26,14 +26,18 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
     @MainActor func getEstablishments() async {
         
         guard let ownerId = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedId) else {
+            #if DEBUG
             print("pas de ownerId")
+            #endif
             return
         }
         
         await establishmentRepo.getAllEstablishments(ownerId: ownerId) { data, response in
             if let data = data {
                 Task {
+                    #if DEBUG
                     print("data establishments \(data)")
+                    #endif
                     self.establishmentsOfOwner = data
                 }
             }
@@ -58,7 +62,9 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
         await establishmentRepo.createEstablishment(body: body) { data, response in
             if let data = data {
                 Task {
+                    #if DEBUG
                     print("establishment created \(data)")
+                    #endif
                 }
             } else {
                 print("response in vm \(response.debugDescription)")

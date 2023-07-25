@@ -28,8 +28,7 @@ struct DogItem: View {
                     .foregroundColor(Color("black900"))
                     .font(.system(size: 20))
                     .fontWeight(.regular)
-                    .padding(.trailing, 10)
-                    .padding(.leading, 10)
+                    .padding(.horizontal, 10)
                 
             }
             .padding(.vertical, 10)

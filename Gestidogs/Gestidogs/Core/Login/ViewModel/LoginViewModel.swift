@@ -8,23 +8,17 @@
 import Foundation
 
 class LoginViewModel: ObservableObject {
-    @Published var emailTxt: String = "" {
-        didSet {
-            print("email \(emailTxt)")
-        }
-    }
-    @Published var passwdTxt: String = "" {
-        didSet {
-            print("password \(passwdTxt)")
-        }
-    }
+    @Published var emailTxt: String = ""
+    @Published var passwdTxt: String = ""
     @Published var isLoading: Bool = false
     lazy var userManager = UserManager.shared
     lazy var userRepo = UserRepository()
     
     @MainActor
     func login(completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
+        #if DEBUG
         print("pass in this function")
+        #endif
         isLoading = true
         await userRepo.login(body: LoginRequest(email: emailTxt, password: passwdTxt)) { data, response in
             if let data, let response = response as? HTTPURLResponse {

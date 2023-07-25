@@ -17,7 +17,7 @@ struct SessionCell: View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .fill(Color("gray100"))
-                .frame(width: 225, height: 170)
+                .frame(width: 250, height: 170)
                 .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
             VStack {
                 topCardSection

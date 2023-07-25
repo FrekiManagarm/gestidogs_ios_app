@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SessionCenterWidget: View {
     
-    let sessions: DailySessions?
+    @StateObject var dashboardViewModel = DashboardViewModel()
     
     var body: some View {
         VStack {
@@ -17,12 +17,18 @@ struct SessionCenterWidget: View {
             
             scrollViewItems
         }
+        .task {
+            await dashboardViewModel.getDailySessions()
+        }
+//        .onDisappear {
+//            dashboardViewModel.todaySessions = nil
+//        }
     }
 }
 
 extension SessionCenterWidget {
     @ViewBuilder var scrollViewItems: some View {
-        if let sessions {
+        if let sessions = dashboardViewModel.todaySessions {
             if sessions.today.isEmpty {
                 Text("Aucune session pour aujourd'hui !")
                     .font(.system(size: 15))

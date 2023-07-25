@@ -11,7 +11,7 @@ struct TakeReservationWidget: View {
     
     @EnvironmentObject var reservationViewModel: ReservationViewModel
     @State var selectedSchedule: Int = 0
-    @State var selectedDog: Int = 0
+    @State var selectedDog: [Int] = []
     
     var body: some View {
         VStack {
@@ -85,14 +85,14 @@ extension TakeReservationWidget {
                             Text("\(dog)")
                                 .font(.system(size: 15))
                                 .fontWeight(.semibold)
-                                .foregroundColor(selectedDog == dog ? Color("whiteA700") : Color("blueGray80001"))
+                                .foregroundColor(reservationViewModel.dog.contains(dog) ? Color("whiteA700") : Color("blueGray80001"))
                         }
                         .frame(width: 70, height: 100)
-                        .background(selectedDog == dog ? Color("blueGray80001") : Color("whiteA700"))
+                        .background(reservationViewModel.dog.contains(dog) ? Color("blueGray80001") : Color("whiteA700"))
                         .cornerRadius(20)
                         .onTapGesture {
                             withAnimation(.easeInOut) {
-                                self.selectedDog = dog
+                                self.reservationViewModel.dog.append(dog)
                             }
                         }
                     }

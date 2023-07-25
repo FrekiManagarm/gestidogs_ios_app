@@ -118,8 +118,6 @@ extension ApiManager {
             return
         }
         
-//        print("refreshToken \(refreshToken)")
-        
         guard let url = URL(string: "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh") else {
             return
         }
@@ -134,7 +132,6 @@ extension ApiManager {
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 200 {
                     let decode = try JSONDecoder().decode(TokensResponseModel.self, from: data)
-//                    print("decode response in refresh token \(decode)")
                     UserDefaults.standard.set(decode.accessToken, forKey: CoreConstants.storageAccessToken)
                     UserDefaults.standard.set(decode.refreshToken, forKey: CoreConstants.storageRefreshToken)
                     UserDefaults.standard.synchronize()
