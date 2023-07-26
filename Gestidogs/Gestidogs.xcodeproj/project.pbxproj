@@ -79,7 +79,11 @@
 		01B044B22A6ECEBB002851B7 /* ClientListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044B12A6ECEBB002851B7 /* ClientListWidget.swift */; };
 		01B044B42A6FCB0B002851B7 /* DashboardEducatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044B32A6FCB0B002851B7 /* DashboardEducatorViewModel.swift */; };
 		01B044B62A6FCE7F002851B7 /* StripeApplePayResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044B52A6FCE7F002851B7 /* StripeApplePayResponseModel.swift */; };
+		01B044B82A70212F002851B7 /* DogClientWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B044B72A70212F002851B7 /* DogClientWidget.swift */; };
 		01B39AA72A68197E0038D83F /* ActivityListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B39AA62A68197E0038D83F /* ActivityListWidget.swift */; };
+		01C5ECE42A7113F100CD741A /* EstablishmentClientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5ECE32A7113F100CD741A /* EstablishmentClientItem.swift */; };
+		01C5ECE62A71143800CD741A /* EstablishmentsClientWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5ECE52A71143800CD741A /* EstablishmentsClientWidget.swift */; };
+		01C5ECE82A71146200CD741A /* EstablishmentClientDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5ECE72A71146200CD741A /* EstablishmentClientDetailsView.swift */; };
 		01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72AA2A407DD3006433CE /* SplashView.swift */; };
 		01CC72AE2A408973006433CE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 01CC72AD2A408973006433CE /* Lottie */; };
 		01CC72B02A40A956006433CE /* splash_view_gestidogs.json in Resources */ = {isa = PBXBuildFile; fileRef = 01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */; };
@@ -245,7 +249,11 @@
 		01B044B12A6ECEBB002851B7 /* ClientListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListWidget.swift; sourceTree = "<group>"; };
 		01B044B32A6FCB0B002851B7 /* DashboardEducatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardEducatorViewModel.swift; sourceTree = "<group>"; };
 		01B044B52A6FCE7F002851B7 /* StripeApplePayResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApplePayResponseModel.swift; sourceTree = "<group>"; };
+		01B044B72A70212F002851B7 /* DogClientWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogClientWidget.swift; sourceTree = "<group>"; };
 		01B39AA62A68197E0038D83F /* ActivityListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListWidget.swift; sourceTree = "<group>"; };
+		01C5ECE32A7113F100CD741A /* EstablishmentClientItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentClientItem.swift; sourceTree = "<group>"; };
+		01C5ECE52A71143800CD741A /* EstablishmentsClientWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentsClientWidget.swift; sourceTree = "<group>"; };
+		01C5ECE72A71146200CD741A /* EstablishmentClientDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentClientDetailsView.swift; sourceTree = "<group>"; };
 		01CC72AA2A407DD3006433CE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_view_gestidogs.json; sourceTree = "<group>"; };
 		01CC72B12A40D566006433CE /* NewEstablishmentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEstablishmentForm.swift; sourceTree = "<group>"; };
@@ -589,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				01B044A22A6E7713002851B7 /* DogClientItem.swift */,
+				01B044B72A70212F002851B7 /* DogClientWidget.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -625,6 +634,16 @@
 				01B044B12A6ECEBB002851B7 /* ClientListWidget.swift */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		01C5ECE22A7113DD00CD741A /* Establishments */ = {
+			isa = PBXGroup;
+			children = (
+				01C5ECE32A7113F100CD741A /* EstablishmentClientItem.swift */,
+				01C5ECE52A71143800CD741A /* EstablishmentsClientWidget.swift */,
+				01C5ECE72A71146200CD741A /* EstablishmentClientDetailsView.swift */,
+			);
+			path = Establishments;
 			sourceTree = "<group>";
 		};
 		01CC72B52A41B356006433CE /* Views */ = {
@@ -747,6 +766,7 @@
 		5F157BFC2A27741E00B4C2FE /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				01C5ECE22A7113DD00CD741A /* Establishments */,
 				01B044972A6E6A21002851B7 /* Clients */,
 				0109C9B62A333DD800544C9C /* Dogs */,
 				0109C9B52A333DBF00544C9C /* Sessions */,
@@ -1442,13 +1462,16 @@
 				5F8BFD342A262DFE0007E367 /* HomeViewModel.swift in Sources */,
 				014E3FEE2A38B94C007C4E2F /* ApiConstants.swift in Sources */,
 				0109C9BE2A3340D500544C9C /* DogCenterWidget.swift in Sources */,
+				01B044B82A70212F002851B7 /* DogClientWidget.swift in Sources */,
 				01B044992A6E6A3A002851B7 /* ClientsCenterWidget.swift in Sources */,
 				012BF7452A33553500A4C266 /* ActivityListViewModel.swift in Sources */,
+				01C5ECE62A71143800CD741A /* EstablishmentsClientWidget.swift in Sources */,
 				017B4B2E2A586D3900786FCA /* DashboardView_Manager.swift in Sources */,
 				5F157C362A277CDA00B4C2FE /* DogsRequestModel.swift in Sources */,
 				5F825F312A2F257A001C6EB5 /* TeamMateDetailsView.swift in Sources */,
 				01CC72BD2A41B3A9006433CE /* TeamListWidget.swift in Sources */,
 				5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */,
+				01C5ECE82A71146200CD741A /* EstablishmentClientDetailsView.swift in Sources */,
 				0154ACE72A39AB9F00622587 /* UserRepository.swift in Sources */,
 				01E7D6892A2B657E0054C16A /* Extension.swift in Sources */,
 				5F32C5AE2A28AA340034AB6F /* TeamCenterWidget.swift in Sources */,
@@ -1533,6 +1556,7 @@
 				010E1E0E2A3207BA002E0DD1 /* ColorConstants.swift in Sources */,
 				5F8C93472A2A1A5400F39770 /* RegisterView.swift in Sources */,
 				017B4B1A2A532A5200786FCA /* NewTeamMateForm.swift in Sources */,
+				01C5ECE42A7113F100CD741A /* EstablishmentClientItem.swift in Sources */,
 				5F8C93352A2A19B500F39770 /* ChooseOrCreateEstablishmentViewModel.swift in Sources */,
 				5F157C262A277C3000B4C2FE /* EstablishmentRequestModel.swift in Sources */,
 				01B0449F2A6E7158002851B7 /* View.swift in Sources */,

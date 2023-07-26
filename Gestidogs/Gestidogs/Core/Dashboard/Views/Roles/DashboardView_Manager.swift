@@ -27,7 +27,7 @@ struct DashboardView_Manager: View {
                     }
                     
                     
-                    ScrollView {
+                    ScrollView(.vertical, showsIndicators: false) {
                         sessionsSection
                         clientsSection
                         dogsSection
@@ -38,11 +38,6 @@ struct DashboardView_Manager: View {
                         await dashboardViewModel.getClients()
                         await dashboardViewModel.getMe()
                     }
-//                    .onDisappear {
-//                        dashboardViewModel.clients = nil
-//                        dashboardViewModel.userConnected = nil
-//                        dashboardViewModel.todaySessions = nil
-//                    }
                 }
             }
         }

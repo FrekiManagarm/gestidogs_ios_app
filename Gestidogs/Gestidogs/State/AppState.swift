@@ -25,7 +25,7 @@ class AppState: ObservableObject {
     func userDidLogin() {
         if UserDefaults.standard.string(forKey: CoreConstants.storageAccessToken) == nil {
             loginState = .login
-        } else if UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) == nil && (UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == Role.admin.rawValue || UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == Role.manager.rawValue) {
+        } else if UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) == nil && (RoleManager.shared.isAdmin() || RoleManager.shared.isManager()) {
             loginState = .selectEstablishment
         } else {
             loginState = .home

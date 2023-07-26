@@ -89,7 +89,15 @@ extension LoginView {
                             Task {
                                 self.appState.userRole = role
                                 self.loginViewModel.isLoading = false
-                                self.appState.loginState = .selectEstablishment
+                                if RoleManager.shared.isAdmin() || RoleManager.shared.isManager() {
+                                    withAnimation(.spring()) {
+                                        self.appState.loginState = .selectEstablishment
+                                    }
+                                } else {
+                                    withAnimation(.spring()) {
+                                        self.appState.loginState = .home
+                                    }
+                                }
                             }
                         }
                     }

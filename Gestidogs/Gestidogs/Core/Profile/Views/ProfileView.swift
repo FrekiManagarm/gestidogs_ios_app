@@ -111,7 +111,11 @@ extension ProfileView {
             Task {
                 await profileVM.logOut { isSuccess, response in
                     if isSuccess {
-                        self.appState.loginState = .login
+                        Task {
+                            withAnimation(.spring()) {
+                                self.appState.loginState = .login
+                            }
+                        }
                     }
                 }
             }
