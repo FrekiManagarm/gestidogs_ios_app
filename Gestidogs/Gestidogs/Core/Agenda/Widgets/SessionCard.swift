@@ -15,10 +15,17 @@ struct SessionCard: View {
     
     var body: some View {
         HStack {
-            KFImage(URL(string: session.educator.avatarUrl))
-                .resizable()
-                .frame(width: 50, height: 50)
-                .cornerRadius(30)
+            if let imageUrl = session.educator.avatarUrl {
+                KFImage(URL(string: imageUrl))
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(30)
+            } else {
+                Image(systemName: "xmark")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(30)
+            }
             VStack(alignment: .leading) {
                 Text(session.activity.title)
                     .font(.title2)

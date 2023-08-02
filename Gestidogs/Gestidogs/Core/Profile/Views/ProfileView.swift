@@ -80,17 +80,30 @@ extension ProfileView {
     @ViewBuilder var imageAndName: some View {
         HStack {
             if let profile = profileVM.user {
-                KFImage(URL(string: profile.avatarUrl))
-                    .resizable()
-                    .scaledToFill()
-//                    .position(x: 100, y: 140)
-                    .frame(width: 200, height: 200)
-                    .cornerRadius(300)
-                    .background(
-                        Circle()
-                            .fill(.white)
-                            .frame(width: 205, height: 205)
-                    )
+                if let imageUrl = profile.avatarUrl {
+                    KFImage(URL(string: imageUrl))
+                        .resizable()
+                        .scaledToFill()
+                    //                    .position(x: 100, y: 140)
+                        .frame(width: 200, height: 200)
+                        .cornerRadius(300)
+                        .background(
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 205, height: 205)
+                        )
+                } else {
+                    Image(systemName: "person")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 200, height: 200)
+                        .cornerRadius(300)
+                        .background(
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 205, height: 205)
+                        )
+                }
             } else {
                 ProgressView()
             }

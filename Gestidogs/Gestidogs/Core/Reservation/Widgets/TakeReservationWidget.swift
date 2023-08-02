@@ -24,6 +24,9 @@ struct TakeReservationWidget: View {
             Spacer()
             
             Button {
+                Task {
+                    await self.reservationViewModel.preparePaymentSheet()
+                }
                 withAnimation {
                     self.reservationViewModel.step = .resume
                 }
@@ -39,8 +42,6 @@ struct TakeReservationWidget: View {
             Spacer()
 
         }
-        .transition(AnyTransition.move(edge: .leading).combined(with: .opacity)).animation(.easeInOut(duration: 1), value: reservationViewModel.step == .takeReservation)
-        
     }
 }
 

@@ -27,7 +27,7 @@
 		014E3FE62A348B55007C4E2F /* ProfileForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FE52A348B55007C4E2F /* ProfileForm.swift */; };
 		014E3FE92A374377007C4E2F /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FE82A374377007C4E2F /* LoginModel.swift */; };
 		014E3FEE2A38B94C007C4E2F /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FED2A38B94C007C4E2F /* ApiConstants.swift */; };
-		015409182A658F32001EF378 /* PaymentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015409172A658F32001EF378 /* PaymentButton.swift */; };
+		01536D9C2A79350E00CB93CF /* AppleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01536D9B2A79350E00CB93CF /* AppleSignInButton.swift */; };
 		0154ACE52A39109900622587 /* MainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACE42A39109900622587 /* MainRepository.swift */; };
 		0154ACE72A39AB9F00622587 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACE62A39AB9F00622587 /* UserRepository.swift */; };
 		0154ACE92A39ABAC00622587 /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACE82A39ABAC00622587 /* SessionRepository.swift */; };
@@ -39,6 +39,7 @@
 		0154ACF52A39AC9200622587 /* DogsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF42A39AC9200622587 /* DogsRepository.swift */; };
 		0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */; };
 		0154ACF92A3A53AD00622587 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF82A3A53AD00622587 /* LoginRequest.swift */; };
+		015EA8512A75355A00A24C99 /* NewClientForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015EA8502A75355A00A24C99 /* NewClientForm.swift */; };
 		017498932A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017498922A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift */; };
 		017498952A60265A005C0844 /* NewHolidayForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017498942A60265A005C0844 /* NewHolidayForm.swift */; };
 		0179B0F22A66C0E80082628A /* AttachedPaymentMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179B0F12A66C0E80082628A /* AttachedPaymentMethodModel.swift */; };
@@ -61,7 +62,6 @@
 		017B4B412A58757400786FCA /* HomeView_Educator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B402A58757400786FCA /* HomeView_Educator.swift */; };
 		017B4B432A594F0E00786FCA /* TakeReservationWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B422A594F0E00786FCA /* TakeReservationWidget.swift */; };
 		017B4B452A594F3D00786FCA /* ReservationResumeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B442A594F3D00786FCA /* ReservationResumeWidget.swift */; };
-		017B4B472A594F6700786FCA /* PaymentWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B462A594F6700786FCA /* PaymentWidget.swift */; };
 		01A4D61D2A63173300BF72B8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 01A4D61C2A63173300BF72B8 /* FSCalendar */; };
 		01A4D6202A63178A00BF72B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 01A4D61F2A63178A00BF72B8 /* Kingfisher */; };
 		01AE58732A4B1BDC00EE3106 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58722A4B1BDC00EE3106 /* String.swift */; };
@@ -100,8 +100,6 @@
 		01DA51152A6152F7004DD75E /* StripePaymentSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA51142A6152F7004DD75E /* StripePaymentSheet */; };
 		01DA51172A6152F7004DD75E /* StripePayments in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA51162A6152F7004DD75E /* StripePayments */; };
 		01DA51192A6152F7004DD75E /* StripePaymentsUI in Frameworks */ = {isa = PBXBuildFile; productRef = 01DA51182A6152F7004DD75E /* StripePaymentsUI */; };
-		01DAB6432A61875C0029E887 /* AddNewPaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB6422A61875C0029E887 /* AddNewPaymentMethod.swift */; };
-		01DAB6452A61877B0029E887 /* PaymentWithRegisteredCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB6442A61877B0029E887 /* PaymentWithRegisteredCard.swift */; };
 		01DAB6472A6188DE0029E887 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB6462A6188DE0029E887 /* CheckoutView.swift */; };
 		01DAB6492A618B130029E887 /* CardResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB6482A618B130029E887 /* CardResponseModel.swift */; };
 		01DAB64B2A618D370029E887 /* ListPaymentMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB64A2A618D370029E887 /* ListPaymentMethods.swift */; };
@@ -198,7 +196,7 @@
 		014E3FE52A348B55007C4E2F /* ProfileForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileForm.swift; sourceTree = "<group>"; };
 		014E3FE82A374377007C4E2F /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		014E3FED2A38B94C007C4E2F /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
-		015409172A658F32001EF378 /* PaymentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentButton.swift; sourceTree = "<group>"; };
+		01536D9B2A79350E00CB93CF /* AppleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInButton.swift; sourceTree = "<group>"; };
 		0154ACE42A39109900622587 /* MainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRepository.swift; sourceTree = "<group>"; };
 		0154ACE62A39AB9F00622587 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		0154ACE82A39ABAC00622587 /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
@@ -210,6 +208,7 @@
 		0154ACF42A39AC9200622587 /* DogsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsRepository.swift; sourceTree = "<group>"; };
 		0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesRepository.swift; sourceTree = "<group>"; };
 		0154ACF82A3A53AD00622587 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		015EA8502A75355A00A24C99 /* NewClientForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClientForm.swift; sourceTree = "<group>"; };
 		017498922A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysAgendaViewRepresentable.swift; sourceTree = "<group>"; };
 		017498942A60265A005C0844 /* NewHolidayForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHolidayForm.swift; sourceTree = "<group>"; };
 		0179B0F12A66C0E80082628A /* AttachedPaymentMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedPaymentMethodModel.swift; sourceTree = "<group>"; };
@@ -232,7 +231,6 @@
 		017B4B402A58757400786FCA /* HomeView_Educator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView_Educator.swift; sourceTree = "<group>"; };
 		017B4B422A594F0E00786FCA /* TakeReservationWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeReservationWidget.swift; sourceTree = "<group>"; };
 		017B4B442A594F3D00786FCA /* ReservationResumeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationResumeWidget.swift; sourceTree = "<group>"; };
-		017B4B462A594F6700786FCA /* PaymentWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWidget.swift; sourceTree = "<group>"; };
 		01A4D61A2A630FAE00BF72B8 /* Gestidogs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gestidogs.entitlements; sourceTree = "<group>"; };
 		01AE58722A4B1BDC00EE3106 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetails.swift; sourceTree = "<group>"; };
@@ -261,8 +259,6 @@
 		01CC72B82A41B386006433CE /* TeamListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListView.swift; sourceTree = "<group>"; };
 		01CC72BA2A41B39B006433CE /* TeamListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewModel.swift; sourceTree = "<group>"; };
 		01CC72BC2A41B3A9006433CE /* TeamListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListWidget.swift; sourceTree = "<group>"; };
-		01DAB6422A61875C0029E887 /* AddNewPaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPaymentMethod.swift; sourceTree = "<group>"; };
-		01DAB6442A61877B0029E887 /* PaymentWithRegisteredCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentWithRegisteredCard.swift; sourceTree = "<group>"; };
 		01DAB6462A6188DE0029E887 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 		01DAB6482A618B130029E887 /* CardResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardResponseModel.swift; sourceTree = "<group>"; };
 		01DAB64A2A618D370029E887 /* ListPaymentMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPaymentMethods.swift; sourceTree = "<group>"; };
@@ -535,8 +531,6 @@
 		017B4B222A586B2500786FCA /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				01DAB6412A61873F0029E887 /* Payment */,
-				017B4B462A594F6700786FCA /* PaymentWidget.swift */,
 				017B4B422A594F0E00786FCA /* TakeReservationWidget.swift */,
 				017B4B442A594F3D00786FCA /* ReservationResumeWidget.swift */,
 				01DAB6462A6188DE0029E887 /* CheckoutView.swift */,
@@ -632,6 +626,7 @@
 			isa = PBXGroup;
 			children = (
 				01B044B12A6ECEBB002851B7 /* ClientListWidget.swift */,
+				015EA8502A75355A00A24C99 /* NewClientForm.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -669,15 +664,6 @@
 				01CC72BC2A41B3A9006433CE /* TeamListWidget.swift */,
 			);
 			path = Widgets;
-			sourceTree = "<group>";
-		};
-		01DAB6412A61873F0029E887 /* Payment */ = {
-			isa = PBXGroup;
-			children = (
-				01DAB6422A61875C0029E887 /* AddNewPaymentMethod.swift */,
-				01DAB6442A61877B0029E887 /* PaymentWithRegisteredCard.swift */,
-			);
-			path = Payment;
 			sourceTree = "<group>";
 		};
 		01E7D67D2A2B64F90054C16A /* Onboarding */ = {
@@ -910,7 +896,7 @@
 			children = (
 				5F157C442A2791E800B4C2FE /* NavBar.swift */,
 				5F825F2F2A2F2561001C6EB5 /* TeamMateWidget */,
-				015409172A658F32001EF378 /* PaymentButton.swift */,
+				01536D9B2A79350E00CB93CF /* AppleSignInButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1448,10 +1434,10 @@
 				5F157C2E2A277C8700B4C2FE /* ReservationRequestModel.swift in Sources */,
 				014E3FE62A348B55007C4E2F /* ProfileForm.swift in Sources */,
 				0154ACE52A39109900622587 /* MainRepository.swift in Sources */,
-				01DAB6432A61875C0029E887 /* AddNewPaymentMethod.swift in Sources */,
 				5F157C082A27771900B4C2FE /* HolidaysWidget.swift in Sources */,
 				5F32C5AC2A2896180034AB6F /* AgendaUIViewRepresentable.swift in Sources */,
 				5F8C93512A2A1B2200F39770 /* NotificationsViewModel.swift in Sources */,
+				01536D9C2A79350E00CB93CF /* AppleSignInButton.swift in Sources */,
 				5F8BFD172A262CE70007E367 /* GestidogsApp.swift in Sources */,
 				5F825F2E2A2F2457001C6EB5 /* TeamMateWidget.swift in Sources */,
 				5F8BFD362A262E0C0007E367 /* HomeView.swift in Sources */,
@@ -1521,7 +1507,6 @@
 				5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */,
 				0116F3862A51C181003C427B /* SessionCreateModel.swift in Sources */,
 				5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */,
-				015409182A658F32001EF378 /* PaymentButton.swift in Sources */,
 				5F32C5BA2A28CCA30034AB6F /* DogsListWidget.swift in Sources */,
 				5F157C222A277BF300B4C2FE /* ActivityTypeRequestModel.swift in Sources */,
 				5F8C933E2A2A1A1300F39770 /* LoginView.swift in Sources */,
@@ -1537,7 +1522,6 @@
 				5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */,
 				01B044A32A6E7713002851B7 /* DogClientItem.swift in Sources */,
 				5F8C93492A2A1A6200F39770 /* RegisterWidget.swift in Sources */,
-				017B4B472A594F6700786FCA /* PaymentWidget.swift in Sources */,
 				012BF7432A33552500A4C266 /* ActivityListView.swift in Sources */,
 				5F32C5B72A28CC8A0034AB6F /* DogsListView.swift in Sources */,
 				0154ACF32A39AC7B00622587 /* ObservationsRepository.swift in Sources */,
@@ -1564,6 +1548,7 @@
 				010E1E1D2A326F34002E0DD1 /* PaymentRequestModel.swift in Sources */,
 				017B4B182A532A3700786FCA /* NewActivityForm.swift in Sources */,
 				5F157C2C2A277C6A00B4C2FE /* ReservationResponseModel.swift in Sources */,
+				015EA8512A75355A00A24C99 /* NewClientForm.swift in Sources */,
 				01AE58772A4D7F2E00EE3106 /* SessionDetails.swift in Sources */,
 				0154ACE92A39ABAC00622587 /* SessionRepository.swift in Sources */,
 				5F3A32502A4488B900619AF6 /* NewSessionForm.swift in Sources */,
@@ -1580,7 +1565,6 @@
 				014E3FE92A374377007C4E2F /* LoginModel.swift in Sources */,
 				5F32C5BC2A28E36D0034AB6F /* ActivityCellWidget.swift in Sources */,
 				01B0449B2A6E6A4D002851B7 /* ClientsDetailsWidget.swift in Sources */,
-				01DAB6452A61877B0029E887 /* PaymentWithRegisteredCard.swift in Sources */,
 				010E1E102A3207C9002E0DD1 /* ImagesConstants.swift in Sources */,
 				01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */,
 				5F157C322A277CA700B4C2FE /* SessionRequestModel.swift in Sources */,
@@ -1720,12 +1704,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Gestidogs/Gestidogs.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gestidogs/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7F9M4VSS6H;
+				DEVELOPMENT_TEAM = 7F9M4VSS6H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gestidogs/Info.plist;
@@ -1744,7 +1726,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mathieu.GestiDogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Gestidogs iOS App";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1758,8 +1739,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Gestidogs/Gestidogs.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mathieu Chambaud (7F9M4VSS6H)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gestidogs/Preview Content\"";

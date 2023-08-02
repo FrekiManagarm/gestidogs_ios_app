@@ -87,6 +87,25 @@ class EstablishmentRepository {
         }
     }
     
+    //MARK: CREATE NEW CLIENT
+    public func createNewClient(body: UserRequestModel, establishmentId: String, completion: @escaping ([UserResponseModel]?, HTTPURLResponse?) -> Void) async {
+        await ApiManager.shared.request("\(baseUrl)/\(establishmentId)/newClient", httpMethod: "POST", body: body) { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    do {
+                        let decode = try JSONDecoder().decode([UserResponseModel].self, from: data)
+                        completion(decode, response)
+                    } catch {
+                        print("error => \(error)")
+                    }
+                } else {
+                    completion(nil, response)
+                    print("bad request in respository => \(response.debugDescription)")
+                }
+            }
+        }
+    }
+    
     //MARK: MODIFY ESTABLISHMENT
     public func modifyEstablishment(establishmentId: String, body: EstablishmentRequestModel?, completion: @escaping (EstablishmentResponseModel?, URLResponse?) -> Void) async {
         

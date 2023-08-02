@@ -11,6 +11,7 @@ import Kingfisher
 struct ActivityCenterDetails: View {
     
     let activity: ActivityResponseModel
+    @StateObject var reservationViewModel = ReservationViewModel()
     @State var showReservationFlow = false
     @Binding var showDetailsView: Bool
     @Environment(\.dismiss) var dismiss
@@ -32,24 +33,9 @@ struct ActivityCenterDetails: View {
                 }
             }
 //            .ignoresSafeArea()
-            
-            Button {
-                self.showDetailsView = false
-                showReservationFlow.toggle()
-            } label: {
-                Text("Je souhaites faire une réservation")
-                    .foregroundColor(Color("whiteA700"))
-                    .font(.system(size: 15))
-                    .fontWeight(.semibold)
-            }
-            .frame(width: UIScreen.main.bounds.width - 32, height: 55)
-            .background(Color("blueGray80001"))
-            .cornerRadius(20)
-            .sheet(isPresented: $showReservationFlow) {
-                ReservationView()
-                    .presentationDetents([.fraction(0.75)])
-                    .presentationDragIndicator(.visible)
-            }
+//            if RoleManager.shared.isClient() {
+                takeReservationButton
+//            }
         }
         .background(Color("gray100"))
         .toolbar(.hidden, for: .tabBar)
@@ -59,6 +45,26 @@ struct ActivityCenterDetails: View {
 
 extension ActivityCenterDetails {
     
+    @ViewBuilder var takeReservationButton: some View {
+        Button {
+            self.showDetailsView = false
+            showReservationFlow.toggle()
+        } label: {
+            Text("Je souhaites faire une réservation")
+                .foregroundColor(Color("whiteA700"))
+                .font(.system(size: 15))
+                .fontWeight(.semibold)
+        }
+        .frame(width: UIScreen.main.bounds.width - 32, height: 55)
+        .background(Color("blueGray80001"))
+        .cornerRadius(20)
+        .sheet(isPresented: $showReservationFlow) {
+            ReservationView()
+                .presentationDetents([.fraction(0.75)])
+                .presentationDragIndicator(.visible)
+        }
+    }
+    
     @ViewBuilder var backButton: some View {
         HStack {
             Button {
@@ -66,17 +72,20 @@ extension ActivityCenterDetails {
             } label: {
                 Image(systemName: "chevron.left")
                     .resizable()
-                    .frame(width: 10, height: 17)
+                    .frame(width: 15, height: 23)
+                    .fontWeight(.semibold)
             }
             Spacer()
-            Button {
-                
-            } label: {
-                Image(systemName: "gear")
-                    .resizable()
-                    .frame(width: 20, height: 20)
+            if RoleManager.shared.isManager() || RoleManager.shared.isAdmin() {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "gear")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .fontWeight(.semibold)
+                }
             }
-
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 10)
@@ -112,7 +121,7 @@ extension ActivityCenterDetails {
                 ZStack {
                     RoundedRectangle(cornerRadius: 25)
                         .fill(Color("whiteA700"))
-                        .frame(width: 250, height: 55)
+                        .frame(width: 260, height: 55)
                     VStack(alignment: .leading) {
                         Text(establishment.name)
                             .font(.system(size: 15))

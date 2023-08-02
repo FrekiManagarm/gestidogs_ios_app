@@ -19,11 +19,19 @@ struct ClientItem: View {
                 .fill(Color("gray100"))
                 .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
             HStack {
-                KFImage(URL(string: client.avatarUrl))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 70, height: 70)
-                    .cornerRadius(100)
+                if let imageUrl = client.avatarUrl {
+                    KFImage(URL(string: imageUrl))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 70, height: 70)
+                        .cornerRadius(100)
+                } else {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 70, height: 70)
+                        .cornerRadius(100)
+                }
                 Text(client.firstName)
                     .foregroundColor(Color("black900"))
                     .font(.system(size: 20))

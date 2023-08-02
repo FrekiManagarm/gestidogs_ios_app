@@ -29,12 +29,12 @@ struct ChooseOrCreateEstablishmentView: View {
                 Spacer()
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Je choisi mon établissement,")
+                        Text("Je choisis mon établissement,")
                             .foregroundColor(.white)
                             .font(.system(size: 40))
                             .fontWeight(.bold)
                             .padding(.bottom, 10)
-                        Text("Vous pourrez à tout moment changer d'établissement dans le menu profil")
+                        Text("Si vous avez plusieurs établissements, vous pourrez à tout moment changer d'établissement dans le menu profil")
                             .foregroundColor(.white)
                         
                     }

@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Kingfisher
+import StripePaymentSheet
+import Stripe
 
 struct ReservationResumeWidget: View {
     
@@ -20,20 +22,20 @@ struct ReservationResumeWidget: View {
             
             participantsList
             
-            buttonsSection
+            totalPriceSection
             
+            buttonsSection
         }
-        .transition(AnyTransition.move(edge: .trailing).animation(.easeInOut(duration: 10)).combined(with: .opacity)).animation(.easeInOut(duration: 10), value: reservationViewModel.step == .resume)
     }
 }
 
 extension ReservationResumeWidget {
     
     @ViewBuilder var titleSection: some View {
-        Text("Récapitulatif de la réservation")
+        Text("Récapitulatif de la réservation ?")
             .fontWeight(.bold)
             .foregroundColor(Color("blueGray80001"))
-            .font(.system(size: 25))
+            .font(.system(size: 23))
             .padding(.top, 20)
     }
     
@@ -41,7 +43,9 @@ extension ReservationResumeWidget {
         HStack {
             Spacer()
             Button {
-                self.reservationViewModel.step = .takeReservation
+                withAnimation(.spring()) {
+                    self.reservationViewModel.step = .takeReservation
+                }
             } label: {
                 Text("Retour")
                     .foregroundColor(Color("whiteA700"))
@@ -52,16 +56,20 @@ extension ReservationResumeWidget {
             .cornerRadius(20)
             
 
-            Button {
-                self.reservationViewModel.step = .payment
-            } label: {
-                Text("Je confirme mon créneau")
-                    .foregroundColor(Color("whiteA700"))
-                    .fontWeight(.bold)
+            if let paymentSheet = reservationViewModel.paymentSheet {
+                PaymentSheet.PaymentButton(paymentSheet: paymentSheet, onCompletion: reservationViewModel.onPaymentCompletion) {
+                    Text("Payer")
+                        .fontWeight(.semibold)
+                        .font(.system(size: 20))
+                        .foregroundColor(Color("whiteA700"))
+                }
+                .frame(width: 180, height: 55)
+                .background(Color("blueGray80001"))
+                .cornerRadius(20)
+//                .padding(.bottom, 40)
+            } else {
+                ProgressView()
             }
-            .frame(width: 180, height: 55)
-            .background(Color("blueGray80001"))
-            .cornerRadius(20)
             Spacer()
         }
         .padding(.bottom, 40)
@@ -70,6 +78,9 @@ extension ReservationResumeWidget {
     @ViewBuilder var participantsList: some View {
         VStack(alignment: .leading) {
             Text("Les participants")
+                .font(.system(size: 15))
+                .foregroundStyle(Color("blueGray80001"))
+                .fontWeight(.semibold)
             
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach(0..<2) { dog in
@@ -101,6 +112,7 @@ extension ReservationResumeWidget {
             }
         }
         .padding(.horizontal, 20)
+//        .padding(.top, 10)
     }
     
     @ViewBuilder var resumeSection: some View {
@@ -141,6 +153,26 @@ extension ReservationResumeWidget {
         }
         .padding(.horizontal, 20)
         .frame(width: UIScreen.main.bounds.width, alignment: .leading)
+    }
+    
+    @ViewBuilder var totalPriceSection: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color("whiteA700"))
+                .frame(height: 55)
+            HStack {
+                Text("Total")
+                    .font(.system(size: 17))
+                    .fontWeight(.bold)
+                Spacer()
+                Text("260 €")
+                    .foregroundStyle(.secondary)
+                    .font(.system(size: 17))
+                    .fontWeight(.semibold)
+            }
+            .padding(.horizontal, 20)
+        }
+        .padding(.horizontal, 20)
     }
 }
 

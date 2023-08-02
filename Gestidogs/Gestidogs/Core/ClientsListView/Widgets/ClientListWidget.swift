@@ -6,15 +6,31 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ClientListWidget: View {
+    
+    let client: UserResponseModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct ClientListWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        ClientListWidget()
+        ZStack {
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color("whiteA700"))
+                .frame(height: 100)
+            HStack {
+                if let imageUrl = client.avatarUrl {
+                    KFImage(URL(string: imageUrl))
+                        .resizable()
+                        .frame(width: 70, height: 70)
+                        .cornerRadius(70)
+                } else {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 70, height: 70)
+                        .cornerRadius(70)
+                }
+                Text("\(client.firstName) \(client.lastName)")
+            }
+        }
     }
 }

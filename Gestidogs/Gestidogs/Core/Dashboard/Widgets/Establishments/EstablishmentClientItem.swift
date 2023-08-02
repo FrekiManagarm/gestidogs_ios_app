@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct EstablishmentClientItem: View {
+    
+    let establishment: EstablishmentResponseModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            VStack {
+                KFImage(URL(string: ""))
+            }
+        }
     }
-}
-
-#Preview {
-    EstablishmentClientItem()
 }

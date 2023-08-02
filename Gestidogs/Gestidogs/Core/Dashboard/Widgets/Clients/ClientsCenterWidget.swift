@@ -63,7 +63,8 @@ extension ClientsCenterWidget {
                             ClientItem(client: client)
                         }
                     }
-                    .padding(.vertical, 20)
+                    .padding(.leading, 20)
+                    .padding(.bottom, 10)
                 }
             }
         } else {

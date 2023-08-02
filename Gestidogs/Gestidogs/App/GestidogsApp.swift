@@ -12,7 +12,7 @@ import StripeCore
 struct GestidogsApp: App {
     
     init() {
-        StripeAPI.defaultPublishableKey = CoreConstants.stripePublicKey
+        StripeAPI.defaultPublishableKey = CoreConstants.stripeTestPublicKey
     }
     
     @StateObject var appState: AppState = AppState()

@@ -66,7 +66,7 @@ extension TeamListView {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "arrow.left")
+                        Image(systemName: "chevron.left")
                             .foregroundColor(Color("whiteA700"))
                             .font(.system(size: 20))
                             .fontWeight(.semibold)

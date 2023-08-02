@@ -20,9 +20,6 @@ struct ReservationView: View {
                 case .resume:
                     ReservationResumeWidget()
                         .environmentObject(reservationViewModel)
-                case .payment:
-                    PaymentWidget()
-                        .environmentObject(reservationViewModel)
                 case .checkout:
                     CheckoutView()
                         .environmentObject(reservationViewModel)

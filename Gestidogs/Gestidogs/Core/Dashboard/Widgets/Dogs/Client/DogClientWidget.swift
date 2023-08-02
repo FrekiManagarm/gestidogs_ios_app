@@ -14,6 +14,11 @@ struct DogClientWidget: View {
     var body: some View {
         VStack {
             titleSection
+            
+            scrollViewItems
+        }
+        .task {
+            await dashboardClientViewModel.getClientDogs()
         }
     }
 }

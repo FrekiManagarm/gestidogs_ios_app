@@ -41,7 +41,11 @@ class AppState: ObservableObject {
                     #if DEBUG
                     print("userId set")
                     #endif
-                    if UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) != nil {
+                    if UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedStripeId) == nil {
+                        UserDefaults.standard.set(data.stripeId, forKey: CoreConstants.storageUserConnectedStripeId)
+                        UserDefaults.standard.synchronize()
+                    }
+                    if UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == nil {
                         guard let role = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) else {
                             return
                         }

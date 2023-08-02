@@ -17,6 +17,7 @@ struct EstablishmentResponseModel {
     let phoneNumber: String
     let emailAddress: String
     let employees: [UserResponseModel]
+//    let clients: [UserResponseModel]
     let schedules: [Date]
     let v: Int
 }
@@ -28,6 +29,7 @@ extension EstablishmentResponseModel: Codable, Identifiable {
         case name = "name"
         case description = "description"
         case address = "address"
+//        case clients = "clients"
 //        case location = "location"
         case phoneNumber = "phoneNumber"
         case emailAddress = "emailAddress"

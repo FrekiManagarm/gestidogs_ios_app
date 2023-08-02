@@ -9,12 +9,13 @@ import Foundation
 
 struct UserResponseModel {
     let id: String
-    let avatarUrl: String
+    let avatarUrl: String?
     let activities: [String]?
     let emailAddress: String
     let firstName: String
     let lastName: String
     let role: String
+    let stripeId: String?
     let registeredAt: String
     let refreshToken: String?
     let lastConnectionAt: String
@@ -29,6 +30,7 @@ extension UserResponseModel: Identifiable, Codable {
         case avatarUrl = "avatarUrl"
         case emailAddress = "emailAddress"
         case firstName = "firstname"
+        case stripeId = "stripeId"
         case lastName = "lastname"
         case role = "role"
         case registeredAt = "registeredAt"

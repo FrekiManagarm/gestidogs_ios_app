@@ -31,6 +31,8 @@ struct LoginView: View {
                     separatorSection
                     
                     GoogleAndFacebookLoginButtons(googleLoginFunction: loginViewModel.loginGoogle, facebookLoginFunction: loginViewModel.loginFacebook)
+                    
+                    
                 }
             }
     }
@@ -83,6 +85,7 @@ extension LoginView {
                             UserDefaults.standard.set(data.tokens.accessToken, forKey: CoreConstants.storageAccessToken)
                             UserDefaults.standard.set(data.tokens.refreshToken, forKey: CoreConstants.storageRefreshToken)
                             UserDefaults.standard.set(data.user.id, forKey: CoreConstants.storageUserConnectedId)
+                            
                             let role = RoleManager.shared.switchOnRole(roleType: data.user.role)
                             UserDefaults.standard.set(true, forKey: "isSignedIn")
                             UserDefaults.standard.synchronize()

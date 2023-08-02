@@ -141,10 +141,17 @@ extension SessionDetails {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color("whiteA700"))
                 HStack {
-                    KFImage(URL(string: session.educator.avatarUrl))
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .cornerRadius(80)
+                    if let imageUrl = session.educator.avatarUrl {
+                        KFImage(URL(string: imageUrl))
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .cornerRadius(80)
+                    } else {
+                        Image(systemName: "person")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .cornerRadius(80)
+                    }
                     VStack(alignment: .leading) {
                         Text("\(session.educator.firstName) \(session.educator.lastName)")
                             .font(.system(size: 20))

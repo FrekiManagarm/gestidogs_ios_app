@@ -26,7 +26,10 @@ struct DashboardView_Client: View {
                     }
                     
                     ScrollView(.vertical, showsIndicators: false) {
-                        
+                        dogsSection
+                    }
+                    .task {
+                        await dashboardClientViewModel.getUserConnected()
                     }
                 }
             }
@@ -54,23 +57,29 @@ extension DashboardView_Client {
         if let user = dashboardClientViewModel.userConnected {
             Text(user.firstName)
                 .foregroundColor(Color("whiteA700"))
+                .font(.system(size: 40))
+                .fontWeight(.bold)
+                .padding(.top, 10)
         } else {
             ProgressView()
+                .padding(.leading, 20)
         }
     }
     
     @ViewBuilder var notificationsLinkSection: some View {
         NavigationLink(destination: NotificationsView()) {
-            Circle()
-                .fill(Color("gray100"))
-                .frame(width: 50, height: 50)
-            Image(systemName: "bell")
-                .resizable()
-                .frame(width: 20, height: 20)
-                .foregroundColor(Color("blueGray80001"))
+            ZStack {
+                Circle()
+                    .fill(Color("gray100"))
+                    .frame(width: 50, height: 50)
+                Image(systemName: "bell")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(Color("blueGray80001"))
+            }
+            .padding(.top, 10)
+            .padding(.trailing, 10)
         }
-        .padding(.top, 10)
-        .padding(.trailing, 10)
     }
     
     @ViewBuilder var dogsSection: some View {

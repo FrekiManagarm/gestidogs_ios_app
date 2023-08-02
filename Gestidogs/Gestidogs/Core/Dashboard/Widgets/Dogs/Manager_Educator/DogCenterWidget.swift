@@ -60,7 +60,7 @@ extension DogCenterWidget {
                             DogItem(dog: dog)
                         }
                     }
-                    .padding(.leading, 10)
+                    .padding(.leading, 20)
                     .padding(.bottom, 10)
                 }
             }

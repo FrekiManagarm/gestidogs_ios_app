@@ -15,10 +15,8 @@ struct SessionCell: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 25)
-                .fill(Color("gray100"))
-                .frame(width: 250, height: 170)
-                .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
+            roundedRectangle
+            
             VStack {
                 topCardSection
                 Text(session.establishment.address)
@@ -42,16 +40,31 @@ struct SessionCell: View {
 
 extension SessionCell {
     
+    @ViewBuilder var roundedRectangle: some View {
+        RoundedRectangle(cornerRadius: 25)
+            .fill(Color("gray100"))
+            .frame(width: 250, height: 170)
+            .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
+    }
+    
     @ViewBuilder var topCardSection: some View {
         HStack {
             ZStack {
-                Circle()
-                    .fill(.white)
-                    .frame(width: 70, height: 70)
-                KFImage(URL(string: session.educator.avatarUrl))
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .cornerRadius(50)
+                if let imageUrl = session.educator.avatarUrl {
+                    Circle()
+                        .fill(.white)
+                        .frame(width: 70, height: 70)
+                    KFImage(URL(string: imageUrl))
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .cornerRadius(50)
+                } else {
+                    Image(systemName: "person")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 40, height: 40)
+//                        .cornerRadius(50)
+                }
             }
             VStack(alignment: .leading) {
                 Text("\(session.educator.firstName) \(session.educator.lastName)")
@@ -61,7 +74,6 @@ extension SessionCell {
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
             }
-            .padding(.horizontal, 10)
         }
     }
     

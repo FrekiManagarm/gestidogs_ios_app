@@ -47,6 +47,25 @@ class UserRepository {
         }
     }
     
+    //MARK: CLIENTS OF ESTABLISHMENT
+    public func clientsOfEstablishment(establishmentId: String, completion: @escaping ([UserResponseModel]?, URLResponse?) -> Void) async {
+        await ApiManager.shared.request("\(baseUrl)/establishments/\(establishmentId)", httpMethod: "GET") { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    do {
+                        let decode = try JSONDecoder().decode([UserResponseModel].self, from: data)
+                        completion(decode, response)
+                    } catch {
+                        print("error: \(error)")
+                    }
+                } else {
+                    completion(nil, response)
+                    print("bad request in repository => \(response.debugDescription)")
+                }
+            }
+        }
+    }
+    
     //MARK: ALL USERS
     public func allUsers(establishmentid: String? = nil, role: String? = nil, completion: @escaping ([UserResponseModel]?, URLResponse?) -> Void) async {
         

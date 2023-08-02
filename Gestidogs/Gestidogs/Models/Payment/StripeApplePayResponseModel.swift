@@ -13,6 +13,6 @@ struct StripeApplePayResponseModel {
 
 extension StripeApplePayResponseModel: Codable {
     enum CodingKeys: String, CodingKey {
-        case clientSecret = "client_secret"
+        case clientSecret = "clientSecret"
     }
 }

@@ -40,10 +40,17 @@ extension TeamListWidget {
     
     @ViewBuilder var contentInfosSection: some View {
         HStack {
-            KFImage(URL(string: teamMate.avatarUrl))
-                .resizable()
-                .frame(width: 50, height: 50)
-                .cornerRadius(50)
+            if let imageUrl = teamMate.avatarUrl {
+                KFImage(URL(string: imageUrl))
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(50)
+            } else {
+                Image(systemName: "xmark")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(50)
+            }
             VStack(alignment: .leading) {
                 Text("\(teamMate.firstName) \(teamMate.lastName)")
                     .font(.system(size: 20))

@@ -11,6 +11,10 @@ struct NotificationsView: View {
     
     @Environment(\.dismiss) var dismiss
     
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "whiteA700") as Any]
+    }
+    
     var body: some View {
         ZStack {
             radialGradient

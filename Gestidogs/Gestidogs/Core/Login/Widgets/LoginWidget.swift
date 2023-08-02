@@ -45,18 +45,19 @@ struct GoogleAndFacebookLoginButtons: View {
             .cornerRadius(30)
             .shadow(radius: 10, y: 5)
             
-            Button {
-                facebookLoginFunction()
-            } label: {
-                Image("img_facebook")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-            }
-            .padding()
-            .frame(width: UIScreen.main.bounds.width / 2.5, height: 70)
-            .background(Color("blueGray50"))
-            .cornerRadius(30)
-            .shadow(radius: 10, y: 5)
+//            Button {
+//                facebookLoginFunction()
+//            } label: {
+//                Image("img_facebook")
+//                    .resizable()
+//                    .frame(width: 30, height: 30)
+//            }
+//            .padding()
+//            .frame(width: UIScreen.main.bounds.width / 2.5, height: 70)
+//            .background(Color("blueGray50"))
+//            .cornerRadius(30)
+//            .shadow(radius: 10, y: 5)
+            AppleSignInButton()
         }
         .padding(.top, 10)
     }

@@ -27,7 +27,9 @@ struct NewTeamMateForm: View {
                 passwordField
                 
                 Button {
-                    
+                    Task {
+                        await vm.newTeamMate()
+                    }
                 } label: {
                     Text("Créer un membre d'équipe")
                         .foregroundColor(Color("whiteA700"))
@@ -49,7 +51,7 @@ struct NewTeamMateForm: View {
 extension NewTeamMateForm {
     @ViewBuilder var titleSection: some View {
         Text("Vous souhaitez ajouter un nouveau membre d'équipe ?")
-            .font(.system(size: 25))
+            .font(.system(size: 20))
             .fontWeight(.bold)
             .foregroundColor(Color("blueGray80001"))
             .multilineTextAlignment(.center)

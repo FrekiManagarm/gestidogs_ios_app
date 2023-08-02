@@ -63,7 +63,7 @@ extension DashboardView_Manager {
             .padding(.top, 10)
         if let user = dashboardViewModel.userConnected {
             Text(user.firstName)
-                .foregroundColor(Color.white)
+                .foregroundColor(Color("whiteA700"))
                 .font(.system(size: 40))
                 .fontWeight(.bold)
                 .padding(.top, 10)
