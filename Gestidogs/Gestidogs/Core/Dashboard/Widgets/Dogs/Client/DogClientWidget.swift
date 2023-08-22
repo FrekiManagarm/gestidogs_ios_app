@@ -10,15 +10,21 @@ import SwiftUI
 struct DogClientWidget: View {
     
     @StateObject var dashboardClientViewModel = DashboardClientViewModel()
+    var userId = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedId)
     
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
             titleSection
             
             scrollViewItems
         }
+        .frame(width: UIScreen.main.bounds.width)
         .task {
-            await dashboardClientViewModel.getClientDogs()
+            if let userId {
+                await dashboardClientViewModel.getClientDogs(clientId: userId)
+            } else {
+                print("cannot retreive userId in storage")
+            }
         }
     }
 }
@@ -29,9 +35,9 @@ extension DogClientWidget {
             Text("Mes chiens")
                 .padding(.leading, 20)
                 .foregroundColor(Color("whiteA700"))
-                .fontWeight(.semibold)
+                .fontWeight(.bold)
                 .font(.system(size: 30))
-            Spacer()
+//            Spacer()
         }
     }
     @ViewBuilder var scrollViewItems: some View {
@@ -44,12 +50,12 @@ extension DogClientWidget {
                     .padding(.vertical, 20)
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 10) {
+                    LazyHStack(spacing: 15) {
                         ForEach(dogs) { dog in
                             DogClientItem(dog: dog)
                         }
                     }
-                    .padding(.leading, 10)
+                    .padding(.horizontal, 20)
                     .padding(.bottom, 10)
                 }
             }

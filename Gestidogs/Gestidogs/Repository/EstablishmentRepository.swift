@@ -51,18 +51,17 @@ class EstablishmentRepository {
     }
     
     //MARK: CREATE ESTABLISHMENT
-    public func createEstablishment(body: EstablishmentRequestModel?, completion: @escaping (EstablishmentResponseModel?, URLResponse?) -> Void) async {
+    public func createEstablishment(body: EstablishmentRequestModel?, completion: @escaping (Bool, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }
@@ -70,55 +69,50 @@ class EstablishmentRepository {
     }
     
     //MARK: CREATE NEW EMPLOYEE
-    public func createNewEmployee(establishmentId: String, body: UserRequestModel?, completion: @escaping ([UserResponseModel]?, URLResponse?) -> Void) async {
+    public func createNewEmployee(establishmentId: String, body: UserRequestModel?, completion: @escaping (Bool, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(establishmentId)/newEmployee", httpMethod: "POST", body: body) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode([UserResponseModel].self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }
     }
     
     //MARK: CREATE NEW CLIENT
-    public func createNewClient(body: UserRequestModel, establishmentId: String, completion: @escaping ([UserResponseModel]?, HTTPURLResponse?) -> Void) async {
+    public func createNewClient(body: UserRequestModel, establishmentId: String, completion: @escaping (Bool, URLResponse?) -> Void) async {
         await ApiManager.shared.request("\(baseUrl)/\(establishmentId)/newClient", httpMethod: "POST", body: body) { data, response in
-            if let data, let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
-                    do {
-                        let decode = try JSONDecoder().decode([UserResponseModel].self, from: data)
-                        completion(decode, response)
-                    } catch {
-                        print("error => \(error)")
-                    }
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
                 } else {
-                    completion(nil, response)
-                    print("bad request in respository => \(response.debugDescription)")
+                    print("bad statusCode \(response.statusCode)")
                 }
+            } else {
+                completion(false, response)
+                print("bad request in repository \(response.debugDescription)")
             }
         }
     }
     
     //MARK: MODIFY ESTABLISHMENT
-    public func modifyEstablishment(establishmentId: String, body: EstablishmentRequestModel?, completion: @escaping (EstablishmentResponseModel?, URLResponse?) -> Void) async {
+    public func modifyEstablishment(establishmentId: String, body: EstablishmentRequestModel?, completion: @escaping (Bool, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(establishmentId)", httpMethod: "PUT", body: body) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode(EstablishmentResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 203 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }

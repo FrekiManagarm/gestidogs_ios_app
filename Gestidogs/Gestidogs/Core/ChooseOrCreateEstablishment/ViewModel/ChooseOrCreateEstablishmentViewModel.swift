@@ -59,11 +59,11 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
 //        ]
         let body = EstablishmentRequestModel(owner: ownerId, name: establishmentName, description: description, address: address, phoneNumber: phoneNumber, emailAddress: emailAddress)
         
-        await establishmentRepo.createEstablishment(body: body) { data, response in
-            if let data = data {
+        await establishmentRepo.createEstablishment(body: body) { isSuccess, response in
+            if isSuccess {
                 Task {
                     #if DEBUG
-                    print("establishment created \(data)")
+                    print("establishment created")
                     #endif
                 }
             } else {

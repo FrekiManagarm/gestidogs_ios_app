@@ -47,35 +47,33 @@ class ObservationRepository {
     }
     
     //MARK: CREATE OBSERVATION
-    public func createObservation(body: ObservationRequestModel?, completion: @escaping (ObservationResponseModel?, URLResponse?) -> ()) async {
+    public func createObservation(body: ObservationRequestModel?, completion: @escaping (Bool, URLResponse?) -> ()) async {
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body){ data, response in
-            if let data {
-                do {
-                    let decode = try JSONDecoder().decode(ObservationResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error: \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }
     }
     
     //MARK: MODIFY OBSERVATION
-    public func modifyObservation(observationId: String, body: ObservationRequestModel?, completion: @escaping (ObservationResponseModel?, URLResponse?) -> ()) async {
+    public func modifyObservation(observationId: String, body: ObservationRequestModel?, completion: @escaping (Bool, URLResponse?) -> ()) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(observationId)", httpMethod: "PUT", body: body) { data, response in
-            if let data {
-                do {
-                    let decode = try JSONDecoder().decode(ObservationResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error: \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 203 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request from repository => \(response.debugDescription)")
             }
         }

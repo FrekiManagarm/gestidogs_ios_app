@@ -11,6 +11,7 @@ struct UserResponseModel {
     let id: String
     let avatarUrl: String?
     let activities: [String]?
+    let establishments: [String]
     let emailAddress: String
     let firstName: String
     let lastName: String
@@ -27,6 +28,7 @@ extension UserResponseModel: Identifiable, Codable {
         case id = "_id"
         case activities = "activities"
         case refreshToken = "refreshToken"
+        case establishments = "establishments"
         case avatarUrl = "avatarUrl"
         case emailAddress = "emailAddress"
         case firstName = "firstname"

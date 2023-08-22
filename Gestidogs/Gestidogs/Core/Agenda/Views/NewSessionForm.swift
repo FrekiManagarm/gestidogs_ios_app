@@ -244,8 +244,8 @@ extension NewSessionForm {
     @ViewBuilder var createSessionButton: some View {
         Button {
             Task {
-                await vm.createSession(selectedDate: selectedDate) { isSuccess, data, response in
-                    if isSuccess == true, let selectedDate {
+                await vm.createSession(selectedDate: selectedDate) { isSuccess, response in
+                    if isSuccess, let selectedDate {
                         Task {
                             self.showNewSessionForm = false
                             await vm.getSessions()

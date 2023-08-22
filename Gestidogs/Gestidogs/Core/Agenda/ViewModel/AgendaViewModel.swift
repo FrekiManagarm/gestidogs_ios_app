@@ -30,7 +30,7 @@ class AgendaViewModel : ObservableObject {
     @Published var beginDate: Date = Date()
     
     
-    func createSession(selectedDate: Date?, completion: @escaping (Bool?, SessionResponseModel?, URLResponse?) -> ()) async {
+    func createSession(selectedDate: Date?, completion: @escaping (Bool, URLResponse?) -> ()) async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
@@ -55,11 +55,11 @@ class AgendaViewModel : ObservableObject {
                 print("body \(body)")
             #endif
                 
-                await sessionsRepo.createSession(body: body){ isSuccess, data, response in
+                await sessionsRepo.createSession(body: body) { isSuccess, response in
                     if isSuccess == true {
-                        completion(true, data, response)
+                        completion(true, response)
                     } else {
-                        completion(false, nil, response)
+                        completion(false, response)
                     }
                 }
         }

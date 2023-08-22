@@ -10,7 +10,7 @@ import Foundation
 struct DogsResponseModel {
     let id: String
     let owner: UserResponseModel
-    let establishment: EstablishmentResponseModel
+    let establishment: EstablishmentResponseModel?
     let name: String
     let birthDate: String?
     let imageUrl: String

@@ -47,36 +47,34 @@ class ActivitiesRepository {
     }
     
     //MARK: CREATE ACTIVITY
-    public func createActivity(body: ActivityRequestModel?, completion: @escaping (ActivityResponseModel?, URLResponse?) -> Void) async {
+    public func createActivity(body: ActivityRequestModel?, completion: @escaping (Bool, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode(ActivityResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }
     }
     
     //MARK: MODIFY ACTIVITY
-    public func modifyActivity(body: ActivityRequestModel?, activityId: String, completion: @escaping (ActivityResponseModel?, URLResponse?) -> Void) async {
+    public func modifyActivity(body: ActivityRequestModel?, activityId: String, completion: @escaping (Bool, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(activityId)", httpMethod: "PUT", body: body) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode(ActivityResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 203 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }

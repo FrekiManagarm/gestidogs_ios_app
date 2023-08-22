@@ -64,6 +64,7 @@
 		017B4B452A594F3D00786FCA /* ReservationResumeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B4B442A594F3D00786FCA /* ReservationResumeWidget.swift */; };
 		01A4D61D2A63173300BF72B8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 01A4D61C2A63173300BF72B8 /* FSCalendar */; };
 		01A4D6202A63178A00BF72B8 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 01A4D61F2A63178A00BF72B8 /* Kingfisher */; };
+		01A939842A93B40B00DD32A6 /* ClientSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A939832A93B40B00DD32A6 /* ClientSessions.swift */; };
 		01AE58732A4B1BDC00EE3106 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58722A4B1BDC00EE3106 /* String.swift */; };
 		01AE58772A4D7F2E00EE3106 /* SessionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */; };
 		01AE58792A4DC1C400EE3106 /* SessionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE58782A4DC1C400EE3106 /* SessionCard.swift */; };
@@ -232,6 +233,7 @@
 		017B4B422A594F0E00786FCA /* TakeReservationWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeReservationWidget.swift; sourceTree = "<group>"; };
 		017B4B442A594F3D00786FCA /* ReservationResumeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationResumeWidget.swift; sourceTree = "<group>"; };
 		01A4D61A2A630FAE00BF72B8 /* Gestidogs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gestidogs.entitlements; sourceTree = "<group>"; };
+		01A939832A93B40B00DD32A6 /* ClientSessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSessions.swift; sourceTree = "<group>"; };
 		01AE58722A4B1BDC00EE3106 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		01AE58762A4D7F2E00EE3106 /* SessionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetails.swift; sourceTree = "<group>"; };
 		01AE58782A4DC1C400EE3106 /* SessionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCard.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 		0109C9B52A333DBF00544C9C /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
+				01A939822A93B3FB00DD32A6 /* Client */,
 				0109C9B92A333DF600544C9C /* SessionCell.swift */,
 				0109C9B72A333DEB00544C9C /* SessionCenterWidget.swift */,
 			);
@@ -565,6 +568,14 @@
 				017B4B392A58701B00786FCA /* HolidaysView_Educator.swift */,
 			);
 			path = Roles;
+			sourceTree = "<group>";
+		};
+		01A939822A93B3FB00DD32A6 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				01A939832A93B40B00DD32A6 /* ClientSessions.swift */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 		01B044972A6E6A21002851B7 /* Clients */ = {
@@ -1574,6 +1585,7 @@
 				5F8C93552A2A1B4700F39770 /* NotificationsView.swift in Sources */,
 				010E1E142A320994002E0DD1 /* TokensResponseModel.swift in Sources */,
 				01DAB64B2A618D370029E887 /* ListPaymentMethods.swift in Sources */,
+				01A939842A93B40B00DD32A6 /* ClientSessions.swift in Sources */,
 				01B044B62A6FCE7F002851B7 /* StripeApplePayResponseModel.swift in Sources */,
 				0109C9B42A333D5100544C9C /* ActivityTypeDetailsView.swift in Sources */,
 			);

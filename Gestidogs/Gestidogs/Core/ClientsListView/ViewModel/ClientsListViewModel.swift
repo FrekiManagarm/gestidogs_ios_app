@@ -51,15 +51,11 @@ extension ClientsListViewModel {
     func newClient() async {
         guard let establishmentId = UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) else { return }
         
-        await establishmentRepo.createNewClient(body: UserRequestModel(avatarUrl: avatarUrl, firstname: firstname, lastname: lastname, phoneNumber: phone, emailAddress: emailAddress, password: password), establishmentId: establishmentId, completion: { data, response in
-            if let response {
-                if response.statusCode == 201 {
-                    Task {
-                        self.showNewClientForm = false
-                        await self.getClients()
-                    }
-                } else {
-                    print("bad statusCode \(response.statusCode) => \(response.debugDescription)")
+        await establishmentRepo.createNewClient(body: UserRequestModel(avatarUrl: avatarUrl, firstname: firstname, lastname: lastname, phoneNumber: phone, emailAddress: emailAddress, password: password), establishmentId: establishmentId, completion: { isSuccess, response in
+            if isSuccess {
+                Task {
+                    self.showNewClientForm = false
+                    await self.getClients()
                 }
             }
         })

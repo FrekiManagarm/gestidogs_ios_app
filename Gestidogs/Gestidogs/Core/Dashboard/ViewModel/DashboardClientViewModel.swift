@@ -37,10 +37,7 @@ extension DashboardClientViewModel {
     }
     
     @MainActor
-    func getClientDogs() async {
-        guard let clientId = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedId) else {
-            return
-        }
+    func getClientDogs(clientId: String) async {
         
         await dogsRepo.getAllDogs(ownerId: clientId) { data, response in
             if let data, let response = response as? HTTPURLResponse {

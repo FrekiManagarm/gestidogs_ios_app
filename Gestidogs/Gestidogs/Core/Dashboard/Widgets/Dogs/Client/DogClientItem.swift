@@ -15,30 +15,53 @@ struct DogClientItem: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 25)
-                .fill(Color("whiteA700"))
-                .frame(width: 250, height: 400)
+            RoundedRectangle(cornerRadius: 35)
+                .fill(Color("gray100"))
+                .frame(width: 190, height: 300)
                 .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
             VStack {
                 KFImage(URL(string: dog.imageUrl))
                     .resizable()
-                    .frame(width: 200, height: 300)
-                    .cornerRadius(25, corners: [.topLeft, .topRight])
-                    .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
+                    .scaledToFill()
+                    .frame(width: 175, height: 200)
+                    .cornerRadius(35, corners: [.topLeft, .topRight])
+                    .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
+                    .padding(.top, 7)
                 HStack {
                     Text(dog.name)
                         .font(.system(size: 20))
                         .fontWeight(.bold)
                     
-                    if let birthdate = dog.birthDate {
-                        Text(birthdate)
-                            .font(.system(size: 15))
-                            .foregroundColor(.secondary)
-                    } else {
-                        Spacer()
-                    }
+//                    if let birthdate = dog.birthDate {
+//                        Text(birthdate)
+//                            .font(.system(size: 15))
+//                            .foregroundColor(.secondary)
+//                    } else {
+//                        Spacer()
+//                    }
+                    Spacer()
                 }
                 .padding(.horizontal, 10)
+                HStack {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(Color("whiteA700"))
+                            .frame(width: 65, height: 23)
+                        Text("\(dog.weight) kg")
+                            .fontWeight(.semibold)
+                            .font(.system(size: 15))
+                    }
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(Color("whiteA700"))
+                            .frame(width: 65, height: 23)
+                        Text("\(dog.height) cm")
+                            .font(.system(size: 15))
+                            .fontWeight(.semibold)
+                    }
+                }
+                Spacer()
             }
         }
         .onTapGesture {

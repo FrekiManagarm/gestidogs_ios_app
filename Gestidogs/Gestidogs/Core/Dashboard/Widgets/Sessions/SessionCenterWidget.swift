@@ -42,7 +42,7 @@ extension SessionCenterWidget {
                             SessionCell(session: session)
                         }
                     }
-                    .padding(.leading, 10)
+                    .padding(.horizontal, 20)
                 }
             }
         } else {
@@ -54,7 +54,7 @@ extension SessionCenterWidget {
     @ViewBuilder var titleSection: some View {
         HStack {
             Text("Mes rendez-vous du jour")
-                .foregroundColor(.white)
+                .foregroundColor(Color("whiteA700"))
                 .fontWeight(.semibold)
                 .font(.system(size: 30))
             Spacer()

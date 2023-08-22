@@ -13,7 +13,7 @@ class DogsRepository {
     //MARK: GET ALL DOGS
     public func getAllDogs(ownerId: String? = nil, establishmentId: String? = nil, completion: @escaping ([DogsResponseModel]?, URLResponse?) -> Void) async {
 
-        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["ownerid": ownerId ?? "", "establishmentId": establishmentId ?? ""]) { data, response in
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["ownerId": ownerId ?? "", "establishmentId": establishmentId ?? ""]) { data, response in
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([DogsResponseModel].self, from: data)
@@ -47,36 +47,34 @@ class DogsRepository {
     }
 
     //MARK: CREATE DOG
-    public func createDog(body: DogsRequestModel?, completion: @escaping (DogsResponseModel?, URLResponse?) -> Void) async {
+    public func createDog(body: DogsRequestModel?, completion: @escaping (Bool, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode(DogsResponseModel.self, from: data)
-                        completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }
     }
 
     //MARK: MODIFY DOG
-    public func modifyDog(body: DogsRequestModel?, dogId: String, completion: @escaping (DogsResponseModel?, URLResponse?) -> Void) async {
+    public func modifyDog(body: DogsRequestModel?, dogId: String, completion: @escaping (Bool, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request("\(baseUrl)/\(dogId)", httpMethod: "PUT", body: body) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode(DogsResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 203 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }

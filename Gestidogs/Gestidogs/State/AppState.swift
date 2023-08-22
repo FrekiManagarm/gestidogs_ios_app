@@ -36,6 +36,7 @@ class AppState: ObservableObject {
         await userRepo.userMe { data, response in
             if let data = data {
                 Task {
+                    print("user data \(data)")
                     UserDefaults.standard.set(data.id, forKey: CoreConstants.storageUserConnectedId)
                     UserDefaults.standard.synchronize()
                     #if DEBUG

@@ -27,6 +27,8 @@ struct DashboardView_Client: View {
                     
                     ScrollView(.vertical, showsIndicators: false) {
                         dogsSection
+                        todaySessionsSection
+                        myEtablishmentsSection
                     }
                     .task {
                         await dashboardClientViewModel.getUserConnected()
@@ -87,11 +89,11 @@ extension DashboardView_Client {
     }
     
     @ViewBuilder var todaySessionsSection: some View {
-        Text("Sessions Section")
+        ClientSessions()
     }
     
     @ViewBuilder var myEtablishmentsSection: some View {
-        Text("Etablishments Section")
+        EstablishmentsClientWidget()
     }
 }
 

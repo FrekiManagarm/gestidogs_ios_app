@@ -19,7 +19,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode(TokensResponseModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error user refresh: \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -38,7 +38,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode(UserResponseModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error user me : \(error)")
                 }
             } else {
                 print("bad request in repository => \(response.debugDescription)")
@@ -56,7 +56,7 @@ class UserRepository {
                         let decode = try JSONDecoder().decode([UserResponseModel].self, from: data)
                         completion(decode, response)
                     } catch {
-                        print("error: \(error)")
+                        print("error client of establishment: \(error)")
                     }
                 } else {
                     completion(nil, response)
@@ -78,7 +78,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode([UserResponseModel].self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error all users : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -97,7 +97,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode(UserResponseModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error user by id : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -116,7 +116,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode(LoginModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error register : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -135,7 +135,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode(LoginModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error login : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -171,7 +171,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode(UserResponseModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error modify user : \(error)")
                 }
             } else {
                 completion(nil, response)
