@@ -12,6 +12,7 @@ struct ClientsDetailsWidget: View {
     
     let client: UserResponseModel
     @StateObject var dashboardClientVM = DashboardClientViewModel()
+    @State var showNewDogForm = false
     @Environment(\.dismiss) var dismiss
     
     
@@ -27,6 +28,10 @@ struct ClientsDetailsWidget: View {
                     dogsSection
                 }
             }
+        }
+        .sheet(isPresented: $showNewDogForm) {
+            NewDogForm(ownerId: client.id)
+                .presentationDragIndicator(.visible)
         }
         .task {
             await dashboardClientVM.getClientDogs(clientId: client.id)
@@ -62,7 +67,7 @@ extension ClientsDetailsWidget {
                 }
                 
                 Button {
-                    
+                    showNewDogForm.toggle()
                 } label: {
                     Image(systemName: "plus")
                         .resizable()

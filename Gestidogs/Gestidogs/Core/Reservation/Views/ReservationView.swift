@@ -10,6 +10,7 @@ import SwiftUI
 struct ReservationView: View {
     
     @StateObject var reservationViewModel = ReservationViewModel()
+    @Binding var showReservationFlow: Bool
     
     var body: some View {
         VStack {
@@ -21,7 +22,7 @@ struct ReservationView: View {
                     ReservationResumeWidget()
                         .environmentObject(reservationViewModel)
                 case .checkout:
-                    CheckoutView()
+                    CheckoutView(showReservationFlow: $showReservationFlow)
                         .environmentObject(reservationViewModel)
             }
         }
@@ -33,7 +34,7 @@ struct ReservationView: View {
 #if DEBUG
 struct ReservationView_Previews: PreviewProvider {
     static var previews: some View {
-        ReservationView()
+        ReservationView(showReservationFlow: .constant(true))
             .environmentObject(ReservationViewModel())
     }
 }

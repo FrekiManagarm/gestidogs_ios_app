@@ -48,7 +48,7 @@ extension ActivityCell {
                 Image(systemName: "xmark")
             }
             
-            VStack {
+            VStack(alignment: .leading) {
                 Text(activity.title)
                     .font(.system(size: 20))
                     .padding(.top, 20)

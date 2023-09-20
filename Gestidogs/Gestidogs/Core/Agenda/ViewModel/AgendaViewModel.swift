@@ -52,7 +52,7 @@ class AgendaViewModel : ObservableObject {
             let body = SessionRequestModel(educator: educator, activity: activity, establishment: establishmentId, status: status, maximumCapacity: Int(maximumCapacity), beginDate: otherDate.toString())
                 
             #if DEBUG
-                print("body \(body)")
+                print("body create Session \(body)")
             #endif
                 
                 await sessionsRepo.createSession(body: body) { isSuccess, response in

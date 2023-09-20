@@ -80,7 +80,7 @@ extension ActivityListView {
             await activityListViewModel.getActivitiesOfEstablishment()
         }
         .sheet(isPresented: $showActivityForm) {
-            NewActivityForm()
+            NewActivityForm(showNewActivityForm: $showActivityForm)
                 .presentationDetents([.fraction(0.80)])
                 .presentationDragIndicator(.visible)
         }

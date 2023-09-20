@@ -59,7 +59,7 @@ extension ActivityCenterDetails {
         .background(Color("blueGray80001"))
         .cornerRadius(20)
         .sheet(isPresented: $showReservationFlow) {
-            ReservationView()
+            ReservationView(showReservationFlow: $showReservationFlow)
                 .presentationDetents([.fraction(0.75)])
                 .presentationDragIndicator(.visible)
         }
@@ -74,6 +74,7 @@ extension ActivityCenterDetails {
                     .resizable()
                     .frame(width: 15, height: 23)
                     .fontWeight(.semibold)
+                    .foregroundColor(Color("blueGray80001"))
             }
             Spacer()
             if RoleManager.shared.isManager() || RoleManager.shared.isAdmin() {
@@ -84,6 +85,7 @@ extension ActivityCenterDetails {
                         .resizable()
                         .frame(width: 25, height: 25)
                         .fontWeight(.semibold)
+                        .foregroundColor(Color("blueGray80001"))
                 }
             }
         }
@@ -112,7 +114,7 @@ extension ActivityCenterDetails {
             ZStack {
                RoundedRectangle(cornerRadius: 25)
                     .fill(Color("whiteA700"))
-                    .frame(height: 55)
+                    .frame(width: 100, height: 55)
                 Text("\(activity.duration) min")
             }
 //            .padding(.bottom, 20)
@@ -134,7 +136,7 @@ extension ActivityCenterDetails {
                 }
             }
         }
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 20)
     }
     
     @ViewBuilder var titleAndDetailsSection: some View {
@@ -152,7 +154,7 @@ extension ActivityCenterDetails {
                     .foregroundColor(.secondary)
                     .fontWeight(.bold)
             }
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 20)
         }
     }
     
@@ -177,5 +179,6 @@ extension ActivityCenterDetails {
                     .foregroundColor(.secondary)
             }
         }
+        .padding(.horizontal, 10)
     }
 }

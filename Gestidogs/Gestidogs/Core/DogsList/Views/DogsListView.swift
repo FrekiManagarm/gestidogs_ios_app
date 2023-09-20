@@ -39,20 +39,6 @@ struct DogsListView: View {
                                 .fontWeight(.semibold)
                         }
                     }
-                    ToolbarItem {
-                        Button {
-                            showDogsForm.toggle()
-                        } label: {
-                            Image(systemName: "plus")
-                                .foregroundColor(Color("whiteA700"))
-                                .font(.system(size: 20))
-                                .fontWeight(.semibold)
-                        }
-                    }
-                }
-                .sheet(isPresented: $showDogsForm) {
-                    NewDogForm()
-                        .presentationDragIndicator(.visible)
                 }
         }
     }

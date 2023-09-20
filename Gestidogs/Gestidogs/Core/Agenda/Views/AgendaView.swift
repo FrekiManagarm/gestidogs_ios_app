@@ -54,6 +54,8 @@ struct AgendaView: View {
             }
             .onDisappear {
                 agendaViewModel.sessions = nil
+                sessionsPerDate = nil
+                selectedDate = nil
             }
             .alert("Vous n'avez pas sélectionné de date", isPresented: $showAlertSelectDate) {
                 Button("OK", role: .cancel) {}

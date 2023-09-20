@@ -39,14 +39,16 @@ extension DogCenterDetails {
                 .fill(Color("whiteA700"))
                 .frame(width: 210, height: 210)
                 .padding(.top, 20)
-            KFImage(URL(string: dog.imageUrl))
-                .resizable()
-                .scaledToFill()
-                .frame(width: 200, height: 200)
-                .clipped()
-                .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 10)
-                .cornerRadius(200)
-                .padding(.top, 20)
+            if let image = dog.imageUrl {
+                KFImage(URL(string: image))
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 200, height: 200)
+                    .clipped()
+                    .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 10)
+                    .cornerRadius(200)
+                    .padding(.top, 20)
+            }
         }
     }
     
@@ -89,9 +91,11 @@ extension DogCenterDetails {
                         RoundedRectangle(cornerRadius: 20)
                             .fill(Color("whiteA700"))
                             .frame(height: 55)
-                        Text("\(dog.height) cm")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                        if let height = dog.height {
+                            Text("\(height) cm")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
                 
@@ -104,9 +108,11 @@ extension DogCenterDetails {
                         RoundedRectangle(cornerRadius: 20)
                             .fill(Color("whiteA700"))
                             .frame(height: 55)
-                        Text("\(dog.weight) kg")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                        if let weight = dog.weight {
+                            Text("\(weight) kg")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
             }

@@ -11,10 +11,11 @@ class EstablishmentRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.establishmentUrl)"
     
     //MARK: GET ALL ESTABLISHMENTS
-    public func getAllEstablishments(ownerId: String? = nil, completion: @escaping ([EstablishmentResponseModel]?, URLResponse?) -> ()) async {
+    public func getAllEstablishments(ownerId: String? = nil, clientId: String? = nil, completion: @escaping ([EstablishmentResponseModel]?, URLResponse?) -> ()) async {
         
         await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: [
-            "ownerId": ownerId ?? ""
+            "ownerId": ownerId ?? "",
+            "clientId": clientId ?? ""
         ]) { data, response in
             if let data = data, let response = response as? HTTPURLResponse {
                 do {
@@ -28,7 +29,6 @@ class EstablishmentRepository {
                 print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
     }
     
     //MARK: GET ESTABLISHMENT BY ID
@@ -65,7 +65,6 @@ class EstablishmentRepository {
                 print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
     }
     
     //MARK: CREATE NEW EMPLOYEE

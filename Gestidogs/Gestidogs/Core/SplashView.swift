@@ -11,12 +11,7 @@ import Lottie
 struct SplashView: View {
     var body: some View {
         ZStack {
-            RadialGradient(
-                gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
-                center: .topLeading,
-                startRadius: 1,
-                endRadius: UIScreen.main.bounds.height)
-            .ignoresSafeArea()
+            radialGradient
             
             LottieView()
         }
@@ -30,6 +25,17 @@ struct SplashView: View {
         }
     }
 #endif
+
+extension SplashView {
+    @ViewBuilder var radialGradient: some View {
+        RadialGradient(
+            gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+            center: .topLeading,
+            startRadius: 1,
+            endRadius: UIScreen.main.bounds.height)
+        .ignoresSafeArea()
+    }
+}
 
 struct LottieView: UIViewRepresentable {
     let animationView = LottieAnimationView()

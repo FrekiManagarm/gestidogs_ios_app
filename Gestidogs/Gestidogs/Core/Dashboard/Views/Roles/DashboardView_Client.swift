@@ -32,6 +32,7 @@ struct DashboardView_Client: View {
                     }
                     .task {
                         await dashboardClientViewModel.getUserConnected()
+                        await dashboardClientViewModel.getEstablishments()
                     }
                 }
             }

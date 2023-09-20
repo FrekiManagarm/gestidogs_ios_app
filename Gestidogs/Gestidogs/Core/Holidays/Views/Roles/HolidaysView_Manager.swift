@@ -20,7 +20,7 @@ struct HolidaysView_Manager: View {
                 VStack {
                     agendaView
                     
-                    ScrollView(showsIndicators: false) {
+                    ScrollView(.vertical ,showsIndicators: false) {
                         //MARK: all holidays of employees
                     }
                     Spacer()

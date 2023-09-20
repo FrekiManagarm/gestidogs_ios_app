@@ -20,10 +20,12 @@ struct DogsListWidget: View {
                 .frame(height: 70)
                 .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
             HStack {
-                KFImage(URL(string: dog.imageUrl))
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(50)
+                if let image = dog.imageUrl {
+                    KFImage(URL(string: image))
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .cornerRadius(50)
+                }
                 VStack(alignment: .leading) {
                     Text(dog.name)
                         .font(.system(size: 20))

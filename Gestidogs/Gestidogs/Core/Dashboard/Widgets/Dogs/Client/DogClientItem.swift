@@ -20,13 +20,15 @@ struct DogClientItem: View {
                 .frame(width: 190, height: 300)
                 .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
             VStack {
-                KFImage(URL(string: dog.imageUrl))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 175, height: 200)
-                    .cornerRadius(35, corners: [.topLeft, .topRight])
-                    .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
-                    .padding(.top, 7)
+                if let image = dog.imageUrl {
+                    KFImage(URL(string: image))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 175, height: 200)
+                        .cornerRadius(35, corners: [.topLeft, .topRight])
+                        .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
+                        .padding(.top, 7)
+                }
                 HStack {
                     Text(dog.name)
                         .font(.system(size: 20))
@@ -47,18 +49,22 @@ struct DogClientItem: View {
                         RoundedRectangle(cornerRadius: 25)
                             .fill(Color("whiteA700"))
                             .frame(width: 65, height: 23)
-                        Text("\(dog.weight) kg")
-                            .fontWeight(.semibold)
-                            .font(.system(size: 15))
+                        if let weight = dog.weight {
+                            Text("\(weight) kg")
+                                .fontWeight(.semibold)
+                                .font(.system(size: 15))
+                        }
                     }
                     
                     ZStack {
                         RoundedRectangle(cornerRadius: 25)
                             .fill(Color("whiteA700"))
                             .frame(width: 65, height: 23)
-                        Text("\(dog.height) cm")
-                            .font(.system(size: 15))
-                            .fontWeight(.semibold)
+                        if let height = dog.height {
+                            Text("\(height) cm")
+                                .font(.system(size: 15))
+                                .fontWeight(.semibold)
+                        }
                     }
                 }
                 Spacer()

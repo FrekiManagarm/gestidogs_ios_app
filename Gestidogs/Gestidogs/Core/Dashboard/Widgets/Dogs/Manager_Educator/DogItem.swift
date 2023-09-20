@@ -19,11 +19,13 @@ struct DogItem: View {
                 .fill(Color("gray100"))
                 .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
             HStack {
-                KFImage(URL(string: dog.imageUrl))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 70, height: 70)
-                    .cornerRadius(100)
+                if let image = dog.imageUrl {
+                    KFImage(URL(string: image))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 70, height: 70)
+                        .cornerRadius(100)
+                }
                 Text(dog.name)
                     .foregroundColor(Color("black900"))
                     .font(.system(size: 20))

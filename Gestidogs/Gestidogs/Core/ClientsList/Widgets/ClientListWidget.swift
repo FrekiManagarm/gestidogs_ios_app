@@ -14,14 +14,13 @@ struct ClientListWidget: View {
     @State var showDetailsView = false
     
     var body: some View {
-        ZStack {
-            roundedRectangle
-            
-            contentInfosSection
-        }
-        .padding(.horizontal, 15)
-        .onTapGesture {
-            showDetailsView.toggle()
+        NavigationLink(destination: ClientsDetailsWidget(client: client)) {
+            ZStack {
+                roundedRectangle
+                
+                contentInfosSection
+            }
+            .padding(.horizontal, 15)
         }
     }
 }
@@ -42,12 +41,13 @@ extension ClientListWidget {
                     .frame(width: 50, height: 50)
                     .cornerRadius(70)
             } else {
-                Image(systemName: "xmark")
+                Image(systemName: "person")
                     .resizable()
                     .frame(width: 70, height: 70)
                     .cornerRadius(70)
             }
             Text("\(client.firstName) \(client.lastName)")
+                .foregroundColor(Color("black900"))
             
             Spacer()
             

@@ -24,6 +24,8 @@
 		0116F3862A51C181003C427B /* SessionCreateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0116F3852A51C181003C427B /* SessionCreateModel.swift */; };
 		012BF7432A33552500A4C266 /* ActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7422A33552500A4C266 /* ActivityListView.swift */; };
 		012BF7452A33553500A4C266 /* ActivityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012BF7442A33553500A4C266 /* ActivityListViewModel.swift */; };
+		013B04502AB4623E00D5B9A8 /* validation_reservation.json in Resources */ = {isa = PBXBuildFile; fileRef = 013B044F2AB4623E00D5B9A8 /* validation_reservation.json */; };
+		013B04522AB4A11D00D5B9A8 /* ValidationLottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013B04512AB4A11D00D5B9A8 /* ValidationLottie.swift */; };
 		014E3FE62A348B55007C4E2F /* ProfileForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FE52A348B55007C4E2F /* ProfileForm.swift */; };
 		014E3FE92A374377007C4E2F /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FE82A374377007C4E2F /* LoginModel.swift */; };
 		014E3FEE2A38B94C007C4E2F /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E3FED2A38B94C007C4E2F /* ApiConstants.swift */; };
@@ -40,6 +42,9 @@
 		0154ACF72A39ACAB00622587 /* ActivitiesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */; };
 		0154ACF92A3A53AD00622587 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154ACF82A3A53AD00622587 /* LoginRequest.swift */; };
 		015EA8512A75355A00A24C99 /* NewClientForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015EA8502A75355A00A24C99 /* NewClientForm.swift */; };
+		0172D5442AB1ACEB0012F002 /* EstablishmentDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172D5432AB1ACEB0012F002 /* EstablishmentDetailsView.swift */; };
+		0172D5472AB1AD150012F002 /* EstablishmentDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172D5462AB1AD150012F002 /* EstablishmentDetailsViewModel.swift */; };
+		0172D54A2AB1AD320012F002 /* EstablishmentDetailsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0172D5492AB1AD320012F002 /* EstablishmentDetailsWidget.swift */; };
 		017498932A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017498922A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift */; };
 		017498952A60265A005C0844 /* NewHolidayForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017498942A60265A005C0844 /* NewHolidayForm.swift */; };
 		0179B0F22A66C0E80082628A /* AttachedPaymentMethodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179B0F12A66C0E80082628A /* AttachedPaymentMethodModel.swift */; };
@@ -194,6 +199,8 @@
 		0116F3852A51C181003C427B /* SessionCreateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCreateModel.swift; sourceTree = "<group>"; };
 		012BF7422A33552500A4C266 /* ActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListView.swift; sourceTree = "<group>"; };
 		012BF7442A33553500A4C266 /* ActivityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListViewModel.swift; sourceTree = "<group>"; };
+		013B044F2AB4623E00D5B9A8 /* validation_reservation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = validation_reservation.json; sourceTree = "<group>"; };
+		013B04512AB4A11D00D5B9A8 /* ValidationLottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationLottie.swift; sourceTree = "<group>"; };
 		014E3FE52A348B55007C4E2F /* ProfileForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileForm.swift; sourceTree = "<group>"; };
 		014E3FE82A374377007C4E2F /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		014E3FED2A38B94C007C4E2F /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
@@ -210,6 +217,9 @@
 		0154ACF62A39ACAB00622587 /* ActivitiesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesRepository.swift; sourceTree = "<group>"; };
 		0154ACF82A3A53AD00622587 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		015EA8502A75355A00A24C99 /* NewClientForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClientForm.swift; sourceTree = "<group>"; };
+		0172D5432AB1ACEB0012F002 /* EstablishmentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentDetailsView.swift; sourceTree = "<group>"; };
+		0172D5462AB1AD150012F002 /* EstablishmentDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentDetailsViewModel.swift; sourceTree = "<group>"; };
+		0172D5492AB1AD320012F002 /* EstablishmentDetailsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentDetailsWidget.swift; sourceTree = "<group>"; };
 		017498922A5FF98E005C0844 /* HolidaysAgendaViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysAgendaViewRepresentable.swift; sourceTree = "<group>"; };
 		017498942A60265A005C0844 /* NewHolidayForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHolidayForm.swift; sourceTree = "<group>"; };
 		0179B0F12A66C0E80082628A /* AttachedPaymentMethodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedPaymentMethodModel.swift; sourceTree = "<group>"; };
@@ -505,6 +515,40 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		0172D5412AB1ACC60012F002 /* EstablishmentDetails */ = {
+			isa = PBXGroup;
+			children = (
+				0172D5482AB1AD1B0012F002 /* Widgets */,
+				0172D5452AB1ACF70012F002 /* ViewModel */,
+				0172D5422AB1ACD80012F002 /* Views */,
+			);
+			path = EstablishmentDetails;
+			sourceTree = "<group>";
+		};
+		0172D5422AB1ACD80012F002 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0172D5432AB1ACEB0012F002 /* EstablishmentDetailsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0172D5452AB1ACF70012F002 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0172D5462AB1AD150012F002 /* EstablishmentDetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0172D5482AB1AD1B0012F002 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				0172D5492AB1AD320012F002 /* EstablishmentDetailsWidget.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
 		017B4B1F2A586AFF00786FCA /* Reservation */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +581,7 @@
 				017B4B422A594F0E00786FCA /* TakeReservationWidget.swift */,
 				017B4B442A594F3D00786FCA /* ReservationResumeWidget.swift */,
 				01DAB6462A6188DE0029E887 /* CheckoutView.swift */,
+				013B04512AB4A11D00D5B9A8 /* ValidationLottie.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -607,14 +652,14 @@
 			path = Client;
 			sourceTree = "<group>";
 		};
-		01B044A92A6ECB97002851B7 /* ClientsListView */ = {
+		01B044A92A6ECB97002851B7 /* ClientsList */ = {
 			isa = PBXGroup;
 			children = (
 				01B044AC2A6ECBBD002851B7 /* Widgets */,
 				01B044AB2A6ECBB4002851B7 /* ViewModel */,
 				01B044AA2A6ECBAE002851B7 /* Views */,
 			);
-			path = ClientsListView;
+			path = ClientsList;
 			sourceTree = "<group>";
 		};
 		01B044AA2A6ECBAE002851B7 /* Views */ = {
@@ -990,6 +1035,7 @@
 				5F8BFD242A262D2C0007E367 /* App */,
 				5F8BFD1A2A262CE90007E367 /* Assets.xcassets */,
 				01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */,
+				013B044F2AB4623E00D5B9A8 /* validation_reservation.json */,
 				0179B0F52A66DF6F0082628A /* gestidogs_loading.json */,
 				5F8BFD1C2A262CE90007E367 /* Preview Content */,
 				01E9930A2A698A3C00B09FB0 /* GestidogsLauchScreen.storyboard */,
@@ -1016,9 +1062,10 @@
 		5F8BFD252A262D330007E367 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				01B044A92A6ECB97002851B7 /* ClientsListView */,
-				017B4B1F2A586AFF00786FCA /* Reservation */,
+				0172D5412AB1ACC60012F002 /* EstablishmentDetails */,
+				01B044A92A6ECB97002851B7 /* ClientsList */,
 				012BF73E2A33544400A4C266 /* TeamList */,
+				017B4B1F2A586AFF00786FCA /* Reservation */,
 				012BF73D2A33543A00A4C266 /* ActivityList */,
 				01E7D67D2A2B64F90054C16A /* Onboarding */,
 				5F8C934C2A2A1AEB00F39770 /* Notifications */,
@@ -1403,6 +1450,7 @@
 				5F8BFD1E2A262CE90007E367 /* Preview Assets.xcassets in Resources */,
 				01CC72B02A40A956006433CE /* splash_view_gestidogs.json in Resources */,
 				5F8BFD1B2A262CE90007E367 /* Assets.xcassets in Resources */,
+				013B04502AB4623E00D5B9A8 /* validation_reservation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1471,6 +1519,7 @@
 				01C5ECE82A71146200CD741A /* EstablishmentClientDetailsView.swift in Sources */,
 				0154ACE72A39AB9F00622587 /* UserRepository.swift in Sources */,
 				01E7D6892A2B657E0054C16A /* Extension.swift in Sources */,
+				0172D5442AB1ACEB0012F002 /* EstablishmentDetailsView.swift in Sources */,
 				5F32C5AE2A28AA340034AB6F /* TeamCenterWidget.swift in Sources */,
 				5F8C93402A2A1A2100F39770 /* LoginWidget.swift in Sources */,
 				5F32C5B42A28CC100034AB6F /* DogsListViewModel.swift in Sources */,
@@ -1500,6 +1549,7 @@
 				5F743ADC2A2F63E50023D22D /* EmailPasswordFields.swift in Sources */,
 				5F8BFD422A262ED30007E367 /* AgendaView.swift in Sources */,
 				0154ACED2A39ABEC00622587 /* HolidaysRepository.swift in Sources */,
+				0172D54A2AB1AD320012F002 /* EstablishmentDetailsWidget.swift in Sources */,
 				010E1E1F2A326F40002E0DD1 /* PaymentResponseModel.swift in Sources */,
 				5F157C342A277CCB00B4C2FE /* DogsResponseModel.swift in Sources */,
 				01AE58732A4B1BDC00EE3106 /* String.swift in Sources */,
@@ -1528,6 +1578,7 @@
 				01CC72B92A41B386006433CE /* TeamListView.swift in Sources */,
 				5F157BFE2A27744800B4C2FE /* DashboardWidget.swift in Sources */,
 				01B39AA72A68197E0038D83F /* ActivityListWidget.swift in Sources */,
+				0172D5472AB1AD150012F002 /* EstablishmentDetailsViewModel.swift in Sources */,
 				5F157C132A2777B800B4C2FE /* ProfileViewModel.swift in Sources */,
 				0154ACF52A39AC9200622587 /* DogsRepository.swift in Sources */,
 				5F157C2A2A277C5700B4C2FE /* UserRequestModel.swift in Sources */,
@@ -1540,6 +1591,7 @@
 				01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */,
 				5F3A32522A471C5E00619AF6 /* Date.swift in Sources */,
 				5F157C3E2A278FDB00B4C2FE /* EstablishmentManager.swift in Sources */,
+				013B04522AB4A11D00D5B9A8 /* ValidationLottie.swift in Sources */,
 				5F8C93422A2A1A3200F39770 /* LoginViewModel.swift in Sources */,
 				5F32C5B02A28AA460034AB6F /* ActivityTypeWidget.swift in Sources */,
 				5F8BFD382A262E1B0007E367 /* HomeWidget.swift in Sources */,

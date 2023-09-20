@@ -26,6 +26,9 @@ struct ReservationResumeWidget: View {
             
             buttonsSection
         }
+        .onDisappear {
+            reservationViewModel.paymentSheet = nil
+        }
     }
 }
 
@@ -69,6 +72,7 @@ extension ReservationResumeWidget {
 //                .padding(.bottom, 40)
             } else {
                 ProgressView()
+                    .padding(.leading, 20)
             }
             Spacer()
         }

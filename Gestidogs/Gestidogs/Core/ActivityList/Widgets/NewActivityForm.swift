@@ -10,10 +10,7 @@ import SwiftUI
 struct NewActivityForm: View {
     
     @StateObject var activityListViewModel = ActivityListViewModel()
-    @State var activityName = ""
-    @State var price = ""
-    @State var duration = ""
-    @State var description = ""
+    @Binding var showNewActivityForm: Bool
     
     var body: some View {
         ScrollView {
@@ -112,7 +109,11 @@ struct NewActivityForm: View {
                 
                 Button {
                     Task {
-                        await activityListViewModel.newActivity()
+                        await activityListViewModel.newActivity() { isSuccess, response in
+                            if isSuccess == true {
+                                showNewActivityForm = false
+                            }
+                        }
                     }
                 } label: {
                     Text("Créer une activité")
@@ -130,11 +131,3 @@ struct NewActivityForm: View {
         .background(Color("gray100"))
     }
 }
-
-#if DEBUG
-struct NewActivityForm_Previews: PreviewProvider {
-    static var previews: some View {
-        NewActivityForm()
-    }
-}
-#endif

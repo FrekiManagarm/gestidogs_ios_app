@@ -20,9 +20,6 @@ struct ClientsCenterWidget: View {
         .task {
             await dashboardViewModel.getClients()
         }
-//        .onDisappear {
-//            dashboardViewModel.clients = nil
-//        }
     }
 }
 

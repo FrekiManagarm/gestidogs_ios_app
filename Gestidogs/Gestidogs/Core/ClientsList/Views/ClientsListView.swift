@@ -50,6 +50,7 @@ extension ClientsListView {
                 }
             }
         }
+        .padding(.horizontal, 10)
         .task {
             await clientListVM.getClients()
         }
