@@ -12,7 +12,7 @@ struct DashboardView_Client: View {
     @StateObject var dashboardClientViewModel = DashboardClientViewModel()
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack {
                 radialGradient
                 
@@ -32,7 +32,6 @@ struct DashboardView_Client: View {
                     }
                     .task {
                         await dashboardClientViewModel.getUserConnected()
-                        await dashboardClientViewModel.getEstablishments()
                     }
                 }
             }

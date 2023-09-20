@@ -16,21 +16,14 @@ struct ActivityCell: View {
     
     var body: some View {
         NavigationLink(destination: ActivityCenterDetails(activity: activity, showDetailsView: $showDetailsView)) {
-            ZStack {
-                roundedRectangle
                 contentSection
-            }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 10)
+                .padding(5)
         }
-//        .onTapGesture {
-//            withAnimation(.spring()) {
-//                showDetailsView.toggle()
-//            }
-//        }
-//        .sheet(isPresented: $showDetailsView) {
-//            ActivityCenterDetails(activity: activity, showDetailsView: $showDetailsView)
-//        }
+        .background(
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color("gray100"))
+                .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
+        )
     }
 }
 

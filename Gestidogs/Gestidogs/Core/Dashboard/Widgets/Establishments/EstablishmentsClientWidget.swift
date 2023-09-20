@@ -49,9 +49,6 @@ extension EstablishmentsClientWidget {
                     LazyHStack {
                         ForEach(establishments) { establishment in
                             EstablishmentClientItem(establishment: establishment)
-                                .task {
-                                    await dashboardClientViewModel.getEstablishment(establishmentId: establishment.id)
-                                }
                         }
                     }
                     .padding(.leading, 20)

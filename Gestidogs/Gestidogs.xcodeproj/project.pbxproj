@@ -89,7 +89,6 @@
 		01B39AA72A68197E0038D83F /* ActivityListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B39AA62A68197E0038D83F /* ActivityListWidget.swift */; };
 		01C5ECE42A7113F100CD741A /* EstablishmentClientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5ECE32A7113F100CD741A /* EstablishmentClientItem.swift */; };
 		01C5ECE62A71143800CD741A /* EstablishmentsClientWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5ECE52A71143800CD741A /* EstablishmentsClientWidget.swift */; };
-		01C5ECE82A71146200CD741A /* EstablishmentClientDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5ECE72A71146200CD741A /* EstablishmentClientDetailsView.swift */; };
 		01CC72AB2A407DD3006433CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC72AA2A407DD3006433CE /* SplashView.swift */; };
 		01CC72AE2A408973006433CE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 01CC72AD2A408973006433CE /* Lottie */; };
 		01CC72B02A40A956006433CE /* splash_view_gestidogs.json in Resources */ = {isa = PBXBuildFile; fileRef = 01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */; };
@@ -263,7 +262,6 @@
 		01B39AA62A68197E0038D83F /* ActivityListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityListWidget.swift; sourceTree = "<group>"; };
 		01C5ECE32A7113F100CD741A /* EstablishmentClientItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentClientItem.swift; sourceTree = "<group>"; };
 		01C5ECE52A71143800CD741A /* EstablishmentsClientWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentsClientWidget.swift; sourceTree = "<group>"; };
-		01C5ECE72A71146200CD741A /* EstablishmentClientDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstablishmentClientDetailsView.swift; sourceTree = "<group>"; };
 		01CC72AA2A407DD3006433CE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		01CC72AF2A40A956006433CE /* splash_view_gestidogs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash_view_gestidogs.json; sourceTree = "<group>"; };
 		01CC72B12A40D566006433CE /* NewEstablishmentForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEstablishmentForm.swift; sourceTree = "<group>"; };
@@ -692,7 +690,6 @@
 			children = (
 				01C5ECE32A7113F100CD741A /* EstablishmentClientItem.swift */,
 				01C5ECE52A71143800CD741A /* EstablishmentsClientWidget.swift */,
-				01C5ECE72A71146200CD741A /* EstablishmentClientDetailsView.swift */,
 			);
 			path = Establishments;
 			sourceTree = "<group>";
@@ -1516,7 +1513,6 @@
 				5F825F312A2F257A001C6EB5 /* TeamMateDetailsView.swift in Sources */,
 				01CC72BD2A41B3A9006433CE /* TeamListWidget.swift in Sources */,
 				5F8BFD402A262E640007E367 /* AgendaWidget.swift in Sources */,
-				01C5ECE82A71146200CD741A /* EstablishmentClientDetailsView.swift in Sources */,
 				0154ACE72A39AB9F00622587 /* UserRepository.swift in Sources */,
 				01E7D6892A2B657E0054C16A /* Extension.swift in Sources */,
 				0172D5442AB1ACEB0012F002 /* EstablishmentDetailsView.swift in Sources */,

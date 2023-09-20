@@ -33,9 +33,9 @@ struct ActivityCenterDetails: View {
                 }
             }
 //            .ignoresSafeArea()
-//            if RoleManager.shared.isClient() {
+            if RoleManager.shared.isClient() {
                 takeReservationButton
-//            }
+            }
         }
         .background(Color("gray100"))
         .toolbar(.hidden, for: .tabBar)
@@ -47,8 +47,8 @@ extension ActivityCenterDetails {
     
     @ViewBuilder var takeReservationButton: some View {
         Button {
-            self.showDetailsView = false
             showReservationFlow.toggle()
+            reservationViewModel.activity = activity
         } label: {
             Text("Je souhaites faire une réservation")
                 .foregroundColor(Color("whiteA700"))
@@ -59,7 +59,7 @@ extension ActivityCenterDetails {
         .background(Color("blueGray80001"))
         .cornerRadius(20)
         .sheet(isPresented: $showReservationFlow) {
-            ReservationView(showReservationFlow: $showReservationFlow)
+            ReservationView(showReservationFlow: $showReservationFlow, activity: activity)
                 .presentationDetents([.fraction(0.75)])
                 .presentationDragIndicator(.visible)
         }

@@ -55,21 +55,6 @@ extension DashboardClientViewModel {
     }
     
     @MainActor
-    func getEstablishment(establishmentId: String) async {
-        await establishmentRepo.getEstablishmentById(establishmentId: establishmentId, completion: { data, response in
-            if let data, let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
-                    Task {
-                        self.establishments?.append(_: data)
-                    }
-                } else {
-                    print("something wen't wrong with the request => \(response.debugDescription)")
-                }
-            }
-        })
-    }
-    
-    @MainActor
     func getEstablishments() async {
         guard let clientId = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedId) else {
             return

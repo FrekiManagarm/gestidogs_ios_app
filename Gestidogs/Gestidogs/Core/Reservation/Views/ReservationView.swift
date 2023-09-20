@@ -11,6 +11,7 @@ struct ReservationView: View {
     
     @StateObject var reservationViewModel = ReservationViewModel()
     @Binding var showReservationFlow: Bool
+    let activity: ActivityResponseModel
     
     var body: some View {
         VStack {
@@ -30,12 +31,3 @@ struct ReservationView: View {
         .ignoresSafeArea()
     }
 }
-
-#if DEBUG
-struct ReservationView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReservationView(showReservationFlow: .constant(true))
-            .environmentObject(ReservationViewModel())
-    }
-}
-#endif

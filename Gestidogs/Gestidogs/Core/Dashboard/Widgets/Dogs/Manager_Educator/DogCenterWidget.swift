@@ -28,7 +28,7 @@ extension DogCenterWidget {
         HStack {
             Text("Mes chiens")
                 .padding(.leading, 20)
-                .foregroundColor(Color.white)
+                .foregroundColor(Color("whiteA700"))
                 .fontWeight(.semibold)
                 .font(.system(size: 30))
             Spacer()

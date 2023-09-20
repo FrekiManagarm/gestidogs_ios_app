@@ -87,7 +87,7 @@ extension ReservationResumeWidget {
                 .fontWeight(.semibold)
             
             ScrollView(.vertical, showsIndicators: false) {
-                ForEach(0..<2) { dog in
+                ForEach(reservationViewModel.reservationDogs) { dog in
                     ZStack {
                         RoundedRectangle(cornerRadius: 25)
                             .fill(Color("whiteA700"))

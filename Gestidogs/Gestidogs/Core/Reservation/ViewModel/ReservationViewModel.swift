@@ -13,8 +13,10 @@ import PassKit
 class ReservationViewModel: NSObject, ObservableObject {
     //MARK: Reservation Flow Properties
     @Published var step: ReservationState = .takeReservation
+    @Published var activity: ActivityResponseModel?
     @Published var paymentState: PaymentState = .newCard
-    @Published var dog: [Int] = []
+    @Published var reservationDogs: [DogsResponseModel] = []
+    @Published var clientDogs: [DogsResponseModel]?
     @Published var schedule: Int = 0
     @Published var paymentParams: AddCardState = AddCardState()
     @Published var userCards: [STPPaymentMethod] = []
@@ -22,14 +24,17 @@ class ReservationViewModel: NSObject, ObservableObject {
     //MARK: Apple Pay Properties
     @Published var paymentSheet: PaymentSheet?
     @Published var paymentSheetResult: PaymentSheetResult?
-    @Published var amount: Int = 10
+    @Published var amount: Int = 0
     
     //MARK: Modules imports
     lazy var paymentRepo = PaymentsRepository()
+    lazy var reservationRepo = ReservationsRepository()
+    lazy var dogsRepo = DogsRepository()
 }
 
 
 extension ReservationViewModel {
+    
     //function for ask reservation flow
     @MainActor
     func preparePaymentSheet() async {
@@ -68,17 +73,54 @@ extension ReservationViewModel {
         }
     }
     
+    @MainActor
+    func getClientDogs() async {
+        
+        guard let clientId = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedId) else {
+             return
+        }
+        
+        await dogsRepo.getAllDogs(ownerId: clientId) { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.clientDogs = data
+                    }
+                } else {
+                    print("error occured when fetching on viewModel => \(response.debugDescription)")
+                }
+            }
+        }
+    }
+    
     func onPaymentCompletion(result: PaymentSheetResult) {
         print("result \(result)")
         switch result {
             case .completed:
                 self.step = .checkout
+                Task {
+                    await self.createReservation()
+                }
             case .canceled:
                 print("payment canceled")
             case .failed(let error):
                 print("error occured \(error)")
         }
         self.paymentSheetResult = result
+    }
+    
+    @MainActor
+    func createReservation() async {
+        
+        guard let activity else {
+            return
+        }
+        
+        var body = ReservationRequestModel(session: nil, activity: activity.id, dog: reservationDogs, isApproved: false)
+        
+        await reservationRepo.createReservation(body: body) { isSuccess, response in
+            
+        }
     }
 }
 
