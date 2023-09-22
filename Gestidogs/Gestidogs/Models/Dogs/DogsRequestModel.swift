@@ -8,7 +8,7 @@
 import Foundation
 
 struct DogsRequestModel {
-    let ownerId: String
+    let owner: String
     let establishment: String
     let nationalId: String
     let imageUrl: String
@@ -21,7 +21,7 @@ struct DogsRequestModel {
 
 extension DogsRequestModel: Codable {
     enum CodingKeys: String, CodingKey {
-        case ownerId = "ownerId"
+        case owner = "owner"
         case establishment = "establishment"
         case nationalId = "nationalId"
         case imageUrl = "imageUrl"

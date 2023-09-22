@@ -45,7 +45,7 @@ extension DogCenterDetails {
                     .scaledToFill()
                     .frame(width: 200, height: 200)
                     .clipped()
-                    .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 10)
+                    .shadow(color: Color("black900").opacity(0.3), radius: 20, x: 0, y: 10)
                     .cornerRadius(200)
                     .padding(.top, 20)
             }

@@ -11,15 +11,19 @@ import StripePaymentSheet
 import PassKit
 
 class ReservationViewModel: NSObject, ObservableObject {
+    
     //MARK: Reservation Flow Properties
     @Published var step: ReservationState = .takeReservation
-    @Published var activity: ActivityResponseModel?
     @Published var paymentState: PaymentState = .newCard
     @Published var reservationDogs: [DogsResponseModel] = []
     @Published var clientDogs: [DogsResponseModel]?
     @Published var schedule: Int = 0
     @Published var paymentParams: AddCardState = AddCardState()
     @Published var userCards: [STPPaymentMethod] = []
+    @Published var dogsString: [String] = []
+    
+    @Published var activityPrice: Int = 0
+    @Published var activityId: String = ""
     
     //MARK: Apple Pay Properties
     @Published var paymentSheet: PaymentSheet?
@@ -37,13 +41,15 @@ extension ReservationViewModel {
     
     //function for ask reservation flow
     @MainActor
-    func preparePaymentSheet() async {
+    func preparePaymentSheet(completion: @escaping (Bool) -> Void) async {
         
         guard let userId = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedId) else {
             return
         }
+
+        var body = PaymentRequestModel(amount: activityPrice, currency: "eur")
         
-        await paymentRepo.createPaymentSheet(body: PaymentRequestModel(amount: amount, currency: "eur"), userId: userId) { data, response in
+        await paymentRepo.createPaymentSheet(body: body, userId: userId) { data, response in
             if let data {
                 Task {
                     print("data client secret \(data)")
@@ -67,8 +73,11 @@ extension ReservationViewModel {
                     configuration.applePay = .init(merchantId: "com.merchant.mathieu.GestiDogs", merchantCountryCode: "FR")
                     configuration.allowsDelayedPaymentMethods = true
                     self.paymentSheet = PaymentSheet(paymentIntentClientSecret: data.clientSecret, configuration: configuration)
+                    completion(true)
                     print("Payment Intent Created")
                 }
+            } else {
+                print("\(response.debugDescription)")
             }
         }
     }
@@ -97,7 +106,6 @@ extension ReservationViewModel {
         print("result \(result)")
         switch result {
             case .completed:
-                self.step = .checkout
                 Task {
                     await self.createReservation()
                 }
@@ -112,14 +120,20 @@ extension ReservationViewModel {
     @MainActor
     func createReservation() async {
         
-        guard let activity else {
-            return
-        }
+        var body = ReservationRequestModel(session: nil, activity: activityId, dogs: dogsString, isApproved: false)
         
-        var body = ReservationRequestModel(session: nil, activity: activity.id, dog: reservationDogs, isApproved: false)
+        print("body of reservation \(body)")
         
         await reservationRepo.createReservation(body: body) { isSuccess, response in
-            
+            if let response = response as? HTTPURLResponse {
+                if isSuccess == true {
+                    Task {
+                        self.step = .checkout
+                    }
+                } else {
+                    print("error when creating the reservation => \(response.debugDescription)")
+                }
+            }
         }
     }
 }

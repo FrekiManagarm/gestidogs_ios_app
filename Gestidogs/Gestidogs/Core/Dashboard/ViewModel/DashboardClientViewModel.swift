@@ -13,6 +13,7 @@ class DashboardClientViewModel: ObservableObject {
     @Published var sessions: [SessionResponseModel]?
     @Published var dogs: [DogsResponseModel]?
     @Published var establishments: [EstablishmentResponseModel]?
+    @Published var showNewDogForm = false
     
     //MARK: Modules
     lazy var userRepo = UserRepository()

@@ -10,9 +10,10 @@ import Kingfisher
 
 struct TakeReservationWidget: View {
     
-    @EnvironmentObject var reservationViewModel: ReservationViewModel
+    @EnvironmentObject var reservationViewModel : ReservationViewModel
     @State var selectedSchedule: Int = 0
-    @State var selectedDog: [Int] = []
+    let activity: ActivityResponseModel
+    @State var selectedDogs: [DogsResponseModel] = []
     
     var body: some View {
         VStack {
@@ -25,8 +26,17 @@ struct TakeReservationWidget: View {
             if let clientDogs = reservationViewModel.clientDogs {
                 if !clientDogs.isEmpty {
                     Button {
+                        self.reservationViewModel.reservationDogs = selectedDogs
+                        self.reservationViewModel.activityPrice = activity.price
+                        self.reservationViewModel.activityId = activity.id
                         Task {
-                            await self.reservationViewModel.preparePaymentSheet()
+                            await reservationViewModel.preparePaymentSheet() { isSuccess in
+                                if isSuccess == true {
+                                    withAnimation(.easeInOut) {
+                                        self.reservationViewModel.step =  .resume
+                                    }
+                                }
+                            }
                         }
                         withAnimation {
                             self.reservationViewModel.step = .resume
@@ -91,7 +101,8 @@ extension TakeReservationWidget {
                 } else {
                     ScrollView(.horizontal, showsIndicators: false) {
                         ForEach(clientDogs) { dog in
-                            DogReservationItem(dog: dog)
+                            DogReservationItem(dog: dog, selectedDogs: $selectedDogs)
+//                                .environmentObject(reservationViewModel)
                         }
                     }
                 }
@@ -108,7 +119,8 @@ extension TakeReservationWidget {
 struct DogReservationItem: View {
     
     let dog: DogsResponseModel
-    @StateObject var reservationViewModel = ReservationViewModel()
+    @EnvironmentObject var reservationViewModel: ReservationViewModel
+    @Binding var selectedDogs: [DogsResponseModel]
     
     var body: some View {
         VStack {
@@ -117,34 +129,33 @@ struct DogReservationItem: View {
                     .resizable()
                     .frame(width: 50, height: 50)
                     .cornerRadius(70)
+            } else {
+                Image(systemName: "xmark")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(70)
             }
             Text(dog.name)
                 .font(.system(size: 15))
                 .fontWeight(.semibold)
-                .foregroundColor(reservationViewModel.reservationDogs.contains(where: { resaDog in
+                .foregroundColor(self.reservationViewModel.reservationDogs.contains(where: { resaDog in
                     resaDog.id == dog.id
                 }) ? Color("whiteA700") : Color("blueGray80001"))
         }
         .frame(width: 70, height: 100)
-        .background(reservationViewModel.reservationDogs.contains(where: { resaDog in
+        .background(self.reservationViewModel.reservationDogs.contains(where: { resaDog in
             resaDog.id == dog.id
         }) ? Color("blueGray80001") : Color("whiteA700"))
         .cornerRadius(20)
         .onTapGesture {
             withAnimation(.easeInOut) {
+                self.selectedDogs.append(dog)
                 self.reservationViewModel.reservationDogs.append(dog)
+                self.reservationViewModel.dogsString.append(dog.id)
             }
         }
     }
 }
-
-#if DEBUG
-struct TakeReservationWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        TakeReservationWidget()
-    }
-}
-#endif
 
 //ScrollView(.horizontal, showsIndicators: false) {
 //    HStack {

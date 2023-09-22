@@ -86,6 +86,7 @@ extension TeamListView {
             }
             .sheet(isPresented: $showTeamForm) {
                 NewTeamMateForm()
+                    .presentationDetents([.fraction(0.75)])
                     .presentationDragIndicator(.visible)
             }
         }

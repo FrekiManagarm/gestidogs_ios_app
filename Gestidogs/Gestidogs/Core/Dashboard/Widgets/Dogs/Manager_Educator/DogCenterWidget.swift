@@ -55,13 +55,14 @@ extension DogCenterWidget {
                     .padding(.vertical, 20)
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 10) {
+                    LazyHStack {
                         ForEach(dogs) { dog in
                             DogItem(dog: dog)
                         }
                     }
+                    .padding(.top, 30)
                     .padding(.leading, 20)
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 30)
                 }
             }
         } else {

@@ -33,11 +33,11 @@ extension DogClientWidget {
     @ViewBuilder var titleSection: some View {
         HStack {
             Text("Mes chiens")
-                .padding(.leading, 20)
+                .padding(.leading, 10)
                 .foregroundColor(Color("whiteA700"))
                 .fontWeight(.bold)
                 .font(.system(size: 30))
-//            Spacer()
+            Spacer()
         }
     }
     @ViewBuilder var scrollViewItems: some View {

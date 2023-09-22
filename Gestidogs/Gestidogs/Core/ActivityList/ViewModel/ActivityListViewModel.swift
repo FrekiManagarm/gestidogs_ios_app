@@ -24,9 +24,9 @@ class ActivityListViewModel: ObservableObject {
             return
         }
     
-        let body = ActivityRequestModel(establishment: establishmentId, title: activityTitle, description: description, imageUrl: imageUrl, color: "red", duration: Int(duration) ?? 0, price: Int(price) ?? 0)
+        let body = ActivityRequestModel(establishment: establishmentId, title: activityTitle, description: description, imageUrl: imageUrl, color: "green", duration: Int(duration) ?? 0, price: Int(price) ?? 0)
         
-//        print("body Activity \(body)")
+        print("body Activity \(body)")
         
         await activityRepo.createActivity(body: body) { data, response in
             if let response = response as? HTTPURLResponse {

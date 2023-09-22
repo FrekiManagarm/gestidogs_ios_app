@@ -30,7 +30,7 @@ struct ClientsDetailsWidget: View {
             }
         }
         .sheet(isPresented: $showNewDogForm) {
-            NewDogForm(ownerId: client.id)
+            NewDogForm(showNewDogForm: $showNewDogForm, ownerId: client.id)
                 .presentationDragIndicator(.visible)
         }
         .task {

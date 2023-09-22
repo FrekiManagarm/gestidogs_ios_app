@@ -28,6 +28,14 @@ struct DogClientItem: View {
                         .cornerRadius(35, corners: [.topLeft, .topRight])
                         .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
                         .padding(.top, 7)
+                } else {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 175, height: 200)
+                        .cornerRadius(35, corners: [.topLeft, .topRight])
+                        .cornerRadius(10, corners: [.bottomLeft, .bottomRight])
+                        .padding(.top, 7)
                 }
                 HStack {
                     Text(dog.name)

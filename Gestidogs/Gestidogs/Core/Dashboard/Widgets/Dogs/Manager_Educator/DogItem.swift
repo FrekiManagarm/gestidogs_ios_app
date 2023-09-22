@@ -25,6 +25,12 @@ struct DogItem: View {
                         .scaledToFill()
                         .frame(width: 70, height: 70)
                         .cornerRadius(100)
+                } else {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 70, height: 70)
+                        .cornerRadius(100)
                 }
                 Text(dog.name)
                     .foregroundColor(Color("black900"))

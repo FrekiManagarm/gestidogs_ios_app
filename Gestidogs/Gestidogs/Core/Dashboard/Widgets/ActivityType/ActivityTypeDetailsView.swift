@@ -47,8 +47,9 @@ extension ActivityCenterDetails {
     
     @ViewBuilder var takeReservationButton: some View {
         Button {
+            self.reservationViewModel.activityPrice = activity.price
+            self.reservationViewModel.activityId = activity.id
             showReservationFlow.toggle()
-            reservationViewModel.activity = activity
         } label: {
             Text("Je souhaites faire une réservation")
                 .foregroundColor(Color("whiteA700"))
@@ -59,7 +60,7 @@ extension ActivityCenterDetails {
         .background(Color("blueGray80001"))
         .cornerRadius(20)
         .sheet(isPresented: $showReservationFlow) {
-            ReservationView(showReservationFlow: $showReservationFlow, activity: activity)
+            ReservationView(activity: activity, showReservationFlow: $showReservationFlow)
                 .presentationDetents([.fraction(0.75)])
                 .presentationDragIndicator(.visible)
         }

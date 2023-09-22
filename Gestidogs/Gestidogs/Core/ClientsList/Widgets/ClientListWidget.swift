@@ -43,7 +43,7 @@ extension ClientListWidget {
             } else {
                 Image(systemName: "person")
                     .resizable()
-                    .frame(width: 70, height: 70)
+                    .frame(width: 50, height: 50)
                     .cornerRadius(70)
             }
             Text("\(client.firstName) \(client.lastName)")

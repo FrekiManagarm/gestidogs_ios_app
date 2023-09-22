@@ -36,7 +36,7 @@ extension TeamCenterDetailsView {
                 .clipped()
                 .frame(width: 200, height: 200)
                 .cornerRadius(200)
-                .shadow(color: Color.black.opacity(0.3), radius: 20, x: 0, y: 10)
+                .shadow(color: Color("black900").opacity(0.3), radius: 20, x: 0, y: 10)
                 .padding(.top, 20)
         } else {
             Image(systemName: "xmark")

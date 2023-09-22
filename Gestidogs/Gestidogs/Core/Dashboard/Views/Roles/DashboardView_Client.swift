@@ -21,8 +21,6 @@ struct DashboardView_Client: View {
                         titleSection
                         
                         Spacer()
-                        
-                        notificationsLinkSection
                     }
                     
                     ScrollView(.vertical, showsIndicators: false) {

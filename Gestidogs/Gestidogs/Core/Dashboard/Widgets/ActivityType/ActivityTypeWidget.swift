@@ -28,10 +28,10 @@ struct ActivityCenterWidget: View {
 
 extension ActivityCenterWidget {
     @ViewBuilder var titleAndViewMoreSection: some View {
-        HStack {
+        HStack(spacing: 5) {
             Text("Mes activités")
                 .padding(.leading, 20)
-                .foregroundColor(Color.white)
+                .foregroundColor(Color("whiteA700"))
                 .fontWeight(.semibold)
                 .font(.system(size: 30))
 
@@ -64,7 +64,8 @@ extension ActivityCenterWidget {
                             ActivityCell(activity: activity)
                         }
                     }
-                    .padding(.leading, 10)
+                    .padding(.leading, 20)
+                    .padding(.bottom, 5)
                 }
             }
         } else {

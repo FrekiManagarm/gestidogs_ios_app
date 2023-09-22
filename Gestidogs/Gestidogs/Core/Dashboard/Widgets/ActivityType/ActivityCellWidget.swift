@@ -17,7 +17,7 @@ struct ActivityCell: View {
     var body: some View {
         NavigationLink(destination: ActivityCenterDetails(activity: activity, showDetailsView: $showDetailsView)) {
                 contentSection
-                .padding(5)
+                .padding(2)
         }
         .background(
             RoundedRectangle(cornerRadius: 25)

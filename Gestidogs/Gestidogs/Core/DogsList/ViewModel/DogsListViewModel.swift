@@ -41,33 +41,29 @@ class DogsListViewModel: ObservableObject {
         })
     }
     
-    @MainActor func createNewDog(ownerId: String) async {
+    @MainActor func createNewDog(ownerId: String, completion: @escaping (Bool) -> Void) async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
         }
         
-//        let body: [String: Any] = [
-//            "ownerId": ownerId,
-//            "establishment": establishmentId,
-//            "nationalId": nationalId,
-//            "imageUrl": imageUrl,
-//            "gender": gender,
-//            "name": dogsName,
-//            "breed": Int(height) ?? 0,
-//            "weight": Int(weight) ?? 0,
-//        ]
-        let body = DogsRequestModel(ownerId: ownerId, establishment: establishmentId, nationalId: nationalId, imageUrl: imageUrl, gender: gender, name: dogsName, breed: breed, weight: Int(weight) ?? 0, height: Int(height) ?? 0)
+        let body = DogsRequestModel(owner: ownerId, establishment: establishmentId, nationalId: nationalId, imageUrl: imageUrl, gender: gender, name: dogsName, breed: breed, weight: Int(weight) ?? 0, height: Int(height) ?? 0)
+        
+        print("body new dog form \(body)")
             
         await dogsRepo.createDog(body: body) { data, response in
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 201 {
                     Task {
                         await self.getDogs()
+                        completion(true)
                     }
                 } else {
+                    completion(false)
                     print("error: \(response.debugDescription)")
                 }
+            } else {
+                completion(false)
             }
         }
     }
