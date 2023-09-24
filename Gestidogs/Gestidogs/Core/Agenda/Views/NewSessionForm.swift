@@ -30,32 +30,14 @@ struct NewSessionForm: View {
                 
                 educatorSection
                 
-                Button {
-                    Task {
-                        await vm.createSession(selectedDate: selectedDate) { isSuccess, data, response in
-                            if isSuccess == true, let selectedDate {
-                                Task {
-                                    self.showNewSessionForm = false
-                                    await vm.getSessions()
-                                    await vm.getSessionsPerDate(date: selectedDate.stringifyInShortDate(), completion: { dataApi, responseApi in
-                                        if let dataApi {
-                                            self.sessionsPerDate = dataApi
-                                        }
-                                    })
-                                }
-                            }
-                        }
-                    }
-                } label: {
-                    Text("Créer une session")
-                        .foregroundColor(Color("whiteA700"))
-                }
-                .frame(width: UIScreen.main.bounds.width - 32, height: 55)
-                .background(Color("blueGray80001"))
-                .cornerRadius(25)
-                .padding(.top, 10)
+                createSessionButton
             }
-        }.background(Color("gray100"))
+        }
+        .background(Color("gray100"))
+        .task {
+            await vm.getEducators()
+            await vm.getActivities()
+        }
     }
     
     
@@ -82,18 +64,29 @@ extension NewSessionForm {
                 RoundedRectangle(cornerRadius: 25)
                     .fill(Color("whiteA700"))
                     .frame(height: 55)
-                Picker("Activité", selection: $vm.activity) {
-                    ForEach(vm.activities) { activity in
-                        Text(activity.title).tag(activity.id)
+                if let activities = vm.activities {
+                    if activities.isEmpty {
+                        Text("Vous n'avez référencé aucune activité")
+                            .font(.system(size: 15))
+                            .foregroundColor(.secondary)
+                            .fontWeight(.semibold)
+                    } else {
+                        Picker("Activité", selection: $vm.activity) {
+                            ForEach(activities) { activity in
+                                Text(activity.title).tag(activity.id)
+                            }
+                        }
+                        .onAppear {
+                            vm.activity = activities[0].id
+                        }
+                        .frame(width: 200, height: 80)
+                        .pickerStyle(WheelPickerStyle())
+                        .onDisappear {
+                            vm.activities = nil
+                        }
                     }
-                }
-                .frame(width: 200, height: 80)
-                .pickerStyle(WheelPickerStyle())
-                .task {
-                    await vm.getActivities()
-                }
-                .onDisappear {
-                    vm.activities = []
+                } else {
+                    ProgressView()
                 }
             }
             .padding(.top, -10)
@@ -160,7 +153,7 @@ extension NewSessionForm {
                     .fill(Color("whiteA700"))
                     .frame(height: 55)
                 HStack {
-                    Picker("", selection: $vm.maximumCapacity) {
+                    Picker("Capacité", selection: $vm.maximumCapacity) {
                         ForEach(0..<51, id: \.self) { count in
                             Text("\(count)").tag(count)
                         }
@@ -216,18 +209,29 @@ extension NewSessionForm {
                 RoundedRectangle(cornerRadius: 25)
                     .fill(Color("whiteA700"))
                     .frame(height: 55)
-                Picker("John Doe", selection: $vm.educator) {
-                    ForEach(vm.employees) { employee in
-                        Text("\(employee.firstName) \(employee.lastName)").tag(employee.id)
+                if let employees = vm.employees {
+                    if employees.isEmpty {
+                        Text("Vous n'avez référencé aucun employé")
+                            .font(.system(size: 15))
+                            .foregroundColor(.secondary)
+                            .fontWeight(.semibold)
+                    } else {
+                        Picker("Educateur", selection: $vm.educator) {
+                            ForEach(employees) { employee in
+                                Text("\(employee.firstName) \(employee.lastName)").tag(employee.id)
+                            }
+                        }
+                        .frame(width: 250, height: 80)
+                        .pickerStyle(WheelPickerStyle())
+                        .onAppear {
+                            self.vm.educator = employees[0].id
+                        }
+                        .onDisappear {
+                            self.vm.employees = nil
+                        }
                     }
-                }
-                .frame(width: 250, height: 80)
-                .pickerStyle(WheelPickerStyle())
-                .task {
-                    await vm.getEducators()
-                }
-                .onDisappear {
-                    vm.employees = []
+                } else {
+                    ProgressView()
                 }
             }
             .padding(.top, -10)
@@ -235,5 +239,33 @@ extension NewSessionForm {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top, 10)
         .padding(.horizontal, 10)
+    }
+    
+    @ViewBuilder var createSessionButton: some View {
+        Button {
+            Task {
+                await vm.createSession(selectedDate: selectedDate) { isSuccess, response in
+                    if isSuccess, let selectedDate {
+                        Task {
+                            self.showNewSessionForm = false
+                            await vm.getSessions()
+                            await vm.getSessionsPerDate(date: selectedDate.stringifyInShortDate(), completion: { dataApi, responseApi in
+                                if let dataApi {
+                                    self.sessionsPerDate = dataApi
+                                }
+                            })
+                        }
+                    }
+                }
+            }
+        } label: {
+            Text("Créer une session")
+                .foregroundColor(Color("whiteA700"))
+                .fontWeight(.semibold)
+        }
+        .frame(width: UIScreen.main.bounds.width - 32, height: 55)
+        .background(Color("blueGray80001"))
+        .cornerRadius(25)
+        .padding(.top, 10)
     }
 }

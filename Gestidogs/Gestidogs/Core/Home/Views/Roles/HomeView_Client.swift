@@ -20,19 +20,12 @@ struct HomeView_Client: View {
                 }
                 .tag(0)
             
-            AgendaView()
-                .tabItem {
-                    Image(systemName: "calendar")
-                    Text("Agenda")
-                }
-                .tag(1)
-            
             ProfileView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profil")
                 }
-                .tag(3)
+                .tag(1)
         }
         .accentColor(Color("indigoA400"))
         .padding(-5)

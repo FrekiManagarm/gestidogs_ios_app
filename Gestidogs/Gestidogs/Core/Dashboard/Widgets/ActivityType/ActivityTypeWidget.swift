@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ActivityCenterWidget: View {
     
-    let activities: [ActivityResponseModel]?
+    @StateObject var dashboardViewModel = DashboardViewModel()
     
     var body: some View {
         VStack {
@@ -17,15 +17,21 @@ struct ActivityCenterWidget: View {
             
             scrollViewItems
         }
+        .task {
+            await dashboardViewModel.getActivities()
+        }
+//        .onDisappear {
+//            dashboardViewModel.activities = nil
+//        }
     }
 }
 
 extension ActivityCenterWidget {
     @ViewBuilder var titleAndViewMoreSection: some View {
-        HStack {
+        HStack(spacing: 5) {
             Text("Mes activités")
                 .padding(.leading, 20)
-                .foregroundColor(Color.white)
+                .foregroundColor(Color("whiteA700"))
                 .fontWeight(.semibold)
                 .font(.system(size: 30))
 
@@ -44,7 +50,7 @@ extension ActivityCenterWidget {
     }
     
     @ViewBuilder var scrollViewItems: some View {
-        if let activities {
+        if let activities = dashboardViewModel.activities {
             if activities.isEmpty {
                 Text("Vous n'avez pas encore d'activités...")
                     .foregroundColor(.secondary)
@@ -58,7 +64,8 @@ extension ActivityCenterWidget {
                             ActivityCell(activity: activity)
                         }
                     }
-                    .padding(.leading, 10)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 5)
                 }
             }
         } else {
@@ -75,7 +82,7 @@ extension ActivityCenterWidget {
 struct ActivityCenterWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ActivityCenterWidget(activities: [])
+            ActivityCenterWidget()
         }
     }
 }

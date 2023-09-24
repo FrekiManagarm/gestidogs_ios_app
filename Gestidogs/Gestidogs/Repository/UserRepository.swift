@@ -19,7 +19,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode(TokensResponseModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error user refresh: \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -33,17 +33,35 @@ class UserRepository {
     public func userMe(completion: @escaping (UserResponseModel?, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/me", httpMethod: "GET") { data, response in
-//            print("result \(response?.description)")
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode(UserResponseModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error user me : \(error)")
                 }
             } else {
                 print("bad request in repository => \(response.debugDescription)")
                 completion(nil, response)
+            }
+        }
+    }
+    
+    //MARK: CLIENTS OF ESTABLISHMENT
+    public func clientsOfEstablishment(establishmentId: String, completion: @escaping ([UserResponseModel]?, URLResponse?) -> Void) async {
+        await ApiManager.shared.request("\(baseUrl)/establishments/\(establishmentId)", httpMethod: "GET") { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    do {
+                        let decode = try JSONDecoder().decode([UserResponseModel].self, from: data)
+                        completion(decode, response)
+                    } catch {
+                        print("error client of establishment: \(error)")
+                    }
+                } else {
+                    completion(nil, response)
+                    print("bad request in repository => \(response.debugDescription)")
+                }
             }
         }
     }
@@ -60,7 +78,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode([UserResponseModel].self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error all users : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -79,7 +97,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode(UserResponseModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error user by id : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -98,7 +116,7 @@ class UserRepository {
                     let decode = try JSONDecoder().decode(LoginModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error register : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -109,16 +127,15 @@ class UserRepository {
     }
     
     //MARK: LOGIN
-    public func login(body: LoginModel?, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
-//        print("request of body \(body)")
+    public func login(body: LoginRequest?, completion: @escaping (LoginModel?, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/login", httpMethod: "POST", body: body) { data, response in
-            if let data = data {
+            if let data, let response = response as? HTTPURLResponse {
                 do {
                     let decode = try JSONDecoder().decode(LoginModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error login : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -133,7 +150,7 @@ class UserRepository {
         
         await ApiManager.shared.request("\(baseUrl)/logout", httpMethod: "POST") { _, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 200 {
+                if response.statusCode == 201 {
                     completion(true, response)
                 } else {
                     completion(false, response)
@@ -146,18 +163,17 @@ class UserRepository {
     }
     
     //MARK: MODIFY USER
-    public func modifyUser(body: UserRequestModel?, userId: String, completion: @escaping (UserResponseModel?, URLResponse?) -> Void) async {
+    public func modifyUser(body: UserRequestModel?, userId: String, completion: @escaping (Bool, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(userId)", httpMethod: "PUT", body: body) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode(UserResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 203 {
+                    completion(true, response)
+                } else {
+                    completion(false, response)
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }

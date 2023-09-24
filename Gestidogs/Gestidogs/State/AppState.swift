@@ -25,7 +25,7 @@ class AppState: ObservableObject {
     func userDidLogin() {
         if UserDefaults.standard.string(forKey: CoreConstants.storageAccessToken) == nil {
             loginState = .login
-        } else if UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) == nil {
+        } else if UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) == nil && (RoleManager.shared.isAdmin() || RoleManager.shared.isManager()) {
             loginState = .selectEstablishment
         } else {
             loginState = .home
@@ -36,16 +36,23 @@ class AppState: ObservableObject {
         await userRepo.userMe { data, response in
             if let data = data {
                 Task {
+                    print("user data \(data)")
                     UserDefaults.standard.set(data.id, forKey: CoreConstants.storageUserConnectedId)
                     UserDefaults.standard.synchronize()
                     #if DEBUG
                     print("userId set")
                     #endif
-                    if UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) != nil {
+                    if UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedStripeId) == nil {
+                        UserDefaults.standard.set(data.stripeId, forKey: CoreConstants.storageUserConnectedStripeId)
+                        UserDefaults.standard.synchronize()
+                    }
+                    if UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == nil {
                         guard let role = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) else {
                             return
                         }
+                        #if DEBUG
                         print("role on fetch user \(role)")
+                        #endif
                         self.userRole = RoleManager.shared.switchOnRoleValue(roleType: role)
                         self.userDidLogin()
                     } else {

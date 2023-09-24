@@ -29,12 +29,12 @@ struct ChooseOrCreateEstablishmentView: View {
                 Spacer()
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Je choisi mon établissement,")
+                        Text("Je choisis mon établissement,")
                             .foregroundColor(.white)
                             .font(.system(size: 40))
                             .fontWeight(.bold)
                             .padding(.bottom, 10)
-                        Text("Vous pourrez à tout moment changer d'établissement dans le menu profil")
+                        Text("Si vous avez plusieurs établissements, vous pourrez à tout moment changer d'établissement dans le menu profil")
                             .foregroundColor(.white)
                         
                     }
@@ -58,11 +58,11 @@ struct ChooseOrCreateEstablishmentView: View {
                                 VStack {
                                     Text(establishment.name)
                                         .font(.system(size: 20))
-                                        .foregroundColor(establishmentId == establishment.id ? .white : Color.black)
+                                        .foregroundColor(establishmentId == establishment.id ? Color("whiteA700") : Color("black900"))
                                 }
                                 .padding(20)
                                 .padding(.horizontal, 20)
-                                .background(establishmentId == establishment.id ? Color("blueGray80001") : .white)
+                                .background(establishmentId == establishment.id ? Color("blueGray80001") : Color("whiteA700"))
                                 .cornerRadius(25)
                                 .onTapGesture {
                                     establishmentId = establishment.id
@@ -121,7 +121,7 @@ struct ChooseOrCreateEstablishmentView: View {
             .ignoresSafeArea()
             .sheet(isPresented: $showEstablishmentForm) {
                 NewEstablishmentForm(showForm: $showEstablishmentForm)
-                    .presentationDetents([.medium])
+                    .presentationDetents([.large])
                     .presentationDragIndicator(.visible)
             }
         }

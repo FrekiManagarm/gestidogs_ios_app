@@ -10,10 +10,7 @@ import SwiftUI
 struct NewActivityForm: View {
     
     @StateObject var activityListViewModel = ActivityListViewModel()
-    @State var activityName = ""
-    @State var price = ""
-    @State var duration = ""
-    @State var description = ""
+    @Binding var showNewActivityForm: Bool
     
     var body: some View {
         ScrollView {
@@ -35,6 +32,23 @@ struct NewActivityForm: View {
                             .fill(Color("whiteA700"))
                             .frame(height: 55)
                         TextField("Nom", text: $activityListViewModel.activityTitle)
+                            .textInputAutocapitalization(.never)
+                            .padding(.leading)
+                    }
+                }
+                .padding(.horizontal, 10)
+                .padding(.top, 5)
+                
+                VStack(alignment: .leading) {
+                    Text("Image")
+                        .foregroundColor(Color("blueGray80001"))
+                        .font(.system(size: 15))
+                        .fontWeight(.semibold)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 25)
+                            .fill(Color("whiteA700"))
+                            .frame(height: 55)
+                        TextField("Image", text: $activityListViewModel.imageUrl)
                             .textInputAutocapitalization(.never)
                             .padding(.leading)
                     }
@@ -95,7 +109,11 @@ struct NewActivityForm: View {
                 
                 Button {
                     Task {
-                        await activityListViewModel.newActivity()
+                        await activityListViewModel.newActivity() { isSuccess, response in
+                            if isSuccess == true {
+                                showNewActivityForm = false
+                            }
+                        }
                     }
                 } label: {
                     Text("Créer une activité")
@@ -113,11 +131,3 @@ struct NewActivityForm: View {
         .background(Color("gray100"))
     }
 }
-
-#if DEBUG
-struct NewActivityForm_Previews: PreviewProvider {
-    static var previews: some View {
-        NewActivityForm()
-    }
-}
-#endif

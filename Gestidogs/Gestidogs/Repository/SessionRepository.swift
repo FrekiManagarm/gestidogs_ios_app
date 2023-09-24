@@ -23,10 +23,9 @@ class SessionRepository {
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([SessionResponseModel].self, from: data)
-//                    print("decode \(decode)")
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error all sessions : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -51,7 +50,7 @@ class SessionRepository {
                         let decode = try JSONDecoder().decode(DailySessions.self, from: data)
                         completion(decode, response)
                     } catch {
-                        print("error: \(error)")
+                        print("error daily sessions : \(error)")
                     }
                 } else {
                     completion(nil, response)
@@ -71,7 +70,7 @@ class SessionRepository {
                     let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error sessions by id : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -89,7 +88,7 @@ class SessionRepository {
                     let decode = try JSONDecoder().decode(Int.self, from: data)
                     completion(decode, response)
                 } catch {
-                    print("error : \(error)")
+                    print("error session remaining places : \(error)")
                 }
             } else {
                 completion(nil, response)
@@ -99,61 +98,55 @@ class SessionRepository {
     }
 
     //MARK: CREATE SESSION
-    public func createSession(body: SessionRequestModel?, completion: @escaping (Bool?, SessionResponseModel?, URLResponse?) -> ()) async {
+    public func createSession(body: SessionRequestModel?, completion: @escaping (Bool?, URLResponse?) -> ()) async {
 
         await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
-            if let response = response as? HTTPURLResponse, let data {
+            if let response = response as? HTTPURLResponse {
                 if response.statusCode == 201 {
-                    do {
-                        let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
-                        completion(true, decode, response)
-                    } catch {
-                        print("error: \(error)")
-                    }
+                    completion(true, response)
                 } else {
-                    completion(false, nil, response)
-                    print("bad response in repository : \(response.debugDescription)")
+                    completion(false, response)
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, nil, response)
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
     }
 
     //MARK: CREATE SESSION REPORT
-    public func createSessionReport(report: String, sessionId: String, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
+    public func createSessionReport(report: String, sessionId: String, completion: @escaping (Bool, URLResponse?) -> Void) async {
         let parameters = [
             "report": report
         ]
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)/report", httpMethod: "POST", body: parameters) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad response in repository : \(response.debugDescription)")
             }
         }
     }
 
     //MARK: MODIFY SESSION
-    public func modifySession(sessionId: String, body: SessionRequestModel?, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
+    public func modifySession(sessionId: String, body: SessionRequestModel?, completion: @escaping (Bool, URLResponse?) -> Void) async {
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "PUT", body: body) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 203 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad response in repository : \(response.debugDescription)")
             }
         }
@@ -166,7 +159,9 @@ class SessionRepository {
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 204 {
                     completion(true, response)
+                    #if DEBUG
                     print("session is deleted")
+                    #endif
                 } else {
                     completion(false, response)
                 }
@@ -183,7 +178,9 @@ class SessionRepository {
         await ApiManager.shared.request("\(baseUrl)/educators/\(educatorId)", httpMethod: "DELETE") { data, response in
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 204 {
+                    #if DEBUG
                     print("session deleted")
+                    #endif
                     completion(true, response)
                 } else {
                     completion(false, response)
@@ -202,7 +199,9 @@ class SessionRepository {
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 204 {
                     completion(true, response)
+                    #if DEBUG
                     print("session deleted")
+                    #endif
                 } else {
                     completion(false, response)
                 }

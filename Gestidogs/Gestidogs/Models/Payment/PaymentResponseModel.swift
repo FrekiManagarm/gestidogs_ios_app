@@ -8,5 +8,15 @@
 import Foundation
 
 struct PaymentResponseModel {
-    
+    let clientSecret: String
+    let ephemeralKey: String
+    let customerId: String
+}
+
+extension PaymentResponseModel: Codable {
+    enum CodingKeys: String, CodingKey {
+        case clientSecret = "clientSecret"
+        case ephemeralKey = "ephemeralKey"
+        case customerId = "customerId"
+    }
 }

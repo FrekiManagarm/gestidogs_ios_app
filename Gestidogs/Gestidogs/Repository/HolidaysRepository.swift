@@ -11,9 +11,9 @@ class HolidaysRepository {
     private var baseUrl = "\(ApiConstants.apiUrlDev)\(ApiConstants.holidaysUrl)"
 
     //MARK: GET EMPLOYEE HOLIDAYS
-    public func getHolidays(employeeId: String? = nil, completion: @escaping ([HolidaysResponseModel]?, URLResponse?) -> Void) async {
+    public func getHolidays(employeeId: String? = nil, establishmentId: String? = nil, completion: @escaping ([HolidaysResponseModel]?, URLResponse?) -> Void) async {
 
-        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["employeeId": employeeId ?? ""]) { data, response in
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["employeeId": employeeId ?? "", "establishmentId": establishmentId ?? ""]) { data, response in
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([HolidaysResponseModel].self, from: data)

@@ -14,7 +14,7 @@ struct ListPaymentMethodsModel {
     let data: [CardResponseModel]
 }
 
-extension ListPaymentMethodsModel {
+extension ListPaymentMethodsModel: Codable {
     enum CodingKeys: String, CodingKey {
         case object = "object"
         case url = "url"

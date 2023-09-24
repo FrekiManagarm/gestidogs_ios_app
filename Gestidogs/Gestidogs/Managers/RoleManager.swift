@@ -58,5 +58,21 @@ class RoleManager {
                 return .client
         }
     }
+    
+    func isAdmin() -> Bool {
+        return UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == Role.admin.rawValue ? true : false
+    }
+    
+    func isManager() -> Bool {
+        return UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == Role.manager.rawValue ? true : false
+    }
+    
+    func isClient() -> Bool {
+        return UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == Role.client.rawValue ? true : false
+    }
+    
+    func isEducator() -> Bool {
+        return UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedRole) == Role.educator.rawValue ? true : false
+    }
 }
 

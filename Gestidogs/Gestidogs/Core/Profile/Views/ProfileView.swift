@@ -12,6 +12,7 @@ struct ProfileView: View {
     
     @State var showModifForm: Bool = false
     @StateObject var profileVM = ProfileViewModel()
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         ZStack {
@@ -29,6 +30,9 @@ struct ProfileView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .task {
+            await profileVM.getUser()
+        }
     }
 }
 
@@ -68,37 +72,67 @@ extension ProfileView {
             .padding(.trailing, 20)
         }
         .sheet(isPresented: $showModifForm) {
-            ProfileForm()
+            ProfileForm(user: profileVM.user, showModifyForm: $showModifForm)
                 .presentationDragIndicator(.visible)
+                .presentationDetents([.fraction(0.60)])
         }
     }
     
     @ViewBuilder var imageAndName: some View {
         HStack {
-            KFImage(URL(string: "https://i.imgur.com/aUWvqAC.jpg"))
-                .resizable()
-                .scaledToFill()
-                .position(x: 100, y: 140)
-                .frame(width: 200, height: 200)
-                .cornerRadius(300)
-                .background(
-                    Circle()
-                        .fill(.white)
-                        .frame(width: 205, height: 205)
-                )
+            if let profile = profileVM.user {
+                if let imageUrl = profile.avatarUrl {
+                    KFImage(URL(string: imageUrl))
+                        .resizable()
+                        .scaledToFill()
+                    //                    .position(x: 100, y: 140)
+                        .frame(width: 200, height: 200)
+                        .cornerRadius(300)
+                        .background(
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 205, height: 205)
+                        )
+                } else {
+                    Image(systemName: "person")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 200, height: 200)
+                        .cornerRadius(300)
+                        .background(
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 205, height: 205)
+                        )
+                }
+            } else {
+                ProgressView()
+            }
         }
         VStack {
-            Text("Mathieu Chambaud")
-                .font(.system(size: 30))
-                .fontWeight(.heavy)
-            Text(verbatim: "mathieu.chambaud@ynov.com")
+            if let profile = profileVM.user {
+                Text("\(profile.firstName) \(profile.lastName)")
+                    .font(.system(size: 30))
+                    .fontWeight(.heavy)
+                Text(verbatim: profile.emailAddress)
+            }
         }
         .foregroundColor(.white)
     }
     
     @ViewBuilder var logOutButton: some View {
         Button {
-            //MARK: Implement action of deconnecting
+            Task {
+                await profileVM.logOut { isSuccess, response in
+                    if isSuccess {
+                        Task {
+                            withAnimation(.spring()) {
+                                self.appState.loginState = .login
+                            }
+                        }
+                    }
+                }
+            }
         } label: {
             HStack {
                 Image(systemName: "rectangle.portrait.and.arrow.right")

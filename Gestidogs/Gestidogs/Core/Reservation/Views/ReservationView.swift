@@ -10,34 +10,24 @@ import SwiftUI
 struct ReservationView: View {
     
     @StateObject var reservationViewModel = ReservationViewModel()
+    let activity: ActivityResponseModel
+    @Binding var showReservationFlow: Bool
     
     var body: some View {
         VStack {
             switch reservationViewModel.step {
                 case .takeReservation:
-                    TakeReservationWidget()
-                        .environmentObject(reservationViewModel)
+                    TakeReservationWidget(activity: activity)
+                    .environmentObject(reservationViewModel)
                 case .resume:
-                    ReservationResumeWidget()
-                        .environmentObject(reservationViewModel)
-                case .payment:
-                    PaymentWidget()
-                        .environmentObject(reservationViewModel)
+                    ReservationResumeWidget(activity: activity)
+                    .environmentObject(reservationViewModel)
                 case .checkout:
-                    CheckoutView()
-                        .environmentObject(reservationViewModel)
+                    CheckoutView(showReservationFlow: $showReservationFlow)
+                    .environmentObject(reservationViewModel)
             }
         }
         .background(Color("gray100"))
         .ignoresSafeArea()
     }
 }
-
-#if DEBUG
-struct ReservationView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReservationView()
-            .environmentObject(ReservationViewModel())
-    }
-}
-#endif

@@ -9,139 +9,148 @@ import Foundation
 
 class DashboardViewModel: ObservableObject {
     
+    //MARK: Manager's Dashboard Properties
     @Published var dogs: [DogsResponseModel]?
-    @Published var loadingDogs: Bool = true
     @Published var activities: [ActivityResponseModel]?
-    @Published var loadingActivities: Bool = true
     @Published var teamMates: [UserResponseModel]?
-    @Published var loadingTeam: Bool = true
     @Published var userConnected: UserResponseModel?
-    @Published var loadingUser: Bool = true
     @Published var todaySessions: DailySessions?
+    @Published var dogObservations: [ObservationResponseModel]?
+    @Published var clients: [UserResponseModel]?
     
     lazy var establishmentManager = EstablishmentManager()
     lazy var dogsRepo = DogsRepository()
     lazy var activitiesRepo = ActivitiesRepository()
     lazy var establishmentRepo = EstablishmentRepository()
     lazy var sessionsRepo = SessionRepository()
+    lazy var observationsRepo = ObservationRepository()
+    lazy var userRepo = UserRepository()
 }
 
 extension DashboardViewModel {
     //MARK: Get Functions
-    @MainActor func getDogsEstablishment() async {
+    @MainActor
+    func getDogsEstablishment() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
         }
         
         await dogsRepo.getAllDogs(establishmentId: establishmentId) { data, response in
-            if let data = data {
-                Task {
-                    self.dogs = data
-                    self.loadingDogs = false
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.dogs = data
+                    }
+                } else {
+                    print("something wen't wrong with the request => \(response.debugDescription)")
                 }
             }
         }
     }
     
-    @MainActor func getActivities() async {
+    @MainActor
+    func getActivities() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
         }
         
         await activitiesRepo.getAllActivities(establishmentId: establishmentId) { data, response in
-            if let data = data {
-                Task {
-                    self.activities = data
-                    self.loadingActivities = false
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.activities = data
+                    }
+                } else {
+                    print("something wen't wrong with the request => \(response.debugDescription)")
                 }
             }
         }
     }
     
-    @MainActor func getEstablishment() async {
+    @MainActor
+    func getEstablishment() async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
             return
         }
         
         await establishmentRepo.getEstablishmentById(establishmentId: establishmentId) { data, response in
-            if let data = data {
-                Task {
-                    self.teamMates = data.employees
-                    self.loadingTeam = false
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.teamMates = data.employees
+                    }
+                } else {
+                    print("something wen't wrong with the request => \(response.debugDescription)")
                 }
             }
         }
     }
     
-    func getDailySessions(completion: @escaping (Bool?, DailySessions?, URLResponse?) -> ()) async {
-        await sessionsRepo.getDailySessions(date: Date.now.stringifyInShortDate(), completion: { data, response in
+    @MainActor
+    func getDailySessions() async {
+        await sessionsRepo.getDailySessions(date: Date.now.stringifyInShortDate()) { data, response in
             if let response = response as? HTTPURLResponse, let data {
                 if response.statusCode == 200 {
-                    completion(true, data, response)
+                    Task {
+                        self.todaySessions = data
+                    }
                 } else {
-                    completion(false, nil, response)
                     print("error: \(response.debugDescription)")
                 }
-            } else {
-                completion(false, nil, response)
-                print("no response from api")
             }
-        })
-    }
-}
-
-extension DashboardViewModel {
-    
-    //MARK: Create functions
-    func newDog() async {
-        
-//        let body: [String: Any] = [
-//            "ownerId": "",
-//            "establishment": "",
-//            "nationalId": "",
-//            "name": "",
-//            "imageUrl": "",
-//            "gender": "",
-//            "weight": 0,
-//            "height": 0
-//        ]
-        let body = DogsRequestModel(ownerId: "", establishment: "", nationalId: "", imageUrl: "", gender: "", name: "", breed: "", weight: 0, height: 0)
-        
-        await dogsRepo.createDog(body: body, completion: { data, response in
-            
-        })
+        }
     }
     
-    func newTeamMate() async {
-//        let body: [String: Any] = [
-//            "lastname": "",
-//            "firstname": "",
-//            "emailAddress": "",
-//            "phoneNumber": "",
-//            "password": ""
-//        ]
-        let body = UserRequestModel(avatarUrl: "", firstname: "", lastname: "", phoneNumber: "", emailAddress: "", password: "")
-        
-        guard let establishmentId = UserDefaults.standard.string(forKey: "establishmentId") else {
+    @MainActor
+    func getObservationsOfDog(dogId: String) async {
+        await observationsRepo.getAllObservations(dogId: dogId) { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.dogObservations = data
+                    }
+                } else {
+                    self.dogObservations = nil
+                    print("something wen't wrong with the request \(response.debugDescription)")
+                }
+            }
+        }
+    }
+    
+    @MainActor
+    func getMe() async {
+        await userRepo.userMe { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.userConnected = data
+                    }
+                } else {
+                    print("something wen't wrong with the request => \(response.debugDescription)")
+                }
+            }
+        }
+    }
+    
+    @MainActor
+    func getClients() async {
+        guard let establishmentId = UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) else {
             return
         }
         
-        await establishmentRepo.createNewEmployee(establishmentId: establishmentId, body: body, completion: { data, response in
-            
-        })
-    }
-    
-    func newActivityType() async {
-//        let body: [String: Any] = [
-//            "": ""
-//        ]
-        let body = ActivityRequestModel(establishment: "", title: "", description: "", duration: 0, price: 0)
-        
-        await activitiesRepo.createActivity(body: body, completion: { data, response in
-            
-        })
+        await userRepo.allUsers(establishmentid: establishmentId, role: "Client") { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.clients = data
+                    }
+                } else {
+                    print("something wen't wrong with the request => \(response.debugDescription)")
+                }
+            }
+        }
     }
 }

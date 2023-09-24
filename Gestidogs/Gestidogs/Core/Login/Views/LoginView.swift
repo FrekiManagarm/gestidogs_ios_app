@@ -11,19 +11,13 @@ struct LoginView: View {
     
     @StateObject var loginViewModel: LoginViewModel = LoginViewModel()
     @EnvironmentObject var appState: AppState
-    @State var isLoading: Bool = false
     @State var user : UserResponseModel?
     var userRepo = UserRepository()
     var userManager = UserManager.shared
         
         var body: some View {
             ZStack {
-                RadialGradient(
-                    gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
-                    center: .topLeading,
-                    startRadius: 1,
-                    endRadius: UIScreen.main.bounds.height)
-                .ignoresSafeArea()
+                radialGradient
                 
                 VStack {
                     
@@ -32,25 +26,13 @@ struct LoginView: View {
                     EmailField(emailTxt: $loginViewModel.emailTxt)
                     PasswordField(passwdTxt: $loginViewModel.passwdTxt)
                     
-                    if isLoading {
-                        ProgressView()
-                    } else {
-                        Button("Me connecter", action: {
-                            Task {
-                                await login()
-                            }
-                        })
-                        .padding()
-                        .frame(width: UIScreen.main.bounds.width / 1.75)
-                        .background(Color("blueGray80001"))
-                        .foregroundColor(.white)
-                        .cornerRadius(30)
-                        .shadow(radius: 10, y: 10)
-                    }
+                    buttonOrLoading
                     
                     separatorSection
                     
                     GoogleAndFacebookLoginButtons(googleLoginFunction: loginViewModel.loginGoogle, facebookLoginFunction: loginViewModel.loginFacebook)
+                    
+                    
                 }
             }
     }
@@ -59,24 +41,14 @@ struct LoginView: View {
 }
 
 extension LoginView {
-    func login() async {
-        print("pass in this function")
-        isLoading = true
-        await ApiManager.shared.request("\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/login", httpMethod: "POST", body: ["emailAddress": loginViewModel.emailTxt, "password": loginViewModel.passwdTxt]) { data, response in
-            if let data = data {
-                let decode = try? JSONDecoder().decode(LoginModel.self, from: data)
-                if let decode = decode {
-                    UserDefaults.standard.set(decode.tokens.accessToken, forKey: "accessToken")
-                    UserDefaults.standard.set(decode.tokens.refreshToken, forKey: "refreshToken")
-                    UserDefaults.standard.set(true, forKey: "isSignedIn")
-                    UserDefaults.standard.synchronize()
-                    isLoading = false
-                    self.appState.loginState = .selectEstablishment
-                }
-            } else {
-                print("error login \(response.debugDescription)")
-            }
-        }
+    
+    @ViewBuilder var radialGradient: some View {
+        RadialGradient(
+            gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+            center: .topLeading,
+            startRadius: 1,
+            endRadius: UIScreen.main.bounds.height)
+        .ignoresSafeArea()
     }
     
     @ViewBuilder var titleSection: some View {
@@ -100,12 +72,38 @@ extension LoginView {
     }
     
     @ViewBuilder var buttonOrLoading: some View {
-        if isLoading {
+        if loginViewModel.isLoading {
             ProgressView()
         } else {
             Button("Me connecter", action: {
                 Task {
-                    await login()
+                    await loginViewModel.login { data, response in
+                        if let data, let response {
+                            #if DEBUG
+                            print(response.debugDescription)
+                            #endif
+                            UserDefaults.standard.set(data.tokens.accessToken, forKey: CoreConstants.storageAccessToken)
+                            UserDefaults.standard.set(data.tokens.refreshToken, forKey: CoreConstants.storageRefreshToken)
+                            UserDefaults.standard.set(data.user.id, forKey: CoreConstants.storageUserConnectedId)
+                            
+                            let role = RoleManager.shared.switchOnRole(roleType: data.user.role)
+                            UserDefaults.standard.set(true, forKey: "isSignedIn")
+                            UserDefaults.standard.synchronize()
+                            Task {
+                                self.appState.userRole = role
+                                self.loginViewModel.isLoading = false
+                                if RoleManager.shared.isAdmin() || RoleManager.shared.isManager() {
+                                    withAnimation(.spring()) {
+                                        self.appState.loginState = .selectEstablishment
+                                    }
+                                } else {
+                                    withAnimation(.spring()) {
+                                        self.appState.loginState = .home
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             })
             .padding()

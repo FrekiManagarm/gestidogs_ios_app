@@ -11,11 +11,14 @@ import Kingfisher
 struct ActivityCenterDetails: View {
     
     let activity: ActivityResponseModel
+    @StateObject var reservationViewModel = ReservationViewModel()
     @State var showReservationFlow = false
     @Binding var showDetailsView: Bool
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack {
+        VStack(spacing: 5) {
+            backButton
             ScrollView {
                 VStack(spacing: 5) {
                     imageSection
@@ -30,32 +33,67 @@ struct ActivityCenterDetails: View {
                 }
             }
 //            .ignoresSafeArea()
-            
-            
-            Button {
-                self.showDetailsView = false
-                showReservationFlow.toggle()
-            } label: {
-                Text("Je souhaites faire une réservation")
-                    .foregroundColor(Color("whiteA700"))
-                    .font(.system(size: 15))
-                    .fontWeight(.semibold)
-            }
-            .frame(width: UIScreen.main.bounds.width - 32, height: 55)
-            .background(Color("blueGray80001"))
-            .cornerRadius(20)
-            .sheet(isPresented: $showReservationFlow) {
-                ReservationView()
-                    .presentationDetents([.fraction(0.75)])
-                    .presentationDragIndicator(.visible)
+            if RoleManager.shared.isClient() {
+                takeReservationButton
             }
         }
         .background(Color("gray100"))
         .toolbar(.hidden, for: .tabBar)
+        .navigationBarBackButtonHidden()
     }
 }
 
 extension ActivityCenterDetails {
+    
+    @ViewBuilder var takeReservationButton: some View {
+        Button {
+            self.reservationViewModel.activityPrice = activity.price
+            self.reservationViewModel.activityId = activity.id
+            showReservationFlow.toggle()
+        } label: {
+            Text("Je souhaite faire une réservation")
+                .foregroundColor(Color("whiteA700"))
+                .font(.system(size: 15))
+                .fontWeight(.semibold)
+        }
+        .frame(width: UIScreen.main.bounds.width - 32, height: 55)
+        .background(Color("blueGray80001"))
+        .cornerRadius(20)
+        .sheet(isPresented: $showReservationFlow) {
+            ReservationView(activity: activity, showReservationFlow: $showReservationFlow)
+                .presentationDetents([.fraction(0.75)])
+                .presentationDragIndicator(.visible)
+        }
+    }
+    
+    @ViewBuilder var backButton: some View {
+        HStack {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "chevron.left")
+                    .resizable()
+                    .frame(width: 15, height: 23)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color("blueGray80001"))
+            }
+            Spacer()
+            if RoleManager.shared.isManager() || RoleManager.shared.isAdmin() {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "gear")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color("blueGray80001"))
+                }
+            }
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 10)
+    }
+    
     @ViewBuilder var imageSection: some View {
         VStack {
             if let imageUrl = activity.imageUrl {
@@ -66,7 +104,6 @@ extension ActivityCenterDetails {
                     .frame(width: UIScreen.main.bounds.width - 20, height: 300)
                     .cornerRadius(50)
                     .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 4)
-//                    .padding(.top, 5)
             } else {
                 Image(systemName: "xmark")
             }
@@ -78,7 +115,7 @@ extension ActivityCenterDetails {
             ZStack {
                RoundedRectangle(cornerRadius: 25)
                     .fill(Color("whiteA700"))
-                    .frame(height: 55)
+                    .frame(width: 100, height: 55)
                 Text("\(activity.duration) min")
             }
 //            .padding(.bottom, 20)
@@ -87,7 +124,7 @@ extension ActivityCenterDetails {
                 ZStack {
                     RoundedRectangle(cornerRadius: 25)
                         .fill(Color("whiteA700"))
-                        .frame(width: 250, height: 55)
+                        .frame(width: 260, height: 55)
                     VStack(alignment: .leading) {
                         Text(establishment.name)
                             .font(.system(size: 15))
@@ -100,7 +137,7 @@ extension ActivityCenterDetails {
                 }
             }
         }
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 20)
     }
     
     @ViewBuilder var titleAndDetailsSection: some View {
@@ -118,7 +155,7 @@ extension ActivityCenterDetails {
                     .foregroundColor(.secondary)
                     .fontWeight(.bold)
             }
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 20)
         }
     }
     
@@ -143,5 +180,6 @@ extension ActivityCenterDetails {
                     .foregroundColor(.secondary)
             }
         }
+        .padding(.horizontal, 10)
     }
 }

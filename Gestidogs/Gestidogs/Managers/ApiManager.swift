@@ -25,10 +25,6 @@ class ApiManager {
             }
         }
         
-        guard let accessToken = UserDefaults.standard.string(forKey: CoreConstants.storageAccessToken) else {
-            return
-        }
-        
         guard let url = components.url else {
             return
         }
@@ -44,7 +40,9 @@ class ApiManager {
             }
             
         }
-        apiRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        if let accessToken = UserDefaults.standard.string(forKey: CoreConstants.storageAccessToken) {
+            apiRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        }
         apiRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         apiRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -120,8 +118,6 @@ extension ApiManager {
             return
         }
         
-//        print("refreshToken \(refreshToken)")
-        
         guard let url = URL(string: "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh") else {
             return
         }
@@ -136,7 +132,6 @@ extension ApiManager {
             if let response = response as? HTTPURLResponse {
                 if response.statusCode == 200 {
                     let decode = try JSONDecoder().decode(TokensResponseModel.self, from: data)
-//                    print("decode response in refresh token \(decode)")
                     UserDefaults.standard.set(decode.accessToken, forKey: CoreConstants.storageAccessToken)
                     UserDefaults.standard.set(decode.refreshToken, forKey: CoreConstants.storageRefreshToken)
                     UserDefaults.standard.synchronize()

@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct TakeReservationWidget: View {
     
-    @EnvironmentObject var reservationViewModel: ReservationViewModel
+    @EnvironmentObject var reservationViewModel : ReservationViewModel
     @State var selectedSchedule: Int = 0
-    @State var selectedDog: Int = 0
+    let activity: ActivityResponseModel
+    @State var selectedDogs: [DogsResponseModel] = []
     
     var body: some View {
         VStack {
@@ -19,28 +21,43 @@ struct TakeReservationWidget: View {
             
             partipantsList
             
-            schedulesGrid
-            
             Spacer()
             
-            Button {
-                withAnimation {
-                    self.reservationViewModel.step = .resume
+            if let clientDogs = reservationViewModel.clientDogs {
+                if !clientDogs.isEmpty {
+                    Button {
+                        self.reservationViewModel.reservationDogs = selectedDogs
+                        self.reservationViewModel.activityPrice = activity.price
+                        self.reservationViewModel.activityId = activity.id
+                        Task {
+                            await reservationViewModel.preparePaymentSheet() { isSuccess in
+                                if isSuccess == true {
+                                    withAnimation(.easeInOut) {
+                                        self.reservationViewModel.step =  .resume
+                                    }
+                                }
+                            }
+                        }
+                        withAnimation {
+                            self.reservationViewModel.step = .resume
+                        }
+                    } label: {
+                        Text("Je confirme mon créneau")
+                            .foregroundColor(Color("whiteA700"))
+                            .fontWeight(.semibold)
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 55)
+                    .background(Color("blueGray80001"))
+                    .cornerRadius(20)
                 }
-            } label: {
-                Text("Je confirme mon créneau")
-                    .foregroundColor(Color("whiteA700"))
-                    .fontWeight(.semibold)
             }
-            .frame(width: UIScreen.main.bounds.width - 50, height: 55)
-            .background(Color("blueGray80001"))
-            .cornerRadius(20)
             
             Spacer()
 
         }
-        .transition(AnyTransition.move(edge: .leading).combined(with: .opacity)).animation(.easeInOut(duration: 1), value: reservationViewModel.step == .takeReservation)
-        
+        .task {
+            await reservationViewModel.getClientDogs()
+        }
     }
 }
 
@@ -69,75 +86,72 @@ extension TakeReservationWidget {
     }
     
     @ViewBuilder var partipantsList: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             Text("Choisissez les participants")
                 .font(.system(size: 15))
                 .foregroundColor(Color("blueGray80001"))
                 .fontWeight(.semibold)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(0..<5, id: \.self) { dog in
-                        VStack {
-                            Image("onboarding_2_img")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                                .cornerRadius(70)
-                            Text("\(dog)")
-                                .font(.system(size: 15))
-                                .fontWeight(.semibold)
-                                .foregroundColor(selectedDog == dog ? Color("whiteA700") : Color("blueGray80001"))
-                        }
-                        .frame(width: 70, height: 100)
-                        .background(selectedDog == dog ? Color("blueGray80001") : Color("whiteA700"))
-                        .cornerRadius(20)
-                        .onTapGesture {
-                            withAnimation(.easeInOut) {
-                                self.selectedDog = dog
-                            }
+            if let clientDogs = reservationViewModel.clientDogs {
+                if clientDogs.isEmpty {
+                    Text("Vous n'avez pas de chiens à inscrire ...")
+                        .font(.system(size: 15))
+                        .foregroundColor(.secondary)
+                        .fontWeight(.semibold)
+                        .padding(.top, 20)
+                } else {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        ForEach(clientDogs) { dog in
+                            DogReservationItem(dog: dog, selectedDogs: $selectedDogs)
                         }
                     }
                 }
+            } else {
+                ProgressView()
+                    .padding(.vertical, 20)
             }
-            .frame(height: 100)
         }
         .padding(.top, 10)
         .padding(.horizontal, 10)
-    }
-    
-    @ViewBuilder var schedulesGrid: some View {
-        VStack(alignment: .leading) {
-            Text("Choisissez un créneau")
-                .fontWeight(.semibold)
-                .foregroundColor(Color("blueGray80001"))
-                .font(.system(size: 15))
-            LazyVGrid(columns: [GridItem(spacing: 10), GridItem(spacing: 10), GridItem(spacing: 10)]) {
-                ForEach(0..<9, id: \.self) { schedule in
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 25)
-                            .fill(selectedSchedule == schedule ? Color("blueGray80001") : Color("whiteA700"))
-                            .frame(height: 55)
-                            .shadow(color: Color("black900").opacity(0.25), radius: selectedSchedule == schedule ? 0 : 4, x: 0, y: selectedSchedule == schedule ? 0 : 4)
-                        Text("Schedule : \(schedule)")
-                            .foregroundColor(selectedSchedule == schedule ? Color("whiteA700") : Color("black900"))
-                            .fontWeight(.bold)
-                    }
-                    .onTapGesture {
-                        withAnimation {
-                            self.selectedSchedule = schedule
-                        }
-                    }
-                }
-            }
-        }
-        .padding(.horizontal, 10)
-        .padding(.top, 10)
     }
 }
 
-#if DEBUG
-struct TakeReservationWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        TakeReservationWidget()
+struct DogReservationItem: View {
+    
+    let dog: DogsResponseModel
+    @EnvironmentObject var reservationViewModel: ReservationViewModel
+    @Binding var selectedDogs: [DogsResponseModel]
+    
+    var body: some View {
+        VStack {
+            if let image = dog.imageUrl {
+                KFImage(URL(string: image))
+                    .resizable()
+                    .frame(width: 125, height: 125)
+                    .cornerRadius(70)
+            } else {
+                Image(systemName: "xmark")
+                    .resizable()
+                    .frame(width: 125, height: 125)
+                    .cornerRadius(70)
+            }
+            Text(dog.name)
+                .font(.system(size: 25))
+                .fontWeight(.semibold)
+                .foregroundColor(self.reservationViewModel.reservationDogs.contains(where: { resaDog in
+                    resaDog.id == dog.id
+                }) ? Color("whiteA700") : Color("blueGray80001"))
+        }
+        .frame(width: 150, height: 200)
+        .background(self.reservationViewModel.reservationDogs.contains(where: { resaDog in
+            resaDog.id == dog.id
+        }) ? Color("blueGray80001") : Color("whiteA700"))
+        .cornerRadius(20)
+        .onTapGesture {
+            withAnimation(.easeInOut) {
+                self.selectedDogs.append(dog)
+                self.reservationViewModel.reservationDogs.append(dog)
+                self.reservationViewModel.dogsString.append(dog.id)
+            }
+        }
     }
 }
-#endif

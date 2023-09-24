@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SessionCenterWidget: View {
     
-    let sessions: DailySessions?
+    @StateObject var dashboardViewModel = DashboardViewModel()
     
     var body: some View {
         VStack {
@@ -17,12 +17,18 @@ struct SessionCenterWidget: View {
             
             scrollViewItems
         }
+        .task {
+            await dashboardViewModel.getDailySessions()
+        }
+//        .onDisappear {
+//            dashboardViewModel.todaySessions = nil
+//        }
     }
 }
 
 extension SessionCenterWidget {
     @ViewBuilder var scrollViewItems: some View {
-        if let sessions {
+        if let sessions = dashboardViewModel.todaySessions {
             if sessions.today.isEmpty {
                 Text("Aucune session pour aujourd'hui !")
                     .font(.system(size: 15))
@@ -36,7 +42,7 @@ extension SessionCenterWidget {
                             SessionCell(session: session)
                         }
                     }
-                    .padding(.leading, 10)
+                    .padding(.horizontal, 20)
                 }
             }
         } else {
@@ -48,7 +54,7 @@ extension SessionCenterWidget {
     @ViewBuilder var titleSection: some View {
         HStack {
             Text("Mes rendez-vous du jour")
-                .foregroundColor(.white)
+                .foregroundColor(Color("whiteA700"))
                 .fontWeight(.semibold)
                 .font(.system(size: 30))
             Spacer()

@@ -13,70 +13,76 @@ struct ActivityListView: View {
     @State var showActivityForm: Bool = false
     @StateObject var activityListViewModel = ActivityListViewModel()
     
-    init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "whiteA700") as Any]
-    }
-    
     var body: some View {
         ZStack {
-            RadialGradient(
-                gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
-                center: .topLeading,
-                startRadius: 1,
-                endRadius: UIScreen.main.bounds.height)
-            .ignoresSafeArea()
+            radialGradient
             
-            
-            ScrollView {
-                VStack {
-                    if let activities = activityListViewModel.activities {
-                        ForEach(activities) { activity in
-                            ActivityListWidget(activity: activity)
-                        }
-                    } else {
-                        ProgressView()
-                    }
-                }
-            }
-            .navigationTitle("Mes activités")
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "arrow.left")
-                            .foregroundColor(Color("whiteA700"))
-                            .font(.system(size: 20))
-                            .fontWeight(.semibold)
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showActivityForm.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(Color("whiteA700"))
-                            .font(.system(size: 20))
-                            .fontWeight(.semibold)
-                    }
-                }
-            }
-            .task {
-                await activityListViewModel.getActivitiesOfEstablishment()
-            }
-            .sheet(isPresented: $showActivityForm) {
-                NewActivityForm()
-                    .presentationDetents([.fraction(0.75)])
-                    .presentationDragIndicator(.visible)
-            }
+            scrollViewItemsSection
         }
     }
 }
 
-struct ActivityListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityListView()
+extension ActivityListView {
+    @ViewBuilder var radialGradient: some View {
+        RadialGradient(
+            gradient: Gradient(colors: [Color("lighterBlue"), Color("indigoA400")]),
+            center: .topLeading,
+            startRadius: 1,
+            endRadius: UIScreen.main.bounds.height)
+        .ignoresSafeArea()
+    }
+    
+    @ViewBuilder var scrollViewItemsSection: some View {
+        ScrollView {
+            VStack {
+                if let activities = activityListViewModel.activities {
+                    if activities.isEmpty {
+                        Text("Vous n'avez pas encore d'activités ...")
+                            .foregroundColor(.secondary)
+                            .font(.system(size: 20))
+                            .fontWeight(.semibold)
+                    } else {
+                        ForEach(activities) { activity in
+                            ActivityListWidget(activity: activity)
+                        }
+                    }
+                } else {
+                    ProgressView()
+                }
+            }
+        }
+        .navigationTitle("Mes activités")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(Color("whiteA700"))
+                        .font(.system(size: 20))
+                        .fontWeight(.semibold)
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    showActivityForm.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                        .foregroundColor(Color("whiteA700"))
+                        .font(.system(size: 20))
+                        .fontWeight(.semibold)
+                }
+            }
+        }
+        .task {
+            await activityListViewModel.getActivitiesOfEstablishment()
+        }
+        .sheet(isPresented: $showActivityForm) {
+            NewActivityForm(showNewActivityForm: $showActivityForm)
+                .presentationDetents([.fraction(0.80)])
+                .presentationDragIndicator(.visible)
+        }
     }
 }

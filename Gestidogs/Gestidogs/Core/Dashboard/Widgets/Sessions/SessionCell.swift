@@ -14,42 +14,57 @@ struct SessionCell: View {
     @State var showDetailsView = false
     
     var body: some View {
-        ZStack {
-            VStack {
-                topCardSection
-                Text(session.establishment.address)
-                    .font(.system(size: 15))
+        VStack {
+            topCardSection
+            Text(session.establishment.address)
+                .font(.system(size: 15))
 
-                bottomCardSection
-            }
+            bottomCardSection
         }
-        .padding(5)
-        .frame(width: 225, height: 170)
-        .background(Color("gray100"))
-        .cornerRadius(25)
+        .padding(10)
+        .background(
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color("gray100"))
+                .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
+        )
         .onTapGesture {
             showDetailsView.toggle()
         }
-        .padding(EdgeInsets(top: 5, leading: 10, bottom: 10, trailing: 10))
         .sheet(isPresented: $showDetailsView) {
             SessionDetails(session: session)
                 .presentationDragIndicator(.visible)
         }
+        .padding(.bottom, 5)
     }
 }
 
 extension SessionCell {
     
+    @ViewBuilder var roundedRectangle: some View {
+        RoundedRectangle(cornerRadius: 25)
+            .fill(Color("gray100"))
+            .frame(width: 250, height: 170)
+            .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
+    }
+    
     @ViewBuilder var topCardSection: some View {
         HStack {
             ZStack {
-                Circle()
-                    .fill(.white)
-                    .frame(width: 70, height: 70)
-                KFImage(URL(string: session.educator.avatarUrl))
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .cornerRadius(50)
+                if let imageUrl = session.educator.avatarUrl {
+                    Circle()
+                        .fill(.white)
+                        .frame(width: 70, height: 70)
+                    KFImage(URL(string: imageUrl))
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .cornerRadius(50)
+                } else {
+                    Image(systemName: "person")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 40, height: 40)
+//                        .cornerRadius(50)
+                }
             }
             VStack(alignment: .leading) {
                 Text("\(session.educator.firstName) \(session.educator.lastName)")
@@ -59,7 +74,6 @@ extension SessionCell {
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
             }
-            .padding(.horizontal, 10)
         }
     }
     

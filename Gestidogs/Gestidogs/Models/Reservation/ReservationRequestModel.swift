@@ -8,15 +8,17 @@
 import Foundation
 
 struct ReservationRequestModel {
-    let session: String
-    let dog: String
+    let session: String?
+    let activity: String?
+    let dogs: [String]
     let isApproved: Bool
 }
 
 extension ReservationRequestModel: Codable {
     enum CodingKeys: String, CodingKey {
         case session = "session"
-        case dog = "dog"
+        case activity = "activity"
+        case dogs = "dogs"
         case isApproved = "isApproved"
     }
 }

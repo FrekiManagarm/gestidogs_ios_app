@@ -9,13 +9,16 @@ import SwiftUI
 
 struct DogCenterWidget: View {
     
-    let dogs: [DogsResponseModel]?
+    @StateObject var dashboardViewModel = DashboardViewModel()
     
     var body: some View {
         VStack {
             titleAndViewMoreSection
             
             scrollViewItems
+        }
+        .task {
+            await dashboardViewModel.getDogsEstablishment()
         }
     }
 }
@@ -25,7 +28,7 @@ extension DogCenterWidget {
         HStack {
             Text("Mes chiens")
                 .padding(.leading, 20)
-                .foregroundColor(Color.white)
+                .foregroundColor(Color("whiteA700"))
                 .fontWeight(.semibold)
                 .font(.system(size: 30))
             Spacer()
@@ -43,7 +46,7 @@ extension DogCenterWidget {
     }
     
     @ViewBuilder var scrollViewItems: some View {
-        if let dogs {
+        if let dogs = dashboardViewModel.dogs {
             if dogs.isEmpty {
                 Text("Vous n'avez pas encore de chiens...")
                     .font(.system(size: 15))
@@ -52,12 +55,14 @@ extension DogCenterWidget {
                     .padding(.vertical, 20)
             } else {
                 ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack(spacing: 10) {
+                    LazyHStack {
                         ForEach(dogs) { dog in
                             DogItem(dog: dog)
                         }
                     }
-                    .padding(.leading, 10)
+//                    .padding(.top, 30)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 5)
                 }
             }
         } else {

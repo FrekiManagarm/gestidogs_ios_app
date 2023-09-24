@@ -25,15 +25,19 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
     //MARK: Functions
     @MainActor func getEstablishments() async {
         
-        guard let ownerId = userManager.getUserConnectedId() else {
+        guard let ownerId = UserDefaults.standard.string(forKey: CoreConstants.storageUserConnectedId) else {
+            #if DEBUG
             print("pas de ownerId")
+            #endif
             return
         }
         
         await establishmentRepo.getAllEstablishments(ownerId: ownerId) { data, response in
             if let data = data {
                 Task {
+                    #if DEBUG
                     print("data establishments \(data)")
+                    #endif
                     self.establishmentsOfOwner = data
                 }
             }
@@ -55,10 +59,12 @@ class ChooseOrCreateEstablishmentViewModel: ObservableObject {
 //        ]
         let body = EstablishmentRequestModel(owner: ownerId, name: establishmentName, description: description, address: address, phoneNumber: phoneNumber, emailAddress: emailAddress)
         
-        await establishmentRepo.createEstablishment(body: body) { data, response in
-            if let data = data {
+        await establishmentRepo.createEstablishment(body: body) { isSuccess, response in
+            if isSuccess {
                 Task {
-                    print("establishment created \(data)")
+                    #if DEBUG
+                    print("establishment created")
+                    #endif
                 }
             } else {
                 print("response in vm \(response.debugDescription)")

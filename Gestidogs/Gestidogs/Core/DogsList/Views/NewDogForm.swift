@@ -9,7 +9,9 @@ import SwiftUI
 
 struct NewDogForm: View {
     
-    @StateObject var viewModel: DogsListViewModel = DogsListViewModel()
+    @StateObject var viewModel = DogsListViewModel()
+    @Binding var showNewDogForm: Bool
+    let ownerId: String
     
     var body: some View {
         ScrollView {
@@ -28,7 +30,9 @@ struct NewDogForm: View {
                 
                 Button {
                     Task {
-                        //MARK: Add function for adding new dog
+                        await viewModel.createNewDog(ownerId: ownerId) { isSuccess in
+                            showNewDogForm = false
+                        }
                     }
                 } label: {
                     Text("Créer un nouveau chien")
@@ -202,7 +206,7 @@ extension NewDogForm {
 #if DEBUG
 struct NewDogForm_Previews: PreviewProvider {
     static var previews: some View {
-        NewDogForm()
+        NewDogForm(showNewDogForm: .constant(false), ownerId: "")
     }
 }
 #endif
