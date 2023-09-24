@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import StripeCore
 
 @main
 struct GestidogsApp: App {
+    
+    init() {
+        StripeAPI.defaultPublishableKey = CoreConstants.stripeTestPublicKey
+    }
     
     @StateObject var appState: AppState = AppState()
     
@@ -16,11 +21,9 @@ struct GestidogsApp: App {
         WindowGroup {
             DispatchView()
                 .environmentObject(appState)
-                .onAppear {
-                    withAnimation {
-                        appState.userDidLogin()
-                    }
-                    appState.fetchUser()
+                .task {
+                    await appState.fetchUser()
+                    appState.userDidLogin()
                 }
         }
     }
@@ -38,6 +41,8 @@ struct DispatchView: View {
                 ChooseOrCreateEstablishmentView()
             case .onBoarding:
                 OnboardingView()
+            case .loadingView:
+                SplashView()
         }
     }
 }

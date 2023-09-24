@@ -27,7 +27,7 @@ class EstablishmentManager {
     
     func isSetEstablishmentId() -> Bool {
         let establishmentId = UserDefaults.standard.bool(forKey: EstablishmentKey.establishmentId.rawValue)
-        print("Establishment id is here \(establishmentId)")
+//        print("Establishment id is here \(establishmentId)")
         return establishmentId
     }
 }

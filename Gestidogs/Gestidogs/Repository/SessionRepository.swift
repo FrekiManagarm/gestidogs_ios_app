@@ -6,202 +6,209 @@
 //
 
 import Foundation
-import Alamofire
 
 class SessionRepository {
     private var baseUrl: String = "\(ApiConstants.apiUrlDev)\(ApiConstants.sessionsUrl)"
-    
+
     //MARK: GET ALL SESSIONS
-    public func getAllSessions(date: Date? = nil, reserved: Bool? = nil, educatorId: String? = nil, activityId: String? = nil, establishmentId: String? = nil) -> [SessionResponseModel] {
-        var sessions: [SessionResponseModel] = []
-        let parameters: Parameters = [
-            "date": date ?? Date(),
+    public func getAllSessions(date: String? = nil, reserved: Bool? = nil, educatorId: String? = nil, activityId: String? = nil, establishmentId: String? = nil, completion: @escaping ([SessionResponseModel]?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: [
+            "date": date ?? "",
             "reserved": reserved ?? false,
-            "educatorId": educatorId ?? "",
             "activityId": activityId ?? "",
             "establishmentId": establishmentId ?? ""
-        ]
-        
-//        ApiManager.shared.getRequest(baseUrl, parameters: parameters) { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        let decode = try? JSONDecoder().decode([SessionResponseModel].self, from: data)
-//                        if let decode = decode {
-//                            sessions = decode
-//                        }
-//                    }
-//                case .failure(let error):
-//                    sessions = []
-//                    print("error on request : \(error)")
-//            }
-//        }
-        
-        return sessions
+        ])
+        { data, response in
+            if let data = data {
+                do {
+                    let decode = try JSONDecoder().decode([SessionResponseModel].self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error all sessions : \(error)")
+                }
+            } else {
+                completion(nil, response)
+                print("bad response in repository : \(response.debugDescription)")
+            }
+        }
     }
     
+    //MARK: GET DAILY SESSIONS
+    public func getDailySessions(date: String?, completion: @escaping (DailySessions?, URLResponse?) -> ()) async {
+        guard let establishmentId = UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) else {
+            return
+        }
+        
+        await ApiManager.shared.request("\(baseUrl)/daily", httpMethod: "GET", parameters: [
+            "date": date ?? "",
+            "establishmentId": establishmentId
+        ]) { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    do {
+                        let decode = try JSONDecoder().decode(DailySessions.self, from: data)
+                        completion(decode, response)
+                    } catch {
+                        print("error daily sessions : \(error)")
+                    }
+                } else {
+                    completion(nil, response)
+                }
+            } else {
+                print("no return from api")
+            }
+        }
+    }
+
     //MARK: GET SESSION BY ID
-    public func getSessionsById(sessionId: String) -> SessionResponseModel? {
-        var session: SessionResponseModel?
+    public func getSessionsById(sessionId: String, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
         
-//        ApiManager.shared.getRequest("\(baseUrl)/\(sessionId)") { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
-//                        session = decode
-//                    }
-//                case .failure(let error):
-//                    session = nil
-//                    print("error on request : \(error)")
-//            }
-//        }
-        
-        return session
+        await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "GET") { data, response in
+            if let data = data {
+                do {
+                    let decode = try JSONDecoder().decode(SessionResponseModel.self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error sessions by id : \(error)")
+                }
+            } else {
+                completion(nil, response)
+                print("bad response in repository : \(response.debugDescription)")
+            }
+        }
     }
-    
+
     //MARK: GET SESSION REMAINING PLACES
-    public func getSessionRemainingPlaces(sessionId: String) -> Int {
-        var remainingPlaces : Int = 0
-        
-//        ApiManager.shared.getRequest("\(baseUrl)/\(sessionId)/remaining-places") { result in
-//            switch result {
-//            case .success(let data):
-//                if let data = data {
-//                    let decode = try? JSONDecoder().decode(Int.self, from: data)
-//                    if let decode = decode {
-//                        remainingPlaces = decode
-//                    }
-//                }
-//            case .failure(let error):
-//                remainingPlaces = 0
-//                print("error on request : \(error)")
-//            }
-//        }
-        
-        return remainingPlaces
+    public func getSessionRemainingPlaces(sessionId: String, completion: @escaping (Int?, URLResponse?) -> ()) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(sessionId)/remaining-places", httpMethod: "GET") { data, response in
+            if let data = data {
+                do {
+                    let decode = try JSONDecoder().decode(Int.self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error session remaining places : \(error)")
+                }
+            } else {
+                completion(nil, response)
+                print("bad response in repository : \(response.debugDescription)")
+            }
+        }
     }
-    
+
     //MARK: CREATE SESSION
-    public func createSession(body: SessionRequestModel) -> SessionResponseModel? {
-        var session: SessionResponseModel?
-        
-//        ApiManager.shared.postRequest(baseUrl, parameters: body) { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
-//                        session = decode
-//                    }
-//                case .failure(let error):
-//                    session = nil
-//                    print("error on request : \(error)")
-//            }
-//        }
-        
-        return session
+    public func createSession(body: SessionRequestModel?, completion: @escaping (Bool?, URLResponse?) -> ()) async {
+
+        await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
+                } else {
+                    completion(false, response)
+                    print("bad statusCode \(response.statusCode)")
+                }
+            } else {
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
+            }
+        }
     }
-    
+
     //MARK: CREATE SESSION REPORT
-    public func createSessionReport(report: String, sessionId: String) -> SessionResponseModel? {
-        var session: SessionResponseModel?
+    public func createSessionReport(report: String, sessionId: String, completion: @escaping (Bool, URLResponse?) -> Void) async {
         let parameters = [
             "report": report
         ]
-        
-//        ApiManager.shared.postRequest("\(baseUrl)/\(sessionId)/report", parameters: parameters) { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
-//                        session = decode
-//                    }
-//                case .failure(let error):
-//                    session = nil
-//                    print("error on request : \(error)")
-//            }
-//        }
-        
-        return session
+
+        await ApiManager.shared.request("\(baseUrl)/\(sessionId)/report", httpMethod: "POST", body: parameters) { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
+                }
+            } else {
+                completion(false, response)
+                print("bad response in repository : \(response.debugDescription)")
+            }
+        }
     }
-    
+
     //MARK: MODIFY SESSION
-    public func modifySession(sessionId: String, body: SessionRequestModel) -> SessionResponseModel? {
-        var session: SessionResponseModel?
-        
-//        ApiManager.shared.putRequest("\(baseUrl)/\(sessionId)", parameters: body) { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        let decode = try? JSONDecoder().decode(SessionResponseModel.self, from: data)
-//                        session = decode
-//                    }
-//                case .failure(let error):
-//                    session = nil
-//                    print("error on request : \(error)")
-//            }
-//        }
-        
-        return session
+    public func modifySession(sessionId: String, body: SessionRequestModel?, completion: @escaping (Bool, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "PUT", body: body) { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 203 {
+                    completion(true, response)
+                } else {
+                    print("bad statusCode \(response.statusCode)")
+                }
+            } else {
+                completion(false, response)
+                print("bad response in repository : \(response.debugDescription)")
+            }
+        }
     }
-    
+
     //MARK: DELETE SESSION BY ID
-    public func deleteSessionById(sessionId: String) -> Bool {
-        var isDelete: Bool = false
-        
-//        ApiManager.shared.deleteRequest("\(baseUrl)/\(sessionId)") { result in
-//            switch result {
-//            case .success(let data):
-//                if let data = data {
-//                    print("\(data.debugDescription)")
-//                    isDelete = true
-//                }
-//            case .failure(let error):
-//                isDelete = false
-//                print("error on request : \(error)")
-//            }
-//        }
-        
-        return isDelete
+    public func deleteSessionById(sessionId: String, completion: @escaping (Bool?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "DELETE") { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 204 {
+                    completion(true, response)
+                    #if DEBUG
+                    print("session is deleted")
+                    #endif
+                } else {
+                    completion(false, response)
+                }
+            } else {
+                completion(false, response)
+                print("bad response in repository : \(response.debugDescription)")
+            }
+        }
     }
-    
+
     //MARK: DELETE SESSIONS BY EDUCATOR ID
-    public func deleteSessionByEducatorId(educatorId: String) -> Bool {
-        var isDelete: Bool = false
-        
-//        ApiManager.shared.deleteRequest("\(baseUrl)/educators/\(educatorId)") { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        print("\(data.debugDescription)")
-//                        isDelete = true
-//                    }
-//                case .failure(let error):
-//                    isDelete = false
-//                    print("error on requets : \(error)")
-//            }
-//        }
-        
-        return isDelete
+    public func deleteSessionByEducatorId(educatorId: String, completion: @escaping (Bool?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/educators/\(educatorId)", httpMethod: "DELETE") { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 204 {
+                    #if DEBUG
+                    print("session deleted")
+                    #endif
+                    completion(true, response)
+                } else {
+                    completion(false, response)
+                }
+            } else {
+                completion(false, response)
+                print("bad response in repository : \(response.debugDescription)")
+            }
+        }
     }
-    
+
     //MARK: DELETE SESSIONS BY ACTIVITY ID
-    public func deleteSessionsByActivityId(activityId: String) -> Bool {
-        var isDelete = false
-        
-//        ApiManager.shared.deleteRequest("\(baseUrl)/activities/\(activityId)") { result in
-//            switch result {
-//                case .success(let data):
-//                    if let data = data {
-//                        print("\(data.debugDescription)")
-//                        isDelete = true
-//                    }
-//                case .failure(let error):
-//                    isDelete = false
-//                    print("error on request : \(error)")
-//            }
-//        }
-        
-        return isDelete
+    public func deleteSessionsByActivityId(activityId: String, completion: @escaping (Bool?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)\(ApiConstants.activitiesUrl)/\(activityId)", httpMethod: "DELETE") { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 204 {
+                    completion(true, response)
+                    #if DEBUG
+                    print("session deleted")
+                    #endif
+                } else {
+                    completion(false, response)
+                }
+            } else {
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
+            }
+        }
     }
 }

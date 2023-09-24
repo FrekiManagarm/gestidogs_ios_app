@@ -6,126 +6,97 @@
 //
 
 import Foundation
-import Alamofire
 
 class HolidaysRepository {
     private var baseUrl = "\(ApiConstants.apiUrlDev)\(ApiConstants.holidaysUrl)"
-    
+
     //MARK: GET EMPLOYEE HOLIDAYS
-    public func getHolidays(employeeId: String? = nil) -> [HolidaysResponseModel] {
-        var holidays: [HolidaysResponseModel] = []
-        let parameters: Parameters = [
-            "employeeId": employeeId ?? ""
-        ]
-        
-        let request = AF.request(baseUrl, method: .get, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
-                let decode = try? JSONDecoder().decode([HolidaysResponseModel].self, from: data)
-                if let decode = decode {
-                    holidays = decode
-                    print("find holidays")
-                } else {
-                    print("error \(response.debugDescription)")
+    public func getHolidays(employeeId: String? = nil, establishmentId: String? = nil, completion: @escaping ([HolidaysResponseModel]?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["employeeId": employeeId ?? "", "establishmentId": establishmentId ?? ""]) { data, response in
+            if let data = data {
+                do {
+                    let decode = try JSONDecoder().decode([HolidaysResponseModel].self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
-                holidays = []
-                print("error when executing request : \(response.debugDescription)")
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return holidays
     }
-    
+
     //MARK: GET HOLIDAY BY ID
-    public func getHolidayById(holidayId: String) -> HolidaysResponseModel? {
-        var holiday: HolidaysResponseModel?
-        
-        let request = AF.request("\(baseUrl)/\(holidayId)", method: .get, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
-                let decode = try? JSONDecoder().decode(HolidaysResponseModel.self, from: data)
-                if let decode = decode {
-                    holiday = decode
-                    print("find holiday")
-                } else {
-                    print("error \(response.debugDescription)")
+    public func getHolidayById(holidayId: String, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(holidayId)", httpMethod: "GET") { data, response in
+            if let data = data {
+                do {
+                    let decode = try JSONDecoder().decode(HolidaysResponseModel.self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
-                holiday = nil
-                print("error when executing request : \(response.debugDescription)")
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return holiday
     }
-    
+
     //MARK: TAKE VACATION
-    public func takeVacation(body: HolidaysRequestModel) -> HolidaysResponseModel? {
-        var holiday: HolidaysResponseModel?
-        
-        let request = AF.request(baseUrl, method: .post, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
-                let decode = try? JSONDecoder().decode(HolidaysResponseModel.self, from: data)
-                if let decode = decode {
-                    holiday = decode
-                    print("vacation created")
-                } else {
-                    print("error \(response.debugDescription)")
+    public func takeVacation(body: HolidaysRequestModel?, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
+            if let data = data {
+                do {
+                    let decode = try JSONDecoder().decode(HolidaysResponseModel.self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
-                holiday = nil
-                print("error when executing request : \(response.debugDescription)")
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return holiday
     }
-    
+
     //MARK: MODIFY VACATION
-    public func modifyVacation(body: HolidaysRequestModel, holidayId: String) -> HolidaysResponseModel? {
-        var holiday: HolidaysResponseModel?
-        
-        let request = AF.request("\(baseUrl)/\(holidayId)", method: .put, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
-                let decode = try? JSONDecoder().decode(HolidaysResponseModel.self, from: data)
-                if let decode = decode {
-                    holiday = decode
-                    print("holiday modified")
-                } else {
-                    print("error \(response.debugDescription)")
+    public func modifyVacation(body: HolidaysRequestModel?, holidayId: String, completion: @escaping (HolidaysResponseModel?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(holidayId)", httpMethod: "PUT", body: body) { data, response in
+            if let data = data {
+                do {
+                    let decode = try JSONDecoder().decode(HolidaysResponseModel.self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
-                holiday = nil
-                print("error when executing request : \(response.debugDescription)")
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return holiday
     }
-    
-    
+
+
     //MARK: DELETE HOLIDAY BY ID
-    public func deleteHolidayById(holidayId: String) -> Bool {
-        var isDelete: Bool = false
-        
-        let request = AF.request("\(baseUrl)/\(holidayId)", method: .delete, interceptor: ApiManager.shared.self)
-        request.response { response in
-            if let response = response.response {
-                if response.statusCode == 200 {
-                    print("holiday deleted")
-                    isDelete = true
+    public func deleteHolidayById(holidayId: String, completion: @escaping (Bool?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(holidayId)", httpMethod: "DELETE") { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 204 {
+                    completion(true, response)
                 } else {
-                    print("\(response.debugDescription)")
+                    completion(false, response)
                 }
             } else {
-                isDelete = false
-                print("\(response.debugDescription)")
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return isDelete
     }
 }

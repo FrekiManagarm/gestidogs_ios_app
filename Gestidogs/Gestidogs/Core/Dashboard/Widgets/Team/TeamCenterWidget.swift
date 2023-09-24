@@ -8,51 +8,68 @@
 import SwiftUI
 
 struct TeamCenterWidget: View {
-    
-    @State var showDetails: Bool = false
+
+    @StateObject var dashboardViewModel = DashboardViewModel()
     
     var body: some View {
         VStack {
-            HStack {
-                Text("Mon équipe")
-                    .padding(.leading, 15)
-                    .foregroundColor(.white)
-//                    .foregroundColor(Color("blueGray80001"))
-                    .fontWeight(.semibold)
-                    .font(.system(size: 30))
-                Spacer()
-                NavigationLink("Voir plus", destination: TeamCenterDetailsView())
-                    .foregroundColor(Color("blueGray80001"))
-//                    .foregroundColor(.white)
-                    .font(.system(size: 15))
-                    .tint(Color("gray100"))
-//                    .tint(Color("blueGray80001"))
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.small)
-                    .fontWeight(.medium)
-                    .frame(width: 100, height: 55)
-                    .padding(.trailing, 10)
-            }
-            .padding(-5)
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach(0..<10, id: \.self) { _ in
-                        TeamCell(avatarUrl: "https://i.imgur.com/mu73rN0.jpg")
-                    }
-                }
-                .padding(.leading, 10)
-//                .shadow(radius: 5, y: 5)
-            }
+            titleAndViewMoreSection
+            
+            scrollItemsSection
         }
+        .task {
+            await dashboardViewModel.getEstablishment()
+        }
+//        .onDisappear {
+//            dashboardViewModel.teamMates = nil
+//        }
     }
 }
 
-
-
-
-
-struct TeamCenterWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        TeamCenterWidget()
+extension TeamCenterWidget {
+    
+    @ViewBuilder var scrollItemsSection: some View {
+        if let teamMates = dashboardViewModel.teamMates {
+            if teamMates.isEmpty {
+                Text("Vous n'avez pas encore d'équipe...")
+                    .foregroundColor(.secondary)
+                    .font(.system(size: 15))
+                    .fontWeight(.semibold)
+                    .padding(.vertical, 20)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(teamMates) { mate in
+                            TeamCell(teamMate: mate)
+                        }
+                    }
+                    .padding(.leading, 10)
+                }
+            }
+        } else {
+            ProgressView()
+                .padding(.vertical, 20)
+        }
+    }
+    
+    @ViewBuilder var titleAndViewMoreSection: some View {
+        HStack {
+            Text("Mon équipe")
+                .padding(.leading, 20)
+                .foregroundColor(.white)
+                .fontWeight(.semibold)
+                .font(.system(size: 30))
+            Spacer()
+            NavigationLink("Voir plus", destination: TeamListView())
+                .foregroundColor(Color("blueGray80001"))
+                .font(.system(size: 15))
+                .tint(Color("gray100"))
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+                .fontWeight(.medium)
+                .frame(width: 100, height: 55)
+                .padding(.trailing, 10)
+        }
+        .padding(-5)
     }
 }

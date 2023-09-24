@@ -9,42 +9,68 @@ import SwiftUI
 
 struct ActivityCenterWidget: View {
     
-    @State var showDetails: Bool = false
-    let activities: [ActivityResponseModel]
+    @StateObject var dashboardViewModel = DashboardViewModel()
     
     var body: some View {
         VStack {
-            HStack {
-                Text("Mes activités")
-                    .padding(.leading, 15)
-                    .foregroundColor(Color.white)
-//                    .foregroundColor(Color("blueGray80001"))
-                    .fontWeight(.semibold)
-                    .font(.system(size: 30))
+            titleAndViewMoreSection
+            
+            scrollViewItems
+        }
+        .task {
+            await dashboardViewModel.getActivities()
+        }
+//        .onDisappear {
+//            dashboardViewModel.activities = nil
+//        }
+    }
+}
 
-                Spacer()
-                NavigationLink("Voir plus", destination: ActivityCenterDetails())
-                    .foregroundColor(Color("blueGray80001"))
-//                    .foregroundColor(.white)
+extension ActivityCenterWidget {
+    @ViewBuilder var titleAndViewMoreSection: some View {
+        HStack(spacing: 5) {
+            Text("Mes activités")
+                .padding(.leading, 20)
+                .foregroundColor(Color("whiteA700"))
+                .fontWeight(.semibold)
+                .font(.system(size: 30))
+
+            Spacer()
+            NavigationLink("Voir plus", destination: ActivityListView())
+                .foregroundColor(Color("blueGray80001"))
+                .font(.system(size: 15))
+                .tint(Color("gray100"))
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+                .fontWeight(.medium)
+                .frame(width: 100, height: 55)
+                .padding(.trailing, 10)
+        }
+        .padding(-5)
+    }
+    
+    @ViewBuilder var scrollViewItems: some View {
+        if let activities = dashboardViewModel.activities {
+            if activities.isEmpty {
+                Text("Vous n'avez pas encore d'activités...")
+                    .foregroundColor(.secondary)
                     .font(.system(size: 15))
-//                    .tint(Color("blueGray80001"))
-                    .tint(Color("gray100"))
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.small)
-                    .fontWeight(.medium)
-                    .frame(width: 100, height: 55)
-                    .padding(.trailing, 10)
-            }
-            .padding(-5)
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach(0..<10, id: \.self) { _ in
-                        ActivityCell()
+                    .fontWeight(.semibold)
+                    .padding(.vertical, 20)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack {
+                        ForEach(activities) { activity in
+                            ActivityCell(activity: activity)
+                        }
                     }
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 5)
                 }
-                .padding(.leading, 10)
-//                .shadow(radius: 5, y: 5)
             }
+        } else {
+            ProgressView()
+                .padding(.vertical, 20)
         }
     }
 }
@@ -52,11 +78,12 @@ struct ActivityCenterWidget: View {
 
 
 
-
+#if DEBUG
 struct ActivityCenterWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ActivityCenterWidget(activities: [])
+            ActivityCenterWidget()
         }
     }
 }
+#endif

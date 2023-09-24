@@ -11,7 +11,9 @@ struct ChooseOrCreateEstablishmentView: View {
     
     var userManager = UserManager()
     @StateObject var viewModel: ChooseOrCreateEstablishmentViewModel = ChooseOrCreateEstablishmentViewModel()
+    @EnvironmentObject var appState: AppState
     @State var showEstablishmentForm: Bool = false
+    @State var establishmentId: String = ""
     
     
     var body: some View {
@@ -27,12 +29,12 @@ struct ChooseOrCreateEstablishmentView: View {
                 Spacer()
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Je choisi mon établissement,")
+                        Text("Je choisis mon établissement,")
                             .foregroundColor(.white)
                             .font(.system(size: 40))
                             .fontWeight(.bold)
                             .padding(.bottom, 10)
-                        Text("Vous pourrez à tout moment changer d'établissement dans le menu profil")
+                        Text("Si vous avez plusieurs établissements, vous pourrez à tout moment changer d'établissement dans le menu profil")
                             .foregroundColor(.white)
                         
                     }
@@ -53,43 +55,74 @@ struct ChooseOrCreateEstablishmentView: View {
                         
                         ScrollView {
                             ForEach(viewModel.establishmentsOfOwner) { establishment in
-                                HStack {
+                                VStack {
                                     Text(establishment.name)
+                                        .font(.system(size: 20))
+                                        .foregroundColor(establishmentId == establishment.id ? Color("whiteA700") : Color("black900"))
                                 }
-                                .background(.white)
-                                .padding()
+                                .padding(20)
+                                .padding(.horizontal, 20)
+                                .background(establishmentId == establishment.id ? Color("blueGray80001") : Color("whiteA700"))
+                                .cornerRadius(25)
+                                .onTapGesture {
+                                    establishmentId = establishment.id
+                                }
                             }
                         }
                         .frame(height: 200)
-                        .onAppear {
-//                            viewModel.getEstablishments(ownerId: <#T##String#>)
+                        .task(priority: .userInitiated) {
+                            await viewModel.getEstablishments()
                         }
 
-                        Button {
-                            showEstablishmentForm.toggle()
-                        } label: {
-                            HStack {
-                                Image(systemName: "plus")
-                                    .frame(width: 20, height: 20)
-                                    .foregroundColor(Color("blueGray80001"))
-                                    .background(.white)
-                                    .cornerRadius(100)
-                                Text("Créer un nouvel établissement")
-                                    .foregroundColor(.white)
+                        if establishmentId == "" {
+                            Button {
+                                showEstablishmentForm.toggle()
+                            } label: {
+                                HStack {
+                                    Image(systemName: "plus")
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(Color("blueGray80001"))
+                                        .background(.white)
+                                        .cornerRadius(100)
+                                    Text("Créer un nouvel établissement")
+                                        .foregroundColor(.white)
+                                }
+                                .padding()
                             }
+                            .frame(height: 55)
+                            .background(Color("blueGray80001"))
+                            .cornerRadius(100)
                             .padding()
+                            .padding(.horizontal)
+                        } else {
+                            Button {
+                                UserDefaults.standard.set(establishmentId, forKey: "establishmentId")
+                                UserDefaults.standard.synchronize()
+                                withAnimation(.spring()) {
+                                    self.appState.loginState = .home
+                                }
+                            } label: {
+                                HStack {
+                                    Text("Continuer")
+                                    Image(systemName: "arrow.right")
+                                }
+                                .padding()
+                            }
+                            .frame(width: UIScreen.main.bounds.width - 32, height: 55)
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                            .background(Color("greenA600"))
+                            .cornerRadius(15)
+                            .shadow(radius: 2, y: 5)
                         }
-                        .frame(height: 55)
-                        .background(Color("blueGray80001"))
-                        .cornerRadius(100)
-                        .padding()
-                        .padding(.horizontal)
                     }
                 }
             }
             .ignoresSafeArea()
             .sheet(isPresented: $showEstablishmentForm) {
-                
+                NewEstablishmentForm(showForm: $showEstablishmentForm)
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
             }
         }
     }

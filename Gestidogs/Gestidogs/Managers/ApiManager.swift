@@ -5,96 +5,146 @@
 //  Created by Mathieu CHAMBAUD on 31/05/2023.
 //
 
-import Alamofire
+import Foundation
 
 class ApiManager {
     static let shared: ApiManager = {
         return ApiManager()
     }()
-    typealias completionHandler = ((Data?, URLResponse?, Error?) -> Void)
-    private var session = Session()
-    let retryLimit = 3
+    typealias completionHandler = ((Data?, URLResponse?) -> Void)
+    var retryLimit = 5
     let urlToRefresh = "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh"
     
-    func request(_ urlString: String, httpMethod: String? = "GET", body: Data? = nil, completion: @escaping completionHandler) {
+    func request(_ urlString: String, httpMethod: String? = "GET", body: Encodable? = nil, parameters: [String: Any]? = nil, completion: @escaping completionHandler) async {
         
-        guard let url = URL(string: urlString) else {
-            return
-        }
         
-        guard let accessToken = UserManager.shared.getAccessToken() else {
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = httpMethod
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        if let body = body {
-            request.httpBody = body
-        }
-        print("request \(request)")
-        
-        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
-            print("response \(response)")
-            if let response = response as? HTTPURLResponse {
-                if response.statusCode == 401 {
-                    print("unauthorized request")
-                } else {
-                    completion(data, response, error)
-                }
+        var components = URLComponents(string: urlString)!
+        if let parameters = parameters {
+            components.queryItems = parameters.map { (key, value) in
+                URLQueryItem(name: key, value: String(describing: value))
             }
         }
-        dataTask.resume()
         
+        guard let url = components.url else {
+            return
+        }
         
+        var apiRequest = URLRequest(url: url)
+        apiRequest.httpMethod = httpMethod
+        if let body = body {
+            
+            do {
+                apiRequest.httpBody = try JSONEncoder().encode(body)
+            } catch {
+                print("error : \(error)")
+            }
+            
+        }
+        if let accessToken = UserDefaults.standard.string(forKey: CoreConstants.storageAccessToken) {
+            apiRequest.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        }
+        apiRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        apiRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(for: apiRequest)
+            
+            guard let responseApi = response as? HTTPURLResponse else {
+                return
+            }
+            
+            if (200...299).contains(responseApi.statusCode) {
+                print("response done : \(response.debugDescription)")
+                completion(data, response)
+            } else if self.retryLimit > 0 && responseApi.statusCode == 401 {
+                #if DEBUG
+                print("received statusCode \(responseApi.statusCode). RETRYING RECURSIVE CALL ! Retry number \(self.retryLimit)")
+                #endif
+                await self.refreshToken { isSuccess in
+                    isSuccess ? await self.request(urlString, httpMethod: httpMethod, body: body, parameters: parameters, completion: completion) : completion(data, response)
+                }
+                self.retryLimit -= 1
+            } else {
+                print("error with API => \(responseApi.statusCode) / \(responseApi.debugDescription)")
+            }
+        } catch {
+            print("something wen't wrong \(error)")
+        }
+//        await requestWithRetry(with: apiRequest) { data, response in
+//            guard let response = response as? HTTPURLResponse else {
+//                return
+//            }
+//
+//            if (200...299).contains(response.statusCode), let data = data {
+//                print("response done : \(response.debugDescription)")
+//                completion(data, response)
+//            } else {
+//                print("error encountered \(response.statusCode) \(response.debugDescription))")
+//            }
+//        }
     }
     
-    func retry() {
-        
-    }
-
+//    private func requestWithRetry(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?) -> Void) async {
+//
+//        do {
+//            let (data, response) = try await URLSession.shared.data(for: request)
+//
+//            guard let response = response as? HTTPURLResponse else {
+//                return
+//            }
+//
+//            if (200...299).contains(response.statusCode) {
+//                completionHandler(data, response)
+//            } else if retryLimit > 0 && response.statusCode == 401 {
+//                print("received status code \(response.statusCode). RETRYING RECURSIVE CALL ! Try number \(retryLimit)")
+//                await self.refreshToken { isSuccess in
+//                    isSuccess ? completionHandler(data, response) : await self.requestWithRetry(with: request, completionHandler: completionHandler)
+//                }
+//                self.retryLimit -= 1
+//            }
+//        } catch {
+//            print("something wen't wrong \(error)")
+//        }
+//    }
 }
 
-extension ApiManager: RequestInterceptor {
-    
-    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        var request = urlRequest
-        guard let token = UserManager.shared.getAccessToken() else {
-            completion(.success(urlRequest))
+extension ApiManager {
+
+    func refreshToken(completion: @escaping (_ isSuccess: Bool) async -> Void) async {
+        #if DEBUG
+        print("passed in refreshToken function")
+        #endif
+        guard let refreshToken = UserDefaults.standard.string(forKey: CoreConstants.storageRefreshToken) else {
             return
         }
         
-        let bearerToken = "Bearer \(token)"
-        request.setValue(bearerToken, forHTTPHeaderField: "Authorization")
-        completion(.success(request))
-    }
-    
-    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
-        print("let's retry")
-        guard request.retryCount < retryLimit else {
-            completion(.doNotRetry)
+        guard let url = URL(string: "\(ApiConstants.apiUrlDev)\(ApiConstants.usersUrl)/refresh") else {
             return
         }
         
-        refreshToken { isSuccess in
-            isSuccess ? completion(.retry) : completion(.doNotRetry)
-        }
-    }
-    
-    func refreshToken(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        guard let refreshToken = UserManager.shared.getRefreshToken() else {
-            return
-        }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
         
-        let authorizationTokens = HTTPHeader(name: "Authorization", value: "Bearer \(refreshToken)")
-        AF.request(urlToRefresh, method: .get, headers: [authorizationTokens]).responseDecodable(of: TokensResponseModel.self) { response in
-            if let data = response.data, let tokens = (try? JSONDecoder().decode(TokensResponseModel.self, from: data)) {
-                UserManager.shared.signIn(accessToken: tokens.accessToken, refreshToken: tokens.refreshToken)
-                completion(true)
+        do {
+            
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    let decode = try JSONDecoder().decode(TokensResponseModel.self, from: data)
+                    UserDefaults.standard.set(decode.accessToken, forKey: CoreConstants.storageAccessToken)
+                    UserDefaults.standard.set(decode.refreshToken, forKey: CoreConstants.storageRefreshToken)
+                    UserDefaults.standard.synchronize()
+                    await completion(true)
+                } else {
+                    print("response error from refreshToken with statusCode \(response.statusCode) => \(response.debugDescription)")
+                    await completion(false)
+                }
             } else {
-                completion(false)
+                print("we don't have the good response => \(response.debugDescription)")
             }
+        } catch {
+            print("something wen't wrong")
         }
     }
 }

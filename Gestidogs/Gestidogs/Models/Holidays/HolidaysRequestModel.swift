@@ -8,12 +8,11 @@
 import Foundation
 
 struct HolidaysRequestModel {
-    let employee: String // Add User Model
-    let beginDate: Date
-    let endDate: Date
+    let employee: String
+    let beginDate: String
+    let endDate: String
     let status: String
-    let isApproved: Bool
-    let v: Int
+    let isApproved: Bool?
 }
 
 extension HolidaysRequestModel: Codable {
@@ -23,6 +22,5 @@ extension HolidaysRequestModel: Codable {
         case endDate = "endDate"
         case status = "status"
         case isApproved = "isApproved"
-        case v = "__v"
     }
 }

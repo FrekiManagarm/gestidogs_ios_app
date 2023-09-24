@@ -44,7 +44,6 @@ struct PasswordField: View {
             SecureField(text: $passwdTxt, label: {
                 Text("Mot de passe")
             })
-            .keyboardType(.default)
             .padding(.leading, 20)
         }
         .padding(.bottom, 30)

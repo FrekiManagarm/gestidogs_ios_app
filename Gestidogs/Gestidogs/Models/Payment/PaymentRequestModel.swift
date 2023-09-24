@@ -8,5 +8,13 @@
 import Foundation
 
 struct PaymentRequestModel {
-    
+    let amount: Int
+    let currency: String
+}
+
+extension PaymentRequestModel: Codable {
+    enum CodingKeys: String, CodingKey {
+        case amount = "amount"
+        case currency = "currency"
+    }
 }

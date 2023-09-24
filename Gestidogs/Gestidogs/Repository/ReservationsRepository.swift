@@ -6,123 +6,116 @@
 //
 
 import Foundation
-import Alamofire
 
 class ReservationsRepository {
     private var baseUrl = "\(ApiConstants.apiUrlDev)\(ApiConstants.reservationsUrl)"
-    
+
     //MARK: GET ALL RESERVATIONS
-    public func getAllReservations(sessionId: String? = nil) -> [ReservationResponseModel] {
-        var reservations: [ReservationResponseModel] = []
-        let parameters: Parameters = [
-            "sessionId": sessionId ?? ""
-        ]
-        
-        let request = AF.request(baseUrl, method: .get, parameters: parameters, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
-                let decode = try? JSONDecoder().decode([ReservationResponseModel].self, from: data)
-                if let decode = decode {
-                    reservations = decode
-                    print("reservations found")
-                } else {
-                    print("error \(response.debugDescription)")
+    public func getAllReservations(sessionId: String? = nil, establishmentId: String? = nil, status: String? = nil, completion: @escaping ([ReservationResponseModel]?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: [
+            "sessionId": sessionId ?? "",
+            "establishmentId": establishmentId ?? "",
+            "status": status ?? ""
+        ]) { data, response in
+            if let data = data {
+                do {
+                    let decode = try JSONDecoder().decode([ReservationResponseModel].self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
-                reservations = []
-                print("error when executing request : \(response.debugDescription)")
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return reservations
     }
-    
+
     //MARK: GET RESERVATIONS BY ID
-    public func getReservationById(reservationId: String) -> ReservationResponseModel? {
-        var reservation: ReservationResponseModel?
-        
-        let request = AF.request("\(baseUrl)/\(reservationId)", method: .get, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
-                let decode = try? JSONDecoder().decode(ReservationResponseModel.self, from: data)
-                if let decode = decode {
-                    reservation = decode
-                    print("reservations found")
-                } else {
-                    print("error \(response.debugDescription)")
+    public func getReservationById(reservationId: String, completion: @escaping (ReservationResponseModel?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "GET") { data, response in
+            if let data = data {
+                do {
+                    let decode = try JSONDecoder().decode(ReservationResponseModel.self, from: data)
+                    completion(decode, response)
+                } catch {
+                    print("error : \(error)")
                 }
             } else {
-                reservation = nil
-                print("\(response.debugDescription)")
+                completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return reservation
     }
     
+    public func approvedReservation(reservationId: String, educatorId: String? = nil, slot: String? = nil, completion: @escaping (Bool, URLResponse?) -> Void) async {
+        await ApiManager.shared.request("\(baseUrl)/\(reservationId)/approved", httpMethod: "POST", parameters: [
+            "educatorId": educatorId ?? "",
+            "slot": slot ?? ""
+        ]) { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
+                } else {
+                    print("bad status code \(response.statusCode)")
+                }
+            } else {
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
+            }
+        }
+    }
+
     //MARK: CREATE RESERVATION
-    public func createReservation(body: ReservationRequestModel) -> ReservationResponseModel? {
-        var reservation: ReservationResponseModel?
-        
-        let request = AF.request(baseUrl, method: .post, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
-                let decode = try? JSONDecoder().decode(ReservationResponseModel.self, from: data)
-                if let decode = decode {
-                    reservation = decode
-                    print("reservations found")
+    public func createReservation(body: ReservationRequestModel?, completion: @escaping (Bool, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request(baseUrl, httpMethod: "POST", body: body) { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
                 } else {
-                    print("error \(response.debugDescription)")
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                reservation = nil
-                print("error when executing request : \(response.debugDescription)")
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return reservation
     }
-    
+
     //MARK: MODIFY RESERVATION
-    public func modifyReservation(body: ReservationRequestModel, reservationId: String) -> ReservationResponseModel? {
-        var reservation: ReservationResponseModel?
-        
-        let request = AF.request("\(baseUrl)/\(reservationId)", method: .put, parameters: body, encoder: JSONParameterEncoder.default, interceptor: ApiManager.shared.self)
-        request.responseData { response in
-            if let data = response.value {
-                let decode = try? JSONDecoder().decode(ReservationResponseModel.self, from: data)
-                if let decode = decode {
-                    reservation = decode
-                    print("reservations found")
-                }
-            } else {
-                reservation = nil
-                print("error when executing request : \(response.debugDescription)")
-            }
-        }
-        
-        return reservation
-    }
-    
-    //MARK: DELETE RESERVATION BY ID
-    public func deleteReservationById(reservationId: String) -> Bool {
-        var isDelete: Bool = false
-        
-        let request = AF.request("\(baseUrl)/\(reservationId)", method: .delete, interceptor: ApiManager.shared.self)
-        request.response { response in
-            if let response = response.response {
-                if response.statusCode == 200 {
-                    isDelete = true
-                    print("reservation deleted")
+    public func modifyReservation(body: ReservationRequestModel?, reservationId: String, completion: @escaping (Bool, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "PUT", body: body) { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 203 {
+                    completion(true, response)
                 } else {
-                    print("\(response.debugDescription)")
+                    print("bad statusCode \(response.statusCode)")
                 }
             } else {
-                isDelete = false
-                print("\(response.debugDescription)")
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
             }
         }
-        
-        return isDelete
+    }
+
+    //MARK: DELETE RESERVATION BY ID
+    public func deleteReservationById(reservationId: String, completion: @escaping (Bool?, URLResponse?) -> Void) async {
+
+        await ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "DELETE") { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 204 {
+                    completion(true, response)
+                } else {
+                    completion(false, response)
+                }
+            } else {
+                completion(false, response)
+                print("bad request in repository => \(response.debugDescription)")
+            }
+        }
     }
 }

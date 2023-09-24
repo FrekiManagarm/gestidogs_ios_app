@@ -11,18 +11,18 @@ struct UserRequestModel {
     let avatarUrl: String
     let firstname: String
     let lastname: String
-    let role: String
     let phoneNumber: String
     let emailAddress: String
+    let password: String
 }
 
 extension UserRequestModel: Codable {
     enum CodingKeys: String, CodingKey {
-        case avatarUrl = "avatarUrl"
         case firstname = "firstname"
         case lastname = "lastname"
-        case role = "role"
         case phoneNumber = "phoneNumber"
         case emailAddress = "emailAddress"
+        case password = "password"
+        case avatarUrl = "avatarUrl"
     }
 }
