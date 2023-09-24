@@ -18,7 +18,7 @@ struct CheckoutView: View {
                 ValidationLottie()
                     .frame(width: 150, height: 150)
                     .padding(.top, 70)
-                Text("Votre demande de réservation à bien été envoyé au manager de l'établissement, elle sera traité dans les plus brefs délais...")
+                Text("Votre demande de réservation a bien été envoyée au manager de l'établissement, elle sera traitée dans les plus brefs délais...")
                     .font(.system(size: 12))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)

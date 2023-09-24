@@ -26,9 +26,9 @@ struct DogItem: View {
                         .frame(width: 70, height: 70)
                         .cornerRadius(100)
                 } else {
-                    Image(systemName: "xmark")
+                    Image(systemName: "questionmark")
                         .resizable()
-                        .scaledToFill()
+                        .scaledToFit()
                         .frame(width: 70, height: 70)
                         .cornerRadius(100)
                 }

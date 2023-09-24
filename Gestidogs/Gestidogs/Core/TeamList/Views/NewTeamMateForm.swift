@@ -55,7 +55,7 @@ extension NewTeamMateForm {
             .fontWeight(.bold)
             .foregroundColor(Color("blueGray80001"))
             .multilineTextAlignment(.center)
-            .padding(.top, 10)
+            .padding(.top, 20)
     }
     
     @ViewBuilder var firstnameField: some View {

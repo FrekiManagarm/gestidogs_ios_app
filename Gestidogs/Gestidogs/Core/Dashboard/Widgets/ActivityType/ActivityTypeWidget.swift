@@ -64,7 +64,7 @@ extension ActivityCenterWidget {
                             ActivityCell(activity: activity)
                         }
                     }
-                    .padding(.leading, 20)
+                    .padding(.horizontal, 20)
                     .padding(.bottom, 5)
                 }
             }

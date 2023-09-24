@@ -39,6 +39,10 @@ extension ActivityCell {
                     .padding(10)
             } else {
                 Image(systemName: "xmark")
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                    .cornerRadius(25)
+                    .padding(10)
             }
             
             VStack(alignment: .leading) {

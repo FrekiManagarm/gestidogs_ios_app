@@ -14,27 +14,27 @@ struct SessionCell: View {
     @State var showDetailsView = false
     
     var body: some View {
-        ZStack {
-            roundedRectangle
-            
-            VStack {
-                topCardSection
-                Text(session.establishment.address)
-                    .font(.system(size: 15))
+        VStack {
+            topCardSection
+            Text(session.establishment.address)
+                .font(.system(size: 15))
 
-                bottomCardSection
-            }
+            bottomCardSection
         }
-        .padding(5)
+        .padding(10)
+        .background(
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color("gray100"))
+                .shadow(color: Color("black900").opacity(0.25), radius: 2, x: 0, y: 4)
+        )
         .onTapGesture {
             showDetailsView.toggle()
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 10)
         .sheet(isPresented: $showDetailsView) {
             SessionDetails(session: session)
                 .presentationDragIndicator(.visible)
         }
+        .padding(.bottom, 5)
     }
 }
 

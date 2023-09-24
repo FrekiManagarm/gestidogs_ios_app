@@ -27,19 +27,19 @@ struct HomeView_Manager: View {
                 }
                 .tag(1)
             
-            HolidaysView()
-                .tabItem {
-                    Image(systemName: "sun.max")
-                    Text("Congés")
-                }
-                .tag(2)
+//            HolidaysView()
+//                .tabItem {
+//                    Image(systemName: "sun.max")
+//                    Text("Congés")
+//                }
+//                .tag(2)
             
             ProfileView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profil")
                 }
-                .tag(3)
+                .tag(2)
         }
         .accentColor(Color("indigoA400"))
         .padding(-5)

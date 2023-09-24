@@ -72,8 +72,9 @@ extension ProfileView {
             .padding(.trailing, 20)
         }
         .sheet(isPresented: $showModifForm) {
-            ProfileForm()
+            ProfileForm(user: profileVM.user, showModifyForm: $showModifForm)
                 .presentationDragIndicator(.visible)
+                .presentationDetents([.fraction(0.60)])
         }
     }
     

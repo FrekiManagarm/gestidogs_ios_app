@@ -153,7 +153,7 @@ extension NewSessionForm {
                     .fill(Color("whiteA700"))
                     .frame(height: 55)
                 HStack {
-                    Picker("", selection: $vm.maximumCapacity) {
+                    Picker("Capacité", selection: $vm.maximumCapacity) {
                         ForEach(0..<51, id: \.self) { count in
                             Text("\(count)").tag(count)
                         }
@@ -216,7 +216,7 @@ extension NewSessionForm {
                             .foregroundColor(.secondary)
                             .fontWeight(.semibold)
                     } else {
-                        Picker("John Doe", selection: $vm.educator) {
+                        Picker("Educateur", selection: $vm.educator) {
                             ForEach(employees) { employee in
                                 Text("\(employee.firstName) \(employee.lastName)").tag(employee.id)
                             }
@@ -224,10 +224,10 @@ extension NewSessionForm {
                         .frame(width: 250, height: 80)
                         .pickerStyle(WheelPickerStyle())
                         .onAppear {
-                            vm.educator = employees[0].id
+                            self.vm.educator = employees[0].id
                         }
                         .onDisappear {
-                            vm.employees = nil
+                            self.vm.employees = nil
                         }
                     }
                 } else {

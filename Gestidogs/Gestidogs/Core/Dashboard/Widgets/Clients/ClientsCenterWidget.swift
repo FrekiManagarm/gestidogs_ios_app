@@ -60,7 +60,7 @@ extension ClientsCenterWidget {
                             ClientItem(client: client)
                         }
                     }
-                    .padding(.leading, 20)
+                    .padding(.horizontal, 20)
                     .padding(.bottom, 10)
                 }
             }

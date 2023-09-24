@@ -51,7 +51,7 @@ extension ActivityCenterDetails {
             self.reservationViewModel.activityId = activity.id
             showReservationFlow.toggle()
         } label: {
-            Text("Je souhaites faire une réservation")
+            Text("Je souhaite faire une réservation")
                 .foregroundColor(Color("whiteA700"))
                 .font(.system(size: 15))
                 .fontWeight(.semibold)

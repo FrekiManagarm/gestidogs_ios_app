@@ -11,9 +11,13 @@ class ReservationsRepository {
     private var baseUrl = "\(ApiConstants.apiUrlDev)\(ApiConstants.reservationsUrl)"
 
     //MARK: GET ALL RESERVATIONS
-    public func getAllReservations(sessionId: String? = nil, completion: @escaping ([ReservationResponseModel]?, URLResponse?) -> Void) async {
+    public func getAllReservations(sessionId: String? = nil, establishmentId: String? = nil, status: String? = nil, completion: @escaping ([ReservationResponseModel]?, URLResponse?) -> Void) async {
 
-        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: ["sessionId": sessionId ?? ""]) { data, response in
+        await ApiManager.shared.request(baseUrl, httpMethod: "GET", parameters: [
+            "sessionId": sessionId ?? "",
+            "establishmentId": establishmentId ?? "",
+            "status": status ?? ""
+        ]) { data, response in
             if let data = data {
                 do {
                     let decode = try JSONDecoder().decode([ReservationResponseModel].self, from: data)
@@ -41,6 +45,24 @@ class ReservationsRepository {
                 }
             } else {
                 completion(nil, response)
+                print("bad request in repository => \(response.debugDescription)")
+            }
+        }
+    }
+    
+    public func approvedReservation(reservationId: String, educatorId: String? = nil, slot: String? = nil, completion: @escaping (Bool, URLResponse?) -> Void) async {
+        await ApiManager.shared.request("\(baseUrl)/\(reservationId)/approved", httpMethod: "POST", parameters: [
+            "educatorId": educatorId ?? "",
+            "slot": slot ?? ""
+        ]) { data, response in
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 201 {
+                    completion(true, response)
+                } else {
+                    print("bad status code \(response.statusCode)")
+                }
+            } else {
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }

@@ -102,7 +102,6 @@ extension TakeReservationWidget {
                     ScrollView(.horizontal, showsIndicators: false) {
                         ForEach(clientDogs) { dog in
                             DogReservationItem(dog: dog, selectedDogs: $selectedDogs)
-//                                .environmentObject(reservationViewModel)
                         }
                     }
                 }
@@ -127,22 +126,22 @@ struct DogReservationItem: View {
             if let image = dog.imageUrl {
                 KFImage(URL(string: image))
                     .resizable()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 125, height: 125)
                     .cornerRadius(70)
             } else {
                 Image(systemName: "xmark")
                     .resizable()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 125, height: 125)
                     .cornerRadius(70)
             }
             Text(dog.name)
-                .font(.system(size: 15))
+                .font(.system(size: 25))
                 .fontWeight(.semibold)
                 .foregroundColor(self.reservationViewModel.reservationDogs.contains(where: { resaDog in
                     resaDog.id == dog.id
                 }) ? Color("whiteA700") : Color("blueGray80001"))
         }
-        .frame(width: 70, height: 100)
+        .frame(width: 150, height: 200)
         .background(self.reservationViewModel.reservationDogs.contains(where: { resaDog in
             resaDog.id == dog.id
         }) ? Color("blueGray80001") : Color("whiteA700"))
@@ -156,29 +155,3 @@ struct DogReservationItem: View {
         }
     }
 }
-
-//ScrollView(.horizontal, showsIndicators: false) {
-//    HStack {
-//        ForEach(0..<5, id: \.self) { dog in
-//            VStack {
-//                Image("onboarding_2_img")
-//                    .resizable()
-//                    .frame(width: 50, height: 50)
-//                    .cornerRadius(70)
-//                Text("\(dog)")
-//                    .font(.system(size: 15))
-//                    .fontWeight(.semibold)
-//                    .foregroundColor(reservationViewModel.dog.contains(dog) ? Color("whiteA700") : Color("blueGray80001"))
-//            }
-//            .frame(width: 70, height: 100)
-//            .background(reservationViewModel.dog.contains(dog) ? Color("blueGray80001") : Color("whiteA700"))
-//            .cornerRadius(20)
-//            .onTapGesture {
-//                withAnimation(.easeInOut) {
-//                    self.reservationViewModel.dog.append(dog)
-//                }
-//            }
-//        }
-//    }
-//}
-//.frame(height: 100)

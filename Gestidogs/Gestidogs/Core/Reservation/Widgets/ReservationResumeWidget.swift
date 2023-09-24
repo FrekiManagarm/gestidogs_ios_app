@@ -36,7 +36,7 @@ struct ReservationResumeWidget: View {
 extension ReservationResumeWidget {
     
     @ViewBuilder var titleSection: some View {
-        Text("Récapitulatif de la réservation ?")
+        Text("Récapitulatif de la réservation")
             .fontWeight(.bold)
             .foregroundColor(Color("blueGray80001"))
             .font(.system(size: 23))
@@ -153,7 +153,7 @@ extension ReservationResumeWidget {
                         .clipped()
                 }
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Dressage")
+                    Text(activity.title)
                         .font(.system(size: 25))
                         .fontWeight(.bold)
                     Text("\(activity.price) €")

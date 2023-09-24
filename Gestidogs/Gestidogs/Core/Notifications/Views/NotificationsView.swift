@@ -10,27 +10,31 @@ import SwiftUI
 struct NotificationsView: View {
     
     @Environment(\.dismiss) var dismiss
+    @StateObject var notificationsViewModel = NotificationsViewModel()
     
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(named: "whiteA700") as Any]
     }
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             radialGradient
             
-            VStack {
-                //MARK: put all notifications here
+            ScrollView(showsIndicators: false) {
+                scrollViewItems
             }
             .navigationTitle("Mes Notifications")
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.large)
+            .task {
+                await notificationsViewModel.getReservations()
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "arrow.left")
+                        Image(systemName: "chevron.left")
                             .foregroundColor(Color("whiteA700"))
                             .font(.system(size: 20))
                             .fontWeight(.semibold)
@@ -51,12 +55,26 @@ extension NotificationsView {
             endRadius: UIScreen.main.bounds.height)
         .ignoresSafeArea()
     }
-}
-
-#if DEBUG
-struct NotificationsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NotificationsView()
+    
+    @ViewBuilder var scrollViewItems: some View {
+        VStack(alignment: .leading) {
+            if let reservations = notificationsViewModel.reservations {
+                if !reservations.isEmpty {
+                    ForEach(reservations) { reservation in
+                        NotificationsWidget(reservation: reservation)
+                    }
+                } else {
+                    Text("Vous n'avez pas de nouvelle notification ...")
+                        .font(.system(size: 15))
+                        .foregroundColor(.secondary)
+                        .fontWeight(.semibold)
+                        .padding(.leading, 20)
+                }
+            } else {
+                ProgressView()
+                    .padding(.vertical, 20)
+                    .padding(.horizontal, 30)
+            }
+        }
     }
 }
-#endif

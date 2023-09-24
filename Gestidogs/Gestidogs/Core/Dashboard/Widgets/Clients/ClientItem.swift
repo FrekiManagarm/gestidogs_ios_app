@@ -48,9 +48,9 @@ extension ClientItem {
                     .frame(width: 70, height: 70)
                     .cornerRadius(100)
             } else {
-                Image(systemName: "xmark")
+                Image(systemName: "person")
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
                     .frame(width: 70, height: 70)
                     .cornerRadius(100)
             }

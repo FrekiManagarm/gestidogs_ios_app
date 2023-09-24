@@ -108,6 +108,8 @@
 		01DAB6472A6188DE0029E887 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB6462A6188DE0029E887 /* CheckoutView.swift */; };
 		01DAB6492A618B130029E887 /* CardResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB6482A618B130029E887 /* CardResponseModel.swift */; };
 		01DAB64B2A618D370029E887 /* ListPaymentMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DAB64A2A618D370029E887 /* ListPaymentMethods.swift */; };
+		01E7C7152ABF54DF003030FC /* ReservationToSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7C7142ABF54DF003030FC /* ReservationToSessionView.swift */; };
+		01E7C7172ABF5F7B003030FC /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7C7162ABF5F7B003030FC /* NotificationsManager.swift */; };
 		01E7D6822A2B65290054C16A /* OnboardingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6812A2B65290054C16A /* OnboardingWidget.swift */; };
 		01E7D6842A2B65390054C16A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6832A2B65390054C16A /* OnboardingView.swift */; };
 		01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */; };
@@ -272,6 +274,9 @@
 		01DAB6462A6188DE0029E887 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 		01DAB6482A618B130029E887 /* CardResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardResponseModel.swift; sourceTree = "<group>"; };
 		01DAB64A2A618D370029E887 /* ListPaymentMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPaymentMethods.swift; sourceTree = "<group>"; };
+		01E7C7142ABF54DF003030FC /* ReservationToSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationToSessionView.swift; sourceTree = "<group>"; };
+		01E7C7162ABF5F7B003030FC /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		01E7C7182ABF60FA003030FC /* GestidogsRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GestidogsRelease.entitlements; sourceTree = "<group>"; };
 		01E7D6812A2B65290054C16A /* OnboardingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWidget.swift; sourceTree = "<group>"; };
 		01E7D6832A2B65390054C16A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		01E7D6852A2B654B0054C16A /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
@@ -1019,6 +1024,7 @@
 		5F8BFD152A262CE70007E367 /* Gestidogs */ = {
 			isa = PBXGroup;
 			children = (
+				01E7C7182ABF60FA003030FC /* GestidogsRelease.entitlements */,
 				01A4D61A2A630FAE00BF72B8 /* Gestidogs.entitlements */,
 				0154ACE32A39107D00622587 /* Repository */,
 				010E1E0C2A3207A6002E0DD1 /* Constants */,
@@ -1087,6 +1093,7 @@
 				5F157C3B2A278FCE00B4C2FE /* UserManager.swift */,
 				5F157C3D2A278FDB00B4C2FE /* EstablishmentManager.swift */,
 				017B4B132A530B6D00786FCA /* RoleManager.swift */,
+				01E7C7162ABF5F7B003030FC /* NotificationsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1334,6 +1341,7 @@
 			isa = PBXGroup;
 			children = (
 				5F8C93522A2A1B2F00F39770 /* NotificationsWidget.swift */,
+				01E7C7142ABF54DF003030FC /* ReservationToSessionView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -1564,6 +1572,7 @@
 				5F157C002A27745500B4C2FE /* DashboardView.swift in Sources */,
 				0116F3862A51C181003C427B /* SessionCreateModel.swift in Sources */,
 				5F157C242A277C2100B4C2FE /* EstablishmentResponseModel.swift in Sources */,
+				01E7C7152ABF54DF003030FC /* ReservationToSessionView.swift in Sources */,
 				5F32C5BA2A28CCA30034AB6F /* DogsListWidget.swift in Sources */,
 				5F157C222A277BF300B4C2FE /* ActivityTypeRequestModel.swift in Sources */,
 				5F8C933E2A2A1A1300F39770 /* LoginView.swift in Sources */,
@@ -1585,6 +1594,7 @@
 				0154ACF32A39AC7B00622587 /* ObservationsRepository.swift in Sources */,
 				5F04A69A2A30D186000E2AD9 /* NetworkError.swift in Sources */,
 				01E7D6862A2B654B0054C16A /* OnboardingViewModel.swift in Sources */,
+				01E7C7172ABF5F7B003030FC /* NotificationsManager.swift in Sources */,
 				5F3A32522A471C5E00619AF6 /* Date.swift in Sources */,
 				5F157C3E2A278FDB00B4C2FE /* EstablishmentManager.swift in Sources */,
 				013B04522AB4A11D00D5B9A8 /* ValidationLottie.swift in Sources */,
@@ -1798,7 +1808,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Gestidogs/Gestidogs.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Gestidogs/GestidogsRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Mathieu Chambaud (7F9M4VSS6H)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1823,7 +1833,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mathieu.GestiDogs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Gestidogs iOS App";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Gestidogs Production Profile";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

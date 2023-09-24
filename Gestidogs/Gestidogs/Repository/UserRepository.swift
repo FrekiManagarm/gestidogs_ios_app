@@ -163,18 +163,17 @@ class UserRepository {
     }
     
     //MARK: MODIFY USER
-    public func modifyUser(body: UserRequestModel?, userId: String, completion: @escaping (UserResponseModel?, URLResponse?) -> Void) async {
+    public func modifyUser(body: UserRequestModel?, userId: String, completion: @escaping (Bool, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(userId)", httpMethod: "PUT", body: body) { data, response in
-            if let data = data {
-                do {
-                    let decode = try JSONDecoder().decode(UserResponseModel.self, from: data)
-                    completion(decode, response)
-                } catch {
-                    print("error modify user : \(error)")
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 203 {
+                    completion(true, response)
+                } else {
+                    completion(false, response)
                 }
             } else {
-                completion(nil, response)
+                completion(false, response)
                 print("bad request in repository => \(response.debugDescription)")
             }
         }
