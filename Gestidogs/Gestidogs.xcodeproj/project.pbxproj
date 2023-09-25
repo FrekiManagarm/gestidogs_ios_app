@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010802B42AC0BF46009A2F26 /* ModifActivityForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010802B32AC0BF46009A2F26 /* ModifActivityForm.swift */; };
 		0109C9B02A333CC300544C9C /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9AF2A333CC300544C9C /* TeamCell.swift */; };
 		0109C9B22A333CF200544C9C /* TeamCenterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9B12A333CF200544C9C /* TeamCenterDetailsView.swift */; };
 		0109C9B42A333D5100544C9C /* ActivityTypeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0109C9B32A333D5100544C9C /* ActivityTypeDetailsView.swift */; };
@@ -183,6 +184,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		010802B32AC0BF46009A2F26 /* ModifActivityForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifActivityForm.swift; sourceTree = "<group>"; };
 		0109C9AF2A333CC300544C9C /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		0109C9B12A333CF200544C9C /* TeamCenterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCenterDetailsView.swift; sourceTree = "<group>"; };
 		0109C9B32A333D5100544C9C /* ActivityTypeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypeDetailsView.swift; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 			children = (
 				017B4B172A532A3700786FCA /* NewActivityForm.swift */,
 				01B39AA62A68197E0038D83F /* ActivityListWidget.swift */,
+				010802B32AC0BF46009A2F26 /* ModifActivityForm.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -1423,11 +1426,12 @@
 			};
 			buildConfigurationList = 5F8BFD0E2A262CE70007E367 /* Build configuration list for PBXProject "Gestidogs" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = fr;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 5F8BFD0A2A262CE70007E367;
 			packageReferences = (
@@ -1645,6 +1649,7 @@
 				01DAB64B2A618D370029E887 /* ListPaymentMethods.swift in Sources */,
 				01A939842A93B40B00DD32A6 /* ClientSessions.swift in Sources */,
 				01B044B62A6FCE7F002851B7 /* StripeApplePayResponseModel.swift in Sources */,
+				010802B42AC0BF46009A2F26 /* ModifActivityForm.swift in Sources */,
 				0109C9B42A333D5100544C9C /* ActivityTypeDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

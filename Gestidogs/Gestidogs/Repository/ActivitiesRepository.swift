@@ -81,11 +81,11 @@ class ActivitiesRepository {
     }
     
     //MARK: DELETE ACTIVITY BY ID
-    public func deleteActivityById(activityId: String, completion: @escaping (Bool?, URLResponse?) -> Void) async {
+    public func deleteActivityById(activityId: String, completion: @escaping (Bool, URLResponse?) -> Void) async {
         
         await ApiManager.shared.request("\(baseUrl)/\(activityId)", httpMethod: "DELETE") { _, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 204 {
+                if response.statusCode == 200 {
                     completion(true, response)
                 } else {
                     completion(false, response)

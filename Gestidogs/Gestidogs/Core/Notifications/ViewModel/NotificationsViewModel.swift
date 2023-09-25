@@ -68,8 +68,8 @@ extension NotificationsViewModel {
             if isSuccess {
                 Task {
                     await self.getReservations()
-                    completion(true)
                 }
+                completion(true)
             } else {
                 completion(false)
             }

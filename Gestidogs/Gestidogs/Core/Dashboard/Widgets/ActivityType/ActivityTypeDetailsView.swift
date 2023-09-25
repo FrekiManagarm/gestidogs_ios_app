@@ -12,8 +12,11 @@ struct ActivityCenterDetails: View {
     
     let activity: ActivityResponseModel
     @StateObject var reservationViewModel = ReservationViewModel()
+    @StateObject var dashboardViewModel = DashboardViewModel()
     @State var showReservationFlow = false
     @Binding var showDetailsView: Bool
+    @State var showModifActivityForm = false
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -37,6 +40,7 @@ struct ActivityCenterDetails: View {
                 takeReservationButton
             }
         }
+        
         .background(Color("gray100"))
         .toolbar(.hidden, for: .tabBar)
         .navigationBarBackButtonHidden()
@@ -80,13 +84,36 @@ extension ActivityCenterDetails {
             Spacer()
             if RoleManager.shared.isManager() || RoleManager.shared.isAdmin() {
                 Button {
-                    
+                    Task {
+                        await dashboardViewModel.deleteActivity(activityId: activity.id) { isSuccess in
+                            if isSuccess {
+                                dismiss()
+                            }
+                        }
+                    }
+                } label: {
+                    Image(systemName: "trash")
+                        .resizable()
+                        .frame(width: 23, height: 23)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.red)
+                }
+                .padding(.bottom, 1)
+                .padding(.trailing, 5)
+
+                Button {
+                    showModifActivityForm.toggle()
                 } label: {
                     Image(systemName: "gear")
                         .resizable()
                         .frame(width: 25, height: 25)
                         .fontWeight(.semibold)
                         .foregroundColor(Color("blueGray80001"))
+                }
+                .sheet(isPresented: $showModifActivityForm) {
+                    ModifActivityForm(activity: activity, showModifActivityForm: $showModifActivityForm)
+                        .presentationDragIndicator(.visible)
+                        .presentationDetents([.fraction(0.80)])
                 }
             }
         }

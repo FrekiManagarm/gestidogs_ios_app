@@ -28,10 +28,6 @@ struct LoginView: View {
                     
                     buttonOrLoading
                     
-                    separatorSection
-                    
-                    GoogleAndFacebookLoginButtons(googleLoginFunction: loginViewModel.loginGoogle, facebookLoginFunction: loginViewModel.loginFacebook)
-                    
                     
                 }
             }

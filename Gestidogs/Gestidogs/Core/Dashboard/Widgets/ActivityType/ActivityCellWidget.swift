@@ -64,7 +64,6 @@ extension ActivityCell {
                     .padding(.bottom, 20)
                     .fontWeight(.medium)
             }
-            .padding(.leading, 10)
             Spacer()
         }
         .foregroundColor(.black)

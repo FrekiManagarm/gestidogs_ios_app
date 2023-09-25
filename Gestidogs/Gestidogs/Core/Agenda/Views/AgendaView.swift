@@ -68,13 +68,18 @@ extension AgendaView {
     
     @ViewBuilder var sessionCard: some View {
         if selectedDate != nil, let sessionsPerDate {
-            ForEach(sessionsPerDate.today) { session in
-                SessionCard(session: session)
+            if !sessionsPerDate.today.isEmpty {
+                ForEach(sessionsPerDate.today) { session in
+                    SessionCard(session: session)
+                }
+                .padding(.leading, 10)
+                .frame(width: UIScreen.main.bounds.width - 32, height: 70, alignment: .leading)
+                .background(Color("gray100"))
+                .cornerRadius(25)
+            } else {
+                Text("Pas de session programmé")
+                    .foregroundColor(Color("whiteA700"))
             }
-            .padding(.leading, 10)
-            .frame(width: UIScreen.main.bounds.width - 32, height: 70, alignment: .leading)
-            .background(Color("gray100"))
-            .cornerRadius(25)
         } else {
             Text("Aucune date sélectionnée")
                 .foregroundColor(Color("whiteA700"))

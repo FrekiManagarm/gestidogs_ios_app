@@ -121,6 +121,17 @@ extension DashboardViewModel {
     }
     
     @MainActor
+    func deleteActivity(activityId: String, completion: @escaping (Bool) -> Void) async {
+        await activitiesRepo.deleteActivityById(activityId: activityId) { isSuccess, _ in
+            if isSuccess {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
+    @MainActor
     func getMe() async {
         await userRepo.userMe { data, response in
             if let data, let response = response as? HTTPURLResponse {

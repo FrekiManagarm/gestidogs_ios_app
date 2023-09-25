@@ -18,6 +18,29 @@ class ActivityListViewModel: ObservableObject {
     @Published var activities: [ActivityResponseModel]?
     lazy var activityRepo = ActivitiesRepository()
     
+    
+}
+
+extension ActivityListViewModel {
+    
+    @MainActor
+    func modifyActivity(activityId: String, completion: @escaping (Bool, URLResponse?) -> Void) async {
+        
+        guard let establishmentId = UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) else {
+            return
+        }
+        
+        var body = ActivityRequestModel(establishment: establishmentId, title: activityTitle, description: description, imageUrl: imageUrl, color: "", duration: Int(duration) ?? 0, price: Int(price) ?? 0)
+        
+        await activityRepo.modifyActivity(body: body, activityId: activityId) { isSuccess, response in
+            if isSuccess {
+                completion(true, response)
+            } else {
+                completion(false, response)
+            }
+        }
+    }
+    
     @MainActor func newActivity(completion: @escaping (Bool, URLResponse) -> Void) async {
         
         guard let establishmentId = UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) else {
@@ -41,9 +64,7 @@ class ActivityListViewModel: ObservableObject {
             }
         }
     }
-}
-
-extension ActivityListViewModel {
+    
     @MainActor func getActivitiesOfEstablishment() async {
         guard let establishmentId = UserDefaults.standard.string(forKey: CoreConstants.storageEstablishmentId) else {
             return
