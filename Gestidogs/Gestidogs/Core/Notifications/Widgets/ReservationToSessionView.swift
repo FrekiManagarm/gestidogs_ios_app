@@ -94,14 +94,14 @@ struct ReservationToSessionView: View {
                 Button {
                     showReservationToSession = false
                 } label: {
-                    Text("Refuser")
+                    Text("Mise en attente")
                         .foregroundColor(Color("whiteA700"))
                         .fontWeight(.semibold)
                         .font(.system(size: 15))
                 }
-                .padding(20)
+                .padding(10)
                 .padding(.horizontal, 40)
-                .background(.red)
+                .background(.orange)
                 .cornerRadius(25)
                 
                     Button {

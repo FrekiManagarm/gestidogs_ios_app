@@ -45,6 +45,7 @@ struct TakeReservationWidget: View {
                             .foregroundColor(Color("whiteA700"))
                             .fontWeight(.semibold)
                     }
+                    .disabled(selectedDogs.isEmpty)
                     .frame(width: UIScreen.main.bounds.width - 50, height: 55)
                     .background(Color("blueGray80001"))
                     .cornerRadius(20)
@@ -73,7 +74,7 @@ extension TakeReservationWidget {
                 .font(.system(size: 10))
                 .foregroundColor(Color("black900").opacity(0.5))
                 .fontWeight(.bold)
-            Text("Attention l'éducateur choisi sera en fonction de sa disponibilité")
+            Text("Attention l'éducateur sera choisi en fonction de sa disponibilité")
                 .font(.system(size: 10))
                 .foregroundColor(Color("black900").opacity(0.5))
                 .fontWeight(.bold)

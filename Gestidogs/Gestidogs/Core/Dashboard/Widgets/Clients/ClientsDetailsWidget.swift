@@ -13,6 +13,7 @@ struct ClientsDetailsWidget: View {
     let client: UserResponseModel
     @StateObject var dashboardClientVM = DashboardClientViewModel()
     @State var showNewDogForm = false
+    @State var showModifyForm = false
     @Environment(\.dismiss) var dismiss
     
     
@@ -29,6 +30,11 @@ struct ClientsDetailsWidget: View {
                 }
             }
         }
+        .sheet(isPresented: $showModifyForm, content: {
+            ProfileForm(user: client, showModifyForm: $showModifyForm)
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.fraction(0.55)])
+        })
         .sheet(isPresented: $showNewDogForm) {
             NewDogForm(showNewDogForm: $showNewDogForm, ownerId: client.id)
                 .presentationDragIndicator(.visible)
@@ -57,7 +63,7 @@ extension ClientsDetailsWidget {
             Spacer()
             if RoleManager.shared.isManager() || RoleManager.shared.isAdmin() {
                 Button {
-                    
+                    showModifyForm.toggle()
                 } label: {
                     Image(systemName: "gear")
                         .resizable()

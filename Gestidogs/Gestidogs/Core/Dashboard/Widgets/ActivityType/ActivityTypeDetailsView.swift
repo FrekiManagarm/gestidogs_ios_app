@@ -83,23 +83,23 @@ extension ActivityCenterDetails {
             }
             Spacer()
             if RoleManager.shared.isManager() || RoleManager.shared.isAdmin() {
-                Button {
-                    Task {
-                        await dashboardViewModel.deleteActivity(activityId: activity.id) { isSuccess in
-                            if isSuccess {
-                                dismiss()
-                            }
-                        }
-                    }
-                } label: {
-                    Image(systemName: "trash")
-                        .resizable()
-                        .frame(width: 23, height: 23)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.red)
-                }
-                .padding(.bottom, 1)
-                .padding(.trailing, 5)
+//                Button {
+//                    Task {
+//                        await dashboardViewModel.deleteActivity(activityId: activity.id) { isSuccess in
+//                            if isSuccess {
+//                                dismiss()
+//                            }
+//                        }
+//                    }
+//                } label: {
+//                    Image(systemName: "trash")
+//                        .resizable()
+//                        .frame(width: 23, height: 23)
+//                        .fontWeight(.semibold)
+//                        .foregroundColor(.red)
+//                }
+//                .padding(.bottom, 1)
+//                .padding(.trailing, 5)
 
                 Button {
                     showModifActivityForm.toggle()
