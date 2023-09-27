@@ -20,9 +20,6 @@ struct SessionCenterWidget: View {
         .task {
             await dashboardViewModel.getDailySessions()
         }
-//        .onDisappear {
-//            dashboardViewModel.todaySessions = nil
-//        }
     }
 }
 

@@ -47,7 +47,7 @@ extension ReservationViewModel {
             return
         }
 
-        var body = PaymentRequestModel(amount: activityPrice, currency: "eur")
+        let body = PaymentRequestModel(amount: activityPrice * reservationDogs.count, currency: "eur")
         
         await paymentRepo.createPaymentSheet(body: body, userId: userId) { data, response in
             if let data {
@@ -120,7 +120,7 @@ extension ReservationViewModel {
     @MainActor
     func createReservation() async {
         
-        var body = ReservationRequestModel(session: nil, activity: activityId, dogs: dogsString, isApproved: false)
+        let body = ReservationRequestModel(session: nil, activity: activityId, dogs: dogsString, isApproved: false)
         
         print("body of reservation \(body)")
         

@@ -68,7 +68,7 @@ class ActivitiesRepository {
         
         await ApiManager.shared.request("\(baseUrl)/\(activityId)", httpMethod: "PUT", body: body) { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 203 {
+                if response.statusCode == 200 {
                     completion(true, response)
                 } else {
                     print("bad statusCode \(response.statusCode)")

@@ -21,7 +21,6 @@ struct TakeReservationWidget: View {
             
             partipantsList
             
-            Spacer()
             
             if let clientDogs = reservationViewModel.clientDogs {
                 if !clientDogs.isEmpty {
@@ -100,10 +99,13 @@ extension TakeReservationWidget {
                         .padding(.top, 20)
                 } else {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        ForEach(clientDogs) { dog in
-                            DogReservationItem(dog: dog, selectedDogs: $selectedDogs)
+                        LazyHStack(alignment: .top) {
+                            ForEach(clientDogs) { dog in
+                                DogReservationItem(dog: dog, selectedDogs: $selectedDogs)
+                            }
                         }
                     }
+                    .frame(maxHeight: 250)
                 }
             } else {
                 ProgressView()

@@ -25,7 +25,6 @@ struct DashboardView_Client: View {
                     
                     ScrollView(.vertical, showsIndicators: false) {
                         dogsSection
-                        todaySessionsSection
                         myEtablishmentsSection
                     }
                     .task {
@@ -84,10 +83,6 @@ extension DashboardView_Client {
     
     @ViewBuilder var dogsSection: some View {
         DogClientWidget()
-    }
-    
-    @ViewBuilder var todaySessionsSection: some View {
-        ClientSessions()
     }
     
     @ViewBuilder var myEtablishmentsSection: some View {

@@ -105,7 +105,7 @@ class EstablishmentRepository {
         
         await ApiManager.shared.request("\(baseUrl)/\(establishmentId)", httpMethod: "PUT", body: body) { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 203 {
+                if response.statusCode == 200 {
                     completion(true, response)
                 } else {
                     print("bad statusCode \(response.statusCode)")
@@ -123,7 +123,7 @@ class EstablishmentRepository {
         
         await ApiManager.shared.request("\(baseUrl)", httpMethod: "DELETE") { _, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 204 {
+                if response.statusCode == 200 {
                     completion(true, response)
                 } else {
                     completion(false, response)
@@ -140,7 +140,7 @@ class EstablishmentRepository {
         
         await ApiManager.shared.request("\(baseUrl)/owner/\(ownerId)", httpMethod: "DELETE") { _, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 204 {
+                if response.statusCode == 200 {
                     completion(true, response)
                 } else {
                     completion(false, response)

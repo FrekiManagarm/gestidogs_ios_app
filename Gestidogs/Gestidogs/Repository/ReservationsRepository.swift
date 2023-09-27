@@ -90,7 +90,7 @@ class ReservationsRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "PUT", body: body) { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 203 {
+                if response.statusCode == 200 {
                     completion(true, response)
                 } else {
                     print("bad statusCode \(response.statusCode)")
@@ -107,7 +107,7 @@ class ReservationsRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(reservationId)", httpMethod: "DELETE") { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 204 {
+                if response.statusCode == 200 {
                     completion(true, response)
                 } else {
                     completion(false, response)

@@ -60,6 +60,27 @@ class SessionRepository {
             }
         }
     }
+    
+    public func getDailySessionsByDogId(dogId: String, date: String?, completion: @escaping ([SessionResponseModel]?, URLResponse?) -> Void) async {
+        await ApiManager.shared.request("\(baseUrl)/daily/\(dogId)", httpMethod: "GET", parameters: [
+            "date": date ?? ""
+        ]) { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    do {
+                        let decode = try JSONDecoder().decode([SessionResponseModel].self, from: data)
+                        completion(decode, response)
+                    } catch {
+                        print("error daily sessions dogs : \(error)")
+                    }
+                } else {
+                    completion(nil, response)
+                }
+            } else {
+                print("no return from api")
+            }
+        }
+    }
 
     //MARK: GET SESSION BY ID
     public func getSessionsById(sessionId: String, completion: @escaping (SessionResponseModel?, URLResponse?) -> Void) async {
@@ -140,7 +161,7 @@ class SessionRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "PUT", body: body) { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 203 {
+                if response.statusCode == 200 {
                     completion(true, response)
                 } else {
                     print("bad statusCode \(response.statusCode)")
@@ -157,7 +178,7 @@ class SessionRepository {
 
         await ApiManager.shared.request("\(baseUrl)/\(sessionId)", httpMethod: "DELETE") { data, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 204 {
+                if response.statusCode == 200 {
                     completion(true, response)
                     #if DEBUG
                     print("session is deleted")

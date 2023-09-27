@@ -51,7 +51,7 @@ struct AgendaUIViewRepresentable: UIViewRepresentable {
             let newDate = date.addHours(hours: 2)
             parent.selectedDate = newDate
             Task {
-                await parent.agendaVM.getSessionsPerDate(date: date.toString()) { data, response in
+                await parent.agendaVM.getSessionsPerDate(date: date.stringifyInShortDate()) { data, response in
                     self.parent.sessionsPerDate = data
                 }
             }

@@ -150,7 +150,7 @@ class UserRepository {
         
         await ApiManager.shared.request("\(baseUrl)/logout", httpMethod: "POST") { _, response in
             if let response = response as? HTTPURLResponse {
-                if response.statusCode == 201 {
+                if response.statusCode == 200 {
                     completion(true, response)
                 } else {
                     completion(false, response)

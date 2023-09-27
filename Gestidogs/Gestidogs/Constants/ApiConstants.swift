@@ -8,8 +8,8 @@
 import Foundation
 
 class ApiConstants {
-    static let apiUrlDev: String = "https://dev.api.gestidogs.ianlcz.io/v0"
-    static let apiUrlProd: String = "https://api.gestidogs.ianlcz.io/v0"
+    static let apiUrlDev: String = "https://dev.api.gestidogs.ianlcz.io/v1"
+    static let apiUrlProd: String = "https://api.gestidogs.ianlcz.io/v1"
     
     static let establishmentUrl: String = "/establishments"
     static let activitiesUrl: String = "/activities"

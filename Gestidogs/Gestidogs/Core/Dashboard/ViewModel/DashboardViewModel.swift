@@ -17,7 +17,9 @@ class DashboardViewModel: ObservableObject {
     @Published var todaySessions: DailySessions?
     @Published var dogObservations: [ObservationResponseModel]?
     @Published var clients: [UserResponseModel]?
+    @Published var todayDogsSessions: [SessionResponseModel]?
     
+    //MARK: Modules
     lazy var establishmentManager = EstablishmentManager()
     lazy var dogsRepo = DogsRepository()
     lazy var activitiesRepo = ActivitiesRepository()
@@ -141,6 +143,21 @@ extension DashboardViewModel {
                     }
                 } else {
                     print("something wen't wrong with the request => \(response.debugDescription)")
+                }
+            }
+        }
+    }
+    
+    @MainActor
+    func getTodayDogSessions(dogId: String) async {
+        await sessionsRepo.getDailySessionsByDogId(dogId: dogId, date: Date.now.stringifyInShortDate()) { data, response in
+            if let data, let response = response as? HTTPURLResponse {
+                if response.statusCode == 200 {
+                    Task {
+                        self.todayDogsSessions = data
+                    }
+                } else {
+                    print("Something wen't wrong with the request => \(response.debugDescription)")
                 }
             }
         }
